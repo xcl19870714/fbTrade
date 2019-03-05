@@ -65,6 +65,8 @@ namespace FB_TRADE
                     frm.MyInitFrm();
 
                     this.Hide();
+                    frm.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+                    frm.WindowState = System.Windows.Forms.FormWindowState.Maximized;
                     frm.ShowDialog();
                 }
             }
