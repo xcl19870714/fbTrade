@@ -1,0 +1,6 @@
+E:\VC#_APP\FB_TRADE\FB_TRADE\FB_Trade_Models\bin\Debug\FB_Trade_Models.dll
+E:\VC#_APP\FB_TRADE\FB_TRADE\FB_Trade_Models\bin\Debug\FB_Trade_Models.pdb
+E:\VC#_APP\FB_TRADE\FB_TRADE\FB_Trade_Models\obj\Debug\FB_TRADE_MODELS.csproj.CoreCompileInputs.cache
+E:\VC#_APP\FB_TRADE\FB_TRADE\FB_Trade_Models\obj\Debug\FB_Trade_Models.dll
+E:\VC#_APP\FB_TRADE\FB_TRADE\FB_Trade_Models\obj\Debug\FB_Trade_Models.pdb
+E:\VC#_APP\FB_TRADE\FB_TRADE\FB_Trade_Models\obj\Debug\FB_TRADE_MODELS.csprojAssemblyReference.cache
