@@ -22,12 +22,113 @@ namespace FB_TRADE
         private DBCommon db = new DBCommon();
         private string sqlStr = string.Empty;
 
-		//1. Shows
+        private const int CLOSE_SIZE = 12;
+
+        //1. Graph Shows
         public FrmMain()
         {
             InitializeComponent();
+            SetBtnListCenter();
+            InitTabControl();
+            tabControlMain.Controls.Clear();
+        }
+        private void SetBtnListCenter()
+        {
+            SetBtnLocationCenter(this.splitContainer1.Panel1, btnFbAccountList);
+            SetBtnLocationCenter(this.splitContainer1.Panel1, btnCustomerNotify);
+            SetBtnLocationCenter(this.splitContainer1.Panel1, btnCustomerControl);
+            SetBtnLocationCenter(this.splitContainer1.Panel1, btnGroupControl);
+            SetBtnLocationCenter(this.splitContainer1.Panel1, btnOrderList);
+            SetBtnLocationCenter(this.splitContainer1.Panel1, btnOldCustomers);
         }
 
+        private void SetBtnLocationCenter(Panel panel, Button btn)
+        {
+            int x = (int)(0.5 * (panel.Width - btn.Width));
+            int y = btn.Location.Y;
+            btn.Location = new System.Drawing.Point(x, y);
+        }
+
+        private void InitTabControl() //在选项卡上添加关闭按钮
+        {
+
+            this.tabControlMain.DrawMode = TabDrawMode.OwnerDrawFixed;
+            this.tabControlMain.Padding = new System.Drawing.Point(CLOSE_SIZE, CLOSE_SIZE);
+            this.tabControlMain.DrawItem += new DrawItemEventHandler(this.TabControlMain_DrawItem1);
+            this.tabControlMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TabControlMain_MouseDown1);
+        }
+
+        private void TabControlMain_DrawItem1(object sender, System.Windows.Forms.DrawItemEventArgs e)
+        {
+            try
+            {
+                Rectangle myTabRect = this.tabControlMain.GetTabRect(e.Index);
+
+                //先添加TabPage属性   
+                e.Graphics.DrawString(this.tabControlMain.TabPages[e.Index].Text, this.Font, SystemBrushes.ControlText, myTabRect.X + 2, myTabRect.Y + 2);
+
+                //再画一个矩形框
+                using (Pen p = new Pen(Color.Black))
+                {
+                    myTabRect.Offset(myTabRect.Width - (CLOSE_SIZE + 3), 2);
+                    myTabRect.Width = CLOSE_SIZE;
+                    myTabRect.Height = CLOSE_SIZE;
+                    e.Graphics.DrawRectangle(p, myTabRect);
+                }
+
+                //填充矩形框
+                Color recColor = e.State == DrawItemState.Selected ? Color.IndianRed : Color.DarkGray;
+                using (Brush b = new SolidBrush(recColor))
+                {
+                    e.Graphics.FillRectangle(b, myTabRect);
+                }
+
+                //画关闭符号
+                using (Pen p = new Pen(Color.White))
+                {
+                    //画"/"线
+                    Point p1 = new Point(myTabRect.X + 3, myTabRect.Y + 3);
+                    Point p2 = new Point(myTabRect.X + myTabRect.Width - 3, myTabRect.Y + myTabRect.Height - 3);
+                    e.Graphics.DrawLine(p, p1, p2);
+
+                    //画"/"线
+                    Point p3 = new Point(myTabRect.X + 3, myTabRect.Y + myTabRect.Height - 3);
+                    Point p4 = new Point(myTabRect.X + myTabRect.Width - 3, myTabRect.Y + 3);
+                    e.Graphics.DrawLine(p, p3, p4);
+                }
+
+                e.Graphics.Dispose();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void TabControlMain_MouseDown1(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                int x = e.X, y = e.Y;
+
+                //计算关闭区域   
+                Rectangle myTabRect = this.tabControlMain.GetTabRect(this.tabControlMain.SelectedIndex);
+
+                myTabRect.Offset(myTabRect.Width - (CLOSE_SIZE + 3), 2);
+                myTabRect.Width = CLOSE_SIZE;
+                myTabRect.Height = CLOSE_SIZE;
+
+                //如果鼠标在区域内就关闭选项卡   
+                bool isClose = x > myTabRect.X && x < myTabRect.Right && y > myTabRect.Y && y < myTabRect.Bottom;
+
+                if (isClose == true)
+                {
+                    this.tabControlMain.TabPages.Remove(this.tabControlMain.SelectedTab);
+                }
+            }
+        }
+
+        //2. Data Shows
         public void MyInitFrm()
         {
             ShowWelLabel();
@@ -94,14 +195,26 @@ namespace FB_TRADE
         private void btnUserList_Click(object sender, EventArgs e)
         {
             FrmUserList frmUserList = new FrmUserList();
+           
+			frmUserList.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            frmUserList.TopLevel = false;
+            frmUserList.Dock = DockStyle.Fill;
+            frmUserList.WindowState = FormWindowState.Maximized;//如果windowState设置为最大化，添加到tabPage中时，winform不会显示出来
+
+            TabPage tabPage = new System.Windows.Forms.TabPage();
+            tabPage.Text = "子账号列表";
+            this.tabControlMain.Controls.Add(tabPage);
+            //tabPage.Controls.Clear();
+            tabPage.Controls.Add(frmUserList);
+
             frmUserList.adminId = Convert.ToString(this.adminInfo.Id);
             frmUserList.MyInitFrm();
+            frmUserList.Show();
+        }
 
-			//在哪里显示
-            frmUserList.TopLevel = false; // 不是最顶层窗体
-            //panelContent.Controls.Add(frmUserList);
-
-			frmUserList.Show();
+        private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+            SetBtnListCenter();
         }
     }
 }
