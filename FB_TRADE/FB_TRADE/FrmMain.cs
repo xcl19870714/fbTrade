@@ -99,7 +99,7 @@ namespace FB_TRADE
 
 			//在哪里显示
             frmUserList.TopLevel = false; // 不是最顶层窗体
-            panelContent.Controls.Add(frmUserList);
+            //panelContent.Controls.Add(frmUserList);
 
 			frmUserList.Show();
         }
