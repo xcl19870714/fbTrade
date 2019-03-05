@@ -22,17 +22,19 @@ namespace FB_TRADE
 
         private DBCommon db = new DBCommon();
         private string sqlStr = string.Empty;
-        
+
+		//1. Shows
         public FrmSelfInfoEdit()
         {
             InitializeComponent();
         }
-
+		
         public void MyInitFrm()
         {
             this.txtName.Text = (bAdmin ? adminInfo.Name : userInfo.Name);
         }
 
+		//2. Operations
         private void btnCommit_Click(object sender, EventArgs e)
         {
             if (!CheckInput())
@@ -45,7 +47,7 @@ namespace FB_TRADE
                 
                 if (db.UpdateData(sqlStr))
                 {
-                    MessageBox.Show("密码修改成功，下次登陆生效！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("信息修改成功，下次登陆生效！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     if (bAdmin)
                     {
                         pFrm.adminInfo.Name = txtName.Text.Trim();
@@ -62,7 +64,7 @@ namespace FB_TRADE
                 }
                 else
                 {
-                    MessageBox.Show("密码修改失败！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("信息修改失败！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (SqlException ex)
@@ -81,6 +83,7 @@ namespace FB_TRADE
             this.Close();
         }
 
+		//3. Input Check
         private bool CheckInput()
         {
             if (this.txtName.Text.Trim().Equals(string.Empty))
@@ -91,7 +94,7 @@ namespace FB_TRADE
             }
             if (this.txtOldPwd.Text.Trim().Equals(string.Empty))
             {
-                MessageBox.Show("旧密码不能为空", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("原密码不能为空", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.txtOldPwd.Focus();
                 return false;
             }

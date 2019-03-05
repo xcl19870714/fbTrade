@@ -22,11 +22,12 @@ namespace FB_TRADE
         private DBCommon db = new DBCommon();
         private string sqlStr = string.Empty;
 
+		//1. Shows
         public FrmMain()
         {
             InitializeComponent();
         }
-    
+
         public void MyInitFrm()
         {
             ShowWelLabel();
@@ -56,10 +57,10 @@ namespace FB_TRADE
                 sqlStr = "select * from tb_users where adminId=" + Convert.ToString(adminInfo.Id);
                 List<UserInfo> userList = (List<UserInfo>)db.GetList(sqlStr, "tb_users");
 
-                this.cbxUser.Items.Add(new ItemObject("--ALL--", 0));
+                this.cbxUser.Items.Add(new ItemObject("--ALL--", "0"));
                 foreach (var user in userList)
                 {
-                    this.cbxUser.Items.Add(new ItemObject(user.Name, user.Id));
+                    this.cbxUser.Items.Add(new ItemObject(user.Name, Convert.ToString(user.Id)));
                 }
 
                 //if (this.cbxUser.Text.Trim().Equals(string.Empty))
@@ -75,7 +76,8 @@ namespace FB_TRADE
                 MessageBox.Show(ex.Message, "程序异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+		
+		//2. Operations
         private void btnSelfInfoChg_Click(object sender, EventArgs e)
         {
             FrmSelfInfoEdit frm = new FrmSelfInfoEdit();
@@ -89,28 +91,17 @@ namespace FB_TRADE
             frm.ShowDialog();
         }
 
-        //private void btnUserList_Click(object sender, EventArgs e)
-        //{
-        //    FrmPwdChg frm = new FrmPwdChg();
-
-        //    frm.bAdmin = true;
-        //    frm.bChgOwn = false;
-        //    frm.curId = this.adminInfo.Id;
-        //    frm.curPwd = this.adminInfo.Pwd;
-
-        //    frm.MyInitFrm();
-        //    frm.ShowDialog();
-        //}
-
         private void btnUserList_Click(object sender, EventArgs e)
         {
             FrmUserList frmUserList = new FrmUserList();
             frmUserList.adminId = Convert.ToString(this.adminInfo.Id);
             frmUserList.MyInitFrm();
 
+			//在哪里显示
             frmUserList.TopLevel = false; // 不是最顶层窗体
             panelContent.Controls.Add(frmUserList);
-            frmUserList.Show();
+
+			frmUserList.Show();
         }
     }
 }

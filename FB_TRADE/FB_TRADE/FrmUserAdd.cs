@@ -20,16 +20,14 @@ namespace FB_TRADE
 
         private DBCommon db = new DBCommon();
         private string sqlStr = string.Empty;
+
+		//1. Shows
         public FrmUserAdd()
         {
             InitializeComponent();
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
+		//2. Operations
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             if (!CheckInput())
@@ -65,6 +63,12 @@ namespace FB_TRADE
             return;
         }
 
+		private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+		//3. Input Check
         private bool CheckInput()
         {
             if (txtName.Text.Trim().Equals(string.Empty))

@@ -17,13 +17,15 @@ namespace FB_TRADE
     {
         private DBCommon db = new DBCommon();
         private string sqlStr = string.Empty;
-       
+
+		//1. Shows
         public frm_login()
         {
             InitializeComponent();
             this.cbxRole.SelectedIndex = 0;
         }
 
+		//2. Operations
         private void btnLogin_Click(object sender, EventArgs e)
         {
             try
@@ -77,23 +79,26 @@ namespace FB_TRADE
                 return;
             }
         }
-        private void txtPwd_KeyDown(object sender, KeyEventArgs e)
+       
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+		private void txtPwd_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)//如果输入的是回车键  
             {
                 this.btnLogin_Click(sender, e);//触发button事件  
             }
         }
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
 
+		//3. Input Check
         private bool CheckInput()
         {
             if (this.txtLoginName.Text.Trim().Equals(string.Empty))
             {
-                MessageBox.Show("请输入用户名", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("请输入账号", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.txtLoginName.Focus();
                 return false;
             }

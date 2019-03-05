@@ -9,8 +9,8 @@ namespace FB_TRADE
     public class ItemObject
     {
         public string Text;
-        public int Value;
-        public ItemObject(string _text, int _value)
+        public string Value;
+        public ItemObject(string _text, string _value)
         {
             Text = _text;
             Value = _value;

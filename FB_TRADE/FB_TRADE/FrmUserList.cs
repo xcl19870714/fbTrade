@@ -16,12 +16,14 @@ namespace FB_TRADE
     public partial class FrmUserList : Form
     {
         public string adminId;
+		
         private Button btnDel = new System.Windows.Forms.Button();
         private Button btnEdit = new System.Windows.Forms.Button();
 
         private DBCommon db = new DBCommon();
         private string sqlStr = string.Empty;
 
+		//1. Shows
         public FrmUserList()
         {
             InitializeComponent();
@@ -29,7 +31,7 @@ namespace FB_TRADE
 
         public void MyInitFrm()
         {
-            //操作按钮
+            //编辑和删除按钮
             btnEdit.Visible = false;
             btnEdit.Text = "编辑";
             btnEdit.Click += this.btnEdit_Click;
@@ -43,6 +45,54 @@ namespace FB_TRADE
             this.listViewUser.Controls.Add(btnDel);
 
             LoadListViewDB();
+        }
+
+		public void LoadListViewDB()
+        {
+            try
+            {
+                sqlStr = "select * from tb_users where adminId='" + adminId + "'";
+                List<UserInfo> userList = (List<UserInfo>)db.GetList(sqlStr, "tb_users");
+
+                listViewUser.Clear();
+                listViewUser.Columns.Add("ID", 100, HorizontalAlignment.Left);
+                listViewUser.Columns.Add("账号", 100, HorizontalAlignment.Left);
+                listViewUser.Columns.Add("密码", 100, HorizontalAlignment.Left);
+                listViewUser.Columns.Add("所属管理员", 100, HorizontalAlignment.Left);
+                listViewUser.Columns.Add("", 50, HorizontalAlignment.Left);
+                listViewUser.Columns.Add("", 50, HorizontalAlignment.Left);
+
+                listViewUser.Items.Clear();
+                foreach (var user in userList)
+                {
+                    ListViewItem it = new ListViewItem();
+                    it.Text = Convert.ToString(user.Id);
+                    it.SubItems.Add(user.Name);
+                    it.SubItems.Add(user.Pwd);
+                    it.SubItems.Add(Convert.ToString(user.AdminId));
+                    it.SubItems.Add("");
+                    it.SubItems.Add("");
+                    listViewUser.Items.Add(it);
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message, "数据库异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "程序异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+		//2. Operations
+		private void btnAddUser_Click(object sender, EventArgs e)
+        {
+            FrmUserAdd frm = new FrmUserAdd();
+
+            frm.adminId = this.adminId;
+            frm.pFrm = this;
+            frm.ShowDialog();
         }
 
         private void btnDel_Click(object sender, EventArgs e)
@@ -78,53 +128,6 @@ namespace FB_TRADE
             frm.ShowDialog();
         }
 
-        public void LoadListViewDB()
-        {
-            try
-            {
-                sqlStr = "select * from tb_users where adminId='" + Convert.ToString(adminId) + "'";
-                List<UserInfo> userList = (List<UserInfo>)db.GetList(sqlStr, "tb_users");
-
-                listViewUser.Clear();
-                listViewUser.Columns.Add("ID", 100, HorizontalAlignment.Left);
-                listViewUser.Columns.Add("账号", 100, HorizontalAlignment.Left);
-                listViewUser.Columns.Add("密码", 100, HorizontalAlignment.Left);
-                listViewUser.Columns.Add("所属管理员", 100, HorizontalAlignment.Left);
-                listViewUser.Columns.Add("", 50, HorizontalAlignment.Left);
-                listViewUser.Columns.Add("", 50, HorizontalAlignment.Left);
-
-                listViewUser.Items.Clear();
-                foreach (var user in userList)
-                {
-                    ListViewItem it = new ListViewItem();
-                    it.Text = Convert.ToString(user.Id);
-                    it.SubItems.Add(user.Name);
-                    it.SubItems.Add(user.Pwd);
-                    it.SubItems.Add(Convert.ToString(user.AdminId));
-                    it.SubItems.Add("");
-                    it.SubItems.Add("");
-                    listViewUser.Items.Add(it);
-                }
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.Message, "数据库异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "程序异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void btnAddUser_Click(object sender, EventArgs e)
-        {
-            FrmUserAdd frm = new FrmUserAdd();
-
-            frm.adminId = this.adminId;
-            frm.pFrm = this;
-            frm.ShowDialog();
-        }
-
         private void listViewUser_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             ListViewHitTestInfo info = this.listViewUser.HitTest(e.X, e.Y);
@@ -137,7 +140,7 @@ namespace FB_TRADE
                 frm.ShowDialog();
             }
         }
-
+		
         private void listViewUser_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (this.listViewUser.SelectedItems.Count > 0)
