@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using FbTrade.Models;
+using FB_Trade_DAL;
 using System.Data.SqlClient;
-using FbTrade.DAL;
+using FB_Trade_Models;
 
 namespace FB_TRADE
 {
@@ -23,6 +23,8 @@ namespace FB_TRADE
         private string sqlStr = string.Empty;
 
         private const int CLOSE_SIZE = 12;
+        private int tabindex_show = 0;
+        private int tabindex_close = 0;
 
         //1. Graph Shows
         public FrmMain()
@@ -123,8 +125,25 @@ namespace FB_TRADE
 
                 if (isClose == true)
                 {
+                    //判断关闭的页面索引是否比正在显示的页面的索引
+                    //如果关闭的页面的索引大于或等于显示正在显示的页面索引，刚tabindex_close的值为关闭的页面的索引;
+                    //相反 的，刚tabindex_close则为tabindex_show-1;
+                    tabindex_close = this.tabControlMain.SelectedIndex >= tabindex_show ? this.tabControlMain.SelectedIndex : tabindex_close - 1;
                     this.tabControlMain.TabPages.Remove(this.tabControlMain.SelectedTab);
                 }
+                else
+                {
+                    tabindex_close = this.tabControlMain.SelectedIndex;
+                    tabindex_show = this.tabControlMain.SelectedIndex;
+                }
+                if (tabindex_close < tabindex_show)
+                {
+                    tabindex_show = tabindex_show - 1;
+
+                }
+                //显示页面
+                try { this.tabControlMain.SelectedTab = this.tabControlMain.TabPages[tabindex_show]; }
+                catch (Exception ex) { }
             }
         }
 
@@ -143,6 +162,7 @@ namespace FB_TRADE
             {
                 //init子账号下拉框
                 InitUserCbx();
+                this.cbxUser.SelectedIndex = 0;
             }
         }
 
@@ -206,6 +226,7 @@ namespace FB_TRADE
             this.tabControlMain.Controls.Add(tabPage);
             //tabPage.Controls.Clear();
             tabPage.Controls.Add(frmUserList);
+            this.tabControlMain.SelectedTab = tabPage;
 
             frmUserList.adminId = Convert.ToString(this.adminInfo.Id);
             frmUserList.MyInitFrm();
@@ -231,9 +252,14 @@ namespace FB_TRADE
             this.tabControlMain.Controls.Add(tabPage);
             //tabPage.Controls.Clear();
             tabPage.Controls.Add(frm);
+            this.tabControlMain.SelectedTab = tabPage;
 
             //frm.adminId = Convert.ToString(this.adminInfo.Id);
-            //frm.MyInitFrm();
+            frm.bAdmin = this.bAdmin;
+            frm.curAdminId = Convert.ToString(this.adminInfo.Id);
+            ItemObject coSelected = (ItemObject)this.cbxUser.SelectedItem;
+            frm.curUserId = coSelected.Value;
+            frm.MyInitFrm();
             frm.Show();
         }
     }

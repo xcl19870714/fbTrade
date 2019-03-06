@@ -8,8 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using FbTrade.Models;
-using FbTrade.DAL;
+using FB_Trade_DAL;
+using FB_Trade_Models;
 
 namespace FB_TRADE
 {

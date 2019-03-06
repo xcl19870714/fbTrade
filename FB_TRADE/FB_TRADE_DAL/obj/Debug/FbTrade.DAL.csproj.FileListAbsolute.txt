@@ -16,3 +16,12 @@ D:\VC#_APP\FB_TRADE\FB_TRADE\FB_TRADE_DAL\obj\Debug\FbTrade.DAL.csproj.CoreCompi
 D:\VC#_APP\FB_TRADE\FB_TRADE\FB_TRADE_DAL\obj\Debug\FbTrade.DAL.csproj.CopyComplete
 D:\VC#_APP\FB_TRADE\FB_TRADE\FB_TRADE_DAL\obj\Debug\FB_TRADE_DAL.dll
 D:\VC#_APP\FB_TRADE\FB_TRADE\FB_TRADE_DAL\obj\Debug\FB_TRADE_DAL.pdb
+E:\fbTrade\FB_TRADE\FB_TRADE_DAL\bin\Debug\FB_TRADE_DAL.dll
+E:\fbTrade\FB_TRADE\FB_TRADE_DAL\bin\Debug\FB_TRADE_DAL.pdb
+E:\fbTrade\FB_TRADE\FB_TRADE_DAL\bin\Debug\FB_Trade_Models.dll
+E:\fbTrade\FB_TRADE\FB_TRADE_DAL\bin\Debug\FB_Trade_Models.pdb
+E:\fbTrade\FB_TRADE\FB_TRADE_DAL\obj\Debug\FbTrade.DAL.csprojAssemblyReference.cache
+E:\fbTrade\FB_TRADE\FB_TRADE_DAL\obj\Debug\FbTrade.DAL.csproj.CoreCompileInputs.cache
+E:\fbTrade\FB_TRADE\FB_TRADE_DAL\obj\Debug\FbTrade.DAL.csproj.CopyComplete
+E:\fbTrade\FB_TRADE\FB_TRADE_DAL\obj\Debug\FB_TRADE_DAL.dll
+E:\fbTrade\FB_TRADE\FB_TRADE_DAL\obj\Debug\FB_TRADE_DAL.pdb

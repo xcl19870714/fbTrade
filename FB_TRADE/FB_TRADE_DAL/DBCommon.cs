@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Configuration;
-using FbTrade.Models;
+using FB_Trade_Models;
 
-namespace FbTrade.DAL
+namespace FB_Trade_DAL
 {
     [Serializable]
     public class DBCommon
@@ -129,6 +129,25 @@ namespace FbTrade.DAL
                             //student.BornDate = Convert.ToDateTime(reader["BornDate"]);
                         }
                         obj = userList;
+                        break;
+                    case "tb_marketFbs":
+                        List<MarketFbInfo> marketFbList = new List<MarketFbInfo>();
+                        while (reader.Read())
+                        {
+                            MarketFbInfo fb = new MarketFbInfo();
+                            fb.fbId = Convert.ToString(reader["fbId"]);
+                            fb.name = Convert.ToString(reader["name"]);
+                            fb.fbAccount = Convert.ToString(reader["fbAccount"]);
+                            fb.fbPwd = Convert.ToString(reader["fbPwd"]);
+                            fb.fbUrl = Convert.ToString(reader["fbUrl"]);
+                            fb.note = Convert.ToString(reader["note"]);
+                            fb.userId = Convert.ToInt32(reader["userId"]);
+                            fb.userName = Convert.ToString(reader["userName"]);
+                            fb.adminId = Convert.ToInt32(reader["adminId"]);
+                            marketFbList.Add(fb);
+                            //student.BornDate = Convert.ToDateTime(reader["BornDate"]);
+                        }
+                        obj = marketFbList;
                         break;
                     default:
                         break;

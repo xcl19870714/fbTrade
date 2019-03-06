@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FbTrade.Models
+namespace FB_Trade_Models
 {
     [Serializable]
     public class UserInfo
