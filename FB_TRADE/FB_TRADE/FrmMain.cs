@@ -124,7 +124,6 @@ namespace FB_TRADE
                 if (isClose == true)
                 {
                     this.tabControlMain.TabPages.Remove(this.tabControlMain.SelectedTab);
-                    this.tabControlMain.SelectedTab.
                 }
             }
         }

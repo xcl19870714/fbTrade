@@ -47,7 +47,7 @@ namespace FB_TRADE
                 
                 if (db.UpdateData(sqlStr))
                 {
-                    MessageBox.Show("信息修改成功，下次登陆生效！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("信息修改成功！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     if (bAdmin)
                     {
                         pFrm.adminInfo.Name = txtName.Text.Trim();

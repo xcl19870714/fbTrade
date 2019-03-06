@@ -69,7 +69,7 @@ namespace FB_TRADE
                     it.Text = Convert.ToString(user.Id);
                     it.SubItems.Add(user.Name);
                     it.SubItems.Add(user.Pwd);
-                    it.SubItems.Add(Convert.ToString(user.AdminId));
+                    it.SubItems.Add(user.AdminName);
                     it.SubItems.Add("");
                     it.SubItems.Add("");
                     listViewUser.Items.Add(it);

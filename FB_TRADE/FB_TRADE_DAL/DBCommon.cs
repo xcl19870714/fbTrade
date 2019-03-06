@@ -124,6 +124,7 @@ namespace FbTrade.DAL
                             user.Name = Convert.ToString(reader["name"]);
                             user.Pwd = Convert.ToString(reader["pwd"]);
                             user.AdminId = Convert.ToInt32(reader["adminId"]);
+                            user.AdminName = Convert.ToString(reader["adminName"]);
                             userList.Add(user);
                             //student.BornDate = Convert.ToDateTime(reader["BornDate"]);
                         }
@@ -158,7 +159,7 @@ namespace FbTrade.DAL
             try
             {
                 conn.Open();
-                success = (cmd.ExecuteNonQuery() == 1);
+                success = (cmd.ExecuteNonQuery() >= 1);
             }
             catch (SqlException ex)
             {
@@ -185,7 +186,7 @@ namespace FbTrade.DAL
             try
             {
                 conn.Open();
-                success = (cmd.ExecuteNonQuery() == 1);
+                success = (cmd.ExecuteNonQuery() >= 1);
             }
             catch (SqlException ex)
             {
@@ -214,7 +215,7 @@ namespace FbTrade.DAL
             try
             {
                 conn.Open();
-                success = (cmd.ExecuteNonQuery() == 1);
+                success = (cmd.ExecuteNonQuery() >= 1);
             }
             catch (SqlException ex)
             {
