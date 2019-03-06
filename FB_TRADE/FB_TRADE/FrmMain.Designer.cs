@@ -160,6 +160,7 @@
             this.btnFbAccountList.TabIndex = 28;
             this.btnFbAccountList.Text = "营销号列表";
             this.btnFbAccountList.UseVisualStyleBackColor = true;
+            this.btnFbAccountList.Click += new System.EventHandler(this.btnFbAccountList_Click);
             // 
             // labelHello
             // 

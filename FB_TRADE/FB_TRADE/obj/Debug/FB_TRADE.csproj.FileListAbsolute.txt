@@ -40,3 +40,4 @@ D:\VC#_APP\FB_TRADE\FB_TRADE\FB_TRADE\bin\Debug\FB_Trade_Models.dll
 D:\VC#_APP\FB_TRADE\FB_TRADE\FB_TRADE\bin\Debug\FB_TRADE_DAL.pdb
 D:\VC#_APP\FB_TRADE\FB_TRADE\FB_TRADE\bin\Debug\FB_Trade_Models.pdb
 D:\VC#_APP\FB_TRADE\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.csproj.CopyComplete
+D:\VC#_APP\FB_TRADE\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.FrmMarketFbList.resources

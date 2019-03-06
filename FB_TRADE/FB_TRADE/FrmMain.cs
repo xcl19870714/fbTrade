@@ -216,5 +216,25 @@ namespace FB_TRADE
         {
             SetBtnListCenter();
         }
+
+        private void btnFbAccountList_Click(object sender, EventArgs e)
+        {
+            FrmMarketFbList frm = new FrmMarketFbList();
+
+            frm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            frm.TopLevel = false;
+            frm.Dock = DockStyle.Fill;
+            frm.WindowState = FormWindowState.Maximized;//如果windowState设置为最大化，添加到tabPage中时，winform不会显示出来
+
+            TabPage tabPage = new System.Windows.Forms.TabPage();
+            tabPage.Text = "营销号列表";
+            this.tabControlMain.Controls.Add(tabPage);
+            //tabPage.Controls.Clear();
+            tabPage.Controls.Add(frm);
+
+            //frm.adminId = Convert.ToString(this.adminInfo.Id);
+            //frm.MyInitFrm();
+            frm.Show();
+        }
     }
 }

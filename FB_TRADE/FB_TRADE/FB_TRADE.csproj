@@ -58,6 +58,12 @@
     <Compile Include="FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmMarketFbList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMarketFbList.Designer.cs">
+      <DependentUpon>FrmMarketFbList.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmSelfInfoEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMarketFbList.resx">
+      <DependentUpon>FrmMarketFbList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSelfInfoEdit.resx">
       <DependentUpon>FrmSelfInfoEdit.cs</DependentUpon>
