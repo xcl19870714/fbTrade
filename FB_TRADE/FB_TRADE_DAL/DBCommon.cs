@@ -75,6 +75,17 @@ namespace FB_Trade_DAL
                             
                             obj = user;
                             break;
+                        case "tb_fbMarketAccounts":
+                            FbMarketAccountInfo fb = new FbMarketAccountInfo();
+                            fb.fbId = Convert.ToString(reader["fbId"]);
+                            fb.name = Convert.ToString(reader["name"]);
+                            fb.fbAccount = Convert.ToString(reader["fbAccount"]);
+                            fb.fbPwd = Convert.ToString(reader["fbPwd"]);
+                            fb.fbUrl = Convert.ToString(reader["fbUrl"]);
+                            fb.note = Convert.ToString(reader["note"]);
+                            fb.userId = Convert.ToInt32(reader["userId"]);
+                            obj = fb;
+                            break;
                         default:
                             break;
                     }
@@ -124,17 +135,15 @@ namespace FB_Trade_DAL
                             user.Name = Convert.ToString(reader["name"]);
                             user.Pwd = Convert.ToString(reader["pwd"]);
                             user.AdminId = Convert.ToInt32(reader["adminId"]);
-                            user.AdminName = Convert.ToString(reader["adminName"]);
                             userList.Add(user);
-                            //student.BornDate = Convert.ToDateTime(reader["BornDate"]);
                         }
                         obj = userList;
                         break;
-                    case "tb_marketFbs":
-                        List<MarketFbInfo> marketFbList = new List<MarketFbInfo>();
+                    case "tb_fbMarketAccounts":
+                        List<FbMarketAccountInfo> marketFbList = new List<FbMarketAccountInfo>();
                         while (reader.Read())
                         {
-                            MarketFbInfo fb = new MarketFbInfo();
+                            FbMarketAccountInfo fb = new FbMarketAccountInfo();
                             fb.fbId = Convert.ToString(reader["fbId"]);
                             fb.name = Convert.ToString(reader["name"]);
                             fb.fbAccount = Convert.ToString(reader["fbAccount"]);
@@ -142,10 +151,7 @@ namespace FB_Trade_DAL
                             fb.fbUrl = Convert.ToString(reader["fbUrl"]);
                             fb.note = Convert.ToString(reader["note"]);
                             fb.userId = Convert.ToInt32(reader["userId"]);
-                            fb.userName = Convert.ToString(reader["userName"]);
-                            fb.adminId = Convert.ToInt32(reader["adminId"]);
                             marketFbList.Add(fb);
-                            //student.BornDate = Convert.ToDateTime(reader["BornDate"]);
                         }
                         obj = marketFbList;
                         break;

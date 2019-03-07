@@ -55,11 +55,11 @@ namespace FB_TRADE
             try
             {
                 if (curUserId == "0")
-                    sqlStr = "select * from tb_marketFbs where adminId='" + curAdminId + "'";
+                    sqlStr = "select * from tb_fbMarketAccounts where userId in (select id from tb_users where adminId=" + curAdminId + ")";
                 else
-                    sqlStr = "select * from tb_marketFbs where userId='" + curUserId + "'";
+                    sqlStr = "select * from tb_fbMarketAccounts where userId='" + curUserId + "'";
 
-                List<MarketFbInfo> fbList = (List<MarketFbInfo>)db.GetList(sqlStr, "tb_marketFbs");
+                List<FbMarketAccountInfo> fbList = (List<FbMarketAccountInfo>)db.GetList(sqlStr, "tb_fbMarketAccounts");
 
                 this.listViewMarketFbs.FullRowSelect = true;
                 this.listViewMarketFbs.View = System.Windows.Forms.View.Details;
@@ -73,7 +73,7 @@ namespace FB_TRADE
                 listViewMarketFbs.Columns.Add("facebook密码", 100, HorizontalAlignment.Left);
                 listViewMarketFbs.Columns.Add("facebook首页链接", 100, HorizontalAlignment.Left);
                 listViewMarketFbs.Columns.Add("备注", 100, HorizontalAlignment.Left);
-                listViewMarketFbs.Columns.Add("子账号", 100, HorizontalAlignment.Left);
+                listViewMarketFbs.Columns.Add("所属子账号", 100, HorizontalAlignment.Left);
                 listViewMarketFbs.Columns.Add("", 50, HorizontalAlignment.Left);
                 listViewMarketFbs.Columns.Add("", 50, HorizontalAlignment.Left);
 
@@ -81,13 +81,15 @@ namespace FB_TRADE
                 foreach (var fb in fbList)
                 {
                     ListViewItem it = new ListViewItem();
+                    UserInfo tmp = (UserInfo)db.GetObect("select * from tb_users where id='" + fb.userId + "'", "tb_users");
+
                     it.Text = Convert.ToString(fb.fbId);
                     it.SubItems.Add(fb.name);
                     it.SubItems.Add(fb.fbAccount);
                     it.SubItems.Add(fb.fbPwd);
                     it.SubItems.Add(fb.fbUrl);
                     it.SubItems.Add(fb.note);
-                    it.SubItems.Add(fb.userName);
+                    it.SubItems.Add(tmp.Name);
                     it.SubItems.Add("");
                     it.SubItems.Add("");
                     listViewMarketFbs.Items.Add(it);
@@ -104,12 +106,15 @@ namespace FB_TRADE
         }
 
         //3. operations
-        private void btnAddUser_Click(object sender, EventArgs e)
+        private void btnMarketFbAdd_Click(object sender, EventArgs e)
         {
             FrmMarketFbAdd frm = new FrmMarketFbAdd();
 
-            //frm.adminId = this.curAdminId;
-            //frm.pFrm = this;
+            frm.bAdd = true;
+            frm.curAdminId = this.curAdminId;
+            frm.curUserId = this.curUserId;
+            frm.pFrm = this;
+            frm.MyInitFrm();
             frm.ShowDialog();
         }
 
@@ -120,7 +125,7 @@ namespace FB_TRADE
                 DialogResult choice = MessageBox.Show("确定要删除吗？", "系统提示", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (choice == DialogResult.Yes)
                 {
-                    sqlStr = "delete from tb_users where id=" + this.listViewMarketFbs.SelectedItems[0].SubItems[0].Text;
+                    sqlStr = "delete from tb_fbMarketAccounts where fbId='" + this.listViewMarketFbs.SelectedItems[0].SubItems[0].Text + "'";
                     db.DeleteData(sqlStr);
                     this.LoadListViewDB();
                 }
@@ -139,10 +144,13 @@ namespace FB_TRADE
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            FrmMarketFbEdit frm = new FrmMarketFbEdit();
-            //frm.curId = this.listViewMarketFbs.SelectedItems[0].SubItems[0].Text;
-            //frm.pFrm = this;
-            //frm.MyInitFrm();
+            FrmMarketFbAdd frm = new FrmMarketFbAdd();
+            frm.bAdd = false;
+            frm.curMarketFbId = this.listViewMarketFbs.SelectedItems[0].SubItems[0].Text;
+            frm.curAdminId = this.curAdminId;
+            frm.curUserId = this.curUserId;
+            frm.pFrm = this;
+            frm.MyInitFrm();
             frm.ShowDialog();
         }
 
@@ -151,10 +159,13 @@ namespace FB_TRADE
             ListViewHitTestInfo info = this.listViewMarketFbs.HitTest(e.X, e.Y);
             if (info.Item != null)
             {
-                FrmMarketFbEdit frm = new FrmMarketFbEdit();
-                //frm.curId = info.Item.Text;
-                //frm.pFrm = this;
-                //frm.MyInitFrm();
+                FrmMarketFbAdd frm = new FrmMarketFbAdd();
+                frm.bAdd = false;
+                frm.curMarketFbId = info.Item.Text;
+                frm.curAdminId = this.curAdminId;
+                frm.curUserId = this.curUserId;
+                frm.pFrm = this;
+                frm.MyInitFrm();
                 frm.ShowDialog();
             }
         }
@@ -163,16 +174,16 @@ namespace FB_TRADE
         {
             if (this.listViewMarketFbs.SelectedItems.Count > 0)
             {
-                this.btnEdit.Location = new Point(this.listViewMarketFbs.SelectedItems[0].SubItems[4].Bounds.Left,
-                    this.listViewMarketFbs.SelectedItems[0].SubItems[4].Bounds.Top);
-                this.btnEdit.Size = new Size(this.listViewMarketFbs.SelectedItems[0].SubItems[4].Bounds.Width,
-                    this.listViewMarketFbs.SelectedItems[0].SubItems[4].Bounds.Height);
+                this.btnEdit.Location = new Point(this.listViewMarketFbs.SelectedItems[0].SubItems[7].Bounds.Left,
+                    this.listViewMarketFbs.SelectedItems[0].SubItems[7].Bounds.Top);
+                this.btnEdit.Size = new Size(this.listViewMarketFbs.SelectedItems[0].SubItems[7].Bounds.Width,
+                    this.listViewMarketFbs.SelectedItems[0].SubItems[7].Bounds.Height);
                 this.btnEdit.Visible = true;
 
-                this.btnDel.Location = new Point(this.listViewMarketFbs.SelectedItems[0].SubItems[5].Bounds.Left,
-                    this.listViewMarketFbs.SelectedItems[0].SubItems[5].Bounds.Top);
-                this.btnDel.Size = new Size(this.listViewMarketFbs.SelectedItems[0].SubItems[5].Bounds.Width,
-                    this.listViewMarketFbs.SelectedItems[0].SubItems[5].Bounds.Height);
+                this.btnDel.Location = new Point(this.listViewMarketFbs.SelectedItems[0].SubItems[8].Bounds.Left,
+                    this.listViewMarketFbs.SelectedItems[0].SubItems[8].Bounds.Top);
+                this.btnDel.Size = new Size(this.listViewMarketFbs.SelectedItems[0].SubItems[8].Bounds.Width,
+                    this.listViewMarketFbs.SelectedItems[0].SubItems[8].Bounds.Height);
                 this.btnDel.Visible = true;
             }
         }

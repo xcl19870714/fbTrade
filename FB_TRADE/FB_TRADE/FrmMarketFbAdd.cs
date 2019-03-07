@@ -19,9 +19,168 @@ namespace FB_TRADE
         public string curAdminId;
         public string curUserId;
 
+        public FrmMarketFbList pFrm;
+
+        public bool bAdd;
+        public string curMarketFbId;
+
+        private DBCommon db = new DBCommon();
+        private string sqlStr;
+
         public FrmMarketFbAdd()
         {
             InitializeComponent();
+        }
+
+        //1. Show
+        public void MyInitFrm()
+        {
+            try
+            {
+                // Init user id cbx
+                sqlStr = "select * from tb_users where adminId=" + curAdminId;
+                List<UserInfo> userList = (List<UserInfo>)db.GetList(sqlStr, "tb_users");
+
+                foreach (var user in userList)
+                {
+                    this.cbxUserId.Items.Add(new ListItem(user.Name, Convert.ToString(user.Id)));
+                }
+
+                // Add or Edit
+                if (!bAdd)
+                {
+                    sqlStr = "select * from tb_fbMarketAccounts where fbId='" + curMarketFbId + "'";
+                    FbMarketAccountInfo fbMarket = (FbMarketAccountInfo)db.GetObect(sqlStr, "tb_fbMarketAccounts");
+
+                    this.txtFbId.Text = fbMarket.fbId;
+                    this.txtName.Text = fbMarket.name;
+                    this.txtFbAccount.Text = fbMarket.fbAccount;
+                    this.txtFbPwd.Text = fbMarket.fbPwd;
+                    this.txtFbUrl.Text = fbMarket.fbUrl;
+                    this.txtNote.Text = fbMarket.note;
+                    this.cbxUserId.SelectedItem = ListItem.FindByValue(cbxUserId, Convert.ToString(fbMarket.userId));
+                }
+                else if (curUserId != "0")
+                    this.cbxUserId.SelectedItem = ListItem.FindByValue(cbxUserId, curUserId);
+                else
+                    ;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message, "数据库异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "程序异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //2. operations
+        private void btnSubmit_Click(object sender, EventArgs e)
+        {
+            if (!CheckInput())
+                return;
+
+            try
+            {
+                if (bAdd)
+                {
+                    sqlStr = "select count(*) from tb_fbMarketAccounts where fbId='" + txtFbId.Text.Trim() + "'";
+                    if (db.CheckExist(sqlStr))
+                    {
+                        MessageBox.Show("facebook ID已经存在，请重新输入！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        this.txtFbId.Focus();
+                        return;
+                    }
+
+                    sqlStr = "select count(*) from tb_fbMarketAccounts where name='" + txtName.Text.Trim() + "'";
+                    if (db.CheckExist(sqlStr))
+                    {
+                        MessageBox.Show("昵称已经存在，请重新输入！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        this.txtName.Focus();
+                        return;
+                    }
+
+                    sqlStr = "select count(*) from tb_fbMarketAccounts where fbAccount='" + txtFbAccount.Text.Trim() + "'";
+                    if (db.CheckExist(sqlStr))
+                    {
+                        MessageBox.Show("facebook登陆账号已经存在，请重新输入！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        this.txtFbAccount.Focus();
+                        return;
+                    }
+
+                    ListItem coSelected = (ListItem)this.cbxUserId.SelectedItem;
+                    sqlStr = "insert into tb_fbMarketAccounts values('" + txtFbId.Text.Trim() + "','" +
+                    txtName.Text.Trim() + "','" + txtFbAccount.Text.Trim() + "','" +
+                    txtFbPwd.Text.Trim() + "','" + txtFbUrl.Text.Trim() + "','" +
+                    txtNote.Text.Trim() + "'," + coSelected.Value + ")";
+                    if (db.InsertData(sqlStr))
+                    {
+                        MessageBox.Show("子账号创建成功！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        this.pFrm.LoadListViewDB();
+                        this.Close();
+                    }
+                    else
+                        MessageBox.Show("子账号创建失败", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message, "数据库异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "程序异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+
+        //3. Input Check
+        private bool CheckInput()
+        {
+            if (txtFbId.Text.Trim().Equals(string.Empty))
+            {
+                MessageBox.Show("请输入facebook ID！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.txtFbId.Focus();
+                return false;
+            }
+            if (txtName.Text.Trim().Equals(string.Empty))
+            {
+                MessageBox.Show("请输入昵称！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.txtName.Focus();
+                return false;
+            }
+            if (txtFbAccount.Text.Trim().Equals(string.Empty))
+            {
+                MessageBox.Show("请输入facebook账号！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.txtFbAccount.Focus();
+                return false;
+            }
+            if (txtFbPwd.Text.Trim().Equals(string.Empty))
+            {
+                MessageBox.Show("请输入facebook登陆密码！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.txtFbPwd.Focus();
+                return false;
+            }
+
+            ListItem coSelected = (ListItem)this.cbxUserId.SelectedItem;
+            if (coSelected.Value.Equals(string.Empty))
+            {
+                MessageBox.Show("请选择子账号！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.cbxUserId.Focus();
+                return false;
+            }
+            
+            return true;
         }
     }
 }

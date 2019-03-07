@@ -122,12 +122,9 @@ namespace FB_TRADE
 
                 //如果鼠标在区域内就关闭选项卡   
                 bool isClose = x > myTabRect.X && x < myTabRect.Right && y > myTabRect.Y && y < myTabRect.Bottom;
-
                 if (isClose == true)
                 {
-                    //判断关闭的页面索引是否比正在显示的页面的索引
-                    //如果关闭的页面的索引大于或等于显示正在显示的页面索引，刚tabindex_close的值为关闭的页面的索引;
-                    //相反 的，刚tabindex_close则为tabindex_show-1;
+                    //比较关闭的页面索引与正在显示的页面的索引
                     tabindex_close = this.tabControlMain.SelectedIndex >= tabindex_show ? this.tabControlMain.SelectedIndex : tabindex_close - 1;
                     this.tabControlMain.TabPages.Remove(this.tabControlMain.SelectedTab);
                 }
@@ -141,6 +138,7 @@ namespace FB_TRADE
                     tabindex_show = tabindex_show - 1;
 
                 }
+
                 //显示页面
                 try { this.tabControlMain.SelectedTab = this.tabControlMain.TabPages[tabindex_show]; }
                 catch (Exception ex) { }
@@ -162,7 +160,6 @@ namespace FB_TRADE
             {
                 //init子账号下拉框
                 InitUserCbx();
-                this.cbxUser.SelectedIndex = 0;
             }
         }
 
@@ -178,15 +175,12 @@ namespace FB_TRADE
                 sqlStr = "select * from tb_users where adminId=" + Convert.ToString(adminInfo.Id);
                 List<UserInfo> userList = (List<UserInfo>)db.GetList(sqlStr, "tb_users");
 
-                this.cbxUser.Items.Add(new ItemObject("--ALL--", "0"));
+                this.cbxUser.Items.Add(new ListItem("--ALL--", "0"));
                 foreach (var user in userList)
                 {
-                    this.cbxUser.Items.Add(new ItemObject(user.Name, Convert.ToString(user.Id)));
+                    this.cbxUser.Items.Add(new ListItem(user.Name, Convert.ToString(user.Id)));
                 }
-
-                //if (this.cbxUser.Text.Trim().Equals(string.Empty))
-                //    this.cbxUser.SelectedIndex = 0;
-                //this.cbxUser.SelectedIndex = this.cbxUser.Items.IndexOf("子账号");
+                this.cbxUser.SelectedItem = ListItem.FindByText1(cbxUser, "--ALL--");
             }
             catch (SqlException ex)
             {
@@ -231,6 +225,8 @@ namespace FB_TRADE
             frmUserList.adminId = Convert.ToString(this.adminInfo.Id);
             frmUserList.MyInitFrm();
             frmUserList.Show();
+
+            tabindex_show = this.tabControlMain.SelectedIndex;
         }
 
         private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
@@ -257,10 +253,12 @@ namespace FB_TRADE
             //frm.adminId = Convert.ToString(this.adminInfo.Id);
             frm.bAdmin = this.bAdmin;
             frm.curAdminId = Convert.ToString(this.adminInfo.Id);
-            ItemObject coSelected = (ItemObject)this.cbxUser.SelectedItem;
+            ListItem coSelected = (ListItem)this.cbxUser.SelectedItem;
             frm.curUserId = coSelected.Value;
             frm.MyInitFrm();
             frm.Show();
+
+            tabindex_show = this.tabControlMain.SelectedIndex;
         }
     }
 }

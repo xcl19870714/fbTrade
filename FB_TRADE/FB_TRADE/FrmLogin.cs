@@ -22,7 +22,7 @@ namespace FB_TRADE
         public frm_login()
         {
             InitializeComponent();
-            this.cbxRole.SelectedIndex = 0;
+            this.cbxRole.SelectedIndex = 1;
         }
 
 		//2. Operations

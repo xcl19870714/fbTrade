@@ -1,0 +1,59 @@
+一、admins
+1. elems: id, name, pwd
+2. display: no
+3. insert: no
+4. delete: no
+5. update: ##修改name时，需要同时更新：5.1 users里的adminName
+
+
+二、users
+1. elems: id, name, pwd, adminId, adminName
+2. display: ok
+3. insert: #后台自动获取adminName
+4. delete: ##需要先删除marketFbs
+5. update: ##修改name时，需要同时更新：5.1 marketFbs中的userName
+
+三、marketFbs
+1. elems: name, fbId，fbAccount, fbPwd, userId, userName, adminId
+2. display: ok, 因为要显示userName，所以加入了userName elem
+3. insert: #根据userId自动获取userName
+4. delete: ##
+5. update: ##5.1 修改所属的user
+			5.2 修改name
+			5.3 修改fbId
+			5.4 修改fbAccount
+
+三、customers
+1. elems: name, fbId, fbUrl, customerType, interestedGoods, createDate
+2. display: 
+3. insert:
+4. delete:
+5. update:
+
+五、contacts
+1. elems:
+2. display:
+3. insert:
+4. delete:
+5. update:
+
+六、orders
+1. elems:
+2. display:
+3. insert:
+4. delete:
+5. update:
+
+七、fbGroups
+1. elems:
+2. display:
+3. insert:
+4. delete:
+5. update:
+
+八、fbGroupsLogs
+1. elems:
+2. display:
+3. insert:
+4. delete:
+5. update:

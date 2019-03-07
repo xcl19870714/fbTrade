@@ -51,25 +51,22 @@ namespace FB_TRADE
         {
             try
             {
-                sqlStr = "select * from tb_users where adminId='" + adminId + "'";
-                List<UserInfo> userList = (List<UserInfo>)db.GetList(sqlStr, "tb_users");
-
                 listViewUser.Clear();
                 listViewUser.Columns.Add("ID", 100, HorizontalAlignment.Left);
                 listViewUser.Columns.Add("账号", 100, HorizontalAlignment.Left);
                 listViewUser.Columns.Add("密码", 100, HorizontalAlignment.Left);
-                listViewUser.Columns.Add("所属管理员", 100, HorizontalAlignment.Left);
                 listViewUser.Columns.Add("", 50, HorizontalAlignment.Left);
                 listViewUser.Columns.Add("", 50, HorizontalAlignment.Left);
-
                 listViewUser.Items.Clear();
+
+                sqlStr = "select * from tb_users where adminId='" + adminId + "'";
+                List<UserInfo> userList = (List<UserInfo>)db.GetList(sqlStr, "tb_users");
                 foreach (var user in userList)
                 {
                     ListViewItem it = new ListViewItem();
                     it.Text = Convert.ToString(user.Id);
                     it.SubItems.Add(user.Name);
                     it.SubItems.Add(user.Pwd);
-                    it.SubItems.Add(user.AdminName);
                     it.SubItems.Add("");
                     it.SubItems.Add("");
                     listViewUser.Items.Add(it);
@@ -145,16 +142,16 @@ namespace FB_TRADE
         {
             if (this.listViewUser.SelectedItems.Count > 0)
             {
-                this.btnEdit.Location = new Point(this.listViewUser.SelectedItems[0].SubItems[4].Bounds.Left,
-                    this.listViewUser.SelectedItems[0].SubItems[4].Bounds.Top);
-                this.btnEdit.Size = new Size(this.listViewUser.SelectedItems[0].SubItems[4].Bounds.Width,
-                    this.listViewUser.SelectedItems[0].SubItems[4].Bounds.Height);
+                this.btnEdit.Location = new Point(this.listViewUser.SelectedItems[0].SubItems[3].Bounds.Left,
+                    this.listViewUser.SelectedItems[0].SubItems[3].Bounds.Top);
+                this.btnEdit.Size = new Size(this.listViewUser.SelectedItems[0].SubItems[3].Bounds.Width,
+                    this.listViewUser.SelectedItems[0].SubItems[3].Bounds.Height);
                 this.btnEdit.Visible = true;
 
-                this.btnDel.Location = new Point(this.listViewUser.SelectedItems[0].SubItems[5].Bounds.Left,
-                    this.listViewUser.SelectedItems[0].SubItems[5].Bounds.Top);
-                this.btnDel.Size = new Size(this.listViewUser.SelectedItems[0].SubItems[5].Bounds.Width,
-                    this.listViewUser.SelectedItems[0].SubItems[5].Bounds.Height);
+                this.btnDel.Location = new Point(this.listViewUser.SelectedItems[0].SubItems[4].Bounds.Left,
+                    this.listViewUser.SelectedItems[0].SubItems[4].Bounds.Top);
+                this.btnDel.Size = new Size(this.listViewUser.SelectedItems[0].SubItems[4].Bounds.Width,
+                    this.listViewUser.SelectedItems[0].SubItems[4].Bounds.Height);
                 this.btnDel.Visible = true;
             }
         }

@@ -66,6 +66,7 @@
             this.btnMarketFbAdd.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnMarketFbAdd.Size = new System.Drawing.Size(88, 24);
             this.btnMarketFbAdd.Text = "新增营销号";
+            this.btnMarketFbAdd.Click += new System.EventHandler(this.btnMarketFbAdd_Click);
             // 
             // panel1
             // 

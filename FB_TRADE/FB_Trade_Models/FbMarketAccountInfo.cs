@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FB_Trade_Models
 {
-    public class MarketFbInfo
+    public class FbMarketAccountInfo
     {
         public string fbId;
         public string name;
@@ -15,7 +15,5 @@ namespace FB_Trade_Models
         public string fbUrl;
         public string note;
         public int userId;
-        public string userName;
-        public int adminId;
     }
 }
