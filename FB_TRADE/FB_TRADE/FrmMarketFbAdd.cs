@@ -41,6 +41,7 @@ namespace FB_TRADE
                 sqlStr = "select * from tb_users where adminId=" + curAdminId;
                 List<UserInfo> userList = (List<UserInfo>)db.GetList(sqlStr, "tb_users");
 
+                this.cbxUserId.Items.Add(new ListItem("请选择", "0"));
                 foreach (var user in userList)
                 {
                     this.cbxUserId.Items.Add(new ListItem(user.Name, Convert.ToString(user.Id)));
@@ -60,10 +61,13 @@ namespace FB_TRADE
                     this.txtNote.Text = fbMarket.note;
                     this.cbxUserId.SelectedItem = ListItem.FindByValue(cbxUserId, Convert.ToString(fbMarket.userId));
                 }
-                else if (curUserId != "0")
-                    this.cbxUserId.SelectedItem = ListItem.FindByValue(cbxUserId, curUserId);
                 else
-                    ;
+                {
+                    if (curUserId != "0")
+                        this.cbxUserId.SelectedItem = ListItem.FindByText(cbxUserId, "请选择");
+                    else
+                        this.cbxUserId.SelectedItem = ListItem.FindByValue(cbxUserId, curUserId);
+                }
             }
             catch (SqlException ex)
             {
@@ -83,7 +87,7 @@ namespace FB_TRADE
 
             try
             {
-                if (bAdd)
+                if (bAdd) //新增
                 {
                     sqlStr = "select count(*) from tb_fbMarketAccounts where fbId='" + txtFbId.Text.Trim() + "'";
                     if (db.CheckExist(sqlStr))
@@ -116,16 +120,29 @@ namespace FB_TRADE
                     txtNote.Text.Trim() + "'," + coSelected.Value + ")";
                     if (db.InsertData(sqlStr))
                     {
-                        MessageBox.Show("子账号创建成功！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("营销号创建成功！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         this.pFrm.LoadListViewDB();
                         this.Close();
                     }
                     else
-                        MessageBox.Show("子账号创建失败", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("营销号创建失败", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                else
+                else //编辑
                 {
+                    ListItem coSelected = (ListItem)this.cbxUserId.SelectedItem;
 
+                    sqlStr = "update tb_fbMarketAccounts set fbId='" + txtFbId.Text.Trim() + "',name='" +
+                    txtName.Text.Trim() + "',fbAccount='" + txtFbAccount.Text.Trim() + "',fbPwd='" +
+                    txtFbPwd.Text.Trim() + "',fbUrl='" + txtFbUrl.Text.Trim() + "',note='" +
+                    txtNote.Text.Trim() + "',userId=" + coSelected.Value + ")";
+                    if (db.UpdateData(sqlStr))
+                    {
+                        MessageBox.Show("营销号信息修改成功！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        this.pFrm.LoadListViewDB();
+                        this.Close();
+                    }
+                    else
+                        MessageBox.Show("营销号信息修改失败", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (SqlException ex)
@@ -173,7 +190,7 @@ namespace FB_TRADE
             }
 
             ListItem coSelected = (ListItem)this.cbxUserId.SelectedItem;
-            if (coSelected.Value.Equals(string.Empty))
+            if (coSelected.Text.Equals("请选择"))
             {
                 MessageBox.Show("请选择子账号！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.cbxUserId.Focus();

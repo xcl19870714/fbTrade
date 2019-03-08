@@ -27,6 +27,8 @@ namespace FB_TRADE
         public FrmUserList()
         {
             InitializeComponent();
+            this.listViewUser.ListViewItemSorter = new ListViewColumnSorter();
+            this.listViewUser.ColumnClick += new ColumnClickEventHandler(ListViewHelper.ListView_ColumnClick);
         }
 
         public void MyInitFrm()
@@ -89,6 +91,7 @@ namespace FB_TRADE
 
             frm.adminId = this.adminId;
             frm.pFrm = this;
+            frm.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             frm.ShowDialog();
         }
 
@@ -121,6 +124,7 @@ namespace FB_TRADE
             FrmUserEdit frm = new FrmUserEdit();
             frm.curId = this.listViewUser.SelectedItems[0].SubItems[0].Text;
             frm.pFrm = this;
+            frm.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             frm.MyInitFrm();
             frm.ShowDialog();
         }
@@ -133,6 +137,7 @@ namespace FB_TRADE
                 FrmUserEdit frm = new FrmUserEdit();
                 frm.curId = info.Item.Text;
                 frm.pFrm = this;
+                frm.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
                 frm.MyInitFrm();
                 frm.ShowDialog();
             }

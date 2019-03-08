@@ -29,6 +29,9 @@ namespace FB_TRADE
         public FrmMarketFbList()
         {
             InitializeComponent();
+
+            this.listViewMarketFbs.ListViewItemSorter = new ListViewColumnSorter();
+            this.listViewMarketFbs.ColumnClick += new ColumnClickEventHandler(ListViewHelper.ListView_ColumnClick);
         }
 
         //2. MyShow
@@ -114,6 +117,8 @@ namespace FB_TRADE
             frm.curAdminId = this.curAdminId;
             frm.curUserId = this.curUserId;
             frm.pFrm = this;
+            frm.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            frm.Text = "新增营销号";
             frm.MyInitFrm();
             frm.ShowDialog();
         }
@@ -150,6 +155,8 @@ namespace FB_TRADE
             frm.curAdminId = this.curAdminId;
             frm.curUserId = this.curUserId;
             frm.pFrm = this;
+            frm.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            frm.Text = "编辑营销号";
             frm.MyInitFrm();
             frm.ShowDialog();
         }
@@ -165,6 +172,8 @@ namespace FB_TRADE
                 frm.curAdminId = this.curAdminId;
                 frm.curUserId = this.curUserId;
                 frm.pFrm = this;
+                frm.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+                frm.Text = "编辑营销号";
                 frm.MyInitFrm();
                 frm.ShowDialog();
             }

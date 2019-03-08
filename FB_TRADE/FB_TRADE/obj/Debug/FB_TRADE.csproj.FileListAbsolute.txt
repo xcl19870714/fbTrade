@@ -66,3 +66,4 @@ E:\fbTrade\FB_TRADE\FB_TRADE\bin\Debug\FB_Trade_Models.pdb
 E:\fbTrade\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.csproj.CopyComplete
 D:\VC#_APP\FB_TRADE\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.FrmMarketFbAdd.resources
 D:\VC#_APP\FB_TRADE\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.FrmMarketFbEdit.resources
+D:\VC#_APP\FB_TRADE\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.FrmCustomers.resources

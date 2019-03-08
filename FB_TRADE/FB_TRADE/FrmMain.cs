@@ -43,6 +43,10 @@ namespace FB_TRADE
             SetBtnLocationCenter(this.splitContainer1.Panel1, btnOrderList);
             SetBtnLocationCenter(this.splitContainer1.Panel1, btnOldCustomers);
         }
+        private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+            SetBtnListCenter();
+        }
 
         private void SetBtnLocationCenter(Panel panel, Button btn)
         {
@@ -148,6 +152,8 @@ namespace FB_TRADE
         //2. Data Shows
         public void MyInitFrm()
         {
+            InitUserCbx();
+            InitMarketFbCbx();
             ShowWelLabel();
 
             if (!bAdmin)
@@ -155,11 +161,6 @@ namespace FB_TRADE
                 this.cbxUser.Visible = false;
                 this.cbxFbAccount.Size = new System.Drawing.Size(160, 28);
                 this.btnUserList.Visible = false;
-            }
-            else
-            {
-                //init子账号下拉框
-                InitUserCbx();
             }
         }
 
@@ -170,17 +171,62 @@ namespace FB_TRADE
 
         public void InitUserCbx()
         {
+            if (!bAdmin)
+            {
+                this.cbxUser.Items.Clear();
+                this.cbxUser.Items.Add(new ListItem(this.userInfo.Name, this.userInfo.Id.ToString()));
+                this.cbxUser.SelectedItem = ListItem.FindByText1(cbxUser, this.userInfo.Name);
+            }
+            else
+            {
+                try
+                {
+                    sqlStr = "select * from tb_users where adminId=" + Convert.ToString(adminInfo.Id);
+                    List<UserInfo> userList = (List<UserInfo>)db.GetList(sqlStr, "tb_users");
+
+                    this.cbxUser.Items.Clear();
+                    this.cbxUser.Items.Add(new ListItem("--ALL--", "0"));
+                    foreach (var user in userList)
+                    {
+                        this.cbxUser.Items.Add(new ListItem(user.Name, Convert.ToString(user.Id)));
+                    }
+                    this.cbxUser.SelectedItem = ListItem.FindByText1(cbxUser, "--ALL--");
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.Message, "数据库异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "程序异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            
+        }
+
+        public void InitMarketFbCbx()
+        {
             try
             {
-                sqlStr = "select * from tb_users where adminId=" + Convert.ToString(adminInfo.Id);
-                List<UserInfo> userList = (List<UserInfo>)db.GetList(sqlStr, "tb_users");
-
-                this.cbxUser.Items.Add(new ListItem("--ALL--", "0"));
-                foreach (var user in userList)
+                ListItem selItem = (ListItem)this.cbxUser.SelectedItem; 
+                if (selItem.Text == "--ALL--")
                 {
-                    this.cbxUser.Items.Add(new ListItem(user.Name, Convert.ToString(user.Id)));
+                    sqlStr = "select * from tb_fbMarketAccounts where userId in (select id from tb_users where adminId=" + Convert.ToString(adminInfo.Id) + ")";
                 }
-                this.cbxUser.SelectedItem = ListItem.FindByText1(cbxUser, "--ALL--");
+                else
+                {
+                    sqlStr = "select * from tb_fbMarketAccounts where userId=" + selItem.Value;
+                }
+                
+                List<FbMarketAccountInfo> marketFbList = (List<FbMarketAccountInfo>)db.GetList(sqlStr, "tb_fbMarketAccounts");
+
+                this.cbxFbAccount.Items.Clear();
+                this.cbxFbAccount.Items.Add(new ListItem("--ALL--", "0"));
+                foreach (var fb in marketFbList)
+                {
+                    this.cbxFbAccount.Items.Add(new ListItem(fb.name, fb.fbId));
+                }
+                this.cbxFbAccount.SelectedItem = ListItem.FindByText1(cbxFbAccount, "--ALL--");
             }
             catch (SqlException ex)
             {
@@ -191,8 +237,13 @@ namespace FB_TRADE
                 MessageBox.Show(ex.Message, "程序异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-		
-		//2. Operations
+
+        private void cbxUser_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            InitMarketFbCbx();
+        }
+
+        //2. Operations
         private void btnSelfInfoChg_Click(object sender, EventArgs e)
         {
             FrmSelfInfoEdit frm = new FrmSelfInfoEdit();
@@ -201,6 +252,7 @@ namespace FB_TRADE
             frm.adminInfo = this.adminInfo;
             frm.userInfo = this.userInfo;
             frm.pFrm = this;
+            frm.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 
             frm.MyInitFrm();
             frm.ShowDialog();
@@ -229,11 +281,6 @@ namespace FB_TRADE
             tabindex_show = this.tabControlMain.SelectedIndex;
         }
 
-        private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
-        {
-            SetBtnListCenter();
-        }
-
         private void btnFbAccountList_Click(object sender, EventArgs e)
         {
             FrmMarketFbList frm = new FrmMarketFbList();
@@ -259,6 +306,11 @@ namespace FB_TRADE
             frm.Show();
 
             tabindex_show = this.tabControlMain.SelectedIndex;
+        }
+
+        private void btnCustomerControl_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

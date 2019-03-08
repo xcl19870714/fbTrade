@@ -156,6 +156,7 @@
             // 
             // cbxUserId
             // 
+            this.cbxUserId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxUserId.FormattingEnabled = true;
             this.cbxUserId.Location = new System.Drawing.Point(361, 355);
             this.cbxUserId.Name = "cbxUserId";
