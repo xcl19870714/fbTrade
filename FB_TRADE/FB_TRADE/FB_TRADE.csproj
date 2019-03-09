@@ -46,11 +46,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmCustomerAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCustomerAdd.Designer.cs">
+      <DependentUpon>FrmCustomerAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmCustomers.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmCustomers.Designer.cs">
       <DependentUpon>FrmCustomers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCustomerTrace.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCustomerTrace.Designer.cs">
+      <DependentUpon>FrmCustomerTrace.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
@@ -82,6 +94,18 @@
     <Compile Include="FrmMarketFbList.Designer.cs">
       <DependentUpon>FrmMarketFbList.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmOrderAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmOrderAdd.Designer.cs">
+      <DependentUpon>FrmOrderAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmOrders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmOrders.Designer.cs">
+      <DependentUpon>FrmOrders.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmSelfInfoEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,8 +134,14 @@
     <Compile Include="ListViewHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmCustomerAdd.resx">
+      <DependentUpon>FrmCustomerAdd.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmCustomers.resx">
       <DependentUpon>FrmCustomers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCustomerTrace.resx">
+      <DependentUpon>FrmCustomerTrace.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
@@ -127,6 +157,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMarketFbList.resx">
       <DependentUpon>FrmMarketFbList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmOrderAdd.resx">
+      <DependentUpon>FrmOrderAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmOrders.resx">
+      <DependentUpon>FrmOrders.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSelfInfoEdit.resx">
       <DependentUpon>FrmSelfInfoEdit.cs</DependentUpon>
