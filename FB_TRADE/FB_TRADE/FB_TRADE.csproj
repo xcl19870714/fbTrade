@@ -64,6 +64,18 @@
     <Compile Include="FrmCustomerTrace.Designer.cs">
       <DependentUpon>FrmCustomerTrace.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmGroupAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGroupAdd.Designer.cs">
+      <DependentUpon>FrmGroupAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmGroups.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGroups.Designer.cs">
+      <DependentUpon>FrmGroups.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,6 +154,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmCustomerTrace.resx">
       <DependentUpon>FrmCustomerTrace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmGroupAdd.resx">
+      <DependentUpon>FrmGroupAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmGroups.resx">
+      <DependentUpon>FrmGroups.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>

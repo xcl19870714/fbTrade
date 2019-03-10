@@ -10,14 +10,26 @@ using System.Windows.Forms;
 
 namespace FB_TRADE
 {
-    public partial class FrmOrders : Form
+    public partial class FrmGroupAdd : Form
     {
-        public FrmOrders()
+        public FrmGroupAdd()
         {
             InitializeComponent();
         }
 
         private void checkBox5_CheckedChanged(object sender, EventArgs e)
+        {
+
+
+        }
+
+        private void checkBox6_CheckedChanged(object sender, EventArgs e)
+        {
+
+
+        }
+
+        private void checkBox11_CheckedChanged(object sender, EventArgs e)
         {
 
 
