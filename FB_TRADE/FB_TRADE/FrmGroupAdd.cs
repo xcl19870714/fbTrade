@@ -34,5 +34,10 @@ namespace FB_TRADE
 
 
         }
+
+        private void FrmGroupAdd_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
