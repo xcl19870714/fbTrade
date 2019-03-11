@@ -42,6 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminInfo.cs" />
+    <Compile Include="FbCustomerContactInfo.cs" />
+    <Compile Include="FbCustomerInfo.cs" />
+    <Compile Include="FbCustomerShipInfo.cs" />
     <Compile Include="FbMarketAccountInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserInfo.cs" />
