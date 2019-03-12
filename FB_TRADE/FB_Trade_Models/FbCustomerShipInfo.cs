@@ -12,8 +12,8 @@ namespace FB_Trade_Models
         public int id;
         public string customerFbId;
         public string marketFbId;
-        public int shipType;
-        public int customerType;
+        public string shipType;
+        public string customerType;
         public string interestedGoods;
         public string note;
         public string traceDate;

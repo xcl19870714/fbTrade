@@ -42,7 +42,31 @@ namespace FB_Trade_DAL
             return success;
         }
 
-        public Object GetObect(string sqlSelStr, string table)
+        public int GetCount(string sqlSelStr)
+        {
+            //select count(*) from tb_users where name='aaa' and pwd = 'bbb'
+            SqlConnection conn = new SqlConnection(connString);
+            SqlCommand cmd = new SqlCommand(sqlSelStr, conn);
+            try
+            {
+                conn.Open();
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public Object GetObject(string sqlSelStr, string table)
         {
             //select * from tb_users where name='aaa'
             SqlConnection conn = new SqlConnection(connString);

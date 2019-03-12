@@ -18,5 +18,6 @@ namespace FB_Trade_Models
         public string city;
         public string email;
         public string introduction;
+		public string friendShips;
     }
 }

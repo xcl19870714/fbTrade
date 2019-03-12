@@ -16,6 +16,7 @@ namespace FB_TRADE
     public partial class FrmCustomerAdd : Form
     {
         public bool bAdd;
+		public string curCustomerFbId;
         public string curMarketFbId;
         public string curMarketFbAccount;
 
@@ -41,14 +42,139 @@ namespace FB_TRADE
 
         public void MyFrmInit()
         {
+            labelCurMarketFb.Text = curMarketFbAccount;
 
+            if (!bAdd)
+            {
+                InitCustomerFrm(curCustomerFbId, "");
+                InitCustomerShipFrm();
+                InitOrdersNumLabel();
+                InitContactsListView();
+            }
         }
 
         //1. Graph Shows
 
 
         //2. Data Shows
-        private void InitListViewContacts()
+        public bool InitCustomerFrm(string fbId, string fbUrl)
+        {
+            try
+            {
+                FbCustomerInfo fbCustomer;
+                sql = (fbId == "" ? ("select * from tb_fbCustomers where fbUrl='" + fbUrl + "'") : 
+                    ("select * from tb_fbCustomers where fbId='" + fbId + "'"));
+
+                fbCustomer = (FbCustomerInfo)db.GetObject(sql, "tb_fbCustomers");
+                if (fbCustomer != null)
+                {
+                    string shipsStr = "";
+
+                    sql = "select * from tb_fbCustomerShips where customerFbId='" + fbCustomer.fbId + "'";
+                    List<FbCustomerShipInfo> shipList = (List<FbCustomerShipInfo>)db.GetList(sql, "tb_fbCustomerShips");
+                    foreach (var ship in shipList)
+                    {
+                        sql = "select * from tb_fbMarketAccounts where fbId='" + ship.marketFbId + "'";
+                        FbMarketAccountInfo marketFb = (FbMarketAccountInfo)db.GetObject(sql, "tb_fbMarketAccounts");
+                        if (marketFb != null)
+                        {
+                            shipsStr += marketFb.name;
+                        }
+                    }
+
+                    txtFbId.Text = fbCustomer.fbId;
+                    txtName.Text = fbCustomer.name;
+                    txtEmail.Text = fbCustomer.email;
+                    txtFriendsNum.Text = fbCustomer.friendsNum.ToString();
+                    txtCountry.Text = fbCustomer.country;
+                    txtState.Text = fbCustomer.state;
+                    txtCity.Text = fbCustomer.city;
+                    txtIntroduction.Text = fbCustomer.introduction;
+                    txtFriendShips.Text = shipsStr;
+
+                    return true;
+                }
+                else
+                {
+                    string fbIdStr = txtFbUrl.Text.Trim();
+                    if (fbIdStr.Contains("id="))
+                    {
+                        txtFbId.Text = fbIdStr.Substring(fbIdStr.IndexOf("id=") + 3);
+                    }
+                    else
+                    {
+                        MessageBox.Show("输入的客户首页应该包含id=子串，请检查！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        this.txtFbUrl.Focus();
+                    }
+
+                    return false;
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message, "数据库异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "程序异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return false;
+        }
+        public void InitCustomerShipFrm()
+        {
+            try
+            {
+                sql = "select * from tb_fbCustomerShips where customerFbId='" + txtFbId.Text.Trim() + "' and marketFbId='" + curMarketFbId + "'";
+                FbCustomerShipInfo ship = (FbCustomerShipInfo)db.GetObject(sql, "tb_fbCustomerShips");
+                if (ship != null)
+                {
+                    this.cbxShipType.SelectedItem = ListItem.FindByText(cbxShipType, ship.shipType);
+                    this.cbxCustomerType.SelectedItem = ListItem.FindByText(cbxCustomerType, ship.customerType);
+                    this.txtInGoods.Text = ship.interestedGoods;
+                    this.txtNote.Text = ship.note;
+                    if (ship.traceDate == "")
+                    {
+                        ckbTraceDate.Checked = false;
+                        dateTimePicker1.Value = DateTime.Today;
+                    }
+                    else
+                    {
+                        ckbTraceDate.Checked = true;
+                        dateTimePicker1.Value = Convert.ToDateTime(ship.traceDate);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message, "数据库异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "程序异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void InitOrdersNumLabel()
+        {
+            try
+            {
+                int count = 0;
+                sql = "select count(*) from tb_orders where customerFbId='" + txtFbId.Text.Trim() + "'";
+                count = db.GetCount(sql);
+                labelOrders.Text = count.ToString();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message, "数据库异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "程序异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void InitContactsListView()
         {
             try
             {
@@ -91,45 +217,11 @@ namespace FB_TRADE
                 return;
             }
 
-            try
+            if (InitCustomerFrm("", txtFbUrl.Text.Trim()) == true)
             {
-                FbCustomerInfo fbCustomer;
-                sql = "select * from tb_fbCustomers where fbUrl='" + txtFbUrl.Text.Trim() + "'";
-
-                fbCustomer = (FbCustomerInfo)db.GetObect(sql, "tb_fbCustomers");
-                if (fbCustomer != null)
-                {
-                    txtFbId.Text = fbCustomer.fbId;
-                    txtName.Text = fbCustomer.name;
-                    txtEmail.Text = fbCustomer.email;
-                    txtFriendShips.Text = fbCustomer.friendsNum.ToString();
-                    txtCountry.Text = fbCustomer.country;
-                    txtState.Text = fbCustomer.state;
-                    txtCity.Text = fbCustomer.city;
-                    txtIntroduction.Text = fbCustomer.introduction;
-                }
-                else
-                {
-                    string fbIdStr = txtFbUrl.Text.Trim();
-                    if (fbIdStr.Contains("id="))
-                    {
-                        txtFbId.Text = fbIdStr.Substring(fbIdStr.IndexOf("id=") + 3);
-                    }
-                    else
-                    {
-                        MessageBox.Show("输入的客户首页应该包含id=子串，请检查！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        this.txtFbUrl.Focus();
-                        return;
-                    }
-                }
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.Message, "数据库异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "程序异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                InitCustomerShipFrm();
+                InitOrdersNumLabel();
+                InitContactsListView();
             }
         }
 
@@ -182,15 +274,45 @@ namespace FB_TRADE
                 }
                 else //新增
                 {
-                    System.DateTime currentTime = new System.DateTime();
                     sql = "insert into tb_fbCustomerShips values('" + txtFbId.Text.Trim() + "','" + curMarketFbId +
                         "','" + cbxShipType.SelectedText +
                         "',’" + cbxCustomerType.SelectedText +
                         "','" + txtInGoods.Text.Trim() + "','" + txtNote.Text.Trim() +
                         "','" + (ckbTraceDate.Checked ? dateTimePicker1.Value.ToString() : "") +
-                        currentTime.ToString() + "')";
+                        DateTime.Now.ToString() + "')";
                     db.InsertData(sql);
                 }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message, "数据库异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "程序异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnNewContactSave_Click(object sender, EventArgs e)
+        {
+            if (!InputCheck())
+                return;
+
+            if (txtNewContact.Text.Trim().Equals(string.Empty))
+            {
+                MessageBox.Show("请输入聊天摘要！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.txtNewContact.Focus();
+                return;
+            }
+
+            try
+            {
+                sql = "insert into tb_fbCustomerContacts values('" + curMarketFbAccount + "','" + txtFbId.Text.Trim() +
+                    "','" + DateTime.Now.ToString() +
+                    "',’" + txtNewContact + "')";
+                db.InsertData(sql);
+                InitContactsListView();
+                txtNewContact.Text = "";
             }
             catch (SqlException ex)
             {
@@ -227,36 +349,6 @@ namespace FB_TRADE
             }
 
             return true;
-        }
-
-        private void btnNewContactSave_Click(object sender, EventArgs e)
-        {
-            if (txtNewContact.Text.Trim().Equals(string.Empty))
-            {
-                MessageBox.Show("请输入聊天摘要！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.txtNewContact.Focus();
-                return;
-            }
-
-            btnSave_Click(sender, e);
-
-            try
-            {
-                System.DateTime currentTime = new System.DateTime();
-                sql = "insert into tb_fbCustomerContacts values('" + curMarketFbAccount + "','" + txtFbId.Text.Trim() +
-                    "','" + currentTime.ToString() +
-                    "',’" + txtNewContact + "')";
-                db.InsertData(sql);
-                InitListViewContacts();
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.Message, "数据库异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "程序异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
     }
 }
