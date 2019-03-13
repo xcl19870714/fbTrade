@@ -45,6 +45,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.txtPayType = new System.Windows.Forms.TextBox();
+            this.txtCurrency = new System.Windows.Forms.TextBox();
+            this.txtShipType = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.cbxPayType = new System.Windows.Forms.ComboBox();
             this.txtPayNo = new System.Windows.Forms.TextBox();
@@ -57,6 +61,7 @@
             this.txtShipFee = new System.Windows.Forms.TextBox();
             this.txtTrackingNo = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
+            this.cbxShipType = new System.Windows.Forms.ComboBox();
             this.label21 = new System.Windows.Forms.Label();
             this.listViewGoods = new System.Windows.Forms.ListView();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -69,6 +74,7 @@
             this.txtShippingName = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.labelOrderStatus = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.btnOrderDel = new System.Windows.Forms.Button();
             this.btnSubmit = new System.Windows.Forms.Button();
@@ -78,12 +84,6 @@
             this.label26 = new System.Windows.Forms.Label();
             this.txtNote = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
-            this.cbxShipType = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtShipType = new System.Windows.Forms.TextBox();
-            this.txtCurrency = new System.Windows.Forms.TextBox();
-            this.txtPayType = new System.Windows.Forms.TextBox();
-            this.labelOrderStatus = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -286,6 +286,43 @@
             this.panel4.Size = new System.Drawing.Size(1164, 271);
             this.panel4.TabIndex = 3;
             // 
+            // txtPayType
+            // 
+            this.txtPayType.Enabled = false;
+            this.txtPayType.Location = new System.Drawing.Point(524, 234);
+            this.txtPayType.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPayType.Name = "txtPayType";
+            this.txtPayType.Size = new System.Drawing.Size(63, 25);
+            this.txtPayType.TabIndex = 27;
+            // 
+            // txtCurrency
+            // 
+            this.txtCurrency.Enabled = false;
+            this.txtCurrency.Location = new System.Drawing.Point(220, 231);
+            this.txtCurrency.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCurrency.Name = "txtCurrency";
+            this.txtCurrency.Size = new System.Drawing.Size(63, 25);
+            this.txtCurrency.TabIndex = 26;
+            // 
+            // txtShipType
+            // 
+            this.txtShipType.Enabled = false;
+            this.txtShipType.Location = new System.Drawing.Point(220, 196);
+            this.txtShipType.Margin = new System.Windows.Forms.Padding(4);
+            this.txtShipType.Name = "txtShipType";
+            this.txtShipType.Size = new System.Drawing.Size(63, 25);
+            this.txtShipType.TabIndex = 25;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(303, 200);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(46, 15);
+            this.label5.TabIndex = 24;
+            this.label5.Text = "Fee：";
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -401,6 +438,16 @@
             this.label20.Size = new System.Drawing.Size(110, 15);
             this.label20.TabIndex = 12;
             this.label20.Text = "Tracking No：";
+            // 
+            // cbxShipType
+            // 
+            this.cbxShipType.FormattingEnabled = true;
+            this.cbxShipType.Location = new System.Drawing.Point(160, 196);
+            this.cbxShipType.Margin = new System.Windows.Forms.Padding(4);
+            this.cbxShipType.Name = "cbxShipType";
+            this.cbxShipType.Size = new System.Drawing.Size(52, 23);
+            this.cbxShipType.TabIndex = 11;
+            this.cbxShipType.SelectedIndexChanged += new System.EventHandler(this.cbxShipType_SelectedIndexChanged);
             // 
             // label21
             // 
@@ -535,6 +582,16 @@
             this.panel6.Size = new System.Drawing.Size(1164, 132);
             this.panel6.TabIndex = 5;
             // 
+            // labelOrderStatus
+            // 
+            this.labelOrderStatus.AutoSize = true;
+            this.labelOrderStatus.Location = new System.Drawing.Point(1031, 18);
+            this.labelOrderStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelOrderStatus.Name = "labelOrderStatus";
+            this.labelOrderStatus.Size = new System.Drawing.Size(52, 15);
+            this.labelOrderStatus.TabIndex = 32;
+            this.labelOrderStatus.Text = "未提交";
+            // 
             // label28
             // 
             this.label28.AutoSize = true;
@@ -547,33 +604,36 @@
             // 
             // btnOrderDel
             // 
-            this.btnOrderDel.Location = new System.Drawing.Point(1025, 75);
+            this.btnOrderDel.Location = new System.Drawing.Point(1037, 64);
             this.btnOrderDel.Margin = new System.Windows.Forms.Padding(4);
             this.btnOrderDel.Name = "btnOrderDel";
             this.btnOrderDel.Size = new System.Drawing.Size(100, 29);
             this.btnOrderDel.TabIndex = 30;
-            this.btnOrderDel.Text = "删除";
+            this.btnOrderDel.Text = "废弃";
             this.btnOrderDel.UseVisualStyleBackColor = true;
+            this.btnOrderDel.Click += new System.EventHandler(this.btnOrderDel_Click);
             // 
             // btnSubmit
             // 
-            this.btnSubmit.Location = new System.Drawing.Point(899, 75);
+            this.btnSubmit.Location = new System.Drawing.Point(912, 64);
             this.btnSubmit.Margin = new System.Windows.Forms.Padding(4);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(100, 29);
             this.btnSubmit.TabIndex = 29;
             this.btnSubmit.Text = "提交";
             this.btnSubmit.UseVisualStyleBackColor = true;
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(773, 75);
+            this.btnSave.Location = new System.Drawing.Point(789, 64);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(100, 29);
             this.btnSave.TabIndex = 28;
             this.btnSave.Text = "保存";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnDelGoods
             // 
@@ -584,6 +644,7 @@
             this.btnDelGoods.TabIndex = 27;
             this.btnDelGoods.Text = "删除记录";
             this.btnDelGoods.UseVisualStyleBackColor = true;
+            this.btnDelGoods.Click += new System.EventHandler(this.btnDelGoods_Click);
             // 
             // btnInsertGoods
             // 
@@ -625,63 +686,6 @@
             this.label27.Size = new System.Drawing.Size(52, 15);
             this.label27.TabIndex = 23;
             this.label27.Text = "备注：";
-            // 
-            // cbxShipType
-            // 
-            this.cbxShipType.FormattingEnabled = true;
-            this.cbxShipType.Location = new System.Drawing.Point(160, 196);
-            this.cbxShipType.Margin = new System.Windows.Forms.Padding(4);
-            this.cbxShipType.Name = "cbxShipType";
-            this.cbxShipType.Size = new System.Drawing.Size(52, 23);
-            this.cbxShipType.TabIndex = 11;
-            this.cbxShipType.SelectedIndexChanged += new System.EventHandler(this.cbxShipType_SelectedIndexChanged);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(303, 200);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(46, 15);
-            this.label5.TabIndex = 24;
-            this.label5.Text = "Fee：";
-            // 
-            // txtShipType
-            // 
-            this.txtShipType.Enabled = false;
-            this.txtShipType.Location = new System.Drawing.Point(220, 196);
-            this.txtShipType.Margin = new System.Windows.Forms.Padding(4);
-            this.txtShipType.Name = "txtShipType";
-            this.txtShipType.Size = new System.Drawing.Size(63, 25);
-            this.txtShipType.TabIndex = 25;
-            // 
-            // txtCurrency
-            // 
-            this.txtCurrency.Enabled = false;
-            this.txtCurrency.Location = new System.Drawing.Point(220, 231);
-            this.txtCurrency.Margin = new System.Windows.Forms.Padding(4);
-            this.txtCurrency.Name = "txtCurrency";
-            this.txtCurrency.Size = new System.Drawing.Size(63, 25);
-            this.txtCurrency.TabIndex = 26;
-            // 
-            // txtPayType
-            // 
-            this.txtPayType.Enabled = false;
-            this.txtPayType.Location = new System.Drawing.Point(524, 234);
-            this.txtPayType.Margin = new System.Windows.Forms.Padding(4);
-            this.txtPayType.Name = "txtPayType";
-            this.txtPayType.Size = new System.Drawing.Size(63, 25);
-            this.txtPayType.TabIndex = 27;
-            // 
-            // labelOrderStatus
-            // 
-            this.labelOrderStatus.AutoSize = true;
-            this.labelOrderStatus.Location = new System.Drawing.Point(1031, 18);
-            this.labelOrderStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelOrderStatus.Name = "labelOrderStatus";
-            this.labelOrderStatus.Size = new System.Drawing.Size(52, 15);
-            this.labelOrderStatus.TabIndex = 32;
-            this.labelOrderStatus.Text = "未提交";
             // 
             // FrmOrderAdd
             // 

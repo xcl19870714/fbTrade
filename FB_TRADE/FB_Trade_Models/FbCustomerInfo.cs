@@ -19,5 +19,8 @@ namespace FB_Trade_Models
         public string email;
         public string introduction;
 		public string friendShips;
+        public string shipName;
+        public string shipPhone;
+        public string shipAddress;
     }
 }
