@@ -67,3 +67,10 @@ E:\fbTrade\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.csproj.CopyComplete
 D:\VC#_APP\FB_TRADE\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.FrmMarketFbAdd.resources
 D:\VC#_APP\FB_TRADE\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.FrmMarketFbEdit.resources
 D:\VC#_APP\FB_TRADE\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.FrmCustomers.resources
+E:\fbTrade\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.FrmCustomerAdd.resources
+E:\fbTrade\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.FrmCustomers.resources
+E:\fbTrade\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.FrmCustomerTrace.resources
+E:\fbTrade\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.FrmGroupAdd.resources
+E:\fbTrade\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.FrmGroups.resources
+E:\fbTrade\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.FrmOrderAdd.resources
+E:\fbTrade\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.FrmOrders.resources

@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace FB_Trade_Models
 {
-    class FbGroupLogInfo
+    [Serializable]
+    public class FbGroupLogInfo
     {
+        public int id;
+        public string groupFbId;
+        public string marketFbId;
+        public string marketFbAccount;
+        public string time;
+        public string logs;
     }
 }

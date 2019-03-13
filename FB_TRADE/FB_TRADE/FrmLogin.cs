@@ -39,7 +39,7 @@ namespace FB_TRADE
                 Object obj = null;
 
                 sqlStr = "select * from " + tb + " where name='" + txtLoginName.Text.Trim() + "' and pwd='" + txtLoginPwd.Text.Trim() + "'";
-                if ((obj = db.GetObect(sqlStr, tb)) == null)
+                if ((obj = db.GetObject(sqlStr, tb)) == null)
                 {
                     sqlStr = "select count(*) from " + tb + " where name='" + txtLoginName.Text.Trim() + "'";
                     if (!db.CheckExist(sqlStr))

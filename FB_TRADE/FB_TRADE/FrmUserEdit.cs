@@ -32,7 +32,7 @@ namespace FB_TRADE
             try
             {
                 sqlStr = "select * from tb_users where id='" + Convert.ToString(curId) + "'";
-                UserInfo user = (UserInfo)db.GetObect(sqlStr, "tb_users");
+                UserInfo user = (UserInfo)db.GetObject(sqlStr, "tb_users");
 
                 if (user != null)
                 {

@@ -51,7 +51,7 @@ namespace FB_TRADE
                 if (!bAdd)
                 {
                     sqlStr = "select * from tb_fbMarketAccounts where fbId='" + curMarketFbId + "'";
-                    FbMarketAccountInfo fbMarket = (FbMarketAccountInfo)db.GetObect(sqlStr, "tb_fbMarketAccounts");
+                    FbMarketAccountInfo fbMarket = (FbMarketAccountInfo)db.GetObject(sqlStr, "tb_fbMarketAccounts");
 
                     this.txtFbId.Text = fbMarket.fbId;
                     this.txtName.Text = fbMarket.name;

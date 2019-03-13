@@ -84,7 +84,7 @@ namespace FB_TRADE
                 foreach (var fb in fbList)
                 {
                     ListViewItem it = new ListViewItem();
-                    UserInfo tmp = (UserInfo)db.GetObect("select * from tb_users where id='" + fb.userId + "'", "tb_users");
+                    UserInfo tmp = (UserInfo)db.GetObject("select * from tb_users where id='" + fb.userId + "'", "tb_users");
 
                     it.Text = Convert.ToString(fb.fbId);
                     it.SubItems.Add(fb.name);

@@ -52,20 +52,20 @@
             this.txtCustomerNum = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.ckbOnSale = new System.Windows.Forms.CheckBox();
+            this.ckbDisTrust = new System.Windows.Forms.CheckBox();
+            this.ckbLocalTrade = new System.Windows.Forms.CheckBox();
+            this.ckbAttacked = new System.Windows.Forms.CheckBox();
+            this.ckbCheated = new System.Windows.Forms.CheckBox();
+            this.ckbNormal = new System.Windows.Forms.CheckBox();
+            this.ckbImportant = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.checkBox13 = new System.Windows.Forms.CheckBox();
-            this.checkBox12 = new System.Windows.Forms.CheckBox();
-            this.checkBox11 = new System.Windows.Forms.CheckBox();
-            this.checkBox10 = new System.Windows.Forms.CheckBox();
-            this.checkBox9 = new System.Windows.Forms.CheckBox();
-            this.checkBox8 = new System.Windows.Forms.CheckBox();
+            this.ckbAbandon = new System.Windows.Forms.CheckBox();
+            this.ckbTweeting = new System.Windows.Forms.CheckBox();
+            this.ckbQuit = new System.Windows.Forms.CheckBox();
+            this.ckbReject = new System.Windows.Forms.CheckBox();
+            this.ckbAccept = new System.Windows.Forms.CheckBox();
+            this.ckbJoin = new System.Windows.Forms.CheckBox();
             this.radioNotActive = new System.Windows.Forms.RadioButton();
             this.radioNormal = new System.Windows.Forms.RadioButton();
             this.radioActive = new System.Windows.Forms.RadioButton();
@@ -75,7 +75,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.listViewHistory = new System.Windows.Forms.ListView();
+            this.listViewLogs = new System.Windows.Forms.ListView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.labelCurMarketFbAccount = new System.Windows.Forms.ToolStripLabel();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
@@ -112,6 +112,7 @@
             // 
             // cbxVerifyType
             // 
+            this.cbxVerifyType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxVerifyType.FormattingEnabled = true;
             this.cbxVerifyType.Location = new System.Drawing.Point(437, 31);
             this.cbxVerifyType.Name = "cbxVerifyType";
@@ -168,6 +169,7 @@
             this.btnGroupGet.TabIndex = 0;
             this.btnGroupGet.Text = "获取";
             this.btnGroupGet.UseVisualStyleBackColor = true;
+            this.btnGroupGet.Click += new System.EventHandler(this.btnGroupGet_Click);
             // 
             // txtGroupUrl
             // 
@@ -205,6 +207,7 @@
             // 
             this.txtGroupFbId.Location = new System.Drawing.Point(105, 31);
             this.txtGroupFbId.Name = "txtGroupFbId";
+            this.txtGroupFbId.ReadOnly = true;
             this.txtGroupFbId.Size = new System.Drawing.Size(223, 25);
             this.txtGroupFbId.TabIndex = 2;
             // 
@@ -300,13 +303,13 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.checkBox7);
-            this.groupBox3.Controls.Add(this.checkBox6);
-            this.groupBox3.Controls.Add(this.checkBox5);
-            this.groupBox3.Controls.Add(this.checkBox4);
-            this.groupBox3.Controls.Add(this.checkBox3);
-            this.groupBox3.Controls.Add(this.checkBox2);
-            this.groupBox3.Controls.Add(this.checkBox1);
+            this.groupBox3.Controls.Add(this.ckbOnSale);
+            this.groupBox3.Controls.Add(this.ckbDisTrust);
+            this.groupBox3.Controls.Add(this.ckbLocalTrade);
+            this.groupBox3.Controls.Add(this.ckbAttacked);
+            this.groupBox3.Controls.Add(this.ckbCheated);
+            this.groupBox3.Controls.Add(this.ckbNormal);
+            this.groupBox3.Controls.Add(this.ckbImportant);
             this.groupBox3.Location = new System.Drawing.Point(568, 36);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(373, 107);
@@ -314,86 +317,84 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "备注";
             // 
-            // checkBox7
+            // ckbOnSale
             // 
-            this.checkBox7.AutoSize = true;
-            this.checkBox7.Location = new System.Drawing.Point(214, 64);
-            this.checkBox7.Name = "chkbOnSale";
-            this.checkBox7.Size = new System.Drawing.Size(74, 19);
-            this.checkBox7.TabIndex = 6;
-            this.checkBox7.Text = "做活动";
-            this.checkBox7.UseVisualStyleBackColor = true;
+            this.ckbOnSale.AutoSize = true;
+            this.ckbOnSale.Location = new System.Drawing.Point(214, 64);
+            this.ckbOnSale.Name = "ckbOnSale";
+            this.ckbOnSale.Size = new System.Drawing.Size(74, 19);
+            this.ckbOnSale.TabIndex = 6;
+            this.ckbOnSale.Text = "做活动";
+            this.ckbOnSale.UseVisualStyleBackColor = true;
             // 
-            // checkBox6
+            // ckbDisTrust
             // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(134, 64);
-            this.checkBox6.Name = "chkbDistrust";
-            this.checkBox6.Size = new System.Drawing.Size(74, 19);
-            this.checkBox6.TabIndex = 5;
-            this.checkBox6.Text = "不信任";
-            this.checkBox6.UseVisualStyleBackColor = true;
-            this.checkBox6.CheckedChanged += new System.EventHandler(this.checkBox6_CheckedChanged);
+            this.ckbDisTrust.AutoSize = true;
+            this.ckbDisTrust.Location = new System.Drawing.Point(134, 64);
+            this.ckbDisTrust.Name = "ckbDisTrust";
+            this.ckbDisTrust.Size = new System.Drawing.Size(74, 19);
+            this.ckbDisTrust.TabIndex = 5;
+            this.ckbDisTrust.Text = "不信任";
+            this.ckbDisTrust.UseVisualStyleBackColor = true;
             // 
-            // checkBox5
+            // ckbLocalTrade
             // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(14, 64);
-            this.checkBox5.Name = "chkbTradeLocal";
-            this.checkBox5.Size = new System.Drawing.Size(104, 19);
-            this.checkBox5.TabIndex = 4;
-            this.checkBox5.Text = "想当地交易";
-            this.checkBox5.UseVisualStyleBackColor = true;
-            this.checkBox5.CheckedChanged += new System.EventHandler(this.checkBox5_CheckedChanged);
+            this.ckbLocalTrade.AutoSize = true;
+            this.ckbLocalTrade.Location = new System.Drawing.Point(14, 64);
+            this.ckbLocalTrade.Name = "ckbLocalTrade";
+            this.ckbLocalTrade.Size = new System.Drawing.Size(104, 19);
+            this.ckbLocalTrade.TabIndex = 4;
+            this.ckbLocalTrade.Text = "想当地交易";
+            this.ckbLocalTrade.UseVisualStyleBackColor = true;
             // 
-            // checkBox4
+            // ckbAttacked
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(259, 29);
-            this.checkBox4.Name = "chkbConflict";
-            this.checkBox4.Size = new System.Drawing.Size(74, 19);
-            this.checkBox4.TabIndex = 3;
-            this.checkBox4.Text = "被攻击";
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.ckbAttacked.AutoSize = true;
+            this.ckbAttacked.Location = new System.Drawing.Point(259, 29);
+            this.ckbAttacked.Name = "ckbAttacked";
+            this.ckbAttacked.Size = new System.Drawing.Size(74, 19);
+            this.ckbAttacked.TabIndex = 3;
+            this.ckbAttacked.Text = "被攻击";
+            this.ckbAttacked.UseVisualStyleBackColor = true;
             // 
-            // checkBox3
+            // ckbCheated
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(149, 29);
-            this.checkBox3.Name = "chkbCheat";
-            this.checkBox3.Size = new System.Drawing.Size(104, 19);
-            this.checkBox3.TabIndex = 2;
-            this.checkBox3.Text = "认为是骗子";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.ckbCheated.AutoSize = true;
+            this.ckbCheated.Location = new System.Drawing.Point(149, 29);
+            this.ckbCheated.Name = "ckbCheated";
+            this.ckbCheated.Size = new System.Drawing.Size(104, 19);
+            this.ckbCheated.TabIndex = 2;
+            this.ckbCheated.Text = "认为是骗子";
+            this.ckbCheated.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // ckbNormal
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(79, 28);
-            this.checkBox2.Name = "chkbNormal";
-            this.checkBox2.Size = new System.Drawing.Size(59, 19);
-            this.checkBox2.TabIndex = 1;
-            this.checkBox2.Text = "一般";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.ckbNormal.AutoSize = true;
+            this.ckbNormal.Location = new System.Drawing.Point(79, 28);
+            this.ckbNormal.Name = "ckbNormal";
+            this.ckbNormal.Size = new System.Drawing.Size(59, 19);
+            this.ckbNormal.TabIndex = 1;
+            this.ckbNormal.Text = "一般";
+            this.ckbNormal.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // ckbImportant
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(14, 29);
-            this.checkBox1.Name = "chkbIm";
-            this.checkBox1.Size = new System.Drawing.Size(59, 19);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "重要";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.ckbImportant.AutoSize = true;
+            this.ckbImportant.Location = new System.Drawing.Point(14, 29);
+            this.ckbImportant.Name = "ckbImportant";
+            this.ckbImportant.Size = new System.Drawing.Size(59, 19);
+            this.ckbImportant.TabIndex = 0;
+            this.ckbImportant.Text = "重要";
+            this.ckbImportant.UseVisualStyleBackColor = true;
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.checkBox13);
-            this.groupBox4.Controls.Add(this.checkBox12);
-            this.groupBox4.Controls.Add(this.checkBox11);
-            this.groupBox4.Controls.Add(this.checkBox10);
-            this.groupBox4.Controls.Add(this.checkBox9);
-            this.groupBox4.Controls.Add(this.checkBox8);
+            this.groupBox4.Controls.Add(this.ckbAbandon);
+            this.groupBox4.Controls.Add(this.ckbTweeting);
+            this.groupBox4.Controls.Add(this.ckbQuit);
+            this.groupBox4.Controls.Add(this.ckbReject);
+            this.groupBox4.Controls.Add(this.ckbAccept);
+            this.groupBox4.Controls.Add(this.ckbJoin);
             this.groupBox4.Location = new System.Drawing.Point(947, 35);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(131, 201);
@@ -401,66 +402,65 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "状态";
             // 
-            // checkBox13
+            // ckbAbandon
             // 
-            this.checkBox13.AutoSize = true;
-            this.checkBox13.Location = new System.Drawing.Point(22, 159);
-            this.checkBox13.Name = "chkbAbandon";
-            this.checkBox13.Size = new System.Drawing.Size(59, 19);
-            this.checkBox13.TabIndex = 6;
-            this.checkBox13.Text = "不要";
-            this.checkBox13.UseVisualStyleBackColor = true;
+            this.ckbAbandon.AutoSize = true;
+            this.ckbAbandon.Location = new System.Drawing.Point(22, 159);
+            this.ckbAbandon.Name = "ckbAbandon";
+            this.ckbAbandon.Size = new System.Drawing.Size(59, 19);
+            this.ckbAbandon.TabIndex = 6;
+            this.ckbAbandon.Text = "不要";
+            this.ckbAbandon.UseVisualStyleBackColor = true;
             // 
-            // checkBox12
+            // ckbTweeting
             // 
-            this.checkBox12.AutoSize = true;
-            this.checkBox12.Location = new System.Drawing.Point(22, 108);
-            this.checkBox12.Name = "chkbTweeting";
-            this.checkBox12.Size = new System.Drawing.Size(89, 19);
-            this.checkBox12.TabIndex = 5;
-            this.checkBox12.Text = "发贴状态";
-            this.checkBox12.UseVisualStyleBackColor = true;
+            this.ckbTweeting.AutoSize = true;
+            this.ckbTweeting.Location = new System.Drawing.Point(22, 108);
+            this.ckbTweeting.Name = "ckbTweeting";
+            this.ckbTweeting.Size = new System.Drawing.Size(89, 19);
+            this.ckbTweeting.TabIndex = 5;
+            this.ckbTweeting.Text = "发贴状态";
+            this.ckbTweeting.UseVisualStyleBackColor = true;
             // 
-            // checkBox11
+            // ckbQuit
             // 
-            this.checkBox11.AutoSize = true;
-            this.checkBox11.Location = new System.Drawing.Point(22, 134);
-            this.checkBox11.Name = "chkQuit";
-            this.checkBox11.Size = new System.Drawing.Size(89, 19);
-            this.checkBox11.TabIndex = 4;
-            this.checkBox11.Text = "退出群组";
-            this.checkBox11.UseVisualStyleBackColor = true;
-            this.checkBox11.CheckedChanged += new System.EventHandler(this.checkBox11_CheckedChanged);
+            this.ckbQuit.AutoSize = true;
+            this.ckbQuit.Location = new System.Drawing.Point(22, 134);
+            this.ckbQuit.Name = "ckbQuit";
+            this.ckbQuit.Size = new System.Drawing.Size(89, 19);
+            this.ckbQuit.TabIndex = 4;
+            this.ckbQuit.Text = "退出群组";
+            this.ckbQuit.UseVisualStyleBackColor = true;
             // 
-            // checkBox10
+            // ckbReject
             // 
-            this.checkBox10.AutoSize = true;
-            this.checkBox10.Location = new System.Drawing.Point(22, 83);
-            this.checkBox10.Name = "chkbRejected";
-            this.checkBox10.Size = new System.Drawing.Size(89, 19);
-            this.checkBox10.TabIndex = 3;
-            this.checkBox10.Text = "申请被拒";
-            this.checkBox10.UseVisualStyleBackColor = true;
+            this.ckbReject.AutoSize = true;
+            this.ckbReject.Location = new System.Drawing.Point(22, 83);
+            this.ckbReject.Name = "ckbReject";
+            this.ckbReject.Size = new System.Drawing.Size(89, 19);
+            this.ckbReject.TabIndex = 3;
+            this.ckbReject.Text = "申请被拒";
+            this.ckbReject.UseVisualStyleBackColor = true;
             // 
-            // checkBox9
+            // ckbAccept
             // 
-            this.checkBox9.AutoSize = true;
-            this.checkBox9.Location = new System.Drawing.Point(22, 58);
-            this.checkBox9.Name = "chkbAccept";
-            this.checkBox9.Size = new System.Drawing.Size(89, 19);
-            this.checkBox9.TabIndex = 2;
-            this.checkBox9.Text = "申请通过";
-            this.checkBox9.UseVisualStyleBackColor = true;
+            this.ckbAccept.AutoSize = true;
+            this.ckbAccept.Location = new System.Drawing.Point(22, 58);
+            this.ckbAccept.Name = "ckbAccept";
+            this.ckbAccept.Size = new System.Drawing.Size(89, 19);
+            this.ckbAccept.TabIndex = 2;
+            this.ckbAccept.Text = "申请通过";
+            this.ckbAccept.UseVisualStyleBackColor = true;
             // 
-            // checkBox8
+            // ckbJoin
             // 
-            this.checkBox8.AutoSize = true;
-            this.checkBox8.Location = new System.Drawing.Point(22, 33);
-            this.checkBox8.Name = "chkbRequest";
-            this.checkBox8.Size = new System.Drawing.Size(89, 19);
-            this.checkBox8.TabIndex = 1;
-            this.checkBox8.Text = "申请加入";
-            this.checkBox8.UseVisualStyleBackColor = true;
+            this.ckbJoin.AutoSize = true;
+            this.ckbJoin.Location = new System.Drawing.Point(22, 33);
+            this.ckbJoin.Name = "ckbJoin";
+            this.ckbJoin.Size = new System.Drawing.Size(89, 19);
+            this.ckbJoin.TabIndex = 1;
+            this.ckbJoin.Text = "申请加入";
+            this.ckbJoin.UseVisualStyleBackColor = true;
             // 
             // radioNotActive
             // 
@@ -516,7 +516,7 @@
             this.txtContact.Location = new System.Drawing.Point(576, 378);
             this.txtContact.Multiline = true;
             this.txtContact.Name = "txtContact";
-            this.txtContact.Size = new System.Drawing.Size(365, 94);
+            this.txtContact.Size = new System.Drawing.Size(482, 94);
             this.txtContact.TabIndex = 24;
             // 
             // label15
@@ -530,16 +530,17 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(969, 413);
+            this.btnSave.Location = new System.Drawing.Point(766, 509);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.Size = new System.Drawing.Size(110, 50);
             this.btnSave.TabIndex = 25;
             this.btnSave.Text = "保存";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.listViewHistory);
+            this.groupBox6.Controls.Add(this.listViewLogs);
             this.groupBox6.Location = new System.Drawing.Point(12, 315);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(521, 303);
@@ -547,13 +548,13 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "历史推文摘要";
             // 
-            // listViewHistory
+            // listViewLogs
             // 
-            this.listViewHistory.Location = new System.Drawing.Point(19, 28);
-            this.listViewHistory.Name = "listViewHistory";
-            this.listViewHistory.Size = new System.Drawing.Size(486, 257);
-            this.listViewHistory.TabIndex = 0;
-            this.listViewHistory.UseCompatibleStateImageBehavior = false;
+            this.listViewLogs.Location = new System.Drawing.Point(19, 28);
+            this.listViewLogs.Name = "listViewLogs";
+            this.listViewLogs.Size = new System.Drawing.Size(486, 257);
+            this.listViewLogs.TabIndex = 0;
+            this.listViewLogs.UseCompatibleStateImageBehavior = false;
             // 
             // toolStrip1
             // 
@@ -613,7 +614,6 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "FrmGroupAdd";
             this.Text = "FrmGroupAdd";
-            this.Load += new System.EventHandler(this.FrmGroupAdd_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -654,30 +654,30 @@
         private System.Windows.Forms.TextBox txtCustomerNum;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox ckbLocalTrade;
+        private System.Windows.Forms.CheckBox ckbAttacked;
+        private System.Windows.Forms.CheckBox ckbCheated;
+        private System.Windows.Forms.CheckBox ckbNormal;
+        private System.Windows.Forms.CheckBox ckbImportant;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.CheckBox checkBox6;
-        private System.Windows.Forms.CheckBox checkBox7;
-        private System.Windows.Forms.CheckBox checkBox11;
-        private System.Windows.Forms.CheckBox checkBox10;
-        private System.Windows.Forms.CheckBox checkBox9;
-        private System.Windows.Forms.CheckBox checkBox8;
+        private System.Windows.Forms.CheckBox ckbDisTrust;
+        private System.Windows.Forms.CheckBox ckbOnSale;
+        private System.Windows.Forms.CheckBox ckbQuit;
+        private System.Windows.Forms.CheckBox ckbReject;
+        private System.Windows.Forms.CheckBox ckbAccept;
+        private System.Windows.Forms.CheckBox ckbJoin;
         private System.Windows.Forms.RadioButton radioNotActive;
         private System.Windows.Forms.RadioButton radioNormal;
         private System.Windows.Forms.RadioButton radioActive;
-        private System.Windows.Forms.CheckBox checkBox13;
-        private System.Windows.Forms.CheckBox checkBox12;
+        private System.Windows.Forms.CheckBox ckbAbandon;
+        private System.Windows.Forms.CheckBox ckbTweeting;
         private System.Windows.Forms.TextBox txtTweetsNum;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtContact;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.ListView listViewHistory;
+        private System.Windows.Forms.ListView listViewLogs;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripLabel labelCurMarketFbAccount;
