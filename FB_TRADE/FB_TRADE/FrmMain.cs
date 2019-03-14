@@ -179,19 +179,19 @@ namespace FB_TRADE
             }
             else
             {
+                this.cbxUser.Items.Clear();
+                this.cbxUser.Items.Add(new ListItem("子账号", "0"));
+                this.cbxUser.SelectedItem = ListItem.FindByText1(cbxUser, "子账号");
+
                 try
                 {
                     sb.Clear();
                     sb.AppendFormat("select * from tb_users where adminId={0}", Convert.ToString(adminInfo.Id));
                     List<UserInfo> userList = (List<UserInfo>)db.GetList(sb.ToString(), "tb_users");
-
-                    this.cbxUser.Items.Clear();
-                    this.cbxUser.Items.Add(new ListItem("子账号", "0"));
                     foreach (var user in userList)
                     {
                         this.cbxUser.Items.Add(new ListItem(user.Name, Convert.ToString(user.Id)));
                     }
-                    this.cbxUser.SelectedItem = ListItem.FindByText1(cbxUser, "子账号");
                 }
                 catch (SqlException ex)
                 {
@@ -202,7 +202,6 @@ namespace FB_TRADE
                     MessageBox.Show(ex.Message, "程序异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            
         }
 
         public void InitMarketFbCbx()
@@ -242,6 +241,7 @@ namespace FB_TRADE
         }
 
         //2. Operations
+        //=================================================================================================//
         private void btnSelfInfoChg_Click(object sender, EventArgs e)
         {
             FrmSelfInfoEdit frm = new FrmSelfInfoEdit();
@@ -273,10 +273,9 @@ namespace FB_TRADE
             this.tabControlMain.SelectedTab = tabPage;
 
             frmUserList.adminId = Convert.ToString(this.adminInfo.Id);
-            frmUserList.Show();
             frmUserList.MyInitFrm();
-            
-
+            frmUserList.Show();
+            frmUserList.ListViewResize();
             tabindex_show = this.tabControlMain.SelectedIndex;
         }
 
@@ -292,22 +291,50 @@ namespace FB_TRADE
             TabPage tabPage = new System.Windows.Forms.TabPage();
             tabPage.Text = "营销号列表";
             this.tabControlMain.Controls.Add(tabPage);
-            //tabPage.Controls.Clear();
             tabPage.Controls.Add(frm);
             this.tabControlMain.SelectedTab = tabPage;
 
-            //frm.adminId = Convert.ToString(this.adminInfo.Id);
             frm.bAdmin = this.bAdmin;
-            frm.curAdminId = Convert.ToString(this.adminInfo.Id);
+            if (bAdmin)
+                frm.curAdminId = Convert.ToString(this.adminInfo.Id);
             ListItem coSelected = (ListItem)this.cbxUser.SelectedItem;
             frm.curUserId = coSelected.Value;
             frm.MyInitFrm();
             frm.Show();
+            frm.ListViewResize();
 
             tabindex_show = this.tabControlMain.SelectedIndex;
         }
 
         private void btnCustomerControl_Click(object sender, EventArgs e)
+        {
+            if (this.cbxUser.SelectedItem.ToString() == "子账号" || this.cbxFbAccount.SelectedItem.ToString() == "营销号")
+            {
+                MessageBox.Show("请先选择营销号！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.cbxFbAccount.Focus();
+                return;
+            }
+
+            FrmCustomers frm = new FrmCustomers();
+            ListItem item = (ListItem)this.cbxFbAccount.SelectedItem;
+            frm.bAdmin = this.bAdmin;
+            frm.curMarketFbId = item.Value;
+            frm.curMarketFbAccount = item.Text;
+
+
+        }
+
+        private void btnGroupControl_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnOrderList_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCustomerNotify_Click(object sender, EventArgs e)
         {
 
         }

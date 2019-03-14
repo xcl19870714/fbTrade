@@ -189,6 +189,7 @@
             this.btnOrderList.TabIndex = 25;
             this.btnOrderList.Text = "订单列表";
             this.btnOrderList.UseVisualStyleBackColor = true;
+            this.btnOrderList.Click += new System.EventHandler(this.btnOrderList_Click);
             // 
             // btnGroupControl
             // 
@@ -198,6 +199,7 @@
             this.btnGroupControl.TabIndex = 24;
             this.btnGroupControl.Text = "群组管理";
             this.btnGroupControl.UseVisualStyleBackColor = true;
+            this.btnGroupControl.Click += new System.EventHandler(this.btnGroupControl_Click);
             // 
             // btnCustomerControl
             // 
@@ -217,6 +219,7 @@
             this.btnCustomerNotify.TabIndex = 22;
             this.btnCustomerNotify.Text = "客户跟踪提醒";
             this.btnCustomerNotify.UseVisualStyleBackColor = true;
+            this.btnCustomerNotify.Click += new System.EventHandler(this.btnCustomerNotify_Click);
             // 
             // tabControlMain
             // 

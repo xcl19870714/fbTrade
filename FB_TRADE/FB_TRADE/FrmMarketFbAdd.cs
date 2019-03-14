@@ -18,6 +18,7 @@ namespace FB_TRADE
         public bool bAdmin;
         public string curAdminId;
         public string curUserId;
+        public string curUserName;
 
         public FrmMarketFbList pFrm;
 
@@ -36,16 +37,26 @@ namespace FB_TRADE
         public void MyInitFrm()
         {
             try
-            {
+            { 
                 // Init user id cbx
-                sqlStr = "select * from tb_users where adminId=" + curAdminId;
-                List<UserInfo> userList = (List<UserInfo>)db.GetList(sqlStr, "tb_users");
-
-                this.cbxUserId.Items.Add(new ListItem("请选择", "0"));
-                foreach (var user in userList)
+                if (bAdmin)
                 {
+                    sqlStr = "select * from tb_users where adminId=" + curAdminId;
+                    List<UserInfo> userList = (List<UserInfo>)db.GetList(sqlStr, "tb_users");
+
+                    this.cbxUserId.Items.Add(new ListItem("请选择", "0"));
+                    foreach (var user in userList)
+                    {
+                        this.cbxUserId.Items.Add(new ListItem(user.Name, Convert.ToString(user.Id)));
+                    }
+                }
+                else
+                {
+                    sqlStr = "select * from tb_users where id=" + curUserId;
+                    UserInfo user = (UserInfo)db.GetObject(sqlStr, "tb_users");
                     this.cbxUserId.Items.Add(new ListItem(user.Name, Convert.ToString(user.Id)));
                 }
+                
 
                 // Add or Edit
                 if (!bAdd)
@@ -63,11 +74,14 @@ namespace FB_TRADE
                 }
                 else
                 {
-                    if (curUserId != "0")
+                    if (curUserId == "0")
                         this.cbxUserId.SelectedItem = ListItem.FindByText(cbxUserId, "请选择");
                     else
                         this.cbxUserId.SelectedItem = ListItem.FindByValue(cbxUserId, curUserId);
                 }
+
+                if (!bAdmin)
+                    this.cbxUserId.Enabled = false;
             }
             catch (SqlException ex)
             {
@@ -117,7 +131,7 @@ namespace FB_TRADE
                     sqlStr = "insert into tb_fbMarketAccounts values('" + txtFbId.Text.Trim() + "','" +
                     txtName.Text.Trim() + "','" + txtFbAccount.Text.Trim() + "','" +
                     txtFbPwd.Text.Trim() + "','" + txtFbUrl.Text.Trim() + "','" +
-                    txtNote.Text.Trim() + "'," + coSelected.Value + ")";
+                    txtNote.Text.Trim() + "'," + coSelected.Value + ",'" + DateTime.Now.ToString()  +"')";
                     if (db.InsertData(sqlStr))
                     {
                         MessageBox.Show("营销号创建成功！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -134,7 +148,7 @@ namespace FB_TRADE
                     sqlStr = "update tb_fbMarketAccounts set fbId='" + txtFbId.Text.Trim() + "',name='" +
                     txtName.Text.Trim() + "',fbAccount='" + txtFbAccount.Text.Trim() + "',fbPwd='" +
                     txtFbPwd.Text.Trim() + "',fbUrl='" + txtFbUrl.Text.Trim() + "',note='" +
-                    txtNote.Text.Trim() + "',userId=" + coSelected.Value + ")";
+                    txtNote.Text.Trim() + "',userId=" + coSelected.Value + " where fbId='" + curMarketFbId + "'";
                     if (db.UpdateData(sqlStr))
                     {
                         MessageBox.Show("营销号信息修改成功！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);

@@ -45,7 +45,6 @@ E:\fbTrade\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.csprojAssemblyReference.cache
 E:\fbTrade\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.frm_login.resources
 E:\fbTrade\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.FrmMain.resources
 E:\fbTrade\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.FrmMarketFbAdd.resources
-E:\fbTrade\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.FrmMarketFbEdit.resources
 E:\fbTrade\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.FrmMarketFbList.resources
 E:\fbTrade\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.FrmSelfInfoEdit.resources
 E:\fbTrade\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.FrmUserAdd.resources

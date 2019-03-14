@@ -24,9 +24,50 @@ namespace FB_TRADE
         public FrmUserList()
         {
             InitializeComponent();
+
+            this.listViewUser.View = System.Windows.Forms.View.Details;
+            this.listViewUser.FullRowSelect = true;
+            listViewUser.CheckBoxes = true;
+
+            this.listViewUser.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listViewUser_MouseDoubleClick);
             this.listViewUser.ListViewItemSorter = new ListViewColumnSorter();
             this.listViewUser.ColumnClick += new ColumnClickEventHandler(ListViewHelper.ListView_ColumnClick);
-            listViewUser.CheckBoxes = true;
+            
+            listViewUser.Clear();
+            listViewUser.Columns.Add("ID", listViewUser.Width / 100 * 20, HorizontalAlignment.Left);
+            listViewUser.Columns.Add("账号", listViewUser.Width / 100 * 20, HorizontalAlignment.Left);
+            listViewUser.Columns.Add("密码", listViewUser.Width / 100 * 20, HorizontalAlignment.Left);
+            listViewUser.Columns.Add("备注", listViewUser.Width / 100 * 20, HorizontalAlignment.Left);
+            listViewUser.Columns.Add("创建时间", listViewUser.Width / 100 * 20, HorizontalAlignment.Left);
+        }
+
+        public void ListViewResize()
+        {
+            foreach (ColumnHeader item in listViewUser.Columns)
+            {
+                item.TextAlign = HorizontalAlignment.Left;
+                switch (item.Text)
+                {
+                    case "ID":
+                        item.Width = (this.listViewUser.Width / 100) * 20;
+                        break;
+                    case "账号":
+                        item.Width = (this.listViewUser.Width / 100) * 20;
+                        break;
+                    case "密码":
+                        item.Width = (this.listViewUser.Width / 100) * 20;
+                        break;
+                    case "备注":
+                        item.Width = (this.listViewUser.Width / 100) * 20;
+                        break;
+                    case "创建时间":
+                        item.Width = (this.listViewUser.Width / 100) * 20;
+                        break;
+                    default:
+                        item.Width = -2;
+                        break;
+                }
+            }
         }
 
         public void MyInitFrm()
@@ -37,14 +78,9 @@ namespace FB_TRADE
 		public void LoadListViewDB()
         {
             try
-            {
-                listViewUser.Clear();
-                listViewUser.Columns.Add("ID", listViewUser.Width/100 * 20, HorizontalAlignment.Left);
-                listViewUser.Columns.Add("账号", listViewUser.Width / 100 * 20, HorizontalAlignment.Left);
-                listViewUser.Columns.Add("密码", listViewUser.Width / 100 * 20, HorizontalAlignment.Left);
-                listViewUser.Columns.Add("备注", listViewUser.Width / 100 * 20, HorizontalAlignment.Left);
-                listViewUser.Columns.Add("创建时间", listViewUser.Width / 100 * 20, HorizontalAlignment.Left);
+            { 
                 listViewUser.Items.Clear();
+                ListViewResize();
 
                 sqlStr = "select * from tb_users where adminId='" + adminId + "'";
                 List<UserInfo> userList = (List<UserInfo>)db.GetList(sqlStr, "tb_users");
@@ -58,8 +94,6 @@ namespace FB_TRADE
                     it.SubItems.Add(user.CreateTime);
                     listViewUser.Items.Add(it);
                 }
-
-                //listViewUser.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             }
             catch (SqlException ex)
             {
@@ -126,7 +160,6 @@ namespace FB_TRADE
                     MessageBox.Show(ex.Message, "程序异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            
         }
     }
 }

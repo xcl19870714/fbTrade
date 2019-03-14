@@ -19,9 +19,6 @@ namespace FB_TRADE
         public string curAdminId;
         public string curUserId;
 
-        private Button btnDel = new System.Windows.Forms.Button();
-        private Button btnEdit = new System.Windows.Forms.Button();
-
         private DBCommon db = new DBCommon();
         private string sqlStr = string.Empty;
 
@@ -30,26 +27,68 @@ namespace FB_TRADE
         {
             InitializeComponent();
 
+            this.listViewMarketFbs.View = System.Windows.Forms.View.Details;
+            this.listViewMarketFbs.FullRowSelect = true;
+            listViewMarketFbs.CheckBoxes = true;
+
+            this.listViewMarketFbs.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listViewMarketFbs_MouseDoubleClick);
             this.listViewMarketFbs.ListViewItemSorter = new ListViewColumnSorter();
             this.listViewMarketFbs.ColumnClick += new ColumnClickEventHandler(ListViewHelper.ListView_ColumnClick);
+            
+            listViewMarketFbs.Clear();
+            listViewMarketFbs.Columns.Add("facebook ID", 100, HorizontalAlignment.Left);
+            listViewMarketFbs.Columns.Add("姓名", 100, HorizontalAlignment.Left);
+            listViewMarketFbs.Columns.Add("facebook账号", 100, HorizontalAlignment.Left);
+            listViewMarketFbs.Columns.Add("facebook密码", 100, HorizontalAlignment.Left);
+            listViewMarketFbs.Columns.Add("facebook首页", 100, HorizontalAlignment.Left);
+            listViewMarketFbs.Columns.Add("备注", 100, HorizontalAlignment.Left);
+            listViewMarketFbs.Columns.Add("所属子账号", 100, HorizontalAlignment.Left);
+            listViewMarketFbs.Columns.Add("创建时间", 100, HorizontalAlignment.Left);
+        }
+
+        public void ListViewResize()
+        {
+            foreach (ColumnHeader item in listViewMarketFbs.Columns)
+            {
+                item.TextAlign = HorizontalAlignment.Left;
+                switch (item.Text)
+                {
+                    case "facebook ID":
+                        item.Width = (this.listViewMarketFbs.Width / 100) * 9;
+                        break;
+                    case "姓名":
+                        item.Width = (this.listViewMarketFbs.Width / 100) * 9;
+                        break;
+                    case "facebook账号":
+                        item.Width = (this.listViewMarketFbs.Width / 100) * 18;
+                        break;
+                    case "facebook密码":
+                        item.Width = (this.listViewMarketFbs.Width / 100) * 9;
+                        break;
+                    case "facebook首页":
+                        item.Width = (this.listViewMarketFbs.Width / 100) * 19;
+                        break;
+                    case "备注":
+                        item.Width = (this.listViewMarketFbs.Width / 100) * 18;
+                        break;
+                    case "所属子账号":
+                        item.Width = (this.listViewMarketFbs.Width / 100) * 9;
+                        break;
+                    case "创建时间":
+                        item.Width = (this.listViewMarketFbs.Width / 100) * 9;
+                        break;
+                    default:
+                        item.Width = -2;
+                        break;
+                }
+            }
         }
 
         //2. MyShow
         public void MyInitFrm()
         {
-            //编辑和删除按钮
-            btnEdit.Visible = false;
-            btnEdit.Text = "编辑";
-            btnEdit.Click += this.btnEdit_Click;
-            btnDel.Size = new Size(70, 20);
-            this.listViewMarketFbs.Controls.Add(btnEdit);
-
-            btnDel.Visible = false;
-            btnDel.Text = "删除";
-            btnDel.Click += this.btnDel_Click;
-            btnDel.Size = new System.Drawing.Size(70, 20);
-            this.listViewMarketFbs.Controls.Add(btnDel);
-
+            if (!bAdmin)
+                btnDelete.Visible = false;
             LoadListViewDB();
         }
 
@@ -64,22 +103,6 @@ namespace FB_TRADE
 
                 List<FbMarketAccountInfo> fbList = (List<FbMarketAccountInfo>)db.GetList(sqlStr, "tb_fbMarketAccounts");
 
-                this.listViewMarketFbs.FullRowSelect = true;
-                this.listViewMarketFbs.View = System.Windows.Forms.View.Details;
-                this.listViewMarketFbs.SelectedIndexChanged += new System.EventHandler(this.listViewMarketFbs_SelectedIndexChanged);
-                this.listViewMarketFbs.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listViewMarketFbs_MouseDoubleClick);
-
-                listViewMarketFbs.Clear();
-                listViewMarketFbs.Columns.Add("facebook ID", 100, HorizontalAlignment.Left);
-                listViewMarketFbs.Columns.Add("姓名", 100, HorizontalAlignment.Left);
-                listViewMarketFbs.Columns.Add("facebook账号", 100, HorizontalAlignment.Left);
-                listViewMarketFbs.Columns.Add("facebook密码", 100, HorizontalAlignment.Left);
-                listViewMarketFbs.Columns.Add("facebook首页链接", 100, HorizontalAlignment.Left);
-                listViewMarketFbs.Columns.Add("备注", 100, HorizontalAlignment.Left);
-                listViewMarketFbs.Columns.Add("所属子账号", 100, HorizontalAlignment.Left);
-                listViewMarketFbs.Columns.Add("", 50, HorizontalAlignment.Left);
-                listViewMarketFbs.Columns.Add("", 50, HorizontalAlignment.Left);
-
                 listViewMarketFbs.Items.Clear();
                 foreach (var fb in fbList)
                 {
@@ -93,10 +116,10 @@ namespace FB_TRADE
                     it.SubItems.Add(fb.fbUrl);
                     it.SubItems.Add(fb.note);
                     it.SubItems.Add(tmp.Name);
-                    it.SubItems.Add("");
-                    it.SubItems.Add("");
+                    it.SubItems.Add(fb.createTime);
                     listViewMarketFbs.Items.Add(it);
                 }
+                ListViewResize();
             }
             catch (SqlException ex)
             {
@@ -114,49 +137,12 @@ namespace FB_TRADE
             FrmMarketFbAdd frm = new FrmMarketFbAdd();
 
             frm.bAdd = true;
+            frm.bAdmin = this.bAdmin;
             frm.curAdminId = this.curAdminId;
             frm.curUserId = this.curUserId;
             frm.pFrm = this;
             frm.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             frm.Text = "新增营销号";
-            frm.MyInitFrm();
-            frm.ShowDialog();
-        }
-
-        private void btnDel_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                DialogResult choice = MessageBox.Show("确定要删除吗？", "系统提示", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (choice == DialogResult.Yes)
-                {
-                    sqlStr = "delete from tb_fbMarketAccounts where fbId='" + this.listViewMarketFbs.SelectedItems[0].SubItems[0].Text + "'";
-                    db.DeleteData(sqlStr);
-                    this.LoadListViewDB();
-                }
-                else
-                    return;
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.Message, "数据库异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "程序异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            FrmMarketFbAdd frm = new FrmMarketFbAdd();
-            frm.bAdd = false;
-            frm.curMarketFbId = this.listViewMarketFbs.SelectedItems[0].SubItems[0].Text;
-            frm.curAdminId = this.curAdminId;
-            frm.curUserId = this.curUserId;
-            frm.pFrm = this;
-            frm.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            frm.Text = "编辑营销号";
             frm.MyInitFrm();
             frm.ShowDialog();
         }
@@ -168,6 +154,7 @@ namespace FB_TRADE
             {
                 FrmMarketFbAdd frm = new FrmMarketFbAdd();
                 frm.bAdd = false;
+                frm.bAdmin = this.bAdmin;
                 frm.curMarketFbId = info.Item.Text;
                 frm.curAdminId = this.curAdminId;
                 frm.curUserId = this.curUserId;
@@ -179,21 +166,34 @@ namespace FB_TRADE
             }
         }
 
-        private void listViewMarketFbs_SelectedIndexChanged(object sender, EventArgs e)
+        private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (this.listViewMarketFbs.SelectedItems.Count > 0)
+            if (listViewMarketFbs.CheckedItems.Count < 1)
             {
-                this.btnEdit.Location = new Point(this.listViewMarketFbs.SelectedItems[0].SubItems[7].Bounds.Left,
-                    this.listViewMarketFbs.SelectedItems[0].SubItems[7].Bounds.Top);
-                this.btnEdit.Size = new Size(this.listViewMarketFbs.SelectedItems[0].SubItems[7].Bounds.Width,
-                    this.listViewMarketFbs.SelectedItems[0].SubItems[7].Bounds.Height);
-                this.btnEdit.Visible = true;
+                MessageBox.Show("没有选中的条目！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-                this.btnDel.Location = new Point(this.listViewMarketFbs.SelectedItems[0].SubItems[8].Bounds.Left,
-                    this.listViewMarketFbs.SelectedItems[0].SubItems[8].Bounds.Top);
-                this.btnDel.Size = new Size(this.listViewMarketFbs.SelectedItems[0].SubItems[8].Bounds.Width,
-                    this.listViewMarketFbs.SelectedItems[0].SubItems[8].Bounds.Height);
-                this.btnDel.Visible = true;
+            DialogResult choice = MessageBox.Show("确定要删除吗？", "系统提示", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (choice == DialogResult.No)
+                return;
+
+            for (int i = 0; i < listViewMarketFbs.CheckedItems.Count; i++)
+            {
+                try
+                {
+                    sqlStr = "delete from tb_fbMarketAccounts where fbId='" + this.listViewMarketFbs.CheckedItems[i].SubItems[0].Text + "'";
+                    db.DeleteData(sqlStr);
+                    this.LoadListViewDB();
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.Message, "数据库异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "程序异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }

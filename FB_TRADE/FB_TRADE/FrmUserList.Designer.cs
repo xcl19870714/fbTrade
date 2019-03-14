@@ -97,8 +97,6 @@
             this.listViewUser.Size = new System.Drawing.Size(800, 401);
             this.listViewUser.TabIndex = 1;
             this.listViewUser.UseCompatibleStateImageBehavior = false;
-            this.listViewUser.View = System.Windows.Forms.View.Details;
-            this.listViewUser.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listViewUser_MouseDoubleClick);
             // 
             // colName
             // 

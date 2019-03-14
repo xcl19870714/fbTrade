@@ -40,7 +40,7 @@
             // 
             // txtLoginName
             // 
-            this.txtLoginName.Location = new System.Drawing.Point(253, 86);
+            this.txtLoginName.Location = new System.Drawing.Point(249, 89);
             this.txtLoginName.MaxLength = 29;
             this.txtLoginName.Name = "txtLoginName";
             this.txtLoginName.Size = new System.Drawing.Size(121, 25);
@@ -50,7 +50,7 @@
             // lbl_name
             // 
             this.lbl_name.AutoSize = true;
-            this.lbl_name.Location = new System.Drawing.Point(164, 91);
+            this.lbl_name.Location = new System.Drawing.Point(160, 94);
             this.lbl_name.Name = "lbl_name";
             this.lbl_name.Size = new System.Drawing.Size(67, 15);
             this.lbl_name.TabIndex = 1;
@@ -59,7 +59,7 @@
             // lbl_pwd
             // 
             this.lbl_pwd.AutoSize = true;
-            this.lbl_pwd.Location = new System.Drawing.Point(137, 134);
+            this.lbl_pwd.Location = new System.Drawing.Point(133, 137);
             this.lbl_pwd.Name = "lbl_pwd";
             this.lbl_pwd.Size = new System.Drawing.Size(84, 15);
             this.lbl_pwd.TabIndex = 2;
@@ -67,7 +67,7 @@
             // 
             // txtLoginPwd
             // 
-            this.txtLoginPwd.Location = new System.Drawing.Point(252, 128);
+            this.txtLoginPwd.Location = new System.Drawing.Point(248, 131);
             this.txtLoginPwd.Name = "txtLoginPwd";
             this.txtLoginPwd.Size = new System.Drawing.Size(121, 25);
             this.txtLoginPwd.TabIndex = 3;
@@ -77,7 +77,7 @@
             // lbl_role
             // 
             this.lbl_role.AutoSize = true;
-            this.lbl_role.Location = new System.Drawing.Point(168, 172);
+            this.lbl_role.Location = new System.Drawing.Point(164, 175);
             this.lbl_role.Name = "lbl_role";
             this.lbl_role.Size = new System.Drawing.Size(52, 15);
             this.lbl_role.TabIndex = 4;
@@ -90,7 +90,7 @@
             this.cbxRole.Items.AddRange(new object[] {
             "普通用户",
             "管理员"});
-            this.cbxRole.Location = new System.Drawing.Point(252, 168);
+            this.cbxRole.Location = new System.Drawing.Point(248, 171);
             this.cbxRole.Name = "cbxRole";
             this.cbxRole.Size = new System.Drawing.Size(121, 23);
             this.cbxRole.TabIndex = 5;
@@ -98,7 +98,7 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(166, 227);
+            this.btnLogin.Location = new System.Drawing.Point(176, 227);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(75, 32);
             this.btnLogin.TabIndex = 6;
