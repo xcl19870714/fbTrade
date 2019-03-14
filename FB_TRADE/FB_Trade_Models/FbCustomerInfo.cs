@@ -12,7 +12,7 @@ namespace FB_Trade_Models
         public string fbId;
         public string name;
         public string fbUrl;
-        public int friendsNum;
+        public string friendsNum;
         public string country;
         public string state;
         public string city;

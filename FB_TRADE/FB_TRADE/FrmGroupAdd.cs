@@ -31,7 +31,7 @@ namespace FB_TRADE
             this.cbxVerifyType.Items.Clear();
             this.cbxVerifyType.Items.Add("需要");
             this.cbxVerifyType.Items.Add("不需要");
-            this.cbxVerifyType.SelectedText = "需要";
+            this.cbxVerifyType.SelectedIndex = cbxVerifyType.Items.IndexOf("需要");
         }
 
         public void MyFrmInit()
@@ -62,10 +62,10 @@ namespace FB_TRADE
                 if (fbGroup != null)
                 {
                     this.txtGroupFbId.Text = fbGroup.fbId;
-                    this.cbxVerifyType.SelectedText = (fbGroup.needVerify == 1 ? "需要" : "不需要");
+                    this.cbxVerifyType.SelectedIndex = cbxVerifyType.Items.IndexOf(fbGroup.needVerify);
                     this.txtGroupName.Text = fbGroup.name;
                     this.txtGroupUrl.Text = fbGroup.fbUrl;
-                    this.txtMems.Text = fbGroup.members.ToString();
+                    this.txtMems.Text = fbGroup.membersNum.ToString();
                     this.txtIntroduction.Text = fbGroup.introduction;
                     return true;
                 }
@@ -121,17 +121,17 @@ namespace FB_TRADE
                     ckbQuit.Checked = ship.status.Contains("退出群组;");
                     ckbAbandon.Checked = ship.status.Contains("不要;");
 
-                    txtCustomerNum.Text = ship.customers.ToString();
-                    txtContactCustomers.Text = ship.contactCustomers.ToString();
-                    txtTradeCustomers.Text = ship.tradeCustomers.ToString();
-                    txtOrdersNum.Text = ship.orders.ToString();
+                    txtCustomerNum.Text = ship.customersNum.ToString();
+                    txtContactCustomers.Text = ship.contactCustomersNum.ToString();
+                    txtTradeCustomers.Text = ship.tradeCustomersNum.ToString();
+                    txtOrdersNum.Text = ship.ordersNum.ToString();
 
-                    txtTweetsNum.Text = ship.tweets.ToString();
-                    if (ship.tweetFeedback == 1)
+                    txtTweetsNum.Text = ship.tweetsNum.ToString();
+                    if (ship.tweetFeedback == "活跃")
                     {
                         radioActive.Checked = true;
                     }
-                    else if (ship.tweetFeedback == 2)
+                    else if (ship.tweetFeedback == "一般")
                     {
                         radioNormal.Checked = true;
                     }
@@ -267,7 +267,7 @@ namespace FB_TRADE
                 {
                     StringBuilder sb = new StringBuilder();
                     sb.AppendFormat("update tb_fbGroups set needVerify={0}, name='{1}', members={2}, introduction='{3}'",
-                        (cbxVerifyType.SelectedText == "需要" ? 1 : 0), txtGroupName.Text.Trim(), 
+                        (cbxVerifyType.SelectedItem.ToString() == "需要" ? 1 : 0), txtGroupName.Text.Trim(), 
                         Convert.ToUInt32(txtMems.Text.Trim()), txtIntroduction.Text.Trim());
                     db.UpdateData(sb.ToString());
                 }
@@ -276,7 +276,7 @@ namespace FB_TRADE
                     StringBuilder sb = new StringBuilder();
                     sb.AppendFormat("insert into tb_fbGroups(fbId, name, fbUrl, members, introduction, needVerify) values({0}, {1}, {2}, {3}, {4}, {5}) ",
                         txtGroupFbId.Text.Trim(), txtGroupName.Text.Trim(), txtGroupUrl.Text.Trim(), 
-                        Convert.ToUInt32(txtMems.Text.Trim()), txtIntroduction.Text.Trim(), (cbxVerifyType.SelectedText == "需要" ? 1 : 0));
+                        Convert.ToUInt32(txtMems.Text.Trim()), txtIntroduction.Text.Trim(), (cbxVerifyType.SelectedItem.ToString() == "需要" ? 1 : 0));
                     db.InsertData(sb.ToString());
                 }
 

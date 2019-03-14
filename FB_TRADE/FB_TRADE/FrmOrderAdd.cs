@@ -39,12 +39,12 @@ namespace FB_TRADE
             this.cbxOrderType.Items.Add("订单");
             this.cbxOrderType.Items.Add("分期付款单");
             this.cbxOrderType.Items.Add("售后单");
-            this.cbxOrderType.SelectedText = "订单";
+            this.cbxOrderType.SelectedIndex = cbxOrderType.Items.IndexOf("订单");
 
             this.cbxShipType.Items.Clear();
             this.cbxShipType.Items.Add("EMS");
             this.cbxShipType.Items.Add("Other");
-            this.cbxShipType.SelectedText = "EMS";
+            this.cbxShipType.SelectedIndex = cbxShipType.Items.IndexOf("EMS");
 
             this.cbxCurrency.Items.Clear();
             this.cbxCurrency.Items.Add("AUD");
@@ -56,7 +56,7 @@ namespace FB_TRADE
             this.cbxCurrency.Items.Add("台币");
             this.cbxCurrency.Items.Add("人民币");
             this.cbxCurrency.Items.Add("Other");
-            this.cbxCurrency.SelectedText = "AUD";
+            this.cbxCurrency.SelectedIndex = cbxCurrency.Items.IndexOf("AUD");
 
             this.cbxPayType.Items.Clear();
             this.cbxPayType.Items.Add("Paypal");
@@ -64,11 +64,11 @@ namespace FB_TRADE
             this.cbxPayType.Items.Add("Western Union");
             this.cbxPayType.Items.Add("货到付款");
             this.cbxPayType.Items.Add("Other");
-            this.cbxPayType.SelectedText = "Paypal";
+            this.cbxPayType.SelectedIndex = cbxPayType.Items.IndexOf("Paypal");
 
-            txtShipType.Visible = (cbxShipType.SelectedText != "Other");
-            txtCurrency.Visible = (cbxCurrency.SelectedText != "Other");
-            txtPayType.Visible = (txtPayType.SelectedText != "Other");
+            txtShipType.Visible = (cbxShipType.SelectedItem.ToString() != "Other");
+            txtCurrency.Visible = (cbxCurrency.SelectedItem.ToString() != "Other");
+            txtPayType.Visible = (cbxPayType.SelectedItem.ToString() != "Other");
         }
 
         public void MyInitFrm()
@@ -103,13 +103,13 @@ namespace FB_TRADE
                 txtCustomerId.Text = curCustomerFbId;
 
                 txtOrderId.Text = order.orderId;
-                cbxOrderType.SelectedText = order.orderType;
+                cbxOrderType.SelectedIndex = cbxOrderType.Items.IndexOf(order.orderType);
                 txtOriOrderId.Text = order.oriOrderId;
 
-                cbxShipType.SelectedText = order.shippingType;
+                cbxShipType.SelectedIndex = cbxShipType.Items.IndexOf(order.shippingType);
                 if (cbxShipType.SelectedIndex < 0)
                 {
-                    cbxShipType.SelectedText = "Other";
+                    cbxShipType.SelectedIndex = cbxShipType.Items.IndexOf("Other");
                     txtShipType.Visible = true;
                     txtShipType.Text = order.shippingType;
                 }
@@ -117,17 +117,17 @@ namespace FB_TRADE
                 txtTrackingNo.Text = order.shippingNo;
                 txtPayAmount.Text = order.totalPrice;
 
-                cbxCurrency.SelectedText = order.currency;
+                cbxCurrency.SelectedIndex = cbxCurrency.Items.IndexOf(order.currency);
                 if (cbxCurrency.SelectedIndex < 0)
                 {
-                    cbxCurrency.SelectedText = "Other";
+                    cbxCurrency.SelectedIndex = cbxCurrency.Items.IndexOf("Other");
                     txtCurrency.Visible = true;
                     txtCurrency.Text = order.currency;
                 }
                 cbxPayType.SelectedText = order.paymentType;
                 if (cbxPayType.SelectedIndex < 0)
                 {
-                    cbxPayType.SelectedText = "Other";
+                    cbxPayType.SelectedIndex = cbxPayType.Items.IndexOf("Other");
                     txtPayType.Visible = true;
                     txtPayType.Text = order.paymentType;
                 }
@@ -266,17 +266,17 @@ namespace FB_TRADE
 
         private void cbxShipType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtShipType.Visible  = (cbxShipType.SelectedText != "Other");
+            txtShipType.Visible  = (cbxShipType.SelectedItem.ToString() != "Other");
         }
 
         private void cbxCurrency_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtCurrency.Visible = (cbxCurrency.SelectedText != "Other");
+            txtCurrency.Visible = (cbxCurrency.SelectedItem.ToString() != "Other");
         }
 
         private void cbxPayType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtPayType.Visible = (txtPayType.SelectedText != "Other");
+            txtPayType.Visible = (cbxPayType.SelectedItem.ToString() != "Other");
         }
 
         private void btnInsertGoods_Click(object sender, EventArgs e)
@@ -363,11 +363,11 @@ namespace FB_TRADE
                         "createTime, lastEditTime, status, shippingAddress, shippingName, shippingPhone, shippingType, shippingFee, shippingNo, " +
                         "currency, totalPrice, paymentType, paymentNo, note) " +
                         "values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}')", 
-                        txtCustomerId.Text.Trim(), curMarketFbId, cbxOrderType.SelectedText, txtOriOrderId, 
+                        txtCustomerId.Text.Trim(), curMarketFbId, cbxOrderType.SelectedItem.ToString(), txtOriOrderId, 
                         DateTime.Now.ToString(), DateTime.Now.ToString(), getNewOrderStatus("Save"), txtShippingAddress.Text.Trim(), txtShippingName.Text.Trim(), 
-                        (cbxShipType.SelectedText == "Other" ? txtShipType.Text.Trim() : cbxShipType.SelectedText), txtShipFee.Text.Trim(), txtTrackingNo.Text.Trim(),
-                        (cbxCurrency.SelectedText == "Other" ? txtCurrency.Text.Trim() : cbxCurrency.SelectedText), txtPayAmount.Text.Trim(),
-                        (cbxPayType.SelectedText == "Other" ? txtPayType.Text.Trim() : cbxPayType.SelectedText), txtPayNo.Text.Trim(), txtPayNo.Text.Trim(), txtNote.Text.Trim());
+                        (cbxShipType.SelectedItem.ToString() == "Other" ? txtShipType.Text.Trim() : cbxShipType.SelectedItem.ToString()), txtShipFee.Text.Trim(), txtTrackingNo.Text.Trim(),
+                        (cbxCurrency.SelectedItem.ToString() == "Other" ? txtCurrency.Text.Trim() : cbxCurrency.SelectedItem.ToString()), txtPayAmount.Text.Trim(),
+                        (cbxPayType.SelectedItem.ToString() == "Other" ? txtPayType.Text.Trim() : cbxPayType.SelectedItem.ToString()), txtPayNo.Text.Trim(), txtPayNo.Text.Trim(), txtNote.Text.Trim());
                     db.InsertData(sb.ToString());
                 }
                 else // Edit
@@ -376,11 +376,11 @@ namespace FB_TRADE
                     sb.AppendFormat("Update tb_fbOrders set orderType='{0}', oriOrderId='{1}', lastEditTime='{2}', status='{3}', shippingAddress='{4}'," +
                         "shippingName='{5}',shippingType='{6}',shippingFee='{7}',shippingNo='{8}',currency='{9}',totalPrice='{10}',paymentType='{11}',paymentNo='{12}'," +
                         "note='{14}' where orderId='{15}'",
-                        cbxOrderType.SelectedText, txtOriOrderId, DateTime.Now.ToString(), getNewOrderStatus("Save"), 
+                        cbxOrderType.SelectedItem.ToString(), txtOriOrderId, DateTime.Now.ToString(), getNewOrderStatus("Save"), 
                         txtShippingAddress.Text.Trim(), txtShippingName.Text.Trim(),
-                        (cbxShipType.SelectedText == "Other" ? txtShipType.Text.Trim() : cbxShipType.SelectedText), txtShipFee.Text.Trim(), txtTrackingNo.Text.Trim(),
-                        (cbxCurrency.SelectedText == "Other" ? txtCurrency.Text.Trim() : cbxCurrency.SelectedText), txtPayAmount.Text.Trim(),
-                        (cbxPayType.SelectedText == "Other" ? txtPayType.Text.Trim() : cbxPayType.SelectedText), txtPayNo.Text.Trim(), txtPayNo.Text.Trim(),
+                        (cbxShipType.SelectedItem.ToString() == "Other" ? txtShipType.Text.Trim() : cbxShipType.SelectedItem.ToString()), txtShipFee.Text.Trim(), txtTrackingNo.Text.Trim(),
+                        (cbxCurrency.SelectedItem.ToString() == "Other" ? txtCurrency.Text.Trim() : cbxCurrency.SelectedItem.ToString()), txtPayAmount.Text.Trim(),
+                        (cbxPayType.SelectedItem.ToString() == "Other" ? txtPayType.Text.Trim() : cbxPayType.SelectedItem.ToString()), txtPayNo.Text.Trim(), txtPayNo.Text.Trim(),
                         txtNote.Text.Trim(), curOrderId);
                     db.UpdateData(sb.ToString());
                 }
@@ -441,11 +441,11 @@ namespace FB_TRADE
                         "createTime, lastEditTime, status, shippingAddress, shippingName, shippingPhone, shippingType, shippingFee, shippingNo, " +
                         "currency, totalPrice, paymentType, paymentNo, note) " +
                         "values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}')",
-                        txtCustomerId.Text.Trim(), curMarketFbId, cbxOrderType.SelectedText, txtOriOrderId,
+                        txtCustomerId.Text.Trim(), curMarketFbId, cbxOrderType.SelectedItem.ToString(), txtOriOrderId,
                         DateTime.Now.ToString(), DateTime.Now.ToString(), getNewOrderStatus("Submit"), txtShippingAddress.Text.Trim(), txtShippingName.Text.Trim(),
-                        (cbxShipType.SelectedText == "Other" ? txtShipType.Text.Trim() : cbxShipType.SelectedText), txtShipFee.Text.Trim(), txtTrackingNo.Text.Trim(),
-                        (cbxCurrency.SelectedText == "Other" ? txtCurrency.Text.Trim() : cbxCurrency.SelectedText), txtPayAmount.Text.Trim(),
-                        (cbxPayType.SelectedText == "Other" ? txtPayType.Text.Trim() : cbxPayType.SelectedText), txtPayNo.Text.Trim(), txtPayNo.Text.Trim(), txtNote.Text.Trim());
+                        (cbxShipType.SelectedItem.ToString() == "Other" ? txtShipType.Text.Trim() : cbxShipType.SelectedItem.ToString()), txtShipFee.Text.Trim(), txtTrackingNo.Text.Trim(),
+                        (cbxCurrency.SelectedItem.ToString() == "Other" ? txtCurrency.Text.Trim() : cbxCurrency.SelectedItem.ToString()), txtPayAmount.Text.Trim(),
+                        (cbxPayType.SelectedItem.ToString() == "Other" ? txtPayType.Text.Trim() : cbxPayType.SelectedItem.ToString()), txtPayNo.Text.Trim(), txtPayNo.Text.Trim(), txtNote.Text.Trim());
                     db.InsertData(sb.ToString());
                 }
                 else // Edit
@@ -454,11 +454,11 @@ namespace FB_TRADE
                     sb.AppendFormat("Update tb_fbOrders set orderType='{0}', oriOrderId='{1}', lastEditTime='{2}', status='{3}', shippingAddress='{4}'," +
                         "shippingName='{5}',shippingType='{6}',shippingFee='{7}',shippingNo='{8}',currency='{9}',totalPrice='{10}',paymentType='{11}',paymentNo='{12}'," +
                         "note='{14}' where orderId='{15}'",
-                        cbxOrderType.SelectedText, txtOriOrderId, DateTime.Now.ToString(), getNewOrderStatus("Submit"),
+                        cbxOrderType.SelectedItem.ToString(), txtOriOrderId, DateTime.Now.ToString(), getNewOrderStatus("Submit"),
                         txtShippingAddress.Text.Trim(), txtShippingName.Text.Trim(),
-                        (cbxShipType.SelectedText == "Other" ? txtShipType.Text.Trim() : cbxShipType.SelectedText), txtShipFee.Text.Trim(), txtTrackingNo.Text.Trim(),
-                        (cbxCurrency.SelectedText == "Other" ? txtCurrency.Text.Trim() : cbxCurrency.SelectedText), txtPayAmount.Text.Trim(),
-                        (cbxPayType.SelectedText == "Other" ? txtPayType.Text.Trim() : cbxPayType.SelectedText), txtPayNo.Text.Trim(), txtPayNo.Text.Trim(),
+                        (cbxShipType.SelectedItem.ToString() == "Other" ? txtShipType.Text.Trim() : cbxShipType.SelectedItem.ToString()), txtShipFee.Text.Trim(), txtTrackingNo.Text.Trim(),
+                        (cbxCurrency.SelectedItem.ToString() == "Other" ? txtCurrency.Text.Trim() : cbxCurrency.SelectedItem.ToString()), txtPayAmount.Text.Trim(),
+                        (cbxPayType.SelectedItem.ToString() == "Other" ? txtPayType.Text.Trim() : cbxPayType.SelectedItem.ToString()), txtPayNo.Text.Trim(), txtPayNo.Text.Trim(),
                         txtNote.Text.Trim(), curOrderId);
                     db.UpdateData(sb.ToString());
                 }

@@ -16,13 +16,16 @@ namespace FB_TRADE
     public partial class frm_login : Form
     {
         private DBCommon db = new DBCommon();
-        private string sqlStr = string.Empty;
+        private StringBuilder sb = new StringBuilder();
 
 		//1. Shows
         public frm_login()
         {
             InitializeComponent();
-            this.cbxRole.SelectedIndex = 1;
+            this.cbxRole.Items.Clear();
+            this.cbxRole.Items.Add("普通用户");
+            this.cbxRole.Items.Add("管理员");
+            cbxRole.SelectedIndex = cbxRole.Items.IndexOf("管理员");
         }
 
 		//2. Operations
@@ -34,15 +37,17 @@ namespace FB_TRADE
                 if (!CheckInput())
                     return;
 
-                bool bAdmin = (cbxRole.SelectedIndex == 1);
+                bool bAdmin = (cbxRole.SelectedItem.ToString() == "管理员");
                 string tb = (bAdmin ? "tb_admins" : "tb_users");
                 Object obj = null;
 
-                sqlStr = "select * from " + tb + " where name='" + txtLoginName.Text.Trim() + "' and pwd='" + txtLoginPwd.Text.Trim() + "'";
-                if ((obj = db.GetObject(sqlStr, tb)) == null)
+                sb.Clear();
+                sb.AppendFormat("select * from {0} where name='{1}' and pwd='{2}'", tb, txtLoginName.Text.Trim(), txtLoginPwd.Text.Trim());
+                if ((obj = db.GetObject(sb.ToString(), tb)) == null)
                 {
-                    sqlStr = "select count(*) from " + tb + " where name='" + txtLoginName.Text.Trim() + "'";
-                    if (!db.CheckExist(sqlStr))
+                    sb.Clear();
+                    sb.AppendFormat("select count(*) from {0} where name='{1}'", tb, txtLoginName.Text.Trim());
+                    if (!db.CheckExist(sb.ToString()))
                     {
                         MessageBox.Show("账号不存在！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;

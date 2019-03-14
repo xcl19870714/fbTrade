@@ -262,8 +262,8 @@ namespace FB_TRADE
                     "' and marketFbId='" + this.curMarketFbId + "'";
                 if (db.CheckExist(sql)) //编辑
                 {
-                    sql = "update fb_tbCustomerShips set shipType='" + cbxShipType.SelectedText +
-                        "',customerType='" + cbxCustomerType.SelectedText +
+                    sql = "update fb_tbCustomerShips set shipType='" + cbxShipType.SelectedItem.ToString() +
+                        "',customerType='" + cbxCustomerType.SelectedItem.ToString() +
                         "',interestedGoods='" + txtInGoods.Text.Trim() +
                         "',note='" + txtNote.Text.Trim() +
                         (ckbTraceDate.Checked ? ("',traceDate='" + dateTimePicker1.Value.ToString()) : "") +
@@ -275,8 +275,8 @@ namespace FB_TRADE
                 else //新增
                 {
                     sql = "insert into tb_fbCustomerShips values('" + txtFbId.Text.Trim() + "','" + curMarketFbId +
-                        "','" + cbxShipType.SelectedText +
-                        "',’" + cbxCustomerType.SelectedText +
+                        "','" + cbxShipType.SelectedItem.ToString() +
+                        "',’" + cbxCustomerType.SelectedItem.ToString() +
                         "','" + txtInGoods.Text.Trim() + "','" + txtNote.Text.Trim() +
                         "','" + (ckbTraceDate.Checked ? dateTimePicker1.Value.ToString() : "") +
                         DateTime.Now.ToString() + "')";

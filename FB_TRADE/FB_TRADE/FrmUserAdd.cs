@@ -42,7 +42,9 @@ namespace FB_TRADE
                     return;
                 }
 
-                sqlStr = "insert into tb_users(name,pwd,adminId) values('" + txtName.Text.Trim() + "','" + txtPwd.Text.Trim() + "'," + adminId + ")";
+                sqlStr = "insert into tb_users(name,pwd,adminId,note,createTime) values('" 
+                    + txtName.Text.Trim() + "','" + txtPwd.Text.Trim() + "'," + adminId + 
+                    ", '" + txtNote.Text.Trim() + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "')";
                 if (db.InsertData(sqlStr))
                 {
                     MessageBox.Show("子账号创建成功！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);

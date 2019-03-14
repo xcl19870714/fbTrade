@@ -38,6 +38,7 @@ namespace FB_TRADE
                 {
                     this.txtName.Text = user.Name;
                     this.txtPwd.Text = user.Pwd;
+                    this.txtNote.Text = user.Note;
                 }
                 else
                 {
@@ -64,7 +65,8 @@ namespace FB_TRADE
 
             try
             {
-                sqlStr = "update tb_users set name='" + txtName.Text.Trim() + "',pwd='" + txtPwd.Text.Trim() + "' where id='" + Convert.ToString(curId) + "'";
+                sqlStr = "update tb_users set name='" + txtName.Text.Trim() + "',pwd='" + txtPwd.Text.Trim() + 
+                    "',note='" + txtNote.Text.Trim() + "' where id='" + Convert.ToString(curId) + "'";
 
                 if (db.UpdateData(sqlStr))
                 {

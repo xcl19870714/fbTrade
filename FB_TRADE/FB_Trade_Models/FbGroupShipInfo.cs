@@ -13,12 +13,12 @@ namespace FB_Trade_Models
         public string groupFbId;
         public string marketFbId;
         public string status;
-        public int customers;
-        public int contactCustomers;
-        public int tradeCustomers;
-        public int orders;
-        public int tweets;
-        public int tweetFeedback;
+        public string customersNum;
+        public string contactCustomersNum;
+        public string tradeCustomersNum;
+        public string ordersNum;
+        public string tweetsNum;
+        public string tweetFeedback;
         public string mark;
         public string note;
     }

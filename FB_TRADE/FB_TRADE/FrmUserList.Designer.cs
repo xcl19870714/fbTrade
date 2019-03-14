@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUserList));
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "",
             ""}, -1);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUserList));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnAddUser = new System.Windows.Forms.ToolStripButton();
             this.panelUserList = new System.Windows.Forms.Panel();
@@ -42,6 +42,7 @@
             this.colAdmin = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.btnDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.panelUserList.SuspendLayout();
             this.SuspendLayout();
@@ -50,6 +51,7 @@
             // 
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnDelete,
             this.btnAddUser});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -80,22 +82,22 @@
             // 
             // listViewUser
             // 
+            this.listViewUser.CheckBoxes = true;
             this.listViewUser.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colName,
             this.colPwd,
             this.colAdmin});
             this.listViewUser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewUser.FullRowSelect = true;
-            listViewItem2.StateImageIndex = 0;
+            listViewItem1.StateImageIndex = 0;
             this.listViewUser.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem2});
+            listViewItem1});
             this.listViewUser.Location = new System.Drawing.Point(0, 0);
             this.listViewUser.Name = "listViewUser";
             this.listViewUser.Size = new System.Drawing.Size(800, 401);
             this.listViewUser.TabIndex = 1;
             this.listViewUser.UseCompatibleStateImageBehavior = false;
             this.listViewUser.View = System.Windows.Forms.View.Details;
-            this.listViewUser.SelectedIndexChanged += new System.EventHandler(this.listViewUser_SelectedIndexChanged);
             this.listViewUser.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listViewUser_MouseDoubleClick);
             // 
             // colName
@@ -128,6 +130,16 @@
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
+            // btnDelete
+            // 
+            this.btnDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
+            this.btnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(43, 24);
+            this.btnDelete.Text = "删除";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // FrmUserList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -158,5 +170,6 @@
         private System.Windows.Forms.ColumnHeader colPwd;
         private System.Windows.Forms.ColumnHeader colAdmin;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.ToolStripButton btnDelete;
     }
 }

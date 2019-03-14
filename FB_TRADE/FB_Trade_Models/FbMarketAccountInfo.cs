@@ -15,5 +15,6 @@ namespace FB_Trade_Models
         public string fbUrl;
         public string note;
         public int userId;
+		public string createTime;
     }
 }

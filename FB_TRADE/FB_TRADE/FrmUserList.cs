@@ -17,9 +17,6 @@ namespace FB_TRADE
     {
         public string adminId;
 		
-        private Button btnDel = new System.Windows.Forms.Button();
-        private Button btnEdit = new System.Windows.Forms.Button();
-
         private DBCommon db = new DBCommon();
         private string sqlStr = string.Empty;
 
@@ -29,23 +26,11 @@ namespace FB_TRADE
             InitializeComponent();
             this.listViewUser.ListViewItemSorter = new ListViewColumnSorter();
             this.listViewUser.ColumnClick += new ColumnClickEventHandler(ListViewHelper.ListView_ColumnClick);
+            listViewUser.CheckBoxes = true;
         }
 
         public void MyInitFrm()
         {
-            //编辑和删除按钮
-            btnEdit.Visible = false;
-            btnEdit.Text = "编辑";
-            btnEdit.Click += this.btnEdit_Click;
-            btnDel.Size = new Size(70, 20);
-            this.listViewUser.Controls.Add(btnEdit);
-
-            btnDel.Visible = false;
-            btnDel.Text = "删除";
-            btnDel.Click += this.btnDel_Click;
-            btnDel.Size = new System.Drawing.Size(70, 20);
-            this.listViewUser.Controls.Add(btnDel);
-
             LoadListViewDB();
         }
 
@@ -54,11 +39,11 @@ namespace FB_TRADE
             try
             {
                 listViewUser.Clear();
-                listViewUser.Columns.Add("ID", 100, HorizontalAlignment.Left);
-                listViewUser.Columns.Add("账号", 100, HorizontalAlignment.Left);
-                listViewUser.Columns.Add("密码", 100, HorizontalAlignment.Left);
-                listViewUser.Columns.Add("", 50, HorizontalAlignment.Left);
-                listViewUser.Columns.Add("", 50, HorizontalAlignment.Left);
+                listViewUser.Columns.Add("ID", listViewUser.Width/100 * 20, HorizontalAlignment.Left);
+                listViewUser.Columns.Add("账号", listViewUser.Width / 100 * 20, HorizontalAlignment.Left);
+                listViewUser.Columns.Add("密码", listViewUser.Width / 100 * 20, HorizontalAlignment.Left);
+                listViewUser.Columns.Add("备注", listViewUser.Width / 100 * 20, HorizontalAlignment.Left);
+                listViewUser.Columns.Add("创建时间", listViewUser.Width / 100 * 20, HorizontalAlignment.Left);
                 listViewUser.Items.Clear();
 
                 sqlStr = "select * from tb_users where adminId='" + adminId + "'";
@@ -69,10 +54,12 @@ namespace FB_TRADE
                     it.Text = Convert.ToString(user.Id);
                     it.SubItems.Add(user.Name);
                     it.SubItems.Add(user.Pwd);
-                    it.SubItems.Add("");
-                    it.SubItems.Add("");
+                    it.SubItems.Add(user.Note);
+                    it.SubItems.Add(user.CreateTime);
                     listViewUser.Items.Add(it);
                 }
+
+                //listViewUser.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             }
             catch (SqlException ex)
             {
@@ -94,40 +81,7 @@ namespace FB_TRADE
             frm.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             frm.ShowDialog();
         }
-
-        private void btnDel_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                DialogResult choice = MessageBox.Show("确定要删除吗？", "系统提示", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (choice == DialogResult.Yes)
-                {
-                    sqlStr = "delete from tb_users where id=" + this.listViewUser.SelectedItems[0].SubItems[0].Text;
-                    db.DeleteData(sqlStr);
-                    this.LoadListViewDB();
-                }
-                else
-                    return;
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.Message, "数据库异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "程序异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            FrmUserEdit frm = new FrmUserEdit();
-            frm.curId = this.listViewUser.SelectedItems[0].SubItems[0].Text;
-            frm.pFrm = this;
-            frm.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            frm.MyInitFrm();
-            frm.ShowDialog();
-        }
+       
 
         private void listViewUser_MouseDoubleClick(object sender, MouseEventArgs e)
         {
@@ -142,23 +96,37 @@ namespace FB_TRADE
                 frm.ShowDialog();
             }
         }
-		
-        private void listViewUser_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (this.listViewUser.SelectedItems.Count > 0)
-            {
-                this.btnEdit.Location = new Point(this.listViewUser.SelectedItems[0].SubItems[3].Bounds.Left,
-                    this.listViewUser.SelectedItems[0].SubItems[3].Bounds.Top);
-                this.btnEdit.Size = new Size(this.listViewUser.SelectedItems[0].SubItems[3].Bounds.Width,
-                    this.listViewUser.SelectedItems[0].SubItems[3].Bounds.Height);
-                this.btnEdit.Visible = true;
 
-                this.btnDel.Location = new Point(this.listViewUser.SelectedItems[0].SubItems[4].Bounds.Left,
-                    this.listViewUser.SelectedItems[0].SubItems[4].Bounds.Top);
-                this.btnDel.Size = new Size(this.listViewUser.SelectedItems[0].SubItems[4].Bounds.Width,
-                    this.listViewUser.SelectedItems[0].SubItems[4].Bounds.Height);
-                this.btnDel.Visible = true;
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (listViewUser.CheckedItems.Count < 1)
+            {
+                MessageBox.Show("没有选中的条目！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+
+            DialogResult choice = MessageBox.Show("确定要删除吗？", "系统提示", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (choice == DialogResult.No)
+                return;
+
+            for (int i = 0; i < listViewUser.CheckedItems.Count; i++)
+            {
+                try
+                {
+                    sqlStr = "delete from tb_users where id=" + this.listViewUser.CheckedItems[i].SubItems[0].Text;
+                    db.DeleteData(sqlStr);
+                    this.LoadListViewDB();
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.Message, "数据库异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "程序异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            
         }
     }
 }

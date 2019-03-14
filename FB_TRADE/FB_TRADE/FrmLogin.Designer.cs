@@ -41,6 +41,7 @@
             // txtLoginName
             // 
             this.txtLoginName.Location = new System.Drawing.Point(253, 86);
+            this.txtLoginName.MaxLength = 29;
             this.txtLoginName.Name = "txtLoginName";
             this.txtLoginName.Size = new System.Drawing.Size(121, 25);
             this.txtLoginName.TabIndex = 0;

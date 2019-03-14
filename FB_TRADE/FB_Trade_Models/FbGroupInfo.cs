@@ -12,10 +12,10 @@ namespace FB_Trade_Models
         public string fbId;
         public string name;
         public string fbUrl;
-        public int members;
+        public string membersNum;
         public string introduction;
-        public int gpSource;
+        public string gpSource;
         public string gpType;
-        public int needVerify;
+        public string needVerify;
     }
 }

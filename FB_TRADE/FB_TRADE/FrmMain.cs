@@ -20,7 +20,7 @@ namespace FB_TRADE
         public UserInfo userInfo;
 
         private DBCommon db = new DBCommon();
-        private string sqlStr = string.Empty;
+        private StringBuilder sb = new StringBuilder();
 
         private const int CLOSE_SIZE = 12;
         private int tabindex_show = 0;
@@ -181,16 +181,17 @@ namespace FB_TRADE
             {
                 try
                 {
-                    sqlStr = "select * from tb_users where adminId=" + Convert.ToString(adminInfo.Id);
-                    List<UserInfo> userList = (List<UserInfo>)db.GetList(sqlStr, "tb_users");
+                    sb.Clear();
+                    sb.AppendFormat("select * from tb_users where adminId={0}", Convert.ToString(adminInfo.Id));
+                    List<UserInfo> userList = (List<UserInfo>)db.GetList(sb.ToString(), "tb_users");
 
                     this.cbxUser.Items.Clear();
-                    this.cbxUser.Items.Add(new ListItem("--ALL--", "0"));
+                    this.cbxUser.Items.Add(new ListItem("子账号", "0"));
                     foreach (var user in userList)
                     {
                         this.cbxUser.Items.Add(new ListItem(user.Name, Convert.ToString(user.Id)));
                     }
-                    this.cbxUser.SelectedItem = ListItem.FindByText1(cbxUser, "--ALL--");
+                    this.cbxUser.SelectedItem = ListItem.FindByText1(cbxUser, "子账号");
                 }
                 catch (SqlException ex)
                 {
@@ -206,27 +207,24 @@ namespace FB_TRADE
 
         public void InitMarketFbCbx()
         {
+            this.cbxFbAccount.Items.Clear();
+            this.cbxFbAccount.Items.Add(new ListItem("营销号", "0"));
+            this.cbxFbAccount.SelectedItem = ListItem.FindByText1(cbxFbAccount, "营销号");
+
+            ListItem selItem = (ListItem)this.cbxUser.SelectedItem;
+            if (selItem.Text == "子账号")
+                return;
+
             try
             {
-                ListItem selItem = (ListItem)this.cbxUser.SelectedItem; 
-                if (selItem.Text == "--ALL--")
-                {
-                    sqlStr = "select * from tb_fbMarketAccounts where userId in (select id from tb_users where adminId=" + Convert.ToString(adminInfo.Id) + ")";
-                }
-                else
-                {
-                    sqlStr = "select * from tb_fbMarketAccounts where userId=" + selItem.Value;
-                }
-                
-                List<FbMarketAccountInfo> marketFbList = (List<FbMarketAccountInfo>)db.GetList(sqlStr, "tb_fbMarketAccounts");
+                sb.Clear();
+                sb.AppendFormat("select * from tb_fbMarketAccounts where userId={0}", selItem.Value);
+                List<FbMarketAccountInfo> marketFbList = (List<FbMarketAccountInfo>)db.GetList(sb.ToString(), "tb_fbMarketAccounts");
 
-                this.cbxFbAccount.Items.Clear();
-                this.cbxFbAccount.Items.Add(new ListItem("--ALL--", "0"));
                 foreach (var fb in marketFbList)
                 {
                     this.cbxFbAccount.Items.Add(new ListItem(fb.name, fb.fbId));
                 }
-                this.cbxFbAccount.SelectedItem = ListItem.FindByText1(cbxFbAccount, "--ALL--");
             }
             catch (SqlException ex)
             {
@@ -248,7 +246,7 @@ namespace FB_TRADE
         {
             FrmSelfInfoEdit frm = new FrmSelfInfoEdit();
 
-            frm.bAdmin = true;
+            frm.bAdmin = this.bAdmin;
             frm.adminInfo = this.adminInfo;
             frm.userInfo = this.userInfo;
             frm.pFrm = this;
@@ -275,8 +273,9 @@ namespace FB_TRADE
             this.tabControlMain.SelectedTab = tabPage;
 
             frmUserList.adminId = Convert.ToString(this.adminInfo.Id);
-            frmUserList.MyInitFrm();
             frmUserList.Show();
+            frmUserList.MyInitFrm();
+            
 
             tabindex_show = this.tabControlMain.SelectedIndex;
         }

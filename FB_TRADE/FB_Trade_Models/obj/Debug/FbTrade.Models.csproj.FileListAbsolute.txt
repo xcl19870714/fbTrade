@@ -15,3 +15,9 @@ E:\fbTrade\FB_TRADE\FB_Trade_Models\obj\Debug\FbTrade.Models.csprojAssemblyRefer
 E:\fbTrade\FB_TRADE\FB_Trade_Models\obj\Debug\FbTrade.Models.csproj.CoreCompileInputs.cache
 E:\fbTrade\FB_TRADE\FB_Trade_Models\obj\Debug\FB_Trade_Models.dll
 E:\fbTrade\FB_TRADE\FB_Trade_Models\obj\Debug\FB_Trade_Models.pdb
+D:\fbTrade\FB_TRADE\FB_Trade_Models\bin\Debug\FB_Trade_Models.dll
+D:\fbTrade\FB_TRADE\FB_Trade_Models\bin\Debug\FB_Trade_Models.pdb
+D:\fbTrade\FB_TRADE\FB_Trade_Models\obj\Debug\FbTrade.Models.csprojAssemblyReference.cache
+D:\fbTrade\FB_TRADE\FB_Trade_Models\obj\Debug\FbTrade.Models.csproj.CoreCompileInputs.cache
+D:\fbTrade\FB_TRADE\FB_Trade_Models\obj\Debug\FB_Trade_Models.dll
+D:\fbTrade\FB_TRADE\FB_Trade_Models\obj\Debug\FB_Trade_Models.pdb

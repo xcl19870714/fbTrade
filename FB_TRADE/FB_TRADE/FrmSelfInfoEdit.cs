@@ -43,7 +43,7 @@ namespace FB_TRADE
             try
             {
                 string tbl = (bAdmin ? "tb_admins" : "tb_users");
-                sqlStr = "update " + tbl + " set name='" + txtName.Text.Trim() + "', pwd='" + txtNewPwd.Text.Trim() + "' where name='" + (bAdmin ? adminInfo.Name : userInfo.Name) + "'";
+                sqlStr = "update " + tbl + " set name='" + txtName.Text.Trim() + "', pwd='" + txtNewPwd.Text.Trim() + "' where id=" + (bAdmin ? adminInfo.Id : userInfo.Id);
                 
                 if (db.UpdateData(sqlStr))
                 {

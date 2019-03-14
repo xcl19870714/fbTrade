@@ -10,6 +10,7 @@ namespace FB_Trade_Models
     public class FbCustomerContactInfo
     {
         public int id;
+		public string marketFbId;
         public string marketFbAccount;
         public string customerFbId;
         public string time;
