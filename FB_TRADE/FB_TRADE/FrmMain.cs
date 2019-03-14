@@ -321,7 +321,22 @@ namespace FB_TRADE
             frm.curMarketFbId = item.Value;
             frm.curMarketFbAccount = item.Text;
 
+            frm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            frm.TopLevel = false;
+            frm.Dock = DockStyle.Fill;
+            frm.WindowState = FormWindowState.Maximized;//如果windowState设置为最大化，添加到tabPage中时，winform不会显示出来
 
+            TabPage tabPage = new System.Windows.Forms.TabPage();
+            tabPage.Text = "客户列表";
+            this.tabControlMain.Controls.Add(tabPage);
+            tabPage.Controls.Add(frm);
+            this.tabControlMain.SelectedTab = tabPage;
+
+            frm.MyInitFrm();
+            frm.Show();
+            frm.ListViewResize();
+
+            tabindex_show = this.tabControlMain.SelectedIndex;
         }
 
         private void btnGroupControl_Click(object sender, EventArgs e)

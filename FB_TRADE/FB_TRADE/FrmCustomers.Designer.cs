@@ -30,8 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCustomers));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.btnAdd = new System.Windows.Forms.ToolStripButton();
+            this.btnCopyUrl = new System.Windows.Forms.ToolStripButton();
             this.panelList = new System.Windows.Forms.Panel();
             this.listViewCustomers = new System.Windows.Forms.ListView();
             this.btnDelete = new System.Windows.Forms.ToolStripButton();
@@ -44,34 +44,35 @@
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnDelete,
-            this.toolStripButton1,
-            this.toolStripButton2});
+            this.btnAdd,
+            this.btnCopyUrl});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1236, 27);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // toolStripButton1
+            // btnAdd
             // 
-            this.toolStripButton1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Margin = new System.Windows.Forms.Padding(0, 1, 3, 2);
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(73, 24);
-            this.toolStripButton1.Text = "新增客户";
+            this.btnAdd.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
+            this.btnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(0, 1, 3, 2);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(73, 24);
+            this.btnAdd.Text = "新增客户";
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // toolStripButton2
+            // btnCopyUrl
             // 
-            this.toolStripButton2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(103, 24);
-            this.toolStripButton2.Text = "复制首页链接";
+            this.btnCopyUrl.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnCopyUrl.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnCopyUrl.Image = ((System.Drawing.Image)(resources.GetObject("btnCopyUrl.Image")));
+            this.btnCopyUrl.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCopyUrl.Name = "btnCopyUrl";
+            this.btnCopyUrl.Size = new System.Drawing.Size(103, 24);
+            this.btnCopyUrl.Text = "复制首页链接";
             // 
             // panelList
             // 
@@ -103,6 +104,7 @@
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(43, 24);
             this.btnDelete.Text = "删除";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click_1);
             // 
             // FrmCustomers
             // 
@@ -125,10 +127,10 @@
         #endregion
 
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton btnAdd;
         private System.Windows.Forms.Panel panelList;
         private System.Windows.Forms.ListView listViewCustomers;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton btnCopyUrl;
         private System.Windows.Forms.ToolStripButton btnDelete;
     }
 }

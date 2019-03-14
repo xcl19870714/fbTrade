@@ -36,13 +36,20 @@ namespace FB_TRADE
 
             listViewCustomers.Clear();
             listViewCustomers.Columns.Add("facebook ID", 100, HorizontalAlignment.Left);
-            listViewCustomers.Columns.Add("姓名", 100, HorizontalAlignment.Left);
-            listViewCustomers.Columns.Add("facebook账号", 100, HorizontalAlignment.Left);
-            listViewCustomers.Columns.Add("facebook密码", 100, HorizontalAlignment.Left);
-            listViewCustomers.Columns.Add("facebook首页", 100, HorizontalAlignment.Left);
-            listViewCustomers.Columns.Add("备注", 100, HorizontalAlignment.Left);
-            listViewCustomers.Columns.Add("所属子账号", 100, HorizontalAlignment.Left);
-            listViewCustomers.Columns.Add("创建时间", 100, HorizontalAlignment.Left);
+            listViewCustomers.Columns.Add("昵称", 100, HorizontalAlignment.Left);
+            listViewCustomers.Columns.Add("国家", 100, HorizontalAlignment.Left);
+            listViewCustomers.Columns.Add("城市", 100, HorizontalAlignment.Left);
+            listViewCustomers.Columns.Add("简介", 100, HorizontalAlignment.Left);
+            listViewCustomers.Columns.Add("好友关系", 100, HorizontalAlignment.Left);
+            listViewCustomers.Columns.Add("账号关系", 100, HorizontalAlignment.Left);
+            listViewCustomers.Columns.Add("客户类型", 100, HorizontalAlignment.Left);
+            listViewCustomers.Columns.Add("订单数", 100, HorizontalAlignment.Left);
+            listViewCustomers.Columns.Add("意向产品", 100, HorizontalAlignment.Left);
+            listViewCustomers.Columns.Add("客户备注", 100, HorizontalAlignment.Left);
+            listViewCustomers.Columns.Add("跟踪日期", 100, HorizontalAlignment.Left);
+            listViewCustomers.Columns.Add("更新时间", 100, HorizontalAlignment.Left);
+            listViewCustomers.Columns.Add("互动次数", 100, HorizontalAlignment.Left);
+            listViewCustomers.Columns.Add("聊天摘要", 100, HorizontalAlignment.Left);
         }
 
         public void ListViewResize()
@@ -53,28 +60,49 @@ namespace FB_TRADE
                 switch (item.Text)
                 {
                     case "facebook ID":
-                        item.Width = (this.listViewCustomers.Width / 100) * 9;
+                        item.Width = (this.listViewCustomers.Width / 100) * 5;
                         break;
-                    case "姓名":
-                        item.Width = (this.listViewCustomers.Width / 100) * 9;
+                    case "昵称":
+                        item.Width = (this.listViewCustomers.Width / 100) * 5;
                         break;
-                    case "facebook账号":
-                        item.Width = (this.listViewCustomers.Width / 100) * 18;
+                    case "国家":
+                        item.Width = (this.listViewCustomers.Width / 100) * 5;
                         break;
-                    case "facebook密码":
-                        item.Width = (this.listViewCustomers.Width / 100) * 9;
+                    case "城市":
+                        item.Width = (this.listViewCustomers.Width / 100) * 5;
                         break;
-                    case "facebook首页":
-                        item.Width = (this.listViewCustomers.Width / 100) * 19;
+                    case "简介":
+                        item.Width = (this.listViewCustomers.Width / 100) * 8;
                         break;
-                    case "备注":
-                        item.Width = (this.listViewCustomers.Width / 100) * 18;
+                    case "好友关系":
+                        item.Width = (this.listViewCustomers.Width / 100) * 10;
                         break;
-                    case "所属子账号":
-                        item.Width = (this.listViewCustomers.Width / 100) * 9;
+                    case "账号关系":
+                        item.Width = (this.listViewCustomers.Width / 100) * 5;
                         break;
-                    case "创建时间":
-                        item.Width = (this.listViewCustomers.Width / 100) * 9;
+                    case "客户类型":
+                        item.Width = (this.listViewCustomers.Width / 100) * 5;
+                        break;
+                    case "订单数":
+                        item.Width = (this.listViewCustomers.Width / 100) * 5;
+                        break;
+                    case "意向产品":
+                        item.Width = (this.listViewCustomers.Width / 100) * 10;
+                        break;
+                    case "客户备注":
+                        item.Width = (this.listViewCustomers.Width / 100) * 10;
+                        break;
+                    case "跟踪日期":
+                        item.Width = (this.listViewCustomers.Width / 100) * 5;
+                        break;
+                    case "更新时间":
+                        item.Width = (this.listViewCustomers.Width / 100) * 7;
+                        break;
+                    case "互动次数":
+                        item.Width = (this.listViewCustomers.Width / 100) * 3;
+                        break;
+                    case "聊天摘要":
+                        item.Width = (this.listViewCustomers.Width / 100) * 12;
                         break;
                     default:
                         item.Width = -2;
@@ -131,19 +159,17 @@ namespace FB_TRADE
         }
 
         //3. operations
-        private void btnMarketFbAdd_Click(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
         {
-            //FrmMarketFbAdd frm = new FrmMarketFbAdd();
+            FrmCustomerAdd frm = new FrmCustomerAdd();
+            frm.bAdd = true;
+            frm.curMarketFbId = this.curMarketFbId;
+            frm.curMarketFbAccount = curMarketFbAccount;
 
-            //frm.bAdd = true;
-            //frm.bAdmin = this.bAdmin;
-            //frm.curAdminId = this.curAdminId;
-            //frm.curUserId = this.curUserId;
-            //frm.pFrm = this;
-            //frm.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            //frm.Text = "新增营销号";
-            //frm.MyInitFrm();
-            //frm.ShowDialog();
+            frm.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            frm.Text = "新增客户";
+            frm.MyFrmInit();
+            frm.ShowDialog();
         }
 
         private void listViewCustomers_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -165,7 +191,7 @@ namespace FB_TRADE
             //}
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void btnDelete_Click_1(object sender, EventArgs e)
         {
             if (listViewCustomers.CheckedItems.Count < 1)
             {

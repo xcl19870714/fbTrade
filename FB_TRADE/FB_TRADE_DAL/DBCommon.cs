@@ -138,7 +138,7 @@ namespace FB_Trade_DAL
                             cuShip.interestedGoods = Convert.ToString(reader["interestedGoods"]);
                             cuShip.note = Convert.ToString(reader["note"]);
                             cuShip.traceDate = Convert.ToString(reader["traceDate"]);
-                            cuShip.createTime = Convert.ToString(reader["createTime"]);
+                            cuShip.lastEditTime = Convert.ToString(reader["lastEditTime"]);
                             obj = cuShip;
                             break;
 						case "tb_fbCustomerContacts":
@@ -296,7 +296,7 @@ namespace FB_Trade_DAL
                             cuShip.interestedGoods = Convert.ToString(reader["interestedGoods"]);
                             cuShip.note = Convert.ToString(reader["note"]);
                             cuShip.traceDate = Convert.ToString(reader["traceDate"]);
-                            cuShip.createTime = Convert.ToString(reader["createTime"]);
+                            cuShip.lastEditTime = Convert.ToString(reader["lastEditTime"]);
                             customerShipList.Add(cuShip);
                         }
                         obj = customerShipList;
