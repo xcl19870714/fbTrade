@@ -30,11 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCustomers));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnDelete = new System.Windows.Forms.ToolStripButton();
             this.btnAdd = new System.Windows.Forms.ToolStripButton();
             this.btnCopyUrl = new System.Windows.Forms.ToolStripButton();
             this.panelList = new System.Windows.Forms.Panel();
             this.listViewCustomers = new System.Windows.Forms.ListView();
-            this.btnDelete = new System.Windows.Forms.ToolStripButton();
+            this.labelCurMarketFbInfo = new System.Windows.Forms.ToolStripLabel();
             this.toolStrip1.SuspendLayout();
             this.panelList.SuspendLayout();
             this.SuspendLayout();
@@ -45,12 +46,25 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnDelete,
             this.btnAdd,
-            this.btnCopyUrl});
+            this.btnCopyUrl,
+            this.labelCurMarketFbInfo});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1236, 27);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
+            this.btnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(0, 1, 3, 2);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(43, 24);
+            this.btnDelete.Text = "删除";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click_1);
             // 
             // btnAdd
             // 
@@ -79,7 +93,7 @@
             this.panelList.Controls.Add(this.listViewCustomers);
             this.panelList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelList.Location = new System.Drawing.Point(0, 27);
-            this.panelList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelList.Margin = new System.Windows.Forms.Padding(4);
             this.panelList.Name = "panelList";
             this.panelList.Size = new System.Drawing.Size(1236, 501);
             this.panelList.TabIndex = 2;
@@ -88,23 +102,17 @@
             // 
             this.listViewCustomers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewCustomers.Location = new System.Drawing.Point(0, 0);
-            this.listViewCustomers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listViewCustomers.Margin = new System.Windows.Forms.Padding(4);
             this.listViewCustomers.Name = "listViewCustomers";
             this.listViewCustomers.Size = new System.Drawing.Size(1236, 501);
             this.listViewCustomers.TabIndex = 0;
             this.listViewCustomers.UseCompatibleStateImageBehavior = false;
             // 
-            // btnDelete
+            // labelCurMarketFbInfo
             // 
-            this.btnDelete.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.btnDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-            this.btnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(0, 1, 3, 2);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(43, 24);
-            this.btnDelete.Text = "删除";
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click_1);
+            this.labelCurMarketFbInfo.Name = "labelCurMarketFbInfo";
+            this.labelCurMarketFbInfo.Size = new System.Drawing.Size(99, 24);
+            this.labelCurMarketFbInfo.Text = "当前营销号：";
             // 
             // FrmCustomers
             // 
@@ -132,5 +140,6 @@
         private System.Windows.Forms.ListView listViewCustomers;
         private System.Windows.Forms.ToolStripButton btnCopyUrl;
         private System.Windows.Forms.ToolStripButton btnDelete;
+        private System.Windows.Forms.ToolStripLabel labelCurMarketFbInfo;
     }
 }

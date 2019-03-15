@@ -184,7 +184,6 @@ namespace FB_TRADE
                 {
                     sqlStr = "delete from tb_fbMarketAccounts where fbId='" + this.listViewMarketFbs.CheckedItems[i].SubItems[0].Text + "'";
                     db.DeleteData(sqlStr);
-                    this.LoadListViewDB();
                 }
                 catch (SqlException ex)
                 {
@@ -195,6 +194,7 @@ namespace FB_TRADE
                     MessageBox.Show(ex.Message, "程序异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            this.LoadListViewDB();
         }
     }
 }

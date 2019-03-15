@@ -18,10 +18,12 @@ namespace FB_TRADE
         public bool bAdmin;
         public string curMarketFbId;
         public string curMarketFbAccount;
+        public FrmMain pFrmMain;
 
         private DBCommon db = new DBCommon();
         private StringBuilder sb = new StringBuilder();
 
+        //1. 构造界面
         public FrmCustomers()
         {
             InitializeComponent();
@@ -111,11 +113,14 @@ namespace FB_TRADE
             }
         }
 
-        //2. MyShow
+        //2. 数据加载
         public void MyInitFrm()
         {
             if (!bAdmin)
                 btnDelete.Visible = false;
+
+            labelCurMarketFbInfo.Text = "当前营销号：" + curMarketFbAccount;
+
             LoadListViewDB();
         }
 
@@ -123,29 +128,58 @@ namespace FB_TRADE
         {
             try
             {
-                //if (curUserId == "0")
-                //    sqlStr = "select * from tb_fbMarketAccounts where userId in (select id from tb_users where adminId=" + curAdminId + ")";
-                //else
-                //    sqlStr = "select * from tb_fbMarketAccounts where userId='" + curUserId + "'";
+                sb.Clear();
+                sb.AppendFormat("select * from tb_fbCustomerShips where marketFbId='{0}'", curMarketFbId);
+                List<FbCustomerShipInfo> shipList = (List<FbCustomerShipInfo>)db.GetList(sb.ToString(), "tb_fbCustomerShips");
 
-                //List<FbMarketAccountInfo> fbList = (List<FbMarketAccountInfo>)db.GetList(sqlStr, "tb_fbMarketAccounts");
+                listViewCustomers.Items.Clear();
+                foreach (var ship in shipList)
+                {
+                    ListViewItem it = new ListViewItem();
 
-                //listViewCustomers.Items.Clear();
-                //foreach (var fb in fbList)
-                //{
-                //    ListViewItem it = new ListViewItem();
-                //    UserInfo tmp = (UserInfo)db.GetObject("select * from tb_users where id='" + fb.userId + "'", "tb_users");
+                    //shipInfo
+                    it.Text = ship.customerFbId;
 
-                //    it.Text = Convert.ToString(fb.fbId);
-                //    it.SubItems.Add(fb.name);
-                //    it.SubItems.Add(fb.fbAccount);
-                //    it.SubItems.Add(fb.fbPwd);
-                //    it.SubItems.Add(fb.fbUrl);
-                //    it.SubItems.Add(fb.note);
-                //    it.SubItems.Add(tmp.Name);
-                //    it.SubItems.Add(fb.createTime);
-                //    listViewCustomers.Items.Add(it);
-                //}
+                    //Get CustomerInfo
+                    sb.Clear();
+                    sb.AppendFormat("select * from tb_fbCustomers where fbId='{0}'", ship.customerFbId);
+                    FbCustomerInfo customer = (FbCustomerInfo)db.GetObject(sb.ToString(), "tb_fbCustomers");
+                    it.SubItems.Add(customer.name);
+                    it.SubItems.Add(customer.country);
+                    it.SubItems.Add(customer.city);
+                    it.SubItems.Add(customer.introduction);
+                    it.SubItems.Add(customer.friendShips);
+
+                    it.SubItems.Add(ship.shipType);
+                    it.SubItems.Add(ship.customerType);
+
+                    //Get OrdersNum
+                    sb.Clear();
+                    sb.AppendFormat("select count(*) from tb_fbOrders where customerFbId='{0}' and marketFbId='{1}'", 
+                        ship.customerFbId, curMarketFbId);
+                    it.SubItems.Add(db.GetCount(sb.ToString()).ToString());
+
+                    it.SubItems.Add(ship.interestedGoods);
+                    it.SubItems.Add(ship.note);
+                    it.SubItems.Add(ship.traceDate.Contains("1900") ? "" : ship.traceDate.Split(' ')[0]);
+                    it.SubItems.Add(ship.lastEditTime);
+
+                    //互动次数
+                    sb.Clear();
+                    sb.AppendFormat("select count(*) from tb_fbCustomerContacts where customerFbId='{0}' and marketFbId='{1}'",
+                        ship.customerFbId, curMarketFbId);
+                    it.SubItems.Add(db.GetCount(sb.ToString()).ToString());
+
+                    //Get last contact
+                    sb.Clear();
+                    sb.AppendFormat("select top 1 * from tb_fbCustomerContacts where customerFbId='{0}' and marketFbId='{1}' order by id DESC",
+                        ship.customerFbId, curMarketFbId);
+                    FbCustomerContactInfo contact = (FbCustomerContactInfo)db.GetObject(sb.ToString(), "tb_fbCustomerContacts");
+                    if (contact != null)
+                        it.SubItems.Add(contact.content);
+
+                    listViewCustomers.Items.Add(it);
+                }
                 ListViewResize();
             }
             catch (SqlException ex)
@@ -158,39 +192,41 @@ namespace FB_TRADE
             }
         }
 
-        //3. operations
+        //3. 操作
+        //新增客户
         private void btnAdd_Click(object sender, EventArgs e)
         {
             FrmCustomerAdd frm = new FrmCustomerAdd();
+            this.pFrmMain.AddPage(frm, "新增/编辑客户");
+
             frm.bAdd = true;
             frm.curMarketFbId = this.curMarketFbId;
             frm.curMarketFbAccount = curMarketFbAccount;
 
-            frm.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            frm.Text = "新增客户";
             frm.MyFrmInit();
-            frm.ShowDialog();
+            frm.Show();
         }
 
+        //双击编辑
         private void listViewCustomers_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            //ListViewHitTestInfo info = this.listViewCustomers.HitTest(e.X, e.Y);
-            //if (info.Item != null)
-            //{
-            //    FrmMarketFbAdd frm = new FrmMarketFbAdd();
-            //    frm.bAdd = false;
-            //    frm.bAdmin = this.bAdmin;
-            //    frm.curMarketFbId = info.Item.Text;
-            //    frm.curAdminId = this.curAdminId;
-            //    frm.curUserId = this.curUserId;
-            //    frm.pFrm = this;
-            //    frm.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            //    frm.Text = "编辑营销号";
-            //    frm.MyInitFrm();
-            //    frm.ShowDialog();
-            //}
+            ListViewHitTestInfo info = this.listViewCustomers.HitTest(e.X, e.Y);
+            if (info.Item != null)
+            {
+                FrmCustomerAdd frm = new FrmCustomerAdd();
+                this.pFrmMain.AddPage(frm, "新增/编辑客户");
+
+                frm.bAdd = false;
+                frm.curCustomerFbId = info.Item.Text;
+                frm.curMarketFbId = this.curMarketFbId;
+                frm.curMarketFbAccount = curMarketFbAccount;
+
+                frm.MyFrmInit();
+                frm.Show();
+            }
         }
 
+        //删除客户
         private void btnDelete_Click_1(object sender, EventArgs e)
         {
             if (listViewCustomers.CheckedItems.Count < 1)
@@ -207,9 +243,17 @@ namespace FB_TRADE
             {
                 try
                 {
-                    //sqlStr = "delete from tb_fbMarketAccounts where fbId='" + this.listViewCustomers.CheckedItems[i].SubItems[0].Text + "'";
-                    //db.DeleteData(sqlStr);
-                    //this.LoadListViewDB();
+                    //先删除聊天记录表
+                    sb.Clear();
+                    sb.AppendFormat("delete from tb_fbCustomerContacts where customerFbId='{0}' and marketFbId='{1}'",
+                        listViewCustomers.CheckedItems[i].SubItems[0].Text, curMarketFbId);
+                    db.DeleteData(sb.ToString());
+
+                    //再删除客户关系表
+                    sb.Clear();
+                    sb.AppendFormat("delete from tb_fbCustomerShips where customerFbId='{0}' and marketFbId='{1}'",
+                        listViewCustomers.CheckedItems[i].SubItems[0].Text, curMarketFbId);
+                    db.DeleteData(sb.ToString());
                 }
                 catch (SqlException ex)
                 {
@@ -220,6 +264,7 @@ namespace FB_TRADE
                     MessageBox.Show(ex.Message, "程序异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            this.LoadListViewDB();
         }
     }
 }

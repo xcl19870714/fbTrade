@@ -19,12 +19,12 @@ namespace FB_TRADE
         public AdminInfo adminInfo;
         public UserInfo userInfo;
 
-        private DBCommon db = new DBCommon();
-        private StringBuilder sb = new StringBuilder();
-
-        private const int CLOSE_SIZE = 12;
         private int tabindex_show = 0;
         private int tabindex_close = 0;
+
+        private DBCommon db = new DBCommon();
+        private StringBuilder sb = new StringBuilder();
+        private const int CLOSE_SIZE = 12;
 
         //1. Graph Shows
         public FrmMain()
@@ -34,6 +34,23 @@ namespace FB_TRADE
             InitTabControl();
             tabControlMain.Controls.Clear();
         }
+
+        public void AddPage(Form frm, string pageTitle)
+        {
+            frm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            frm.TopLevel = false;
+            frm.Dock = DockStyle.Fill;
+            frm.WindowState = FormWindowState.Maximized;//如果windowState设置为最大化，添加到tabPage中时，winform不会显示出来
+
+            TabPage tabPage = new System.Windows.Forms.TabPage();
+            tabPage.Controls.Add(frm);
+            tabPage.Text = pageTitle;
+
+            this.tabControlMain.Controls.Add(tabPage);
+            this.tabControlMain.SelectedTab = tabPage;
+            this.tabindex_show = this.tabControlMain.SelectedIndex;
+        }
+
         private void SetBtnListCenter()
         {
             SetBtnLocationCenter(this.splitContainer1.Panel1, btnFbAccountList);
@@ -258,52 +275,30 @@ namespace FB_TRADE
 
         private void btnUserList_Click(object sender, EventArgs e)
         {
-            FrmUserList frmUserList = new FrmUserList();
-           
-			frmUserList.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            frmUserList.TopLevel = false;
-            frmUserList.Dock = DockStyle.Fill;
-            frmUserList.WindowState = FormWindowState.Maximized;//如果windowState设置为最大化，添加到tabPage中时，winform不会显示出来
+            FrmUserList frm = new FrmUserList();
+            this.AddPage(frm, "子账号列表");
 
-            TabPage tabPage = new System.Windows.Forms.TabPage();
-            tabPage.Text = "子账号列表";
-            this.tabControlMain.Controls.Add(tabPage);
-            //tabPage.Controls.Clear();
-            tabPage.Controls.Add(frmUserList);
-            this.tabControlMain.SelectedTab = tabPage;
+            frm.adminId = Convert.ToString(this.adminInfo.Id);
 
-            frmUserList.adminId = Convert.ToString(this.adminInfo.Id);
-            frmUserList.MyInitFrm();
-            frmUserList.Show();
-            frmUserList.ListViewResize();
-            tabindex_show = this.tabControlMain.SelectedIndex;
+            frm.MyInitFrm();
+            frm.Show();
+            frm.ListViewResize();
         }
 
         private void btnFbAccountList_Click(object sender, EventArgs e)
         {
             FrmMarketFbList frm = new FrmMarketFbList();
-
-            frm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            frm.TopLevel = false;
-            frm.Dock = DockStyle.Fill;
-            frm.WindowState = FormWindowState.Maximized;//如果windowState设置为最大化，添加到tabPage中时，winform不会显示出来
-
-            TabPage tabPage = new System.Windows.Forms.TabPage();
-            tabPage.Text = "营销号列表";
-            this.tabControlMain.Controls.Add(tabPage);
-            tabPage.Controls.Add(frm);
-            this.tabControlMain.SelectedTab = tabPage;
+            this.AddPage(frm, "营销号列表");
 
             frm.bAdmin = this.bAdmin;
             if (bAdmin)
                 frm.curAdminId = Convert.ToString(this.adminInfo.Id);
             ListItem coSelected = (ListItem)this.cbxUser.SelectedItem;
             frm.curUserId = coSelected.Value;
+
             frm.MyInitFrm();
             frm.Show();
             frm.ListViewResize();
-
-            tabindex_show = this.tabControlMain.SelectedIndex;
         }
 
         private void btnCustomerControl_Click(object sender, EventArgs e)
@@ -316,27 +311,17 @@ namespace FB_TRADE
             }
 
             FrmCustomers frm = new FrmCustomers();
+            this.AddPage(frm, "客户列表");
+
             ListItem item = (ListItem)this.cbxFbAccount.SelectedItem;
+            frm.pFrmMain = this;
             frm.bAdmin = this.bAdmin;
             frm.curMarketFbId = item.Value;
             frm.curMarketFbAccount = item.Text;
 
-            frm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            frm.TopLevel = false;
-            frm.Dock = DockStyle.Fill;
-            frm.WindowState = FormWindowState.Maximized;//如果windowState设置为最大化，添加到tabPage中时，winform不会显示出来
-
-            TabPage tabPage = new System.Windows.Forms.TabPage();
-            tabPage.Text = "客户列表";
-            this.tabControlMain.Controls.Add(tabPage);
-            tabPage.Controls.Add(frm);
-            this.tabControlMain.SelectedTab = tabPage;
-
             frm.MyInitFrm();
             frm.Show();
             frm.ListViewResize();
-
-            tabindex_show = this.tabControlMain.SelectedIndex;
         }
 
         private void btnGroupControl_Click(object sender, EventArgs e)
