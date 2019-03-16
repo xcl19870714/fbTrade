@@ -266,5 +266,42 @@ namespace FB_TRADE
             }
             this.LoadListViewDB();
         }
+
+        private void btnCopyUrl_Click(object sender, EventArgs e)
+        {
+            if (listViewCustomers.CheckedItems.Count < 1)
+            {
+                MessageBox.Show("请选择要复制的客户！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (listViewCustomers.CheckedItems.Count > 1)
+            {
+                MessageBox.Show("只能选中一位客户！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                sb.Clear();
+                sb.AppendFormat("select * from tb_fbCustomers where fbId='{0}'", listViewCustomers.CheckedItems[0].SubItems[0].Text);
+                FbCustomerInfo customer = (FbCustomerInfo)db.GetObject(sb.ToString(), "tb_fbCustomers");
+                if (customer != null)
+                {
+                    Clipboard.Clear();
+                    Clipboard.SetText(customer.fbUrl);
+                }
+                
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message, "数据库异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "程序异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+        }
     }
 }

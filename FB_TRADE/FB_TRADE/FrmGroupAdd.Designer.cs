@@ -77,9 +77,10 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.listViewLogs = new System.Windows.Forms.ListView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.labelCurMarketFbAccount = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.LabelCurMarketFbInfo = new System.Windows.Forms.ToolStripLabel();
             this.label4 = new System.Windows.Forms.Label();
+            this.txtNote = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -103,9 +104,9 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtGroupFbId);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 25);
+            this.groupBox1.Location = new System.Drawing.Point(12, 38);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(521, 270);
+            this.groupBox1.Size = new System.Drawing.Size(591, 296);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "基本信息";
@@ -114,15 +115,15 @@
             // 
             this.cbxVerifyType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxVerifyType.FormattingEnabled = true;
-            this.cbxVerifyType.Location = new System.Drawing.Point(437, 31);
+            this.cbxVerifyType.Location = new System.Drawing.Point(467, 29);
             this.cbxVerifyType.Name = "cbxVerifyType";
-            this.cbxVerifyType.Size = new System.Drawing.Size(68, 23);
+            this.cbxVerifyType.Size = new System.Drawing.Size(106, 23);
             this.cbxVerifyType.TabIndex = 16;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(346, 34);
+            this.label10.Location = new System.Drawing.Point(379, 32);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(82, 15);
             this.label10.TabIndex = 15;
@@ -130,16 +131,16 @@
             // 
             // txtIntroduction
             // 
-            this.txtIntroduction.Location = new System.Drawing.Point(105, 160);
+            this.txtIntroduction.Location = new System.Drawing.Point(105, 193);
             this.txtIntroduction.Multiline = true;
             this.txtIntroduction.Name = "txtIntroduction";
-            this.txtIntroduction.Size = new System.Drawing.Size(400, 85);
+            this.txtIntroduction.Size = new System.Drawing.Size(448, 85);
             this.txtIntroduction.TabIndex = 14;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(43, 163);
+            this.label7.Location = new System.Drawing.Point(43, 196);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(52, 15);
             this.label7.TabIndex = 13;
@@ -147,15 +148,15 @@
             // 
             // txtMems
             // 
-            this.txtMems.Location = new System.Drawing.Point(105, 124);
+            this.txtMems.Location = new System.Drawing.Point(105, 151);
             this.txtMems.Name = "txtMems";
-            this.txtMems.Size = new System.Drawing.Size(223, 25);
+            this.txtMems.Size = new System.Drawing.Size(191, 25);
             this.txtMems.TabIndex = 12;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(29, 127);
+            this.label6.Location = new System.Drawing.Point(29, 154);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(67, 15);
             this.label6.TabIndex = 11;
@@ -163,9 +164,9 @@
             // 
             // btnGroupGet
             // 
-            this.btnGroupGet.Location = new System.Drawing.Point(437, 93);
+            this.btnGroupGet.Location = new System.Drawing.Point(517, 107);
             this.btnGroupGet.Name = "btnGroupGet";
-            this.btnGroupGet.Size = new System.Drawing.Size(68, 23);
+            this.btnGroupGet.Size = new System.Drawing.Size(56, 30);
             this.btnGroupGet.TabIndex = 0;
             this.btnGroupGet.Text = "获取";
             this.btnGroupGet.UseVisualStyleBackColor = true;
@@ -173,15 +174,15 @@
             // 
             // txtGroupUrl
             // 
-            this.txtGroupUrl.Location = new System.Drawing.Point(105, 93);
+            this.txtGroupUrl.Location = new System.Drawing.Point(105, 110);
             this.txtGroupUrl.Name = "txtGroupUrl";
-            this.txtGroupUrl.Size = new System.Drawing.Size(323, 25);
+            this.txtGroupUrl.Size = new System.Drawing.Size(400, 25);
             this.txtGroupUrl.TabIndex = 6;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 96);
+            this.label3.Location = new System.Drawing.Point(16, 113);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(82, 15);
             this.label3.TabIndex = 5;
@@ -189,15 +190,15 @@
             // 
             // txtGroupName
             // 
-            this.txtGroupName.Location = new System.Drawing.Point(105, 62);
+            this.txtGroupName.Location = new System.Drawing.Point(105, 69);
             this.txtGroupName.Name = "txtGroupName";
-            this.txtGroupName.Size = new System.Drawing.Size(400, 25);
+            this.txtGroupName.Size = new System.Drawing.Size(468, 25);
             this.txtGroupName.TabIndex = 4;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 65);
+            this.label2.Location = new System.Drawing.Point(16, 72);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(82, 15);
             this.label2.TabIndex = 3;
@@ -205,7 +206,7 @@
             // 
             // txtGroupFbId
             // 
-            this.txtGroupFbId.Location = new System.Drawing.Point(105, 31);
+            this.txtGroupFbId.Location = new System.Drawing.Point(105, 29);
             this.txtGroupFbId.Name = "txtGroupFbId";
             this.txtGroupFbId.ReadOnly = true;
             this.txtGroupFbId.Size = new System.Drawing.Size(223, 25);
@@ -214,7 +215,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 34);
+            this.label1.Location = new System.Drawing.Point(16, 32);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 15);
             this.label1.TabIndex = 1;
@@ -230,9 +231,9 @@
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.txtCustomerNum);
             this.groupBox2.Controls.Add(this.label13);
-            this.groupBox2.Location = new System.Drawing.Point(568, 152);
+            this.groupBox2.Location = new System.Drawing.Point(643, 169);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(373, 102);
+            this.groupBox2.Size = new System.Drawing.Size(403, 113);
             this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "备注信息";
@@ -310,9 +311,9 @@
             this.groupBox3.Controls.Add(this.ckbCheated);
             this.groupBox3.Controls.Add(this.ckbNormal);
             this.groupBox3.Controls.Add(this.ckbImportant);
-            this.groupBox3.Location = new System.Drawing.Point(568, 36);
+            this.groupBox3.Location = new System.Drawing.Point(643, 38);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(373, 107);
+            this.groupBox3.Size = new System.Drawing.Size(403, 105);
             this.groupBox3.TabIndex = 21;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "备注";
@@ -320,7 +321,7 @@
             // ckbOnSale
             // 
             this.ckbOnSale.AutoSize = true;
-            this.ckbOnSale.Location = new System.Drawing.Point(214, 64);
+            this.ckbOnSale.Location = new System.Drawing.Point(244, 68);
             this.ckbOnSale.Name = "ckbOnSale";
             this.ckbOnSale.Size = new System.Drawing.Size(74, 19);
             this.ckbOnSale.TabIndex = 6;
@@ -330,7 +331,7 @@
             // ckbDisTrust
             // 
             this.ckbDisTrust.AutoSize = true;
-            this.ckbDisTrust.Location = new System.Drawing.Point(134, 64);
+            this.ckbDisTrust.Location = new System.Drawing.Point(144, 68);
             this.ckbDisTrust.Name = "ckbDisTrust";
             this.ckbDisTrust.Size = new System.Drawing.Size(74, 19);
             this.ckbDisTrust.TabIndex = 5;
@@ -340,7 +341,7 @@
             // ckbLocalTrade
             // 
             this.ckbLocalTrade.AutoSize = true;
-            this.ckbLocalTrade.Location = new System.Drawing.Point(14, 64);
+            this.ckbLocalTrade.Location = new System.Drawing.Point(21, 69);
             this.ckbLocalTrade.Name = "ckbLocalTrade";
             this.ckbLocalTrade.Size = new System.Drawing.Size(104, 19);
             this.ckbLocalTrade.TabIndex = 4;
@@ -350,7 +351,7 @@
             // ckbAttacked
             // 
             this.ckbAttacked.AutoSize = true;
-            this.ckbAttacked.Location = new System.Drawing.Point(259, 29);
+            this.ckbAttacked.Location = new System.Drawing.Point(307, 28);
             this.ckbAttacked.Name = "ckbAttacked";
             this.ckbAttacked.Size = new System.Drawing.Size(74, 19);
             this.ckbAttacked.TabIndex = 3;
@@ -360,7 +361,7 @@
             // ckbCheated
             // 
             this.ckbCheated.AutoSize = true;
-            this.ckbCheated.Location = new System.Drawing.Point(149, 29);
+            this.ckbCheated.Location = new System.Drawing.Point(179, 28);
             this.ckbCheated.Name = "ckbCheated";
             this.ckbCheated.Size = new System.Drawing.Size(104, 19);
             this.ckbCheated.TabIndex = 2;
@@ -370,7 +371,7 @@
             // ckbNormal
             // 
             this.ckbNormal.AutoSize = true;
-            this.ckbNormal.Location = new System.Drawing.Point(79, 28);
+            this.ckbNormal.Location = new System.Drawing.Point(99, 28);
             this.ckbNormal.Name = "ckbNormal";
             this.ckbNormal.Size = new System.Drawing.Size(59, 19);
             this.ckbNormal.TabIndex = 1;
@@ -380,7 +381,7 @@
             // ckbImportant
             // 
             this.ckbImportant.AutoSize = true;
-            this.ckbImportant.Location = new System.Drawing.Point(14, 29);
+            this.ckbImportant.Location = new System.Drawing.Point(21, 29);
             this.ckbImportant.Name = "ckbImportant";
             this.ckbImportant.Size = new System.Drawing.Size(59, 19);
             this.ckbImportant.TabIndex = 0;
@@ -395,9 +396,9 @@
             this.groupBox4.Controls.Add(this.ckbReject);
             this.groupBox4.Controls.Add(this.ckbAccept);
             this.groupBox4.Controls.Add(this.ckbJoin);
-            this.groupBox4.Location = new System.Drawing.Point(947, 35);
+            this.groupBox4.Location = new System.Drawing.Point(1075, 38);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(131, 201);
+            this.groupBox4.Size = new System.Drawing.Size(135, 244);
             this.groupBox4.TabIndex = 22;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "状态";
@@ -405,7 +406,7 @@
             // ckbAbandon
             // 
             this.ckbAbandon.AutoSize = true;
-            this.ckbAbandon.Location = new System.Drawing.Point(22, 159);
+            this.ckbAbandon.Location = new System.Drawing.Point(21, 198);
             this.ckbAbandon.Name = "ckbAbandon";
             this.ckbAbandon.Size = new System.Drawing.Size(59, 19);
             this.ckbAbandon.TabIndex = 6;
@@ -415,7 +416,7 @@
             // ckbTweeting
             // 
             this.ckbTweeting.AutoSize = true;
-            this.ckbTweeting.Location = new System.Drawing.Point(22, 108);
+            this.ckbTweeting.Location = new System.Drawing.Point(21, 131);
             this.ckbTweeting.Name = "ckbTweeting";
             this.ckbTweeting.Size = new System.Drawing.Size(89, 19);
             this.ckbTweeting.TabIndex = 5;
@@ -425,7 +426,7 @@
             // ckbQuit
             // 
             this.ckbQuit.AutoSize = true;
-            this.ckbQuit.Location = new System.Drawing.Point(22, 134);
+            this.ckbQuit.Location = new System.Drawing.Point(21, 163);
             this.ckbQuit.Name = "ckbQuit";
             this.ckbQuit.Size = new System.Drawing.Size(89, 19);
             this.ckbQuit.TabIndex = 4;
@@ -435,7 +436,7 @@
             // ckbReject
             // 
             this.ckbReject.AutoSize = true;
-            this.ckbReject.Location = new System.Drawing.Point(22, 83);
+            this.ckbReject.Location = new System.Drawing.Point(21, 98);
             this.ckbReject.Name = "ckbReject";
             this.ckbReject.Size = new System.Drawing.Size(89, 19);
             this.ckbReject.TabIndex = 3;
@@ -445,7 +446,7 @@
             // ckbAccept
             // 
             this.ckbAccept.AutoSize = true;
-            this.ckbAccept.Location = new System.Drawing.Point(22, 58);
+            this.ckbAccept.Location = new System.Drawing.Point(22, 68);
             this.ckbAccept.Name = "ckbAccept";
             this.ckbAccept.Size = new System.Drawing.Size(89, 19);
             this.ckbAccept.TabIndex = 2;
@@ -465,7 +466,7 @@
             // radioNotActive
             // 
             this.radioNotActive.AutoSize = true;
-            this.radioNotActive.Location = new System.Drawing.Point(808, 302);
+            this.radioNotActive.Location = new System.Drawing.Point(876, 351);
             this.radioNotActive.Name = "radioNotActive";
             this.radioNotActive.Size = new System.Drawing.Size(73, 19);
             this.radioNotActive.TabIndex = 2;
@@ -476,7 +477,7 @@
             // radioNormal
             // 
             this.radioNormal.AutoSize = true;
-            this.radioNormal.Location = new System.Drawing.Point(744, 301);
+            this.radioNormal.Location = new System.Drawing.Point(812, 350);
             this.radioNormal.Name = "radioNormal";
             this.radioNormal.Size = new System.Drawing.Size(58, 19);
             this.radioNormal.TabIndex = 1;
@@ -487,7 +488,7 @@
             // radioActive
             // 
             this.radioActive.AutoSize = true;
-            this.radioActive.Location = new System.Drawing.Point(671, 301);
+            this.radioActive.Location = new System.Drawing.Point(739, 350);
             this.radioActive.Name = "radioActive";
             this.radioActive.Size = new System.Drawing.Size(58, 19);
             this.radioActive.TabIndex = 0;
@@ -497,7 +498,7 @@
             // 
             // txtTweetsNum
             // 
-            this.txtTweetsNum.Location = new System.Drawing.Point(662, 270);
+            this.txtTweetsNum.Location = new System.Drawing.Point(730, 308);
             this.txtTweetsNum.Name = "txtTweetsNum";
             this.txtTweetsNum.Size = new System.Drawing.Size(159, 25);
             this.txtTweetsNum.TabIndex = 22;
@@ -505,7 +506,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(573, 273);
+            this.label12.Location = new System.Drawing.Point(641, 311);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(82, 15);
             this.label12.TabIndex = 21;
@@ -513,24 +514,24 @@
             // 
             // txtContact
             // 
-            this.txtContact.Location = new System.Drawing.Point(576, 378);
+            this.txtContact.Location = new System.Drawing.Point(643, 514);
             this.txtContact.Multiline = true;
             this.txtContact.Name = "txtContact";
-            this.txtContact.Size = new System.Drawing.Size(482, 94);
+            this.txtContact.Size = new System.Drawing.Size(541, 82);
             this.txtContact.TabIndex = 24;
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(573, 346);
+            this.label15.Location = new System.Drawing.Point(641, 486);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(82, 15);
             this.label15.TabIndex = 23;
-            this.label15.Text = "聊天摘要：";
+            this.label15.Text = "新建摘要：";
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(766, 509);
+            this.btnSave.Location = new System.Drawing.Point(876, 615);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(110, 50);
             this.btnSave.TabIndex = 25;
@@ -541,9 +542,9 @@
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.listViewLogs);
-            this.groupBox6.Location = new System.Drawing.Point(12, 315);
+            this.groupBox6.Location = new System.Drawing.Point(12, 346);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(521, 303);
+            this.groupBox6.Size = new System.Drawing.Size(591, 335);
             this.groupBox6.TabIndex = 26;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "历史推文摘要";
@@ -552,7 +553,7 @@
             // 
             this.listViewLogs.Location = new System.Drawing.Point(19, 28);
             this.listViewLogs.Name = "listViewLogs";
-            this.listViewLogs.Size = new System.Drawing.Size(486, 257);
+            this.listViewLogs.Size = new System.Drawing.Size(554, 301);
             this.listViewLogs.TabIndex = 0;
             this.listViewLogs.UseCompatibleStateImageBehavior = false;
             // 
@@ -560,43 +561,52 @@
             // 
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.labelCurMarketFbAccount,
-            this.toolStripLabel1});
+            this.LabelCurMarketFbInfo});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1091, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1235, 25);
             this.toolStrip1.TabIndex = 27;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // labelCurMarketFbAccount
+            // LabelCurMarketFbInfo
             // 
-            this.labelCurMarketFbAccount.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.labelCurMarketFbAccount.Margin = new System.Windows.Forms.Padding(0, 1, 3, 2);
-            this.labelCurMarketFbAccount.Name = "labelCurMarketFbAccount";
-            this.labelCurMarketFbAccount.Size = new System.Drawing.Size(104, 22);
-            this.labelCurMarketFbAccount.Text = "xuchenglong";
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(99, 22);
-            this.toolStripLabel1.Text = "当前营销号：";
+            this.LabelCurMarketFbInfo.Name = "LabelCurMarketFbInfo";
+            this.LabelCurMarketFbInfo.Size = new System.Drawing.Size(99, 22);
+            this.LabelCurMarketFbInfo.Text = "当前营销号：";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(573, 303);
+            this.label4.Location = new System.Drawing.Point(641, 352);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(82, 15);
             this.label4.TabIndex = 23;
             this.label4.Text = "帖子反馈：";
             // 
+            // txtNote
+            // 
+            this.txtNote.Location = new System.Drawing.Point(729, 388);
+            this.txtNote.Multiline = true;
+            this.txtNote.Name = "txtNote";
+            this.txtNote.Size = new System.Drawing.Size(317, 75);
+            this.txtNote.TabIndex = 29;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(652, 388);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(52, 15);
+            this.label5.TabIndex = 28;
+            this.label5.Text = "备注：";
+            // 
             // FrmGroupAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1091, 674);
+            this.ClientSize = new System.Drawing.Size(1235, 723);
+            this.Controls.Add(this.txtNote);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.txtTweetsNum);
             this.Controls.Add(this.radioNotActive);
@@ -679,10 +689,11 @@
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.ListView listViewLogs;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        private System.Windows.Forms.ToolStripLabel labelCurMarketFbAccount;
+        private System.Windows.Forms.ToolStripLabel LabelCurMarketFbInfo;
         private System.Windows.Forms.ComboBox cbxVerifyType;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtNote;
+        private System.Windows.Forms.Label label5;
     }
 }

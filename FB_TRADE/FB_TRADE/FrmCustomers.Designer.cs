@@ -33,9 +33,9 @@
             this.btnDelete = new System.Windows.Forms.ToolStripButton();
             this.btnAdd = new System.Windows.Forms.ToolStripButton();
             this.btnCopyUrl = new System.Windows.Forms.ToolStripButton();
+            this.labelCurMarketFbInfo = new System.Windows.Forms.ToolStripLabel();
             this.panelList = new System.Windows.Forms.Panel();
             this.listViewCustomers = new System.Windows.Forms.ListView();
-            this.labelCurMarketFbInfo = new System.Windows.Forms.ToolStripLabel();
             this.toolStrip1.SuspendLayout();
             this.panelList.SuspendLayout();
             this.SuspendLayout();
@@ -87,6 +87,13 @@
             this.btnCopyUrl.Name = "btnCopyUrl";
             this.btnCopyUrl.Size = new System.Drawing.Size(103, 24);
             this.btnCopyUrl.Text = "复制首页链接";
+            this.btnCopyUrl.Click += new System.EventHandler(this.btnCopyUrl_Click);
+            // 
+            // labelCurMarketFbInfo
+            // 
+            this.labelCurMarketFbInfo.Name = "labelCurMarketFbInfo";
+            this.labelCurMarketFbInfo.Size = new System.Drawing.Size(99, 24);
+            this.labelCurMarketFbInfo.Text = "当前营销号：";
             // 
             // panelList
             // 
@@ -107,12 +114,6 @@
             this.listViewCustomers.Size = new System.Drawing.Size(1236, 501);
             this.listViewCustomers.TabIndex = 0;
             this.listViewCustomers.UseCompatibleStateImageBehavior = false;
-            // 
-            // labelCurMarketFbInfo
-            // 
-            this.labelCurMarketFbInfo.Name = "labelCurMarketFbInfo";
-            this.labelCurMarketFbInfo.Size = new System.Drawing.Size(99, 24);
-            this.labelCurMarketFbInfo.Text = "当前营销号：";
             // 
             // FrmCustomers
             // 

@@ -21,5 +21,6 @@ namespace FB_Trade_Models
         public string tweetFeedback;
         public string mark;
         public string note;
+        public string lastEditTime;
     }
 }

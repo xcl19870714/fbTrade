@@ -177,6 +177,7 @@ namespace FB_Trade_DAL
                             groupShip.tweetFeedback = Convert.ToString(reader["tweetFeedback"]);
                             groupShip.mark = Convert.ToString(reader["mark"]);
                             groupShip.note = Convert.ToString(reader["note"]);
+                            groupShip.lastEditTime = Convert.ToString(reader["lastEditTime"]);
                             obj = groupShip;
                             break;
 						case "tb_fbGroupLogs":
@@ -333,6 +334,7 @@ namespace FB_Trade_DAL
                             groupShip.tweetFeedback = Convert.ToString(reader["tweetFeedback"]);
                             groupShip.mark = Convert.ToString(reader["mark"]);
                             groupShip.note = Convert.ToString(reader["note"]);
+                            groupShip.lastEditTime = Convert.ToString(reader["lastEditTime"]);
                             groupShipList.Add(groupShip);
                         }
                         obj = groupShipList;
