@@ -1,3 +1,6 @@
+if (object_id('trg_tb_fbOrders_insert', 'tr') is not null)
+    drop trigger trg_tb_fbOrders_insert
+go
 create trigger trg_tb_fbOrders_insert
 on tb_fbOrders
 instead of insert
@@ -5,29 +8,41 @@ as
 	declare @marketFbId varchar(30), @userId int;
 	select @marketFbId=marketFbId from inserted;
 	select @userId=userId from tb_fbMarketAccounts where fbId=@marketFbId;
-
-	declare @dateCur datetime;
-	declare @tempDateStr nvarchar(11)
-	set @dateCur = getdate();
-	set @tempDateStr = left(Convert(Varchar(4),Year(@dateCur)),2) + CONVERT(VARCHAR(8),@dateCur,12)
 	
-	declare @maxOrderId bigint
+	declare @userIdStr varchar(20);
+	set @userIdStr = right('0000'+ cast(@userId as varchar(4)), 4)
+
+	/* get cur date string: 20190318 */
+	declare @timeNow datetime;
+	declare @dateToday nvarchar(11)
+	set @timeNow = getdate();
+	set @dateToday = left(Convert(Varchar(4),Year(@timeNow)),2) + CONVERT(VARCHAR(8),@timeNow,12)
+	
+	/* get max order id in database */
+	declare @maxOrderId varchar(30), @nextOrderId varchar(30)
 	select @maxOrderId=max(orderId) from tb_fbOrders where marketFbid=@marketFbId
-	declare @tempHead nvarchar(8)
-	set @tempHead = left(Convert(Varchar(11),@maxOrderId),8)
 	
-	if @maxOrderId is null or @maxOrderId='19000101001' or @tempHead<> @tempDateStr
-    begin
-         set  @maxOrderId = @tempDateStr + '001'
-    end
+	if @maxOrderId is null
+	begin
+		set  @nextOrderId = @userIdStr + @dateToday + '001'
+	end
 	else
-    begin
-		declare @tempBibInt bigint
-		set @tempBibInt = convert(bigint,@maxOrderId) + 1
-		set @maxOrderId = convert(Varchar(11),@tempBibInt)
-    end
+	begin
+		declare @dateCom nvarchar(8)
+		set @dateCom = right(left(@maxOrderId, len(@userIdStr) + 8),8)
+		if @dateCom<> @dateToday
+		begin
+			set  @nextOrderId = @userIdStr + @dateToday + '001'
+		end
+		else
+		begin
+			declare @tempBibInt bigint
+			set @tempBibInt = convert(bigint,right(@maxOrderId, 11)) + 1
+			set @nextOrderId = @userIdStr + convert(Varchar(30),@tempBibInt)
+		end
+	end
 
-	insert into tb_fbOrders (orderId,customerFbId,marketFbId,orderType,oriOrderId,createTime,lastEditTime,status,shippingAddress,shippingName,shippingPhone,shippingType,shippingNo,currency,totalPrice,paymentType,paymentNo,note) select @maxOrderId,customerFbId,marketFbId,orderType,oriOrderId,createTime,lastEditTime,status,shippingAddress,shippingName,shippingPhone,shippingType,shippingNo,currency,totalPrice,paymentType,paymentNo,note from inserted;
+	insert into tb_fbOrders (orderId,customerFbId,marketFbId,orderType,oriOrderId,createTime,lastEditTime,status,shippingAddress,shippingName,shippingPhone,shippingType,shippingNo,currency,totalPrice,paymentType,paymentNo,note) select @nextOrderId,customerFbId,marketFbId,orderType,oriOrderId,getdate(),getdate(),status,shippingAddress,shippingName,shippingPhone,shippingType,shippingNo,currency,totalPrice,paymentType,paymentNo,note from inserted;
 go
 
 
