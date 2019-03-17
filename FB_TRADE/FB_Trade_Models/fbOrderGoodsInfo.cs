@@ -12,6 +12,7 @@ namespace FB_Trade_Models
         public int id;
         public string orderId;
         public byte[] photo;
+        public string name;
         public string color;
         public string size;
         public string price;

@@ -18,19 +18,36 @@ namespace FB_TRADE
     {
         public string curMarketFbId = string.Empty;
         public string curMarketFbAccount = string.Empty;
-
         //Add
-        public bool bAdd;
+        public bool bAdd = true;
         public string curCustomerFbId = string.Empty;
-
         //Edit
         public string curOrderId = string.Empty;
 
         private DBCommon db = new DBCommon();
-        private string sql = string.Empty;
+        private StringBuilder sb = new StringBuilder();
+        private ImageList imglist;
 
-        private ImageList imglist = new ImageList();
+        //辅助函数
+        private Image BytesToImage(byte[] streamByte)
+        {
+            MemoryStream ms = new MemoryStream(streamByte); //new MemoryStream(goods.photo, 0, goods.photo.Length);
+            Image img = Image.FromStream(ms);
+            ms.Close();
+            return img;
+        }
 
+        private byte[] ImageToBytes(Image img)
+        {
+            MemoryStream mstream = new MemoryStream();
+            img.Save(mstream, System.Drawing.Imaging.ImageFormat.Bmp);
+            byte[] byData = new Byte[mstream.Length];
+            mstream.Position = 0;
+            mstream.Read(byData, 0, byData.Length); mstream.Close();
+            return byData;
+        }
+
+        //1. 构造界面
         public FrmOrderAdd()
         {
             InitializeComponent();
@@ -39,12 +56,12 @@ namespace FB_TRADE
             this.cbxOrderType.Items.Add("订单");
             this.cbxOrderType.Items.Add("分期付款单");
             this.cbxOrderType.Items.Add("售后单");
-            this.cbxOrderType.SelectedIndex = cbxOrderType.Items.IndexOf("订单");
+            this.cbxOrderType.SelectedIndex = 0;
 
             this.cbxShipType.Items.Clear();
             this.cbxShipType.Items.Add("EMS");
             this.cbxShipType.Items.Add("Other");
-            this.cbxShipType.SelectedIndex = cbxShipType.Items.IndexOf("EMS");
+            this.cbxShipType.SelectedIndex = 0;
 
             this.cbxCurrency.Items.Clear();
             this.cbxCurrency.Items.Add("AUD");
@@ -56,7 +73,7 @@ namespace FB_TRADE
             this.cbxCurrency.Items.Add("台币");
             this.cbxCurrency.Items.Add("人民币");
             this.cbxCurrency.Items.Add("Other");
-            this.cbxCurrency.SelectedIndex = cbxCurrency.Items.IndexOf("AUD");
+            this.cbxCurrency.SelectedIndex = 0;
 
             this.cbxPayType.Items.Clear();
             this.cbxPayType.Items.Add("Paypal");
@@ -64,34 +81,107 @@ namespace FB_TRADE
             this.cbxPayType.Items.Add("Western Union");
             this.cbxPayType.Items.Add("货到付款");
             this.cbxPayType.Items.Add("Other");
-            this.cbxPayType.SelectedIndex = cbxPayType.Items.IndexOf("Paypal");
+            this.cbxPayType.SelectedIndex = 0;
 
-            txtShipType.Visible = (cbxShipType.SelectedItem.ToString() != "Other");
-            txtCurrency.Visible = (cbxCurrency.SelectedItem.ToString() != "Other");
-            txtPayType.Visible = (cbxPayType.SelectedItem.ToString() != "Other");
+            txtShipType.Visible = false;
+            txtCurrency.Visible = false;
+            txtPayType.Visible = false;
+
+            btnCheckCustomerExist.Visible = false;
+
+            imglist = new ImageList();
+            imglist.ImageSize = new Size(30, 30);
+            imglist.ColorDepth = ColorDepth.Depth32Bit;
+
+            dataGridViewGoods.AllowUserToAddRows = false;
+            dataGridViewGoods.RowHeadersVisible = false;
+            dataGridViewGoods.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
+
+            DataGridViewCheckBoxColumn columnCheckbox = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            columnCheckbox.HeaderText = "";
+            columnCheckbox.Name = "checkbox";
+            columnCheckbox.Width = dataGridViewGoods.Width/100 * 3;
+            DataGridViewTextBoxColumn columnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            columnId.HeaderText = "id";
+            columnId.Name = "id";
+            columnId.Width = dataGridViewGoods.Width / 100 * 0;
+            DataGridViewImageColumn columnPhoto = new System.Windows.Forms.DataGridViewImageColumn();
+            columnPhoto.HeaderText = "Photo";
+            columnPhoto.Name = "photo";
+            columnPhoto.Width = dataGridViewGoods.Width / 100 * 5;
+            DataGridViewTextBoxColumn columnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            columnName.HeaderText = "Name";
+            columnName.Name = "name";
+            columnName.Width = dataGridViewGoods.Width / 100 * 27;
+            DataGridViewTextBoxColumn columnColor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            columnColor.HeaderText = "Color";
+            columnColor.Name = "color";
+            columnColor.Width = dataGridViewGoods.Width / 100 * 10;
+            DataGridViewTextBoxColumn columnSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            columnSize.HeaderText = "Size";
+            columnSize.Name = "size";
+            columnSize.Width = dataGridViewGoods.Width / 100 * 10;
+            DataGridViewTextBoxColumn columnPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            columnPrice.HeaderText = "Price";
+            columnPrice.Name = "price";
+            columnPrice.Width = dataGridViewGoods.Width / 100 * 10;
+            DataGridViewTextBoxColumn columnAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            columnAmount.HeaderText = "Amount";
+            columnAmount.Name = "amount";
+            columnAmount.Width = dataGridViewGoods.Width / 100 * 10;
+            DataGridViewTextBoxColumn columnTotalPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            columnTotalPrice.HeaderText = "Total Price";
+            columnTotalPrice.Name = "totalPrice";
+            columnTotalPrice.Width = dataGridViewGoods.Width / 100 * 35;
+
+            dataGridViewGoods.Columns.Clear();
+            dataGridViewGoods.Columns.Add(columnCheckbox);
+            dataGridViewGoods.Columns.Add(columnId);
+            dataGridViewGoods.Columns.Add(columnPhoto);
+            dataGridViewGoods.Columns.Add(columnName);
+            dataGridViewGoods.Columns.Add(columnColor);
+            dataGridViewGoods.Columns.Add(columnSize);
+            dataGridViewGoods.Columns.Add(columnPrice);
+            dataGridViewGoods.Columns.Add(columnAmount);
+            dataGridViewGoods.Columns.Add(columnTotalPrice);
+
+            DataGridViewImageCell cell = new DataGridViewImageCell();
+            cell.ImageLayout = DataGridViewImageCellLayout.Zoom;
+            dataGridViewGoods.Columns["photo"].CellTemplate = cell;
+
+            
         }
 
-        public void MyInitFrm()
+        //2. 数据加载
+        public void MyFrmInit()
         {
-            labelCurMarketAccount.Text = curMarketFbAccount;
+            labelCurMarketFbInfo.Text = "当前营销号：" + curMarketFbAccount;
 
-            InitOrderInfo();
-            InitCustomerNameAndDefaultAddressChckbox();
-
+            if (!bAdd)
+            {
+                InitOrderInfo();
+                InitCustomerInfoById();
+                InitGridViewGoods();
+            }
+            else
+            {
+                if (curCustomerFbId != "")
+                {
+                    InitCustomerInfoById();
+                    txtCustomerId.ReadOnly = true;
+                }
+                else
+                    btnCheckCustomerExist.Visible = true;
+            }
         }
 
         private void InitOrderInfo()
         {
-            if (bAdd)
-            {
-                txtCustomerId.Text = curCustomerFbId;
-                return;
-            }
-
             try
             {
-                sql = "select * from tb_orders where orderid='" + curOrderId + "'";
-                FbOrderInfo order = (FbOrderInfo)db.GetObject(sql, "tb_orders");
+                sb.Clear();
+                sb.AppendFormat("select * from tb_orders where orderid='{0}'", curOrderId);
+                FbOrderInfo order = (FbOrderInfo)db.GetObject(sb.ToString(), "tb_orders");
 
                 if (order == null)
                 {
@@ -149,29 +239,28 @@ namespace FB_TRADE
             }
         }
 
-        private void InitCustomerNameAndDefaultAddressChckbox()
+        private void InitCustomerInfoById()
         {
             try
             {
-                sql = "select * from tb_fbCustomers where fbid='" + curCustomerFbId + "'";
-                FbCustomerInfo customer = (FbCustomerInfo)db.GetObject(sql, "tb_fbCustomers");
+                sb.Clear();
+                sb.AppendFormat("select * from tb_fbCustomers where fbId='{0}'", txtCustomerId.Text.Trim());
+                FbCustomerInfo customer = (FbCustomerInfo)db.GetObject(sb.ToString(), "tb_fbCustomers");
 
                 if (customer == null)
                 {
-                    MessageBox.Show("获取客户失败，此客户可能已被删除！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("此客户在系统中不存在，请先创建客户！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //转到新建客户页面
+                    this.txtCustomerId.Focus();
                     return;
                 }
 
                 txtCustomerName.Text = customer.name;
-
-                if (customer.shipName == txtShippingName.Text.Trim() && 
-                    customer.shipPhone == txtShippingPhone.Text.Trim() &&
-                    customer.shipAddress == txtShippingAddress.Text.Trim())
-                {
-                    chkbSetDefaultAddress.Checked = true;
-                }
-                else
-                    chkbSetDefaultAddress.Checked = false;
+                txtCountry.Text = customer.country;
+                txtCity.Text = customer.city;
+                txtShippingName.Text = customer.shipName;
+                txtShippingPhone.Text = customer.shipPhone;
+                txtShippingAddress.Text = customer.shipAddress;
             }
             catch (SqlException ex)
             {
@@ -182,75 +271,29 @@ namespace FB_TRADE
                 MessageBox.Show(ex.Message, "程序异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        
 
-        private Image BytesToImage(byte[] streamByte)
+        public void InitGridViewGoods()
         {
-            System.IO.MemoryStream ms = new System.IO.MemoryStream(streamByte);
-            System.Drawing.Image img = System.Drawing.Image.FromStream(ms);
-            return img;
-        }
-
-        private byte[] ImageToBytes(Image img)
-        {
-            MemoryStream mstream = new MemoryStream();
-            img.Save(mstream, System.Drawing.Imaging.ImageFormat.Bmp);
-            byte[] byData = new Byte[mstream.Length];
-            mstream.Position = 0;
-            mstream.Read(byData, 0, byData.Length); mstream.Close();
-            return byData;
-        }
-
-        public void InitListViewGoods()
-        {
-            listViewGoods.Bounds = new Rectangle(new Point(10, 10), new Size(300, 200));
-            listViewGoods.View = View.Details;           //将view属性设为Details。
-            listViewGoods.LabelEdit = true;              //允许用户编辑文本项。
-            listViewGoods.AllowColumnReorder = true;     //允许用户重排列。
-            listViewGoods.CheckBoxes = true;            //显示check boxes。
-            listViewGoods.FullRowSelect = true;          //允许选择项及其子项。
-            listViewGoods.GridLines = true;              //显示行列的网格线。
-
-            listViewGoods.Clear();
-            listViewGoods.Columns.Add("Photo", 100, HorizontalAlignment.Left);
-            listViewGoods.Columns.Add("Color", 100, HorizontalAlignment.Left);
-            listViewGoods.Columns.Add("Size", 100, HorizontalAlignment.Left);
-            listViewGoods.Columns.Add("Price", 100, HorizontalAlignment.Left);
-            listViewGoods.Columns.Add("Amount", 100, HorizontalAlignment.Left);
-            listViewGoods.Columns.Add("Total Price", 100, HorizontalAlignment.Left);
-
-            listViewGoods.Items.Clear();
-
-            imglist.ImageSize = new Size(50, 50);
-            //imglist.ColorDepth = ColorDepth.Depth32Bit;
-            listViewGoods.SmallImageList = imglist;
-
-            if (bAdd)
-                return;
-
             try
             {
-                sql = "select * from tb_fbOrderGoods where orderId='" + curOrderId + "'";
-                List<fbOrderGoodsInfo> goodsList = (List<fbOrderGoodsInfo>)db.GetList(sql, "tb_fbOrderGoods");
+                sb.Clear();
+                sb.AppendFormat("select * from tb_fbOrderGoods where orderId='{0}'", curOrderId);
+                List<fbOrderGoodsInfo> goodsList = (List<fbOrderGoodsInfo>)db.GetList(sb.ToString(), "tb_fbOrderGoods");
 
                 foreach (var goods in goodsList)
                 {
-                    ListViewItem it = new ListViewItem();
+                    int index = dataGridViewGoods.Rows.Add();
 
-					Image img;
-                    MemoryStream ms = new MemoryStream(goods.photo, 0, goods.photo.Length);
-                    img = Image.FromStream(ms);
-                    ms.Close();
-                    imglist.Images.Add(img);
-
-					it.ImageIndex = imglist.Images.Count - 1;
-                    it.Text = "";
-					it.Tag = goods.id.ToString();
-                    it.SubItems.Add(goods.color);
-                    it.SubItems.Add(goods.size);
-					it.SubItems.Add(goods.price);
-					it.SubItems.Add(goods.amount);
-                    it.SubItems.Add(Convert.ToString(Convert.ToDouble(goods.price) * Convert.ToInt32(goods.amount)));
-                    listViewGoods.Items.Add(it);
+                    dataGridViewGoods.Rows[index].Cells["checkbox"].Value = 0;
+                    dataGridViewGoods.Rows[index].Cells["id"].Value = goods.id;
+                    dataGridViewGoods.Rows[index].Cells["photo"].Value = BytesToImage(goods.photo);
+                    dataGridViewGoods.Rows[index].Cells["name"].Value = goods.name;
+                    dataGridViewGoods.Rows[index].Cells["color"].Value = goods.color;
+                    dataGridViewGoods.Rows[index].Cells["size"].Value = goods.size;
+                    dataGridViewGoods.Rows[index].Cells["price"].Value = goods.price;
+                    dataGridViewGoods.Rows[index].Cells["amount"].Value = goods.amount;
+                    dataGridViewGoods.Rows[index].Cells["totalPrice"].Value = Convert.ToString(Convert.ToDouble(goods.price) * Convert.ToInt32(goods.amount));
                 }
 
             }
@@ -263,20 +306,33 @@ namespace FB_TRADE
                 MessageBox.Show(ex.Message, "程序异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        
+        //3. 操作
         private void cbxShipType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtShipType.Visible  = (cbxShipType.SelectedItem.ToString() != "Other");
+            txtShipType.Visible  = (cbxShipType.SelectedItem.ToString() == "Other");
         }
 
         private void cbxCurrency_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtCurrency.Visible = (cbxCurrency.SelectedItem.ToString() != "Other");
+            txtCurrency.Visible = (cbxCurrency.SelectedItem.ToString() == "Other");
         }
 
         private void cbxPayType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtPayType.Visible = (cbxPayType.SelectedItem.ToString() != "Other");
+            txtPayType.Visible = (cbxPayType.SelectedItem.ToString() == "Other");
+        }
+
+        private void btnCheckCustomerExist_Click(object sender, EventArgs e)
+        {
+            if (txtCustomerId.Text.Trim() == "")
+            {
+                MessageBox.Show("请输入客户Facebook ID！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.txtCustomerId.Focus();
+                return;
+            }
+
+            InitCustomerInfoById();
         }
 
         private void btnInsertGoods_Click(object sender, EventArgs e)
@@ -287,25 +343,54 @@ namespace FB_TRADE
                 return;
             }
 
-            Image img = Clipboard.GetImage();
-            imglist.Images.Add(img);
-            Clipboard.Clear();
+            int index = dataGridViewGoods.Rows.Add();
+            dataGridViewGoods.Rows[index].Cells["checkbox"].Value = false;
+            dataGridViewGoods.Rows[index].Cells["id"].Value = "0";
+            dataGridViewGoods.Rows[index].Cells["photo"].Value = Clipboard.GetImage();
+            dataGridViewGoods.Rows[index].Cells["name"].Value = "0";
+            dataGridViewGoods.Rows[index].Cells["color"].Value = "0";
+            dataGridViewGoods.Rows[index].Cells["size"].Value = "0";
+            dataGridViewGoods.Rows[index].Cells["price"].Value = "0";
+            dataGridViewGoods.Rows[index].Cells["amount"].Value = "0";
+            dataGridViewGoods.Rows[index].Cells["totalPrice"].Value = "0";
 
-            ListViewItem it = new ListViewItem();
-            it.Text = "";
-            it.Tag = "";
-            it.ImageIndex = imglist.Images.Count - 1;
-            it.SubItems.Add("0");
-            it.SubItems.Add("0");
-			it.SubItems.Add("0");
-			it.SubItems.Add("0");
-            it.SubItems.Add("0");
-            listViewGoods.Items.Add(it);
+            Clipboard.Clear();
         }
 
         private void btnDelGoods_Click(object sender, EventArgs e)
         {
+            DialogResult choice = MessageBox.Show("确定删除选中商品？", "系统提示", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (choice == DialogResult.No)
+                return;
 
+            for (int i = 0; i < dataGridViewGoods.Rows.Count; i++)
+            {
+                DataGridViewRow row = dataGridViewGoods.Rows[i];
+                if (row.Cells[0].Value.ToString() == "True")
+                {
+                    if (row.Cells[1].Value.ToString() != "")
+                    {
+                        sb.Clear();
+                        sb.AppendFormat("delete from tb_fbOrderGoods where id={0}", row.Cells[1].Value.ToString());
+
+                        try
+                        {
+                            db.DeleteData(sb.ToString());
+                        }
+                        catch (SqlException ex)
+                        {
+                            MessageBox.Show(ex.Message, "数据库异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "程序异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    dataGridViewGoods.Rows.Remove(row);
+                    i = i - 1;
+                    //dataGridViewGoods.Rows.Remove(row);
+                }
+            }
         }
 
         //订单状态改变规则：
@@ -362,12 +447,12 @@ namespace FB_TRADE
                     sb.AppendFormat("insert into tb_fbOrders(customerFbId, marketFbid, orderType, oriOrderId, " +
                         "createTime, lastEditTime, status, shippingAddress, shippingName, shippingPhone, shippingType, shippingFee, shippingNo, " +
                         "currency, totalPrice, paymentType, paymentNo, note) " +
-                        "values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}')", 
-                        txtCustomerId.Text.Trim(), curMarketFbId, cbxOrderType.SelectedItem.ToString(), txtOriOrderId, 
-                        DateTime.Now.ToString(), DateTime.Now.ToString(), getNewOrderStatus("Save"), txtShippingAddress.Text.Trim(), txtShippingName.Text.Trim(), 
+                        "values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}')", 
+                        txtCustomerId.Text.Trim(), curMarketFbId, cbxOrderType.SelectedItem.ToString(), txtOriOrderId.Text.Trim(), 
+                        DateTime.Now.ToString(), DateTime.Now.ToString(), getNewOrderStatus("Save"), txtShippingAddress.Text.Trim(), txtShippingName.Text.Trim(), txtShippingPhone.Text.Trim(),
                         (cbxShipType.SelectedItem.ToString() == "Other" ? txtShipType.Text.Trim() : cbxShipType.SelectedItem.ToString()), txtShipFee.Text.Trim(), txtTrackingNo.Text.Trim(),
                         (cbxCurrency.SelectedItem.ToString() == "Other" ? txtCurrency.Text.Trim() : cbxCurrency.SelectedItem.ToString()), txtPayAmount.Text.Trim(),
-                        (cbxPayType.SelectedItem.ToString() == "Other" ? txtPayType.Text.Trim() : cbxPayType.SelectedItem.ToString()), txtPayNo.Text.Trim(), txtPayNo.Text.Trim(), txtNote.Text.Trim());
+                        (cbxPayType.SelectedItem.ToString() == "Other" ? txtPayType.Text.Trim() : cbxPayType.SelectedItem.ToString()), txtPayNo.Text.Trim(), txtNote.Text.Trim());
                     db.InsertData(sb.ToString());
                 }
                 else // Edit
@@ -380,7 +465,7 @@ namespace FB_TRADE
                         txtShippingAddress.Text.Trim(), txtShippingName.Text.Trim(),
                         (cbxShipType.SelectedItem.ToString() == "Other" ? txtShipType.Text.Trim() : cbxShipType.SelectedItem.ToString()), txtShipFee.Text.Trim(), txtTrackingNo.Text.Trim(),
                         (cbxCurrency.SelectedItem.ToString() == "Other" ? txtCurrency.Text.Trim() : cbxCurrency.SelectedItem.ToString()), txtPayAmount.Text.Trim(),
-                        (cbxPayType.SelectedItem.ToString() == "Other" ? txtPayType.Text.Trim() : cbxPayType.SelectedItem.ToString()), txtPayNo.Text.Trim(), txtPayNo.Text.Trim(),
+                        (cbxPayType.SelectedItem.ToString() == "Other" ? txtPayType.Text.Trim() : cbxPayType.SelectedItem.ToString()), txtPayNo.Text.Trim(),
                         txtNote.Text.Trim(), curOrderId);
                     db.UpdateData(sb.ToString());
                 }
@@ -391,33 +476,42 @@ namespace FB_TRADE
                     //获取此marketFbId，customerFbId最新创建的orderId
                     StringBuilder sb = new StringBuilder();
                     sb.AppendFormat("select * from tb_fbOrders where marketFbId='{0}' and customerFbId='{1}' and " +
-                        "createTime in (select max(createTime) from tb_fbOrders where marketFbId='{3}' and customerFbId='{4}')", 
+                        "createTime in (select max(createTime) from tb_fbOrders where marketFbId='{2}' and customerFbId='{3}')", 
                         curMarketFbId, txtCustomerId.Text.Trim(), curMarketFbId, txtCustomerId.Text.Trim());
                     FbOrderInfo newOrder = (FbOrderInfo)db.GetObject(sb.ToString(), "tb_fbOrders");
                     curOrderId = newOrder.orderId;
                 }
-                foreach (ListViewItem item in this.listViewGoods.Items)
+
+                for (int i = 0; i < dataGridViewGoods.Rows.Count; i++)
                 {
-                    if (item.Tag.ToString() == "")
+                    DataGridViewRow row = dataGridViewGoods.Rows[i];
+                    if (row.Cells[1].Value.ToString() != "0")
                     {
-                        StringBuilder sb = new StringBuilder();
-                        sb.AppendFormat("insert into tb_fbOrderGoods(orderId, photo, color, size, price, amount) values('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')", 
-                            curOrderId, ImageToBytes(imglist.Images[item.ImageIndex]), item.SubItems[0].Text, item.SubItems[1].Text, item.SubItems[2].Text, item.SubItems[3].Text, item.SubItems[4].Text);
-                        db.InsertData(sql);
+                        sb.Clear();
+                        sb.AppendFormat("update tb_fbOrderGoods set name='{0}',color='{1}',size='{2}',price='{3}',amount='{4}' where id={5}", 
+                            row.Cells["name"].Value.ToString(), row.Cells["color"].Value.ToString(), row.Cells["size"].Value.ToString(), row.Cells["price"].Value.ToString(),
+                            row.Cells["name"].Value.ToString(), row.Cells["id"].Value.ToString());
+                        db.UpdateData(sb.ToString());
+                    }
+                    else
+                    {
+                        sb.Clear();
+                        sb.AppendFormat("insert into tb_fbOrderGoods(orderId, photo, name, color, size, price, amount) values('{0}','{1}','{2}','{3}','{4}','{5}','{6}')",
+                            curOrderId, ImageToBytes((Image)(row.Cells["photo"].Value)), row.Cells["name"].Value.ToString(), row.Cells["color"].Value.ToString(), row.Cells["size"].Value.ToString(),
+                            row.Cells["price"].Value.ToString(), row.Cells["amount"].Value.ToString());
+                        db.InsertData(sb.ToString());
                     }
                 }
 
-                //3. reShow
-                FrmOrderAdd newFrm = new FrmOrderAdd();
-                this.Hide();
-                newFrm.bAdd = false;
-                newFrm.curOrderId = curOrderId;
-                newFrm.curMarketFbId = curMarketFbId;
-                newFrm.curMarketFbAccount = curMarketFbAccount;
-                newFrm.curCustomerFbId = curCustomerFbId;
-                newFrm.MyInitFrm();
-                this.Close();
-                newFrm.Show();
+                //保存成功
+                MessageBox.Show("保存成功！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtOrderId.Text = curOrderId;
+                sb.Clear();
+                sb.AppendFormat("select * from tb_fbOrders where orderId='{0}'", curOrderId);
+                FbOrderInfo order = (FbOrderInfo)db.GetObject(sb.ToString(), "tb_fbOrders");
+                if (order != null)
+                    labelOrderStatus.Text = order.status;
+                
             }
             catch (SqlException ex)
             {
@@ -440,12 +534,12 @@ namespace FB_TRADE
                     sb.AppendFormat("insert into tb_fbOrders(customerFbId, marketFbid, orderType, oriOrderId, " +
                         "createTime, lastEditTime, status, shippingAddress, shippingName, shippingPhone, shippingType, shippingFee, shippingNo, " +
                         "currency, totalPrice, paymentType, paymentNo, note) " +
-                        "values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}')",
-                        txtCustomerId.Text.Trim(), curMarketFbId, cbxOrderType.SelectedItem.ToString(), txtOriOrderId,
-                        DateTime.Now.ToString(), DateTime.Now.ToString(), getNewOrderStatus("Submit"), txtShippingAddress.Text.Trim(), txtShippingName.Text.Trim(),
+                        "values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}')",
+                        txtCustomerId.Text.Trim(), curMarketFbId, cbxOrderType.SelectedItem.ToString(), txtOriOrderId.Text.Trim(),
+                        DateTime.Now.ToString(), DateTime.Now.ToString(), getNewOrderStatus("Submit"), txtShippingAddress.Text.Trim(), txtShippingName.Text.Trim(),txtShippingPhone.Text.Trim(), 
                         (cbxShipType.SelectedItem.ToString() == "Other" ? txtShipType.Text.Trim() : cbxShipType.SelectedItem.ToString()), txtShipFee.Text.Trim(), txtTrackingNo.Text.Trim(),
                         (cbxCurrency.SelectedItem.ToString() == "Other" ? txtCurrency.Text.Trim() : cbxCurrency.SelectedItem.ToString()), txtPayAmount.Text.Trim(),
-                        (cbxPayType.SelectedItem.ToString() == "Other" ? txtPayType.Text.Trim() : cbxPayType.SelectedItem.ToString()), txtPayNo.Text.Trim(), txtPayNo.Text.Trim(), txtNote.Text.Trim());
+                        (cbxPayType.SelectedItem.ToString() == "Other" ? txtPayType.Text.Trim() : cbxPayType.SelectedItem.ToString()), txtPayNo.Text.Trim(), txtNote.Text.Trim());
                     db.InsertData(sb.ToString());
                 }
                 else // Edit
@@ -458,7 +552,7 @@ namespace FB_TRADE
                         txtShippingAddress.Text.Trim(), txtShippingName.Text.Trim(),
                         (cbxShipType.SelectedItem.ToString() == "Other" ? txtShipType.Text.Trim() : cbxShipType.SelectedItem.ToString()), txtShipFee.Text.Trim(), txtTrackingNo.Text.Trim(),
                         (cbxCurrency.SelectedItem.ToString() == "Other" ? txtCurrency.Text.Trim() : cbxCurrency.SelectedItem.ToString()), txtPayAmount.Text.Trim(),
-                        (cbxPayType.SelectedItem.ToString() == "Other" ? txtPayType.Text.Trim() : cbxPayType.SelectedItem.ToString()), txtPayNo.Text.Trim(), txtPayNo.Text.Trim(),
+                        (cbxPayType.SelectedItem.ToString() == "Other" ? txtPayType.Text.Trim() : cbxPayType.SelectedItem.ToString()), txtPayNo.Text.Trim(),
                         txtNote.Text.Trim(), curOrderId);
                     db.UpdateData(sb.ToString());
                 }
@@ -474,28 +568,36 @@ namespace FB_TRADE
                     FbOrderInfo newOrder = (FbOrderInfo)db.GetObject(sb.ToString(), "tb_fbOrders");
                     curOrderId = newOrder.orderId;
                 }
-                foreach (ListViewItem item in this.listViewGoods.Items)
+
+                for (int i = 0; i < dataGridViewGoods.Rows.Count; i++)
                 {
-                    if (item.Tag.ToString() == "")
+                    DataGridViewRow row = dataGridViewGoods.Rows[i];
+                    if (row.Cells[1].Value.ToString() != "")
                     {
-                        StringBuilder sb = new StringBuilder();
-                        sb.AppendFormat("insert into tb_fbOrderGoods(orderId, photo, color, size, price, amount) values('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')",
-                            curOrderId, ImageToBytes(imglist.Images[item.ImageIndex]), item.SubItems[0].Text, item.SubItems[1].Text, item.SubItems[2].Text, item.SubItems[3].Text, item.SubItems[4].Text);
-                        db.InsertData(sql);
+                        sb.Clear();
+                        sb.AppendFormat("update tb_fbOrderGoods set name='{0}',color='{1}',size='{2}',price='{3}',amount='{4}' where id={0}",
+                            row.Cells["name"].Value.ToString(), row.Cells["color"].Value.ToString(), row.Cells["size"].Value.ToString(), row.Cells["price"].Value.ToString(),
+                            row.Cells["name"].Value.ToString(), row.Cells["id"].Value.ToString());
+                        db.UpdateData(sb.ToString());
+                    }
+                    else
+                    {
+                        sb.Clear();
+                        sb.AppendFormat("insert into tb_fbOrderGoods(orderId, photo, name, color, size, price, amount) values('{0}','{1}','{2}','{3}','{4}','{5}','{6}')",
+                            curOrderId, row.Cells["photo"].Value.ToString(), row.Cells["name"].Value.ToString(), row.Cells["color"].Value.ToString(), row.Cells["size"].Value.ToString(),
+                            row.Cells["price"].Value.ToString(), row.Cells["amount"].Value.ToString());
+                        db.InsertData(sb.ToString());
                     }
                 }
 
-                //3. reShow
-                FrmOrderAdd newFrm = new FrmOrderAdd();
-                this.Hide();
-                newFrm.bAdd = false;
-                newFrm.curOrderId = curOrderId;
-                newFrm.curMarketFbId = curMarketFbId;
-                newFrm.curMarketFbAccount = curMarketFbAccount;
-                newFrm.curCustomerFbId = curCustomerFbId;
-                newFrm.MyInitFrm();
-                this.Close();
-                newFrm.Show();
+                //保存成功
+                MessageBox.Show("保存成功！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtOrderId.Text = curOrderId;
+                sb.Clear();
+                sb.AppendFormat("select from tb_fbOrders where orderId='{0}'", curOrderId);
+                FbOrderInfo order = (FbOrderInfo)db.GetObject(sb.ToString(), "tb_fbOrders");
+                if (order != null)
+                    labelOrderStatus.Text = order.status;
             }
             catch (SqlException ex)
             {
@@ -524,16 +626,13 @@ namespace FB_TRADE
                 }
 
                 //3. reShow
-                FrmOrderAdd newFrm = new FrmOrderAdd();
-                this.Hide();
-                newFrm.bAdd = false;
-                newFrm.curOrderId = curOrderId;
-                newFrm.curMarketFbId = curMarketFbId;
-                newFrm.curMarketFbAccount = curMarketFbAccount;
-                newFrm.curCustomerFbId = curCustomerFbId;
-                newFrm.MyInitFrm();
-                this.Close();
-                newFrm.Show();
+                MessageBox.Show("操作成功！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtOrderId.Text = curOrderId;
+                sb.Clear();
+                sb.AppendFormat("select from tb_fbOrders where orderId='{0}'", curOrderId);
+                FbOrderInfo order = (FbOrderInfo)db.GetObject(sb.ToString(), "tb_fbOrders");
+                if (order != null)
+                    labelOrderStatus.Text = order.status;
             }
             catch (SqlException ex)
             {
@@ -544,19 +643,5 @@ namespace FB_TRADE
                 MessageBox.Show(ex.Message, "程序异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        //1. Grath Shows
-
-        //2. Data Shows
-
-        //3. Operations
-
-        //4. Input Check
-
     }
 }

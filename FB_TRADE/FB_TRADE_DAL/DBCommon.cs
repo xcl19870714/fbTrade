@@ -390,6 +390,7 @@ namespace FB_Trade_DAL
                             goods.id = Convert.ToInt32(reader["id"]);
                             goods.orderId = Convert.ToString(reader["orderId"]);
                             goods.photo = (Byte[])(reader["photo"]); 
+                            goods.name = Convert.ToString(reader["name"]);
                             goods.color = Convert.ToString(reader["color"]);
                             goods.size = Convert.ToString(reader["size"]);
                             goods.price = Convert.ToString(reader["price"]);

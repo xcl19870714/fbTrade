@@ -349,7 +349,25 @@ namespace FB_TRADE
 
         private void btnOrderList_Click(object sender, EventArgs e)
         {
+            if (this.cbxUser.SelectedItem.ToString() == "子账号" || this.cbxFbAccount.SelectedItem.ToString() == "营销号")
+            {
+                MessageBox.Show("请先选择营销号！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.cbxFbAccount.Focus();
+                return;
+            }
 
+            FrmOrders frm = new FrmOrders();
+            this.AddPage(frm, "订单列表");
+
+            ListItem item = (ListItem)this.cbxFbAccount.SelectedItem;
+            frm.pFrmMain = this;
+            frm.bAdmin = this.bAdmin;
+            frm.curMarketFbId = item.Value;
+            frm.curMarketFbAccount = item.Text;
+
+            frm.MyInitFrm();
+            frm.Show();
+            frm.ListViewResize();
         }
 
         private void btnCustomerNotify_Click(object sender, EventArgs e)
