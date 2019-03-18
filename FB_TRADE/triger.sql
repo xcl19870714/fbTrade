@@ -1,8 +1,12 @@
-if (object_id('trg_tb_fbOrders_insert', 'tr') is not null)
-    drop trigger trg_tb_fbOrders_insert
-go
-create trigger trg_tb_fbOrders_insert
-on tb_fbOrders
+USE [fb_trade]
+GO
+/****** Object:  Trigger [dbo].[trg_tb_fbOrders_insert]    Script Date: 2019/3/18 23:10:46 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER trigger [dbo].[trg_tb_fbOrders_insert]
+on [dbo].[tb_fbOrders]
 instead of insert
 as
 	declare @marketFbId varchar(30), @userId int;
@@ -11,6 +15,7 @@ as
 	
 	declare @userIdStr varchar(20);
 	set @userIdStr = right('0000'+ cast(@userId as varchar(4)), 4)
+	print @userIdStr
 
 	/* get cur date string: 20190318 */
 	declare @timeNow datetime;
@@ -20,7 +25,8 @@ as
 	
 	/* get max order id in database */
 	declare @maxOrderId varchar(30), @nextOrderId varchar(30)
-	select @maxOrderId=max(orderId) from tb_fbOrders where marketFbid=@marketFbId
+	select @maxOrderId=max(orderId) from tb_fbOrders where marketFbId in (select fbId from tb_fbMarketAccounts where userId=@userId)
+	print @maxOrderId
 	
 	if @maxOrderId is null
 	begin
@@ -41,9 +47,10 @@ as
 			set @nextOrderId = @userIdStr + convert(Varchar(30),@tempBibInt)
 		end
 	end
+	print @nextOrderId
 
-	insert into tb_fbOrders (orderId,customerFbId,marketFbId,orderType,oriOrderId,createTime,lastEditTime,status,shippingAddress,shippingName,shippingPhone,shippingType,shippingNo,currency,totalPrice,paymentType,paymentNo,note) select @nextOrderId,customerFbId,marketFbId,orderType,oriOrderId,getdate(),getdate(),status,shippingAddress,shippingName,shippingPhone,shippingType,shippingNo,currency,totalPrice,paymentType,paymentNo,note from inserted;
-go
+	insert into tb_fbOrders (orderId,customerFbId,marketFbId,orderType,oriOrderId,createTime,lastEditTime,status,shippingAddress,shippingName,shippingPhone,shippingType,shippingFee,shippingNo,currency,totalPrice,paymentType,paymentNo,note) select @nextOrderId,customerFbId,marketFbId,orderType,oriOrderId,getdate(),getdate(),status,shippingAddress,shippingName,shippingPhone,shippingType,shippingFee,shippingNo,currency,totalPrice,paymentType,paymentNo,note from inserted;
+
 
 
 if (object_id('trg_tb_admins_update', 'tr') is not null)

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
 using System.Data.SqlClient;
 using FB_Trade_DAL;
 using FB_Trade_Models;
@@ -131,7 +132,7 @@ namespace FB_TRADE
                 if (txtGoods.Text.Trim() != "")
                     sb.AppendFormat(" and orderId in (select orderId from tb_fbOrdergoods where name like '%{0}%')", txtGoods.Text.Trim());
 
-                sb.AppendFormat(" and createTime between '{0}' and '{1}'", dateTimePickerBegin.Value.ToString("yyyy-MM-dd"), dateTimePickerEnd.Value.ToString("yyyy-MM-dd"));
+                //sb.AppendFormat(" and createTime between '{0}' and '{1}'", dateTimePickerBegin.Value.ToString("yyyy-MM-dd"), dateTimePickerEnd.Value.ToString("yyyy-MM-dd"));
 
                 if (ckbSave.Checked && ckbPriceNotConfirm.Checked && ckbNotShip.Checked && ckbShiped.Checked && ckbAdminDel.Checked && ckbSelfDel.Checked)
                 {
@@ -141,17 +142,17 @@ namespace FB_TRADE
                 {
                     sb.Append(" and (");
                     if (ckbSave.Checked)
-                        sb.AppendFormat(" status='未提交'");
+                        sb.Append(" status='未提交'");
                     if (ckbPriceNotConfirm.Checked)
-                        sb.AppendFormat(" or status='未确定金额'");
+                        sb.Append(" or status='未确定金额'");
                     if (ckbNotShip.Checked)
-                        sb.AppendFormat(" or status='未发货'");
+                        sb.Append(" or status='未发货'");
                     if (ckbShiped.Checked)
-                        sb.AppendFormat(" or status='已发货'");
+                        sb.Append(" or status='已发货'");
                     if (ckbAdminDel.Checked)
-                        sb.AppendFormat(" or status='管理员废弃单'");
+                        sb.Append(" or status='管理员废弃单'");
                     if (ckbSelfDel.Checked)
-                        sb.AppendFormat(" or status='自己删除单'");
+                        sb.Append(" or status='自己删除单'");
                     sb.Append(")");
                 }
 
@@ -201,9 +202,11 @@ namespace FB_TRADE
             FrmOrderAdd frm = new FrmOrderAdd();
             this.pFrmMain.AddPage(frm, "新增订单");
 
+            frm.bAdmin = this.bAdmin;
             frm.bAdd = true;
             frm.curMarketFbId = this.curMarketFbId;
             frm.curMarketFbAccount = curMarketFbAccount;
+            frm.pFrmMain = this.pFrmMain;
 
             frm.MyFrmInit();
             frm.Show();
@@ -218,6 +221,7 @@ namespace FB_TRADE
                 FrmOrderAdd frm = new FrmOrderAdd();
                 this.pFrmMain.AddPage(frm, "编辑订单");
 
+                frm.bAdmin = this.bAdmin;
                 frm.bAdd = false;
                 frm.curOrderId = info.Item.Text;
                 frm.curMarketFbId = this.curMarketFbId;
@@ -247,7 +251,7 @@ namespace FB_TRADE
                 {
                     sb.Clear();
                     sb.AppendFormat("update tb_fbOrders set status='{0}' where orderId='{1}'",
-                        "管理员废弃单", listViewOrders.CheckedItems[i].SubItems[0].Text);
+                       bAdmin ? "管理员废弃单":"自己删除单", listViewOrders.CheckedItems[i].SubItems[0].Text);
                     db.UpdateData(sb.ToString());
                 }
                 catch (SqlException ex)

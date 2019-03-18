@@ -243,6 +243,7 @@
             // 
             // cbxOrderType
             // 
+            this.cbxOrderType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxOrderType.FormattingEnabled = true;
             this.cbxOrderType.Location = new System.Drawing.Point(536, 16);
             this.cbxOrderType.Margin = new System.Windows.Forms.Padding(4);
@@ -370,7 +371,7 @@
             // 
             // txtPayType
             // 
-            this.txtPayType.Location = new System.Drawing.Point(550, 270);
+            this.txtPayType.Location = new System.Drawing.Point(578, 269);
             this.txtPayType.Margin = new System.Windows.Forms.Padding(4);
             this.txtPayType.Name = "txtPayType";
             this.txtPayType.Size = new System.Drawing.Size(118, 25);
@@ -378,7 +379,7 @@
             // 
             // txtCurrency
             // 
-            this.txtCurrency.Location = new System.Drawing.Point(220, 267);
+            this.txtCurrency.Location = new System.Drawing.Point(228, 266);
             this.txtCurrency.Margin = new System.Windows.Forms.Padding(4);
             this.txtCurrency.Name = "txtCurrency";
             this.txtCurrency.Size = new System.Drawing.Size(82, 25);
@@ -386,16 +387,16 @@
             // 
             // txtShipType
             // 
-            this.txtShipType.Location = new System.Drawing.Point(220, 230);
+            this.txtShipType.Location = new System.Drawing.Point(228, 230);
             this.txtShipType.Margin = new System.Windows.Forms.Padding(4);
             this.txtShipType.Name = "txtShipType";
-            this.txtShipType.Size = new System.Drawing.Size(82, 25);
+            this.txtShipType.Size = new System.Drawing.Size(84, 25);
             this.txtShipType.TabIndex = 25;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(329, 234);
+            this.label5.Location = new System.Drawing.Point(334, 234);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(46, 15);
@@ -414,17 +415,18 @@
             // 
             // cbxPayType
             // 
+            this.cbxPayType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxPayType.FormattingEnabled = true;
-            this.cbxPayType.Location = new System.Drawing.Point(470, 270);
+            this.cbxPayType.Location = new System.Drawing.Point(476, 270);
             this.cbxPayType.Margin = new System.Windows.Forms.Padding(4);
             this.cbxPayType.Name = "cbxPayType";
-            this.cbxPayType.Size = new System.Drawing.Size(68, 23);
+            this.cbxPayType.Size = new System.Drawing.Size(94, 23);
             this.cbxPayType.TabIndex = 23;
             this.cbxPayType.SelectedIndexChanged += new System.EventHandler(this.cbxPayType_SelectedIndexChanged);
             // 
             // txtPayNo
             // 
-            this.txtPayNo.Location = new System.Drawing.Point(804, 270);
+            this.txtPayNo.Location = new System.Drawing.Point(858, 271);
             this.txtPayNo.Margin = new System.Windows.Forms.Padding(4);
             this.txtPayNo.Name = "txtPayNo";
             this.txtPayNo.Size = new System.Drawing.Size(204, 25);
@@ -433,7 +435,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(698, 274);
+            this.label23.Location = new System.Drawing.Point(752, 275);
             this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(102, 15);
@@ -443,7 +445,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(327, 273);
+            this.label24.Location = new System.Drawing.Point(333, 273);
             this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(142, 15);
@@ -452,11 +454,12 @@
             // 
             // cbxCurrency
             // 
+            this.cbxCurrency.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxCurrency.FormattingEnabled = true;
             this.cbxCurrency.Location = new System.Drawing.Point(160, 267);
             this.cbxCurrency.Margin = new System.Windows.Forms.Padding(4);
             this.cbxCurrency.Name = "cbxCurrency";
-            this.cbxCurrency.Size = new System.Drawing.Size(52, 23);
+            this.cbxCurrency.Size = new System.Drawing.Size(60, 23);
             this.cbxCurrency.TabIndex = 18;
             this.cbxCurrency.SelectedIndexChanged += new System.EventHandler(this.cbxCurrency_SelectedIndexChanged);
             // 
@@ -490,7 +493,7 @@
             // 
             // txtShipFee
             // 
-            this.txtShipFee.Location = new System.Drawing.Point(376, 230);
+            this.txtShipFee.Location = new System.Drawing.Point(381, 230);
             this.txtShipFee.Margin = new System.Windows.Forms.Padding(4);
             this.txtShipFee.Name = "txtShipFee";
             this.txtShipFee.Size = new System.Drawing.Size(136, 25);
@@ -516,11 +519,12 @@
             // 
             // cbxShipType
             // 
+            this.cbxShipType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxShipType.FormattingEnabled = true;
             this.cbxShipType.Location = new System.Drawing.Point(160, 230);
             this.cbxShipType.Margin = new System.Windows.Forms.Padding(4);
             this.cbxShipType.Name = "cbxShipType";
-            this.cbxShipType.Size = new System.Drawing.Size(52, 23);
+            this.cbxShipType.Size = new System.Drawing.Size(60, 23);
             this.cbxShipType.TabIndex = 11;
             this.cbxShipType.SelectedIndexChanged += new System.EventHandler(this.cbxShipType_SelectedIndexChanged);
             // 
@@ -648,12 +652,13 @@
             // labelOrderStatus
             // 
             this.labelOrderStatus.AutoSize = true;
+            this.labelOrderStatus.ForeColor = System.Drawing.Color.Red;
             this.labelOrderStatus.Location = new System.Drawing.Point(1086, 18);
             this.labelOrderStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelOrderStatus.Name = "labelOrderStatus";
             this.labelOrderStatus.Size = new System.Drawing.Size(52, 15);
             this.labelOrderStatus.TabIndex = 32;
-            this.labelOrderStatus.Text = "未提交";
+            this.labelOrderStatus.Text = "未保存";
             // 
             // label28
             // 
