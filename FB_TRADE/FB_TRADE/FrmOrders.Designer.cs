@@ -31,10 +31,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmOrders));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnDelete = new System.Windows.Forms.ToolStripButton();
+            this.btnAbbandon = new System.Windows.Forms.ToolStripButton();
             this.btnAdd = new System.Windows.Forms.ToolStripButton();
             this.btnCopy = new System.Windows.Forms.ToolStripButton();
             this.labelCurMarketFbInfo = new System.Windows.Forms.ToolStripLabel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtCustomerName = new System.Windows.Forms.TextBox();
+            this.ckbSelfDel = new System.Windows.Forms.CheckBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.ckbAdminDel = new System.Windows.Forms.CheckBox();
             this.ckbShiped = new System.Windows.Forms.CheckBox();
@@ -52,10 +56,6 @@
             this.txtCustomerFbId = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.listViewOrders = new System.Windows.Forms.ListView();
-            this.ckbSelfDel = new System.Windows.Forms.CheckBox();
-            this.btnAbbandon = new System.Windows.Forms.ToolStripButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtCustomerName = new System.Windows.Forms.TextBox();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -88,6 +88,18 @@
             this.btnDelete.Text = "删除";
             this.btnDelete.ToolTipText = "删除";
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnAbbandon
+            // 
+            this.btnAbbandon.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnAbbandon.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnAbbandon.Image = ((System.Drawing.Image)(resources.GetObject("btnAbbandon.Image")));
+            this.btnAbbandon.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAbbandon.Margin = new System.Windows.Forms.Padding(0, 1, 3, 2);
+            this.btnAbbandon.Name = "btnAbbandon";
+            this.btnAbbandon.Size = new System.Drawing.Size(43, 24);
+            this.btnAbbandon.Text = "废弃";
+            this.btnAbbandon.Click += new System.EventHandler(this.btnAbbandon_Click);
             // 
             // btnAdd
             // 
@@ -145,6 +157,32 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1318, 125);
             this.panel1.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(294, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 15);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "客户昵称：";
+            // 
+            // txtCustomerName
+            // 
+            this.txtCustomerName.Location = new System.Drawing.Point(382, 14);
+            this.txtCustomerName.Name = "txtCustomerName";
+            this.txtCustomerName.Size = new System.Drawing.Size(169, 25);
+            this.txtCustomerName.TabIndex = 19;
+            // 
+            // ckbSelfDel
+            // 
+            this.ckbSelfDel.AutoSize = true;
+            this.ckbSelfDel.Location = new System.Drawing.Point(619, 53);
+            this.ckbSelfDel.Name = "ckbSelfDel";
+            this.ckbSelfDel.Size = new System.Drawing.Size(104, 19);
+            this.ckbSelfDel.TabIndex = 18;
+            this.ckbSelfDel.Text = "自己删除单";
+            this.ckbSelfDel.UseVisualStyleBackColor = true;
             // 
             // btnSearch
             // 
@@ -298,44 +336,6 @@
             this.listViewOrders.Size = new System.Drawing.Size(1318, 410);
             this.listViewOrders.TabIndex = 0;
             this.listViewOrders.UseCompatibleStateImageBehavior = false;
-            // 
-            // ckbSelfDel
-            // 
-            this.ckbSelfDel.AutoSize = true;
-            this.ckbSelfDel.Location = new System.Drawing.Point(619, 53);
-            this.ckbSelfDel.Name = "ckbSelfDel";
-            this.ckbSelfDel.Size = new System.Drawing.Size(104, 19);
-            this.ckbSelfDel.TabIndex = 18;
-            this.ckbSelfDel.Text = "自己删除单";
-            this.ckbSelfDel.UseVisualStyleBackColor = true;
-            // 
-            // btnAbbandon
-            // 
-            this.btnAbbandon.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.btnAbbandon.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnAbbandon.Image = ((System.Drawing.Image)(resources.GetObject("btnAbbandon.Image")));
-            this.btnAbbandon.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAbbandon.Margin = new System.Windows.Forms.Padding(0, 1, 3, 2);
-            this.btnAbbandon.Name = "btnAbbandon";
-            this.btnAbbandon.Size = new System.Drawing.Size(43, 24);
-            this.btnAbbandon.Text = "废弃";
-            this.btnAbbandon.Click += new System.EventHandler(this.btnAbbandon_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(294, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 15);
-            this.label1.TabIndex = 20;
-            this.label1.Text = "客户昵称：";
-            // 
-            // txtCustomerName
-            // 
-            this.txtCustomerName.Location = new System.Drawing.Point(382, 14);
-            this.txtCustomerName.Name = "txtCustomerName";
-            this.txtCustomerName.Size = new System.Drawing.Size(169, 25);
-            this.txtCustomerName.TabIndex = 19;
             // 
             // FrmOrders
             // 

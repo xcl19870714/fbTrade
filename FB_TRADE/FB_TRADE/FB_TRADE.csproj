@@ -119,6 +119,12 @@
     <Compile Include="FrmSelfInfoEdit.Designer.cs">
       <DependentUpon>FrmSelfInfoEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmTraceNotify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmTraceNotify.Designer.cs">
+      <DependentUpon>FrmTraceNotify.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmUserAdd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -176,6 +182,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSelfInfoEdit.resx">
       <DependentUpon>FrmSelfInfoEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmTraceNotify.resx">
+      <DependentUpon>FrmTraceNotify.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUserAdd.resx">
       <DependentUpon>FrmUserAdd.cs</DependentUpon>

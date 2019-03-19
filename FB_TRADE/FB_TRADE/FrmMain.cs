@@ -372,7 +372,23 @@ namespace FB_TRADE
 
         private void btnCustomerNotify_Click(object sender, EventArgs e)
         {
+            if (this.cbxUser.SelectedItem.ToString() == "子账号")
+            {
+                MessageBox.Show("请先选择子账号！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.cbxUser.Focus();
+                return;
+            }
 
+            FrmTraceNotify frm = new FrmTraceNotify();
+            this.AddPage(frm, "客户跟踪提醒");
+
+            ListItem item = (ListItem)this.cbxUser.SelectedItem;
+            frm.pFrmMain = this;
+            frm.curUserId = item.Value;
+
+            frm.MyInitFrm();
+            frm.Show();
+            frm.ListViewResize();
         }
     }
 }

@@ -132,7 +132,9 @@ namespace FB_TRADE
                 if (txtGoods.Text.Trim() != "")
                     sb.AppendFormat(" and orderId in (select orderId from tb_fbOrdergoods where name like '%{0}%')", txtGoods.Text.Trim());
 
-                //sb.AppendFormat(" and createTime between '{0}' and '{1}'", dateTimePickerBegin.Value.ToString("yyyy-MM-dd"), dateTimePickerEnd.Value.ToString("yyyy-MM-dd"));
+                DateTime begin = new DateTime(dateTimePickerBegin.Value.Year, dateTimePickerBegin.Value.Month, dateTimePickerBegin.Value.Day, 0, 0, 0);
+                DateTime end = new DateTime(dateTimePickerEnd.Value.Year, dateTimePickerEnd.Value.Month, dateTimePickerEnd.Value.Day, 23, 59, 59);
+                sb.AppendFormat(" and createTime between '{0}' and '{1}'", begin.ToString(), end.ToString());
 
                 if (ckbSave.Checked && ckbPriceNotConfirm.Checked && ckbNotShip.Checked && ckbShiped.Checked && ckbAdminDel.Checked && ckbSelfDel.Checked)
                 {
@@ -140,19 +142,19 @@ namespace FB_TRADE
                 }
                 else
                 {
-                    sb.Append(" and (");
+                    sb.Append(" and status in ('填充'");
                     if (ckbSave.Checked)
-                        sb.Append(" status='未提交'");
+                        sb.Append(",'未提交'");
                     if (ckbPriceNotConfirm.Checked)
-                        sb.Append(" or status='未确定金额'");
+                        sb.Append(",'未确定金额'");
                     if (ckbNotShip.Checked)
-                        sb.Append(" or status='未发货'");
+                        sb.Append(",'未发货'");
                     if (ckbShiped.Checked)
-                        sb.Append(" or status='已发货'");
+                        sb.Append(",'已发货'");
                     if (ckbAdminDel.Checked)
-                        sb.Append(" or status='管理员废弃单'");
+                        sb.Append(",'管理员废弃单'");
                     if (ckbSelfDel.Checked)
-                        sb.Append(" or status='自己删除单'");
+                        sb.Append(",'自己删除单'");
                     sb.Append(")");
                 }
 
