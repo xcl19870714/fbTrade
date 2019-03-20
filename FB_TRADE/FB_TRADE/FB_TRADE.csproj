@@ -59,6 +59,12 @@
     <Compile Include="FrmCustomers.Designer.cs">
       <DependentUpon>FrmCustomers.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmCustomerSearchTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCustomerSearchTool.Designer.cs">
+      <DependentUpon>FrmCustomerSearchTool.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmCustomerTrace.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,6 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmCustomers.resx">
       <DependentUpon>FrmCustomers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCustomerSearchTool.resx">
+      <DependentUpon>FrmCustomerSearchTool.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmCustomerTrace.resx">
       <DependentUpon>FrmCustomerTrace.cs</DependentUpon>

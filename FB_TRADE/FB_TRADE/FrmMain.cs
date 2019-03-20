@@ -390,5 +390,20 @@ namespace FB_TRADE
             frm.Show();
             frm.ListViewResize();
         }
+
+        private void btnSearchTool_Click(object sender, EventArgs e)
+        {
+            FrmCustomerSearchTool frm = new FrmCustomerSearchTool();
+
+            ListItem item = (ListItem)this.cbxFbAccount.SelectedItem;
+            frm.pFrmMain = this;
+            frm.curMarketFbId = item.Value;
+            frm.curMarketFbAccount = item.Text;
+
+            frm.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+
+            frm.MyFrmInit();
+            frm.Show();
+        }
     }
 }

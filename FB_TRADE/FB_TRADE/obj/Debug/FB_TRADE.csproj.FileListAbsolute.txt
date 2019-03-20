@@ -104,3 +104,4 @@ D:\fbTrade\FB_TRADE\FB_TRADE\bin\Debug\FB_TRADE_DAL.pdb
 D:\fbTrade\FB_TRADE\FB_TRADE\bin\Debug\FB_Trade_Models.pdb
 D:\fbTrade\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.csproj.CopyComplete
 E:\fbTrade\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.FrmTraceNotify.resources
+E:\fbTrade\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.FrmCustomerSearchTool.resources

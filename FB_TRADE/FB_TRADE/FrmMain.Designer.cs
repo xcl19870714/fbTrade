@@ -34,8 +34,6 @@
             this.cbxUser = new System.Windows.Forms.ToolStripComboBox();
             this.cbxFbAccount = new System.Windows.Forms.ToolStripComboBox();
             this.lblTools = new System.Windows.Forms.ToolStripLabel();
-            this.btnSelfInfoChg = new System.Windows.Forms.ToolStripButton();
-            this.btnUserList = new System.Windows.Forms.ToolStripButton();
             this.panelMain = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.btnFbAccountList = new System.Windows.Forms.Button();
@@ -49,6 +47,9 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.btnSelfInfoChg = new System.Windows.Forms.ToolStripButton();
+            this.btnUserList = new System.Windows.Forms.ToolStripButton();
+            this.btnSearchTool = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -66,7 +67,8 @@
             this.cbxFbAccount,
             this.lblTools,
             this.btnSelfInfoChg,
-            this.btnUserList});
+            this.btnUserList,
+            this.btnSearchTool});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1266, 28);
@@ -95,26 +97,6 @@
             this.lblTools.Name = "lblTools";
             this.lblTools.Size = new System.Drawing.Size(43, 25);
             this.lblTools.Text = "工具:";
-            // 
-            // btnSelfInfoChg
-            // 
-            this.btnSelfInfoChg.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnSelfInfoChg.Image = ((System.Drawing.Image)(resources.GetObject("btnSelfInfoChg.Image")));
-            this.btnSelfInfoChg.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnSelfInfoChg.Name = "btnSelfInfoChg";
-            this.btnSelfInfoChg.Size = new System.Drawing.Size(137, 25);
-            this.btnSelfInfoChg.Text = " 【个人信息修改】";
-            this.btnSelfInfoChg.Click += new System.EventHandler(this.btnSelfInfoChg_Click);
-            // 
-            // btnUserList
-            // 
-            this.btnUserList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnUserList.Image = ((System.Drawing.Image)(resources.GetObject("btnUserList.Image")));
-            this.btnUserList.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnUserList.Name = "btnUserList";
-            this.btnUserList.Size = new System.Drawing.Size(122, 25);
-            this.btnUserList.Text = " 【子账号管理】";
-            this.btnUserList.Click += new System.EventHandler(this.btnUserList_Click);
             // 
             // panelMain
             // 
@@ -262,6 +244,36 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // btnSelfInfoChg
+            // 
+            this.btnSelfInfoChg.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnSelfInfoChg.Image = ((System.Drawing.Image)(resources.GetObject("btnSelfInfoChg.Image")));
+            this.btnSelfInfoChg.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSelfInfoChg.Name = "btnSelfInfoChg";
+            this.btnSelfInfoChg.Size = new System.Drawing.Size(137, 25);
+            this.btnSelfInfoChg.Text = " 【个人信息修改】";
+            this.btnSelfInfoChg.Click += new System.EventHandler(this.btnSelfInfoChg_Click);
+            // 
+            // btnUserList
+            // 
+            this.btnUserList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnUserList.Image = ((System.Drawing.Image)(resources.GetObject("btnUserList.Image")));
+            this.btnUserList.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnUserList.Name = "btnUserList";
+            this.btnUserList.Size = new System.Drawing.Size(122, 25);
+            this.btnUserList.Text = " 【子账号管理】";
+            this.btnUserList.Click += new System.EventHandler(this.btnUserList_Click);
+            // 
+            // btnSearchTool
+            // 
+            this.btnSearchTool.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnSearchTool.Image = ((System.Drawing.Image)(resources.GetObject("btnSearchTool.Image")));
+            this.btnSearchTool.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSearchTool.Name = "btnSearchTool";
+            this.btnSearchTool.Size = new System.Drawing.Size(137, 25);
+            this.btnSearchTool.Text = " 【客户快速搜索】";
+            this.btnSearchTool.Click += new System.EventHandler(this.btnSearchTool_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -307,5 +319,6 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripButton btnSearchTool;
     }
 }
