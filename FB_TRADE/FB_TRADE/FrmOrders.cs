@@ -34,6 +34,7 @@ namespace FB_TRADE
             this.listViewOrders.View = System.Windows.Forms.View.Details;
             this.listViewOrders.FullRowSelect = true;
             listViewOrders.CheckBoxes = true;
+            this.listViewOrders.GridLines = true;
 
             this.listViewOrders.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listViewOrders_MouseDoubleClick);
             this.listViewOrders.ListViewItemSorter = new ListViewColumnSorter();
@@ -97,7 +98,7 @@ namespace FB_TRADE
         }
 
         //2. 数据加载
-        public void MyInitFrm()
+        public void MyFrmInit()
         {
             if (!bAdmin)
             {

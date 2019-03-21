@@ -33,6 +33,7 @@ namespace FB_TRADE
             this.listViewTrace.View = System.Windows.Forms.View.Details;
             this.listViewTrace.FullRowSelect = true;
             listViewTrace.CheckBoxes = true;
+            this.listViewTrace.GridLines = true;
 
             this.listViewTrace.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listViewTrace_MouseDoubleClick);
             this.listViewTrace.ListViewItemSorter = new ListViewColumnSorter();
@@ -106,7 +107,7 @@ namespace FB_TRADE
         }
 
         //2. 数据加载
-        public void MyInitFrm()
+        public void MyFrmInit()
         {
             InitNotifyLabel();
             LoadListViewDB();
@@ -250,7 +251,7 @@ namespace FB_TRADE
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            MyInitFrm();
+            MyFrmInit();
         }
     }
 }

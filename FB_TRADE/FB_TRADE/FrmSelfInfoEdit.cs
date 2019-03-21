@@ -18,7 +18,7 @@ namespace FB_TRADE
         public bool bAdmin;
         public AdminInfo adminInfo;
         public UserInfo userInfo;
-        public FrmMain pFrm;
+        public FrmMain pFrmMain;
 
         private DBCommon db = new DBCommon();
         private string sqlStr = string.Empty;
@@ -29,7 +29,7 @@ namespace FB_TRADE
             InitializeComponent();
         }
 		
-        public void MyInitFrm()
+        public void MyFrmInit()
         {
             this.txtName.Text = (bAdmin ? adminInfo.Name : userInfo.Name);
         }
@@ -50,16 +50,16 @@ namespace FB_TRADE
                     MessageBox.Show("信息修改成功！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     if (bAdmin)
                     {
-                        pFrm.adminInfo.Name = txtName.Text.Trim();
-                        pFrm.adminInfo.Pwd = txtNewPwd.Text.Trim();
+                        pFrmMain.adminInfo.Name = txtName.Text.Trim();
+                        pFrmMain.adminInfo.Pwd = txtNewPwd.Text.Trim();
                     }
                     else
                     {
-                        pFrm.userInfo.Name = txtName.Text.Trim();
-                        pFrm.userInfo.Pwd = txtNewPwd.Text.Trim();
+                        pFrmMain.userInfo.Name = txtName.Text.Trim();
+                        pFrmMain.userInfo.Pwd = txtNewPwd.Text.Trim();
                     }
 
-                    pFrm.ShowWelLabel();
+                    pFrmMain.ShowWelLabel();
                     this.Close();
                 }
                 else

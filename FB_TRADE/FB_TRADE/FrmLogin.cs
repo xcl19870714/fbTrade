@@ -18,22 +18,26 @@ namespace FB_TRADE
         private DBCommon db = new DBCommon();
         private StringBuilder sb = new StringBuilder();
 
-		//1. Shows
+		//1. 界面构造
         public frm_login()
         {
             InitializeComponent();
+            MyComponentInit();
+        }
+
+        private void MyComponentInit()
+        {
             this.cbxRole.Items.Clear();
             this.cbxRole.Items.Add("普通用户");
             this.cbxRole.Items.Add("管理员");
-            cbxRole.SelectedIndex = cbxRole.Items.IndexOf("管理员");
+            cbxRole.SelectedIndex = 0;
         }
 
-		//2. Operations
+		//2. 操作
         private void btnLogin_Click(object sender, EventArgs e)
         {
             try
             {
-                //输入检查
                 if (!CheckInput())
                     return;
 
@@ -42,7 +46,8 @@ namespace FB_TRADE
                 Object obj = null;
 
                 sb.Clear();
-                sb.AppendFormat("select * from {0} where name='{1}' and pwd='{2}'", tb, txtLoginName.Text.Trim(), txtLoginPwd.Text.Trim());
+                sb.AppendFormat("select * from {0} where name='{1}' and pwd='{2}'", 
+                    tb, txtLoginName.Text.Trim(), txtLoginPwd.Text.Trim());
                 if ((obj = db.GetObject(sb.ToString(), tb)) == null)
                 {
                     sb.Clear();
@@ -67,7 +72,7 @@ namespace FB_TRADE
                         frm.adminInfo = (AdminInfo)obj;
                     else
                         frm.userInfo = (UserInfo)obj;
-                    frm.MyInitFrm();
+                    frm.MyFrmInit();
 
                     this.Hide();
                     frm.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -100,7 +105,7 @@ namespace FB_TRADE
             }
         }
 
-		//3. Input Check
+		//3. 输入检查
         private bool CheckInput()
         {
             if (this.txtLoginName.Text.Trim().Equals(string.Empty))

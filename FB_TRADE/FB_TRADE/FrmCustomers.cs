@@ -31,6 +31,7 @@ namespace FB_TRADE
             this.listViewCustomers.View = System.Windows.Forms.View.Details;
             this.listViewCustomers.FullRowSelect = true;
             listViewCustomers.CheckBoxes = true;
+            this.listViewCustomers.GridLines = true;
 
             this.listViewCustomers.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listViewCustomers_MouseDoubleClick);
             this.listViewCustomers.ListViewItemSorter = new ListViewColumnSorter();
@@ -114,7 +115,7 @@ namespace FB_TRADE
         }
 
         //2. 数据加载
-        public void MyInitFrm()
+        public void MyFrmInit()
         {
             if (!bAdmin)
                 btnDelete.Visible = false;

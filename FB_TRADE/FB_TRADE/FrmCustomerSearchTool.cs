@@ -41,6 +41,7 @@ namespace FB_TRADE
 
             this.listViewResult.View = System.Windows.Forms.View.Details;
             this.listViewResult.FullRowSelect = true;
+            listViewResult.GridLines = true;
 
             this.listViewResult.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listViewResult_MouseDoubleClick);
 

@@ -26,29 +26,18 @@ namespace FB_TRADE
         private StringBuilder sb = new StringBuilder();
         private const int CLOSE_SIZE = 12;
 
-        //1. Graph Shows
+        //1. 构造界面
         public FrmMain()
         {
             InitializeComponent();
+            MyComponentInit();
+        }
+
+        private void MyComponentInit()
+        {
             SetBtnListCenter();
             InitTabControl();
             tabControlMain.Controls.Clear();
-        }
-
-        public void AddPage(Form frm, string pageTitle)
-        {
-            frm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            frm.TopLevel = false;
-            frm.Dock = DockStyle.Fill;
-            frm.WindowState = FormWindowState.Maximized;//如果windowState设置为最大化，添加到tabPage中时，winform不会显示出来
-
-            TabPage tabPage = new System.Windows.Forms.TabPage();
-            tabPage.Controls.Add(frm);
-            tabPage.Text = pageTitle;
-
-            this.tabControlMain.Controls.Add(tabPage);
-            this.tabControlMain.SelectedTab = tabPage;
-            this.tabindex_show = this.tabControlMain.SelectedIndex;
         }
 
         private void SetBtnListCenter()
@@ -166,8 +155,24 @@ namespace FB_TRADE
             }
         }
 
-        //2. Data Shows
-        public void MyInitFrm()
+        public void AddPage(Form frm, string pageTitle)
+        {
+            frm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            frm.TopLevel = false;
+            frm.Dock = DockStyle.Fill;
+            frm.WindowState = FormWindowState.Maximized;//如果windowState设置为最大化，添加到tabPage中时，winform不会显示出来
+
+            TabPage tabPage = new System.Windows.Forms.TabPage();
+            tabPage.Controls.Add(frm);
+            tabPage.Text = pageTitle;
+
+            this.tabControlMain.Controls.Add(tabPage);
+            this.tabControlMain.SelectedTab = tabPage;
+            this.tabindex_show = this.tabControlMain.SelectedIndex;
+        }
+
+        //2. 数据加载
+        public void MyFrmInit()
         {
             InitUserCbx();
             InitMarketFbCbx();
@@ -176,8 +181,8 @@ namespace FB_TRADE
             if (!bAdmin)
             {
                 this.cbxUser.Visible = false;
-                this.cbxFbAccount.Size = new System.Drawing.Size(160, 28);
                 this.btnUserList.Visible = false;
+                this.cbxFbAccount.Size = new System.Drawing.Size(160, 28);
             }
         }
 
@@ -257,7 +262,7 @@ namespace FB_TRADE
             InitMarketFbCbx();
         }
 
-        //2. Operations
+        //2. 操作
         //=================================================================================================//
         private void btnSelfInfoChg_Click(object sender, EventArgs e)
         {
@@ -266,10 +271,10 @@ namespace FB_TRADE
             frm.bAdmin = this.bAdmin;
             frm.adminInfo = this.adminInfo;
             frm.userInfo = this.userInfo;
-            frm.pFrm = this;
+            frm.pFrmMain = this;
             frm.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 
-            frm.MyInitFrm();
+            frm.MyFrmInit();
             frm.ShowDialog();
         }
 
@@ -278,11 +283,11 @@ namespace FB_TRADE
             FrmUserList frm = new FrmUserList();
             this.AddPage(frm, "子账号列表");
 
-            frm.adminId = Convert.ToString(this.adminInfo.Id);
+            frm.curAdminId = Convert.ToString(this.adminInfo.Id);
 
-            frm.MyInitFrm();
             frm.Show();
             frm.ListViewResize();
+            frm.MyFrmInit();
         }
 
         private void btnFbAccountList_Click(object sender, EventArgs e)
@@ -296,9 +301,9 @@ namespace FB_TRADE
             ListItem coSelected = (ListItem)this.cbxUser.SelectedItem;
             frm.curUserId = coSelected.Value;
 
-            frm.MyInitFrm();
             frm.Show();
             frm.ListViewResize();
+            frm.MyFrmInit();
         }
 
         private void btnCustomerControl_Click(object sender, EventArgs e)
@@ -319,9 +324,10 @@ namespace FB_TRADE
             frm.curMarketFbId = item.Value;
             frm.curMarketFbAccount = item.Text;
 
-            frm.MyInitFrm();
             frm.Show();
             frm.ListViewResize();
+            frm.MyFrmInit();
+
         }
 
         private void btnGroupControl_Click(object sender, EventArgs e)
@@ -342,9 +348,9 @@ namespace FB_TRADE
             frm.curMarketFbId = item.Value;
             frm.curMarketFbAccount = item.Text;
 
-            frm.MyInitFrm();
             frm.Show();
             frm.ListViewResize();
+            frm.MyFrmInit();
         }
 
         private void btnOrderList_Click(object sender, EventArgs e)
@@ -365,9 +371,9 @@ namespace FB_TRADE
             frm.curMarketFbId = item.Value;
             frm.curMarketFbAccount = item.Text;
 
-            frm.MyInitFrm();
             frm.Show();
             frm.ListViewResize();
+            frm.MyFrmInit();
         }
 
         private void btnCustomerNotify_Click(object sender, EventArgs e)
@@ -386,13 +392,20 @@ namespace FB_TRADE
             frm.pFrmMain = this;
             frm.curUserId = item.Value;
 
-            frm.MyInitFrm();
             frm.Show();
             frm.ListViewResize();
+            frm.MyFrmInit();
         }
 
         private void btnSearchTool_Click(object sender, EventArgs e)
         {
+            if (this.cbxUser.SelectedItem.ToString() == "子账号" || this.cbxFbAccount.SelectedItem.ToString() == "营销号")
+            {
+                MessageBox.Show("请先选择营销号！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.cbxFbAccount.Focus();
+                return;
+            }
+
             FrmCustomerSearchTool frm = new FrmCustomerSearchTool();
 
             ListItem item = (ListItem)this.cbxFbAccount.SelectedItem;

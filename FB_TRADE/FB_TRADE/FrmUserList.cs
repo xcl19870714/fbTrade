@@ -15,7 +15,7 @@ namespace FB_TRADE
 {
     public partial class FrmUserList : Form
     {
-        public string adminId;
+        public string curAdminId;
 		
         private DBCommon db = new DBCommon();
         private string sqlStr = string.Empty;
@@ -28,6 +28,7 @@ namespace FB_TRADE
             this.listViewUser.View = System.Windows.Forms.View.Details;
             this.listViewUser.FullRowSelect = true;
             listViewUser.CheckBoxes = true;
+            this.listViewUser.GridLines = true;
 
             this.listViewUser.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listViewUser_MouseDoubleClick);
             this.listViewUser.ListViewItemSorter = new ListViewColumnSorter();
@@ -70,7 +71,7 @@ namespace FB_TRADE
             }
         }
 
-        public void MyInitFrm()
+        public void MyFrmInit()
         {
             LoadListViewDB();
         }
@@ -82,7 +83,7 @@ namespace FB_TRADE
                 listViewUser.Items.Clear();
                 ListViewResize();
 
-                sqlStr = "select * from tb_users where adminId='" + adminId + "'";
+                sqlStr = "select * from tb_users where adminId='" + curAdminId + "'";
                 List<UserInfo> userList = (List<UserInfo>)db.GetList(sqlStr, "tb_users");
                 foreach (var user in userList)
                 {
@@ -110,7 +111,7 @@ namespace FB_TRADE
         {
             FrmUserAdd frm = new FrmUserAdd();
 
-            frm.adminId = this.adminId;
+            frm.adminId = this.curAdminId;
             frm.pFrm = this;
             frm.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             frm.ShowDialog();
@@ -126,7 +127,7 @@ namespace FB_TRADE
                 frm.curId = info.Item.Text;
                 frm.pFrm = this;
                 frm.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-                frm.MyInitFrm();
+                frm.MyFrmInit();
                 frm.ShowDialog();
             }
         }

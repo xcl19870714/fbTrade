@@ -34,6 +34,9 @@
             this.cbxUser = new System.Windows.Forms.ToolStripComboBox();
             this.cbxFbAccount = new System.Windows.Forms.ToolStripComboBox();
             this.lblTools = new System.Windows.Forms.ToolStripLabel();
+            this.btnSelfInfoChg = new System.Windows.Forms.ToolStripButton();
+            this.btnUserList = new System.Windows.Forms.ToolStripButton();
+            this.btnSearchTool = new System.Windows.Forms.ToolStripButton();
             this.panelMain = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.btnFbAccountList = new System.Windows.Forms.Button();
@@ -47,9 +50,6 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.btnSelfInfoChg = new System.Windows.Forms.ToolStripButton();
-            this.btnUserList = new System.Windows.Forms.ToolStripButton();
-            this.btnSearchTool = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -98,6 +98,36 @@
             this.lblTools.Size = new System.Drawing.Size(43, 25);
             this.lblTools.Text = "工具:";
             // 
+            // btnSelfInfoChg
+            // 
+            this.btnSelfInfoChg.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnSelfInfoChg.Image = ((System.Drawing.Image)(resources.GetObject("btnSelfInfoChg.Image")));
+            this.btnSelfInfoChg.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSelfInfoChg.Name = "btnSelfInfoChg";
+            this.btnSelfInfoChg.Size = new System.Drawing.Size(137, 25);
+            this.btnSelfInfoChg.Text = " 【个人信息修改】";
+            this.btnSelfInfoChg.Click += new System.EventHandler(this.btnSelfInfoChg_Click);
+            // 
+            // btnUserList
+            // 
+            this.btnUserList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnUserList.Image = ((System.Drawing.Image)(resources.GetObject("btnUserList.Image")));
+            this.btnUserList.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnUserList.Name = "btnUserList";
+            this.btnUserList.Size = new System.Drawing.Size(122, 25);
+            this.btnUserList.Text = " 【子账号管理】";
+            this.btnUserList.Click += new System.EventHandler(this.btnUserList_Click);
+            // 
+            // btnSearchTool
+            // 
+            this.btnSearchTool.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnSearchTool.Image = ((System.Drawing.Image)(resources.GetObject("btnSearchTool.Image")));
+            this.btnSearchTool.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSearchTool.Name = "btnSearchTool";
+            this.btnSearchTool.Size = new System.Drawing.Size(137, 25);
+            this.btnSearchTool.Text = " 【客户快速搜索】";
+            this.btnSearchTool.Click += new System.EventHandler(this.btnSearchTool_Click);
+            // 
             // panelMain
             // 
             this.panelMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -140,7 +170,7 @@
             this.btnFbAccountList.Location = new System.Drawing.Point(17, 50);
             this.btnFbAccountList.Name = "btnFbAccountList";
             this.btnFbAccountList.Size = new System.Drawing.Size(126, 30);
-            this.btnFbAccountList.TabIndex = 28;
+            this.btnFbAccountList.TabIndex = 1;
             this.btnFbAccountList.Text = "营销号列表";
             this.btnFbAccountList.UseVisualStyleBackColor = true;
             this.btnFbAccountList.Click += new System.EventHandler(this.btnFbAccountList_Click);
@@ -151,7 +181,7 @@
             this.labelHello.Location = new System.Drawing.Point(4, 10);
             this.labelHello.Name = "labelHello";
             this.labelHello.Size = new System.Drawing.Size(31, 15);
-            this.labelHello.TabIndex = 27;
+            this.labelHello.TabIndex = 0;
             this.labelHello.Text = "Hi,";
             // 
             // btnOldCustomers
@@ -159,7 +189,7 @@
             this.btnOldCustomers.Location = new System.Drawing.Point(17, 304);
             this.btnOldCustomers.Name = "btnOldCustomers";
             this.btnOldCustomers.Size = new System.Drawing.Size(126, 30);
-            this.btnOldCustomers.TabIndex = 26;
+            this.btnOldCustomers.TabIndex = 6;
             this.btnOldCustomers.Text = "老客户营销";
             this.btnOldCustomers.UseVisualStyleBackColor = true;
             // 
@@ -168,7 +198,7 @@
             this.btnOrderList.Location = new System.Drawing.Point(17, 252);
             this.btnOrderList.Name = "btnOrderList";
             this.btnOrderList.Size = new System.Drawing.Size(126, 30);
-            this.btnOrderList.TabIndex = 25;
+            this.btnOrderList.TabIndex = 5;
             this.btnOrderList.Text = "订单列表";
             this.btnOrderList.UseVisualStyleBackColor = true;
             this.btnOrderList.Click += new System.EventHandler(this.btnOrderList_Click);
@@ -178,7 +208,7 @@
             this.btnGroupControl.Location = new System.Drawing.Point(17, 201);
             this.btnGroupControl.Name = "btnGroupControl";
             this.btnGroupControl.Size = new System.Drawing.Size(126, 30);
-            this.btnGroupControl.TabIndex = 24;
+            this.btnGroupControl.TabIndex = 4;
             this.btnGroupControl.Text = "群组管理";
             this.btnGroupControl.UseVisualStyleBackColor = true;
             this.btnGroupControl.Click += new System.EventHandler(this.btnGroupControl_Click);
@@ -188,7 +218,7 @@
             this.btnCustomerControl.Location = new System.Drawing.Point(17, 150);
             this.btnCustomerControl.Name = "btnCustomerControl";
             this.btnCustomerControl.Size = new System.Drawing.Size(126, 30);
-            this.btnCustomerControl.TabIndex = 23;
+            this.btnCustomerControl.TabIndex = 3;
             this.btnCustomerControl.Text = "客户管理";
             this.btnCustomerControl.UseVisualStyleBackColor = true;
             this.btnCustomerControl.Click += new System.EventHandler(this.btnCustomerControl_Click);
@@ -198,7 +228,7 @@
             this.btnCustomerNotify.Location = new System.Drawing.Point(17, 101);
             this.btnCustomerNotify.Name = "btnCustomerNotify";
             this.btnCustomerNotify.Size = new System.Drawing.Size(126, 30);
-            this.btnCustomerNotify.TabIndex = 22;
+            this.btnCustomerNotify.TabIndex = 2;
             this.btnCustomerNotify.Text = "客户跟踪提醒";
             this.btnCustomerNotify.UseVisualStyleBackColor = true;
             this.btnCustomerNotify.Click += new System.EventHandler(this.btnCustomerNotify_Click);
@@ -243,36 +273,6 @@
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // btnSelfInfoChg
-            // 
-            this.btnSelfInfoChg.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnSelfInfoChg.Image = ((System.Drawing.Image)(resources.GetObject("btnSelfInfoChg.Image")));
-            this.btnSelfInfoChg.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnSelfInfoChg.Name = "btnSelfInfoChg";
-            this.btnSelfInfoChg.Size = new System.Drawing.Size(137, 25);
-            this.btnSelfInfoChg.Text = " 【个人信息修改】";
-            this.btnSelfInfoChg.Click += new System.EventHandler(this.btnSelfInfoChg_Click);
-            // 
-            // btnUserList
-            // 
-            this.btnUserList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnUserList.Image = ((System.Drawing.Image)(resources.GetObject("btnUserList.Image")));
-            this.btnUserList.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnUserList.Name = "btnUserList";
-            this.btnUserList.Size = new System.Drawing.Size(122, 25);
-            this.btnUserList.Text = " 【子账号管理】";
-            this.btnUserList.Click += new System.EventHandler(this.btnUserList_Click);
-            // 
-            // btnSearchTool
-            // 
-            this.btnSearchTool.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnSearchTool.Image = ((System.Drawing.Image)(resources.GetObject("btnSearchTool.Image")));
-            this.btnSearchTool.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnSearchTool.Name = "btnSearchTool";
-            this.btnSearchTool.Size = new System.Drawing.Size(137, 25);
-            this.btnSearchTool.Text = " 【客户快速搜索】";
-            this.btnSearchTool.Click += new System.EventHandler(this.btnSearchTool_Click);
             // 
             // FrmMain
             // 

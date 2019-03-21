@@ -68,7 +68,6 @@ D:\VC#_APP\FB_TRADE\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.FrmMarketFbEdit.resourc
 D:\VC#_APP\FB_TRADE\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.FrmCustomers.resources
 E:\fbTrade\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.FrmCustomerAdd.resources
 E:\fbTrade\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.FrmCustomers.resources
-E:\fbTrade\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.FrmCustomerTrace.resources
 E:\fbTrade\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.FrmGroupAdd.resources
 E:\fbTrade\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.FrmGroups.resources
 E:\fbTrade\FB_TRADE\FB_TRADE\obj\Debug\FB_TRADE.FrmOrderAdd.resources

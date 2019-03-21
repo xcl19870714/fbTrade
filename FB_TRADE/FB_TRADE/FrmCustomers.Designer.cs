@@ -108,6 +108,7 @@
             // listViewCustomers
             // 
             this.listViewCustomers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listViewCustomers.GridLines = true;
             this.listViewCustomers.Location = new System.Drawing.Point(0, 0);
             this.listViewCustomers.Margin = new System.Windows.Forms.Padding(4);
             this.listViewCustomers.Name = "listViewCustomers";

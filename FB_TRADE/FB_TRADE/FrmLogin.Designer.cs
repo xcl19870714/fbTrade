@@ -44,7 +44,7 @@
             this.txtLoginName.MaxLength = 29;
             this.txtLoginName.Name = "txtLoginName";
             this.txtLoginName.Size = new System.Drawing.Size(121, 25);
-            this.txtLoginName.TabIndex = 0;
+            this.txtLoginName.TabIndex = 1;
             this.txtLoginName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPwd_KeyDown);
             // 
             // lbl_name
@@ -53,7 +53,7 @@
             this.lbl_name.Location = new System.Drawing.Point(160, 94);
             this.lbl_name.Name = "lbl_name";
             this.lbl_name.Size = new System.Drawing.Size(67, 15);
-            this.lbl_name.TabIndex = 1;
+            this.lbl_name.TabIndex = 0;
             this.lbl_name.Text = "用户名：";
             // 
             // lbl_pwd

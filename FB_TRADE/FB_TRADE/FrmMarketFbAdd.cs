@@ -34,7 +34,7 @@ namespace FB_TRADE
         }
 
         //1. Show
-        public void MyInitFrm()
+        public void MyFrmInit()
         {
             try
             { 

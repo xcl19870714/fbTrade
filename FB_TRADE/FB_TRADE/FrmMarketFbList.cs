@@ -30,6 +30,7 @@ namespace FB_TRADE
             this.listViewMarketFbs.View = System.Windows.Forms.View.Details;
             this.listViewMarketFbs.FullRowSelect = true;
             listViewMarketFbs.CheckBoxes = true;
+            this.listViewMarketFbs.GridLines = true;
 
             this.listViewMarketFbs.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listViewMarketFbs_MouseDoubleClick);
             this.listViewMarketFbs.ListViewItemSorter = new ListViewColumnSorter();
@@ -85,7 +86,7 @@ namespace FB_TRADE
         }
 
         //2. MyShow
-        public void MyInitFrm()
+        public void MyFrmInit()
         {
             if (!bAdmin)
                 btnDelete.Visible = false;
@@ -143,7 +144,7 @@ namespace FB_TRADE
             frm.pFrm = this;
             frm.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             frm.Text = "新增营销号";
-            frm.MyInitFrm();
+            frm.MyFrmInit();
             frm.ShowDialog();
         }
 
@@ -161,7 +162,7 @@ namespace FB_TRADE
                 frm.pFrm = this;
                 frm.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
                 frm.Text = "编辑营销号";
-                frm.MyInitFrm();
+                frm.MyFrmInit();
                 frm.ShowDialog();
             }
         }

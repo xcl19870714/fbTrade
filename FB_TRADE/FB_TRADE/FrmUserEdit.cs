@@ -27,7 +27,7 @@ namespace FB_TRADE
             InitializeComponent();
         }
 
-        public void MyInitFrm()
+        public void MyFrmInit()
         {
             try
             {
