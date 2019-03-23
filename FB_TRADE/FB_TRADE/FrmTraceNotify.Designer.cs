@@ -42,8 +42,8 @@
             // 
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnUpdate,
             this.btnCopyUrl,
+            this.btnUpdate,
             this.labelNotifyInfo,
             this.labelTraceCount});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -54,6 +54,7 @@
             // 
             // btnUpdate
             // 
+            this.btnUpdate.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.btnUpdate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.btnUpdate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Image")));
             this.btnUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;

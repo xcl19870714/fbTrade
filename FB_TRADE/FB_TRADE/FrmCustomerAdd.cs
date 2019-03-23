@@ -19,6 +19,8 @@ namespace FB_TRADE
 		public string curCustomerFbId = string.Empty;
         public string curMarketFbId = string.Empty;
         public string curMarketFbAccount = string.Empty;
+        public FrmMain pFrmMain;
+        public bool bAdmin = false;
 
         private DBCommon db = new DBCommon();
         private StringBuilder sb = new StringBuilder();
@@ -27,7 +29,11 @@ namespace FB_TRADE
         public FrmCustomerAdd()
         {
             InitializeComponent();
+            MyComponentInit();
+        }
 
+        private void MyComponentInit()
+        {
             this.cbxShipType.Items.Clear();
             this.cbxShipType.Items.Add("好友");
             this.cbxShipType.Items.Add("非好友");
@@ -42,6 +48,7 @@ namespace FB_TRADE
 
             this.listViewContacts.View = System.Windows.Forms.View.Details;
             this.listViewContacts.FullRowSelect = true;
+            this.listViewContacts.GridLines = true;
 
             this.listViewContacts.ListViewItemSorter = new ListViewColumnSorter();
             this.listViewContacts.ColumnClick += new ColumnClickEventHandler(ListViewHelper.ListView_ColumnClick);
@@ -78,7 +85,7 @@ namespace FB_TRADE
         //2. 数据加载
         public void MyFrmInit()
         {
-            labelCurMarketFb.Text = "当前营销号：" + curMarketFbAccount;
+            labelCurMarketFb.Text = curMarketFbAccount;
 
             if (!bAdd)
             {
@@ -86,6 +93,8 @@ namespace FB_TRADE
                 InitCustomerShipFrm();
                 InitOrdersNumLabel();
                 InitContactsListView();
+
+                this.btnGet.Visible = false;
             }
         }
         public bool InitCustomerFrm(string fbId, string fbUrl)
@@ -352,9 +361,10 @@ namespace FB_TRADE
 
                 //保存成功
                 MessageBox.Show("保存成功！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                InitFriendShipsText(txtFbId.Text.Trim());
-                txtNewContact.Text = "";
-                InitContactsListView();
+                this.bAdd = false;
+                this.curCustomerFbId = this.txtFbId.Text.Trim();
+                this.txtNewContact.Text = "";
+                this.MyFrmInit();
             }
             catch (SqlException ex)
             {
@@ -393,5 +403,26 @@ namespace FB_TRADE
             return true;
         }
 
+        private void btnNewOrder_Click(object sender, EventArgs e)
+        {
+            if (txtFbId.Text.Trim() == "" || this.bAdd)
+            {
+                MessageBox.Show("客户不存在，请先添加客户！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            FrmOrderAdd frm = new FrmOrderAdd();
+            this.pFrmMain.AddPage(frm, "新增订单");
+
+            frm.bAdmin = this.bAdmin;
+            frm.bAdd = true;
+            frm.curMarketFbId = this.curMarketFbId;
+            frm.curMarketFbAccount = curMarketFbAccount;
+            frm.curCustomerFbId = txtFbId.Text.Trim();
+            frm.pFrmMain = this.pFrmMain;
+
+            frm.MyFrmInit();
+            frm.Show();
+        }
     }
 }

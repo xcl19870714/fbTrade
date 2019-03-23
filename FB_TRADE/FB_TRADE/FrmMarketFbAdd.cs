@@ -28,12 +28,13 @@ namespace FB_TRADE
         private DBCommon db = new DBCommon();
         private string sqlStr;
 
+        //1. 界面构造
         public FrmMarketFbAdd()
         {
             InitializeComponent();
         }
 
-        //1. Show
+        //2. 数据加载
         public void MyFrmInit()
         {
             try
@@ -41,8 +42,7 @@ namespace FB_TRADE
                 // Init user id cbx
                 if (bAdmin)
                 {
-                    sqlStr = "select * from tb_users where adminId=" + curAdminId;
-                    List<UserInfo> userList = (List<UserInfo>)db.GetList(sqlStr, "tb_users");
+                    List<UserInfo> userList = (List<UserInfo>)db.GetList("select * from tb_users where adminId=" + curAdminId, "tb_users");
 
                     this.cbxUserId.Items.Add(new ListItem("请选择", "0"));
                     foreach (var user in userList)
@@ -52,8 +52,7 @@ namespace FB_TRADE
                 }
                 else
                 {
-                    sqlStr = "select * from tb_users where id=" + curUserId;
-                    UserInfo user = (UserInfo)db.GetObject(sqlStr, "tb_users");
+                    UserInfo user = (UserInfo)db.GetObject("select * from tb_users where id=" + curUserId, "tb_users");
                     this.cbxUserId.Items.Add(new ListItem(user.Name, Convert.ToString(user.Id)));
                 }
                 
@@ -93,7 +92,7 @@ namespace FB_TRADE
             }
         }
 
-        //2. operations
+        //2. 操作
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             if (!CheckInput())
@@ -173,7 +172,6 @@ namespace FB_TRADE
         {
             this.Close();
         }
-
 
         //3. Input Check
         private bool CheckInput()

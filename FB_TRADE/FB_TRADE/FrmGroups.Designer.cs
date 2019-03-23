@@ -53,6 +53,7 @@
             this.cbxOnSale = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -65,6 +66,7 @@
             this.btnDelete,
             this.btnAdd,
             this.btnCopy,
+            this.toolStripLabel1,
             this.labelCurMarketFbInfo});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -110,6 +112,7 @@
             // 
             // labelCurMarketFbInfo
             // 
+            this.labelCurMarketFbInfo.ForeColor = System.Drawing.Color.Red;
             this.labelCurMarketFbInfo.Name = "labelCurMarketFbInfo";
             this.labelCurMarketFbInfo.Size = new System.Drawing.Size(99, 24);
             this.labelCurMarketFbInfo.Text = "当前营销号：";
@@ -138,7 +141,7 @@
             this.label2.Location = new System.Drawing.Point(25, 19);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 15);
-            this.label2.TabIndex = 2;
+            this.label2.TabIndex = 0;
             this.label2.Text = "状态：";
             // 
             // label3
@@ -147,7 +150,7 @@
             this.label3.Location = new System.Drawing.Point(25, 49);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(52, 15);
-            this.label3.TabIndex = 3;
+            this.label3.TabIndex = 7;
             this.label3.Text = "备注：";
             // 
             // ckbJoin
@@ -156,7 +159,7 @@
             this.ckbJoin.Location = new System.Drawing.Point(92, 19);
             this.ckbJoin.Name = "ckbJoin";
             this.ckbJoin.Size = new System.Drawing.Size(89, 19);
-            this.ckbJoin.TabIndex = 5;
+            this.ckbJoin.TabIndex = 1;
             this.ckbJoin.Text = "申请加入";
             this.ckbJoin.UseVisualStyleBackColor = true;
             // 
@@ -166,7 +169,7 @@
             this.ckbAccept.Location = new System.Drawing.Point(197, 19);
             this.ckbAccept.Name = "ckbAccept";
             this.ckbAccept.Size = new System.Drawing.Size(89, 19);
-            this.ckbAccept.TabIndex = 6;
+            this.ckbAccept.TabIndex = 2;
             this.ckbAccept.Text = "申请通过";
             this.ckbAccept.UseVisualStyleBackColor = true;
             // 
@@ -176,7 +179,7 @@
             this.ckbReject.Location = new System.Drawing.Point(307, 19);
             this.ckbReject.Name = "ckbReject";
             this.ckbReject.Size = new System.Drawing.Size(89, 19);
-            this.ckbReject.TabIndex = 7;
+            this.ckbReject.TabIndex = 3;
             this.ckbReject.Text = "申请被拒";
             this.ckbReject.UseVisualStyleBackColor = true;
             // 
@@ -186,7 +189,7 @@
             this.cbxTweeting.Location = new System.Drawing.Point(422, 19);
             this.cbxTweeting.Name = "cbxTweeting";
             this.cbxTweeting.Size = new System.Drawing.Size(89, 19);
-            this.cbxTweeting.TabIndex = 8;
+            this.cbxTweeting.TabIndex = 4;
             this.cbxTweeting.Text = "发贴状态";
             this.cbxTweeting.UseVisualStyleBackColor = true;
             // 
@@ -196,7 +199,7 @@
             this.cbxQuit.Location = new System.Drawing.Point(528, 19);
             this.cbxQuit.Name = "cbxQuit";
             this.cbxQuit.Size = new System.Drawing.Size(89, 19);
-            this.cbxQuit.TabIndex = 9;
+            this.cbxQuit.TabIndex = 5;
             this.cbxQuit.Text = "退出群组";
             this.cbxQuit.UseVisualStyleBackColor = true;
             // 
@@ -206,7 +209,7 @@
             this.ckbAbbandon.Location = new System.Drawing.Point(638, 19);
             this.ckbAbbandon.Name = "ckbAbbandon";
             this.ckbAbbandon.Size = new System.Drawing.Size(59, 19);
-            this.ckbAbbandon.TabIndex = 10;
+            this.ckbAbbandon.TabIndex = 6;
             this.ckbAbbandon.Text = "不要";
             this.ckbAbbandon.UseVisualStyleBackColor = true;
             // 
@@ -216,7 +219,7 @@
             this.cbxIm.Location = new System.Drawing.Point(92, 50);
             this.cbxIm.Name = "cbxIm";
             this.cbxIm.Size = new System.Drawing.Size(59, 19);
-            this.cbxIm.TabIndex = 11;
+            this.cbxIm.TabIndex = 8;
             this.cbxIm.Text = "重要";
             this.cbxIm.UseVisualStyleBackColor = true;
             // 
@@ -226,7 +229,7 @@
             this.cbxNormal.Location = new System.Drawing.Point(157, 49);
             this.cbxNormal.Name = "cbxNormal";
             this.cbxNormal.Size = new System.Drawing.Size(59, 19);
-            this.cbxNormal.TabIndex = 12;
+            this.cbxNormal.TabIndex = 9;
             this.cbxNormal.Text = "一般";
             this.cbxNormal.UseVisualStyleBackColor = true;
             // 
@@ -236,7 +239,7 @@
             this.cbxCheated.Location = new System.Drawing.Point(227, 50);
             this.cbxCheated.Name = "cbxCheated";
             this.cbxCheated.Size = new System.Drawing.Size(104, 19);
-            this.cbxCheated.TabIndex = 13;
+            this.cbxCheated.TabIndex = 10;
             this.cbxCheated.Text = "认为是骗子";
             this.cbxCheated.UseVisualStyleBackColor = true;
             // 
@@ -246,7 +249,7 @@
             this.ckbAttacked.Location = new System.Drawing.Point(337, 50);
             this.ckbAttacked.Name = "ckbAttacked";
             this.ckbAttacked.Size = new System.Drawing.Size(74, 19);
-            this.ckbAttacked.TabIndex = 14;
+            this.ckbAttacked.TabIndex = 11;
             this.ckbAttacked.Text = "被攻击";
             this.ckbAttacked.UseVisualStyleBackColor = true;
             // 
@@ -256,7 +259,7 @@
             this.cbxLocalTrade.Location = new System.Drawing.Point(423, 49);
             this.cbxLocalTrade.Name = "cbxLocalTrade";
             this.cbxLocalTrade.Size = new System.Drawing.Size(104, 19);
-            this.cbxLocalTrade.TabIndex = 15;
+            this.cbxLocalTrade.TabIndex = 12;
             this.cbxLocalTrade.Text = "想当地交易";
             this.cbxLocalTrade.UseVisualStyleBackColor = true;
             // 
@@ -266,7 +269,7 @@
             this.cbxUnTrust.Location = new System.Drawing.Point(543, 49);
             this.cbxUnTrust.Name = "cbxUnTrust";
             this.cbxUnTrust.Size = new System.Drawing.Size(74, 19);
-            this.cbxUnTrust.TabIndex = 16;
+            this.cbxUnTrust.TabIndex = 13;
             this.cbxUnTrust.Text = "不信任";
             this.cbxUnTrust.UseVisualStyleBackColor = true;
             // 
@@ -276,7 +279,7 @@
             this.cbxOnSale.Location = new System.Drawing.Point(623, 49);
             this.cbxOnSale.Name = "cbxOnSale";
             this.cbxOnSale.Size = new System.Drawing.Size(74, 19);
-            this.cbxOnSale.TabIndex = 17;
+            this.cbxOnSale.TabIndex = 14;
             this.cbxOnSale.Text = "做活动";
             this.cbxOnSale.UseVisualStyleBackColor = true;
             // 
@@ -285,7 +288,7 @@
             this.button1.Location = new System.Drawing.Point(725, 32);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 32);
-            this.button1.TabIndex = 21;
+            this.button1.TabIndex = 15;
             this.button1.Text = "搜索";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -312,7 +315,13 @@
             this.panel1.Location = new System.Drawing.Point(0, 27);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1071, 89);
-            this.panel1.TabIndex = 1;
+            this.panel1.TabIndex = 0;
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(99, 24);
+            this.toolStripLabel1.Text = "当前营销号：";
             // 
             // FrmGroups
             // 
@@ -360,5 +369,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStripButton btnDelete;
         private System.Windows.Forms.ToolStripButton btnAdd;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
     }
 }

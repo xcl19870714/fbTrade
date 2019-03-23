@@ -24,7 +24,11 @@ namespace FB_TRADE
         public FrmUserList()
         {
             InitializeComponent();
+            MyComponentInit();
+        }
 
+        private void MyComponentInit()
+        {
             this.listViewUser.View = System.Windows.Forms.View.Details;
             this.listViewUser.FullRowSelect = true;
             listViewUser.CheckBoxes = true;
@@ -33,7 +37,7 @@ namespace FB_TRADE
             this.listViewUser.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listViewUser_MouseDoubleClick);
             this.listViewUser.ListViewItemSorter = new ListViewColumnSorter();
             this.listViewUser.ColumnClick += new ColumnClickEventHandler(ListViewHelper.ListView_ColumnClick);
-            
+
             listViewUser.Clear();
             listViewUser.Columns.Add("ID", listViewUser.Width / 100 * 20, HorizontalAlignment.Left);
             listViewUser.Columns.Add("账号", listViewUser.Width / 100 * 20, HorizontalAlignment.Left);
@@ -81,7 +85,6 @@ namespace FB_TRADE
             try
             { 
                 listViewUser.Items.Clear();
-                ListViewResize();
 
                 sqlStr = "select * from tb_users where adminId='" + curAdminId + "'";
                 List<UserInfo> userList = (List<UserInfo>)db.GetList(sqlStr, "tb_users");

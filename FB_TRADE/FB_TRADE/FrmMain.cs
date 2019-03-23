@@ -63,7 +63,6 @@ namespace FB_TRADE
 
         private void InitTabControl() //在选项卡上添加关闭按钮
         {
-
             this.tabControlMain.DrawMode = TabDrawMode.OwnerDrawFixed;
             this.tabControlMain.Padding = new System.Drawing.Point(CLOSE_SIZE, CLOSE_SIZE);
             this.tabControlMain.DrawItem += new DrawItemEventHandler(this.TabControlMain_DrawItem1);
@@ -272,6 +271,7 @@ namespace FB_TRADE
             frm.adminInfo = this.adminInfo;
             frm.userInfo = this.userInfo;
             frm.pFrmMain = this;
+
             frm.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 
             frm.MyFrmInit();
@@ -297,9 +297,13 @@ namespace FB_TRADE
 
             frm.bAdmin = this.bAdmin;
             if (bAdmin)
+            {
                 frm.curAdminId = Convert.ToString(this.adminInfo.Id);
+                frm.curAdminName = this.adminInfo.Name;
+            }
             ListItem coSelected = (ListItem)this.cbxUser.SelectedItem;
             frm.curUserId = coSelected.Value;
+            frm.curUserName = coSelected.Text;
 
             frm.Show();
             frm.ListViewResize();
@@ -328,6 +332,50 @@ namespace FB_TRADE
             frm.ListViewResize();
             frm.MyFrmInit();
 
+        }
+
+        private void btnCustomerNotify_Click(object sender, EventArgs e)
+        {
+            if (this.cbxUser.SelectedItem.ToString() == "子账号")
+            {
+                MessageBox.Show("请先选择子账号！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.cbxUser.Focus();
+                return;
+            }
+
+            FrmTraceNotify frm = new FrmTraceNotify();
+            this.AddPage(frm, "客户跟踪提醒");
+
+            ListItem item = (ListItem)this.cbxUser.SelectedItem;
+            frm.pFrmMain = this;
+            frm.curUserId = item.Value;
+
+            frm.Show();
+            frm.ListViewResize();
+            frm.MyFrmInit();
+        }
+
+        private void btnSearchTool_Click(object sender, EventArgs e)
+        {
+            if (this.cbxUser.SelectedItem.ToString() == "子账号" || this.cbxFbAccount.SelectedItem.ToString() == "营销号")
+            {
+                MessageBox.Show("请先选择营销号！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.cbxFbAccount.Focus();
+                return;
+            }
+
+            FrmCustomerSearchTool frm = new FrmCustomerSearchTool();
+
+            ListItem item = (ListItem)this.cbxFbAccount.SelectedItem;
+            frm.pFrmMain = this;
+            frm.bAdmin = this.bAdmin;
+            frm.curMarketFbId = item.Value;
+            frm.curMarketFbAccount = item.Text;
+
+            frm.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+
+            frm.MyFrmInit();
+            frm.Show();
         }
 
         private void btnGroupControl_Click(object sender, EventArgs e)
@@ -374,49 +422,6 @@ namespace FB_TRADE
             frm.Show();
             frm.ListViewResize();
             frm.MyFrmInit();
-        }
-
-        private void btnCustomerNotify_Click(object sender, EventArgs e)
-        {
-            if (this.cbxUser.SelectedItem.ToString() == "子账号")
-            {
-                MessageBox.Show("请先选择子账号！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.cbxUser.Focus();
-                return;
-            }
-
-            FrmTraceNotify frm = new FrmTraceNotify();
-            this.AddPage(frm, "客户跟踪提醒");
-
-            ListItem item = (ListItem)this.cbxUser.SelectedItem;
-            frm.pFrmMain = this;
-            frm.curUserId = item.Value;
-
-            frm.Show();
-            frm.ListViewResize();
-            frm.MyFrmInit();
-        }
-
-        private void btnSearchTool_Click(object sender, EventArgs e)
-        {
-            if (this.cbxUser.SelectedItem.ToString() == "子账号" || this.cbxFbAccount.SelectedItem.ToString() == "营销号")
-            {
-                MessageBox.Show("请先选择营销号！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.cbxFbAccount.Focus();
-                return;
-            }
-
-            FrmCustomerSearchTool frm = new FrmCustomerSearchTool();
-
-            ListItem item = (ListItem)this.cbxFbAccount.SelectedItem;
-            frm.pFrmMain = this;
-            frm.curMarketFbId = item.Value;
-            frm.curMarketFbAccount = item.Text;
-
-            frm.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-
-            frm.MyFrmInit();
-            frm.Show();
         }
     }
 }

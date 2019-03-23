@@ -27,7 +27,11 @@ namespace FB_TRADE
         public FrmGroups()
         {
             InitializeComponent();
+            MyComponentInit();
+        }
 
+        private void MyComponentInit()
+        {
             this.listViewGroups.View = System.Windows.Forms.View.Details;
             this.listViewGroups.FullRowSelect = true;
             listViewGroups.CheckBoxes = true;
@@ -54,7 +58,6 @@ namespace FB_TRADE
             listViewGroups.Columns.Add("最后发推", 100, HorizontalAlignment.Left);
             listViewGroups.Columns.Add("更新时间", 100, HorizontalAlignment.Left);
         }
-
         public void ListViewResize()
         {
             foreach (ColumnHeader item in listViewGroups.Columns)
@@ -216,7 +219,7 @@ namespace FB_TRADE
         private void btnAdd_Click(object sender, EventArgs e)
         {
             FrmGroupAdd frm = new FrmGroupAdd();
-            this.pFrmMain.AddPage(frm, "新增/编辑群组");
+            this.pFrmMain.AddPage(frm, "新增群组");
 
             frm.bAdd = true;
             frm.curMarketFbId = this.curMarketFbId;

@@ -52,7 +52,7 @@
             this.label1.Location = new System.Drawing.Point(214, 169);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(103, 15);
-            this.label1.TabIndex = 0;
+            this.label1.TabIndex = 6;
             this.label1.Text = "facebook ID:";
             // 
             // txtFbId
@@ -60,7 +60,7 @@
             this.txtFbId.Location = new System.Drawing.Point(361, 166);
             this.txtFbId.Name = "txtFbId";
             this.txtFbId.Size = new System.Drawing.Size(219, 25);
-            this.txtFbId.TabIndex = 1;
+            this.txtFbId.TabIndex = 7;
             // 
             // txtFbAccount
             // 
@@ -99,7 +99,7 @@
             this.txtName.Location = new System.Drawing.Point(361, 25);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(219, 25);
-            this.txtName.TabIndex = 7;
+            this.txtName.TabIndex = 1;
             // 
             // label4
             // 
@@ -107,7 +107,7 @@
             this.label4.Location = new System.Drawing.Point(244, 28);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 15);
-            this.label4.TabIndex = 6;
+            this.label4.TabIndex = 0;
             this.label4.Text = "昵称：";
             // 
             // txtFbUrl
@@ -178,7 +178,7 @@
             this.btnCancel.Location = new System.Drawing.Point(466, 415);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 16;
+            this.btnCancel.TabIndex = 15;
             this.btnCancel.Text = "取消";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);

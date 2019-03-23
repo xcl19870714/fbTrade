@@ -92,6 +92,7 @@
             this.label26 = new System.Windows.Forms.Label();
             this.txtNote = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.panel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -128,7 +129,7 @@
             this.txtCity.Name = "txtCity";
             this.txtCity.ReadOnly = true;
             this.txtCity.Size = new System.Drawing.Size(149, 25);
-            this.txtCity.TabIndex = 17;
+            this.txtCity.TabIndex = 9;
             // 
             // label7
             // 
@@ -137,7 +138,7 @@
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(52, 15);
-            this.label7.TabIndex = 16;
+            this.label7.TabIndex = 8;
             this.label7.Text = "城市：";
             // 
             // txtCountry
@@ -147,7 +148,7 @@
             this.txtCountry.Name = "txtCountry";
             this.txtCountry.ReadOnly = true;
             this.txtCountry.Size = new System.Drawing.Size(149, 25);
-            this.txtCountry.TabIndex = 15;
+            this.txtCountry.TabIndex = 7;
             // 
             // label6
             // 
@@ -156,7 +157,7 @@
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(52, 15);
-            this.label6.TabIndex = 14;
+            this.label6.TabIndex = 6;
             this.label6.Text = "国家：";
             // 
             // btnCheckCustomerExist
@@ -164,7 +165,7 @@
             this.btnCheckCustomerExist.Location = new System.Drawing.Point(341, 32);
             this.btnCheckCustomerExist.Name = "btnCheckCustomerExist";
             this.btnCheckCustomerExist.Size = new System.Drawing.Size(75, 30);
-            this.btnCheckCustomerExist.TabIndex = 13;
+            this.btnCheckCustomerExist.TabIndex = 3;
             this.btnCheckCustomerExist.Text = "检测";
             this.btnCheckCustomerExist.UseVisualStyleBackColor = true;
             this.btnCheckCustomerExist.Click += new System.EventHandler(this.btnCheckCustomerExist_Click);
@@ -176,7 +177,7 @@
             this.txtCustomerName.Name = "txtCustomerName";
             this.txtCustomerName.ReadOnly = true;
             this.txtCustomerName.Size = new System.Drawing.Size(149, 25);
-            this.txtCustomerName.TabIndex = 12;
+            this.txtCustomerName.TabIndex = 5;
             // 
             // label4
             // 
@@ -185,7 +186,7 @@
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 15);
-            this.label4.TabIndex = 11;
+            this.label4.TabIndex = 4;
             this.label4.Text = "昵称：";
             // 
             // txtCustomerId
@@ -200,15 +201,17 @@
             // 
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel1,
             this.labelCurMarketFbInfo});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1369, 25);
-            this.toolStrip1.TabIndex = 10;
+            this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // labelCurMarketFbInfo
             // 
+            this.labelCurMarketFbInfo.ForeColor = System.Drawing.Color.Red;
             this.labelCurMarketFbInfo.Name = "labelCurMarketFbInfo";
             this.labelCurMarketFbInfo.Size = new System.Drawing.Size(99, 22);
             this.labelCurMarketFbInfo.Text = "当前营销号：";
@@ -229,7 +232,7 @@
             this.txtOriOrderId.Margin = new System.Windows.Forms.Padding(4);
             this.txtOriOrderId.Name = "txtOriOrderId";
             this.txtOriOrderId.Size = new System.Drawing.Size(228, 25);
-            this.txtOriOrderId.TabIndex = 9;
+            this.txtOriOrderId.TabIndex = 6;
             // 
             // label15
             // 
@@ -238,7 +241,7 @@
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(82, 15);
-            this.label15.TabIndex = 8;
+            this.label15.TabIndex = 5;
             this.label15.Text = "原始单号：";
             // 
             // cbxOrderType
@@ -249,7 +252,7 @@
             this.cbxOrderType.Margin = new System.Windows.Forms.Padding(4);
             this.cbxOrderType.Name = "cbxOrderType";
             this.cbxOrderType.Size = new System.Drawing.Size(132, 23);
-            this.cbxOrderType.TabIndex = 7;
+            this.cbxOrderType.TabIndex = 4;
             // 
             // label14
             // 
@@ -258,7 +261,7 @@
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(82, 15);
-            this.label14.TabIndex = 6;
+            this.label14.TabIndex = 3;
             this.label14.Text = "订单类型：";
             // 
             // label11
@@ -304,7 +307,7 @@
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1371, 53);
-            this.panel2.TabIndex = 1;
+            this.panel2.TabIndex = 0;
             // 
             // panel4
             // 
@@ -332,7 +335,7 @@
             this.panel4.Margin = new System.Windows.Forms.Padding(4);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1371, 311);
-            this.panel4.TabIndex = 3;
+            this.panel4.TabIndex = 2;
             // 
             // dataGridViewGoods
             // 
@@ -347,7 +350,7 @@
             this.dataGridViewGoods.Name = "dataGridViewGoods";
             this.dataGridViewGoods.RowTemplate.Height = 27;
             this.dataGridViewGoods.Size = new System.Drawing.Size(1318, 181);
-            this.dataGridViewGoods.TabIndex = 28;
+            this.dataGridViewGoods.TabIndex = 1;
             // 
             // Column1
             // 
@@ -375,7 +378,7 @@
             this.txtPayType.Margin = new System.Windows.Forms.Padding(4);
             this.txtPayType.Name = "txtPayType";
             this.txtPayType.Size = new System.Drawing.Size(118, 25);
-            this.txtPayType.TabIndex = 27;
+            this.txtPayType.TabIndex = 15;
             // 
             // txtCurrency
             // 
@@ -383,7 +386,7 @@
             this.txtCurrency.Margin = new System.Windows.Forms.Padding(4);
             this.txtCurrency.Name = "txtCurrency";
             this.txtCurrency.Size = new System.Drawing.Size(82, 25);
-            this.txtCurrency.TabIndex = 26;
+            this.txtCurrency.TabIndex = 12;
             // 
             // txtShipType
             // 
@@ -391,7 +394,7 @@
             this.txtShipType.Margin = new System.Windows.Forms.Padding(4);
             this.txtShipType.Name = "txtShipType";
             this.txtShipType.Size = new System.Drawing.Size(84, 25);
-            this.txtShipType.TabIndex = 25;
+            this.txtShipType.TabIndex = 3;
             // 
             // label5
             // 
@@ -400,7 +403,7 @@
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(46, 15);
-            this.label5.TabIndex = 24;
+            this.label5.TabIndex = 4;
             this.label5.Text = "Fee：";
             // 
             // label3
@@ -410,7 +413,7 @@
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(82, 15);
-            this.label3.TabIndex = 10;
+            this.label3.TabIndex = 15;
             this.label3.Text = "商品信息：";
             // 
             // cbxPayType
@@ -421,7 +424,7 @@
             this.cbxPayType.Margin = new System.Windows.Forms.Padding(4);
             this.cbxPayType.Name = "cbxPayType";
             this.cbxPayType.Size = new System.Drawing.Size(94, 23);
-            this.cbxPayType.TabIndex = 23;
+            this.cbxPayType.TabIndex = 14;
             this.cbxPayType.SelectedIndexChanged += new System.EventHandler(this.cbxPayType_SelectedIndexChanged);
             // 
             // txtPayNo
@@ -430,7 +433,7 @@
             this.txtPayNo.Margin = new System.Windows.Forms.Padding(4);
             this.txtPayNo.Name = "txtPayNo";
             this.txtPayNo.Size = new System.Drawing.Size(204, 25);
-            this.txtPayNo.TabIndex = 22;
+            this.txtPayNo.TabIndex = 17;
             // 
             // label23
             // 
@@ -439,7 +442,7 @@
             this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(102, 15);
-            this.label23.TabIndex = 21;
+            this.label23.TabIndex = 16;
             this.label23.Text = "Payment No：";
             // 
             // label24
@@ -449,7 +452,7 @@
             this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(142, 15);
-            this.label24.TabIndex = 19;
+            this.label24.TabIndex = 13;
             this.label24.Text = "Type Of Payment：";
             // 
             // cbxCurrency
@@ -460,7 +463,7 @@
             this.cbxCurrency.Margin = new System.Windows.Forms.Padding(4);
             this.cbxCurrency.Name = "cbxCurrency";
             this.cbxCurrency.Size = new System.Drawing.Size(60, 23);
-            this.cbxCurrency.TabIndex = 18;
+            this.cbxCurrency.TabIndex = 11;
             this.cbxCurrency.SelectedIndexChanged += new System.EventHandler(this.cbxCurrency_SelectedIndexChanged);
             // 
             // label25
@@ -470,7 +473,7 @@
             this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(86, 15);
-            this.label25.TabIndex = 17;
+            this.label25.TabIndex = 10;
             this.label25.Text = "Currency：";
             // 
             // txtPayAmount
@@ -479,7 +482,7 @@
             this.txtPayAmount.Margin = new System.Windows.Forms.Padding(4);
             this.txtPayAmount.Name = "txtPayAmount";
             this.txtPayAmount.Size = new System.Drawing.Size(180, 25);
-            this.txtPayAmount.TabIndex = 16;
+            this.txtPayAmount.TabIndex = 9;
             // 
             // label22
             // 
@@ -488,7 +491,7 @@
             this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(134, 15);
-            this.label22.TabIndex = 15;
+            this.label22.TabIndex = 8;
             this.label22.Text = "Payment Amount：";
             // 
             // txtShipFee
@@ -497,7 +500,7 @@
             this.txtShipFee.Margin = new System.Windows.Forms.Padding(4);
             this.txtShipFee.Name = "txtShipFee";
             this.txtShipFee.Size = new System.Drawing.Size(136, 25);
-            this.txtShipFee.TabIndex = 14;
+            this.txtShipFee.TabIndex = 5;
             // 
             // txtTrackingNo
             // 
@@ -505,7 +508,7 @@
             this.txtTrackingNo.Margin = new System.Windows.Forms.Padding(4);
             this.txtTrackingNo.Name = "txtTrackingNo";
             this.txtTrackingNo.Size = new System.Drawing.Size(215, 25);
-            this.txtTrackingNo.TabIndex = 13;
+            this.txtTrackingNo.TabIndex = 7;
             // 
             // label20
             // 
@@ -514,7 +517,7 @@
             this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(110, 15);
-            this.label20.TabIndex = 12;
+            this.label20.TabIndex = 6;
             this.label20.Text = "Tracking No：";
             // 
             // cbxShipType
@@ -525,7 +528,7 @@
             this.cbxShipType.Margin = new System.Windows.Forms.Padding(4);
             this.cbxShipType.Name = "cbxShipType";
             this.cbxShipType.Size = new System.Drawing.Size(60, 23);
-            this.cbxShipType.TabIndex = 11;
+            this.cbxShipType.TabIndex = 2;
             this.cbxShipType.SelectedIndexChanged += new System.EventHandler(this.cbxShipType_SelectedIndexChanged);
             // 
             // label21
@@ -535,7 +538,7 @@
             this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(126, 15);
-            this.label21.TabIndex = 10;
+            this.label21.TabIndex = 1;
             this.label21.Text = "Shipping Type：";
             // 
             // panel5
@@ -553,7 +556,7 @@
             this.panel5.Margin = new System.Windows.Forms.Padding(4);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1371, 188);
-            this.panel5.TabIndex = 4;
+            this.panel5.TabIndex = 3;
             // 
             // chkbSetDefaultAddress
             // 
@@ -561,7 +564,7 @@
             this.chkbSetDefaultAddress.Location = new System.Drawing.Point(36, 165);
             this.chkbSetDefaultAddress.Name = "chkbSetDefaultAddress";
             this.chkbSetDefaultAddress.Size = new System.Drawing.Size(194, 19);
-            this.chkbSetDefaultAddress.TabIndex = 23;
+            this.chkbSetDefaultAddress.TabIndex = 7;
             this.chkbSetDefaultAddress.Text = "设为此客户默认收货地址";
             this.chkbSetDefaultAddress.UseVisualStyleBackColor = true;
             // 
@@ -572,7 +575,7 @@
             this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(199, 15);
-            this.label19.TabIndex = 22;
+            this.label19.TabIndex = 0;
             this.label19.Text = "THE SHIPPING INFORMATION";
             // 
             // txtShippingAddress
@@ -582,7 +585,7 @@
             this.txtShippingAddress.Multiline = true;
             this.txtShippingAddress.Name = "txtShippingAddress";
             this.txtShippingAddress.Size = new System.Drawing.Size(1223, 76);
-            this.txtShippingAddress.TabIndex = 21;
+            this.txtShippingAddress.TabIndex = 6;
             // 
             // label16
             // 
@@ -591,7 +594,7 @@
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(78, 15);
-            this.label16.TabIndex = 20;
+            this.label16.TabIndex = 5;
             this.label16.Text = "ADDRESS：";
             // 
             // txtShippingPhone
@@ -600,7 +603,7 @@
             this.txtShippingPhone.Margin = new System.Windows.Forms.Padding(4);
             this.txtShippingPhone.Name = "txtShippingPhone";
             this.txtShippingPhone.Size = new System.Drawing.Size(497, 25);
-            this.txtShippingPhone.TabIndex = 19;
+            this.txtShippingPhone.TabIndex = 4;
             // 
             // label17
             // 
@@ -609,7 +612,7 @@
             this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(86, 15);
-            this.label17.TabIndex = 18;
+            this.label17.TabIndex = 3;
             this.label17.Text = "PHONE NO：";
             // 
             // txtShippingName
@@ -618,7 +621,7 @@
             this.txtShippingName.Margin = new System.Windows.Forms.Padding(4);
             this.txtShippingName.Name = "txtShippingName";
             this.txtShippingName.Size = new System.Drawing.Size(360, 25);
-            this.txtShippingName.TabIndex = 17;
+            this.txtShippingName.TabIndex = 2;
             // 
             // label18
             // 
@@ -627,7 +630,7 @@
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(54, 15);
-            this.label18.TabIndex = 16;
+            this.label18.TabIndex = 1;
             this.label18.Text = "NAME：";
             // 
             // panel6
@@ -647,7 +650,7 @@
             this.panel6.Margin = new System.Windows.Forms.Padding(4);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(1371, 135);
-            this.panel6.TabIndex = 5;
+            this.panel6.TabIndex = 4;
             // 
             // labelOrderStatus
             // 
@@ -657,7 +660,7 @@
             this.labelOrderStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelOrderStatus.Name = "labelOrderStatus";
             this.labelOrderStatus.Size = new System.Drawing.Size(52, 15);
-            this.labelOrderStatus.TabIndex = 32;
+            this.labelOrderStatus.TabIndex = 6;
             this.labelOrderStatus.Text = "未保存";
             // 
             // label28
@@ -667,7 +670,7 @@
             this.label28.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(112, 15);
-            this.label28.TabIndex = 31;
+            this.label28.TabIndex = 5;
             this.label28.Text = "当前订单状态：";
             // 
             // btnOrderDel
@@ -676,7 +679,7 @@
             this.btnOrderDel.Margin = new System.Windows.Forms.Padding(4);
             this.btnOrderDel.Name = "btnOrderDel";
             this.btnOrderDel.Size = new System.Drawing.Size(100, 29);
-            this.btnOrderDel.TabIndex = 30;
+            this.btnOrderDel.TabIndex = 9;
             this.btnOrderDel.Text = "废弃";
             this.btnOrderDel.UseVisualStyleBackColor = true;
             this.btnOrderDel.Click += new System.EventHandler(this.btnOrderDel_Click);
@@ -687,7 +690,7 @@
             this.btnSubmit.Margin = new System.Windows.Forms.Padding(4);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(100, 29);
-            this.btnSubmit.TabIndex = 29;
+            this.btnSubmit.TabIndex = 8;
             this.btnSubmit.Text = "提交";
             this.btnSubmit.UseVisualStyleBackColor = true;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
@@ -698,7 +701,7 @@
             this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(100, 29);
-            this.btnSave.TabIndex = 28;
+            this.btnSave.TabIndex = 7;
             this.btnSave.Text = "保存";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -709,7 +712,7 @@
             this.btnDelGoods.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelGoods.Name = "btnDelGoods";
             this.btnDelGoods.Size = new System.Drawing.Size(100, 29);
-            this.btnDelGoods.TabIndex = 27;
+            this.btnDelGoods.TabIndex = 2;
             this.btnDelGoods.Text = "删除记录";
             this.btnDelGoods.UseVisualStyleBackColor = true;
             this.btnDelGoods.Click += new System.EventHandler(this.btnDelGoods_Click);
@@ -720,7 +723,7 @@
             this.btnInsertGoods.Margin = new System.Windows.Forms.Padding(4);
             this.btnInsertGoods.Name = "btnInsertGoods";
             this.btnInsertGoods.Size = new System.Drawing.Size(100, 29);
-            this.btnInsertGoods.TabIndex = 26;
+            this.btnInsertGoods.TabIndex = 1;
             this.btnInsertGoods.Text = "插入记录";
             this.btnInsertGoods.UseVisualStyleBackColor = true;
             this.btnInsertGoods.Click += new System.EventHandler(this.btnInsertGoods_Click);
@@ -732,7 +735,7 @@
             this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(67, 15);
-            this.label26.TabIndex = 25;
+            this.label26.TabIndex = 0;
             this.label26.Text = "订单操作";
             // 
             // txtNote
@@ -742,7 +745,7 @@
             this.txtNote.Multiline = true;
             this.txtNote.Name = "txtNote";
             this.txtNote.Size = new System.Drawing.Size(537, 89);
-            this.txtNote.TabIndex = 24;
+            this.txtNote.TabIndex = 4;
             // 
             // label27
             // 
@@ -751,8 +754,14 @@
             this.label27.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(52, 15);
-            this.label27.TabIndex = 23;
+            this.label27.TabIndex = 3;
             this.label27.Text = "备注：";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(99, 22);
+            this.toolStripLabel1.Text = "当前营销号：";
             // 
             // FrmOrderAdd
             // 
@@ -850,5 +859,6 @@
         private System.Windows.Forms.DataGridViewImageColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewButtonColumn Column4;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
     }
 }

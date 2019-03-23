@@ -27,7 +27,11 @@ namespace FB_TRADE
         public FrmGroupAdd()
         {
             InitializeComponent();
+            MyComponentInit();
+        }
 
+        private void MyComponentInit()
+        {
             this.cbxVerifyType.Items.Clear();
             this.cbxVerifyType.Items.Add("需要");
             this.cbxVerifyType.Items.Add("不需要");
@@ -71,13 +75,14 @@ namespace FB_TRADE
         //2. 数据加载
         public void MyFrmInit()
         {
-            LabelCurMarketFbInfo.Text = "当前营销号：" + curMarketFbAccount;
+            LabelCurMarketFbInfo.Text = curMarketFbAccount;
 
             if (!bAdd)
             {
                 InitGroupInfoFrm(curGroupFbId, "");
                 InitCroupShipFrm();
                 InitLogsListView();
+                this.btnGroupGet.Visible = false;
             }
         }
 
@@ -353,7 +358,9 @@ namespace FB_TRADE
                 //保存成功
                 MessageBox.Show("保存成功！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtContact.Text = "";
-                InitLogsListView();
+                this.bAdd = false;
+                this.curGroupFbId = txtGroupFbId.Text.Trim();
+                MyFrmInit();
             }
             catch (SqlException ex)
             {

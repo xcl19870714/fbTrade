@@ -55,10 +55,10 @@ namespace FB_TRADE
         public FrmOrderAdd()
         {
             InitializeComponent();
-            FrmInit();
+            MyComponentInit();
         }
 
-        private void FrmInit()
+        private void MyComponentInit()
         {
             this.cbxOrderType.Items.Clear();
             this.cbxOrderType.Items.Add("订单");
@@ -158,7 +158,7 @@ namespace FB_TRADE
         //2. 数据加载
         public void MyFrmInit()
         {
-            labelCurMarketFbInfo.Text = "当前营销号：" + curMarketFbAccount;
+            labelCurMarketFbInfo.Text = curMarketFbAccount;
 
             if (!bAdd)
             {
@@ -170,11 +170,11 @@ namespace FB_TRADE
             {
                 if (curCustomerFbId != "")
                 {
+                    txtCustomerId.Text = curCustomerFbId;
                     InitCustomerInfoById();
-                    txtCustomerId.ReadOnly = true;
+                    //txtCustomerId.ReadOnly = true;
                 }
-                else
-                    btnCheckCustomerExist.Visible = true;
+                btnCheckCustomerExist.Visible = true;
             }
         }
 
@@ -575,7 +575,7 @@ namespace FB_TRADE
                 //保存成功
                 MessageBox.Show("保存成功！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.bAdd = false;
-                this.FrmInit();
+                this.MyComponentInit();
                 this.MyFrmInit();
             }
             catch (SqlException ex)

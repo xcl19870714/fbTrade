@@ -28,7 +28,11 @@ namespace FB_TRADE
         public FrmOrders()
         {
             InitializeComponent();
+            MyComponentInit();
+        }
 
+        private void MyComponentInit()
+        {
             dateTimePickerBegin.Value = Convert.ToDateTime("2017-01-01");
 
             this.listViewOrders.View = System.Windows.Forms.View.Details;
@@ -105,9 +109,8 @@ namespace FB_TRADE
                 btnDelete.Visible = false;
                 btnAbbandon.Visible = false;
             }
-                
 
-            labelCurMarketFbInfo.Text = "当前营销号：" + curMarketFbAccount;
+            labelCurMarketFbInfo.Text = curMarketFbAccount;
 
             ckbSave.Checked = true;
             ckbPriceNotConfirm.Checked = true;

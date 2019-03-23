@@ -53,7 +53,7 @@
             this.label2.Location = new System.Drawing.Point(252, 131);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 15);
-            this.label2.TabIndex = 1;
+            this.label2.TabIndex = 2;
             this.label2.Text = "密码：";
             // 
             // txtName
@@ -61,7 +61,7 @@
             this.txtName.Location = new System.Drawing.Point(330, 85);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(116, 25);
-            this.txtName.TabIndex = 2;
+            this.txtName.TabIndex = 1;
             // 
             // txtPwd
             // 
@@ -75,7 +75,7 @@
             this.btnSubmit.Location = new System.Drawing.Point(291, 270);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(75, 30);
-            this.btnSubmit.TabIndex = 4;
+            this.btnSubmit.TabIndex = 6;
             this.btnSubmit.Text = "确定";
             this.btnSubmit.UseVisualStyleBackColor = true;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
@@ -85,7 +85,7 @@
             this.btnCancel.Location = new System.Drawing.Point(383, 270);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 30);
-            this.btnCancel.TabIndex = 5;
+            this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "取消";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -96,7 +96,7 @@
             this.txtNote.Multiline = true;
             this.txtNote.Name = "txtNote";
             this.txtNote.Size = new System.Drawing.Size(236, 78);
-            this.txtNote.TabIndex = 7;
+            this.txtNote.TabIndex = 5;
             // 
             // label3
             // 
@@ -104,7 +104,7 @@
             this.label3.Location = new System.Drawing.Point(252, 168);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(52, 15);
-            this.label3.TabIndex = 6;
+            this.label3.TabIndex = 4;
             this.label3.Text = "备注：";
             // 
             // FrmUserAdd

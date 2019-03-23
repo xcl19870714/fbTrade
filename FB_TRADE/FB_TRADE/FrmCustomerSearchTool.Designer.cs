@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cbxSearchType = new System.Windows.Forms.ComboBox();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.labelCurMarketFbInfo = new System.Windows.Forms.Label();
             this.labelCurMarketAccount = new System.Windows.Forms.Label();
+            this.labelCurMarketFbInfo = new System.Windows.Forms.Label();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.cbxSearchType = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.listViewResult = new System.Windows.Forms.ListView();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -56,31 +56,24 @@
             this.panel1.Size = new System.Drawing.Size(760, 94);
             this.panel1.TabIndex = 0;
             // 
-            // label1
+            // labelCurMarketAccount
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "搜索类型：";
+            this.labelCurMarketAccount.AutoSize = true;
+            this.labelCurMarketAccount.ForeColor = System.Drawing.Color.Red;
+            this.labelCurMarketAccount.Location = new System.Drawing.Point(550, 19);
+            this.labelCurMarketAccount.Name = "labelCurMarketAccount";
+            this.labelCurMarketAccount.Size = new System.Drawing.Size(95, 15);
+            this.labelCurMarketAccount.TabIndex = 5;
+            this.labelCurMarketAccount.Text = "xuchenglong";
             // 
-            // cbxSearchType
+            // labelCurMarketFbInfo
             // 
-            this.cbxSearchType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxSearchType.FormattingEnabled = true;
-            this.cbxSearchType.Location = new System.Drawing.Point(99, 16);
-            this.cbxSearchType.Name = "cbxSearchType";
-            this.cbxSearchType.Size = new System.Drawing.Size(177, 23);
-            this.cbxSearchType.TabIndex = 1;
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Location = new System.Drawing.Point(15, 56);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(733, 25);
-            this.txtSearch.TabIndex = 2;
-            this.txtSearch.TextChanged += new System.EventHandler(this.btnSearch_Click);
+            this.labelCurMarketFbInfo.AutoSize = true;
+            this.labelCurMarketFbInfo.Location = new System.Drawing.Point(454, 21);
+            this.labelCurMarketFbInfo.Name = "labelCurMarketFbInfo";
+            this.labelCurMarketFbInfo.Size = new System.Drawing.Size(97, 15);
+            this.labelCurMarketFbInfo.TabIndex = 4;
+            this.labelCurMarketFbInfo.Text = "当前营销号：";
             // 
             // btnSearch
             // 
@@ -92,24 +85,31 @@
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // labelCurMarketFbInfo
+            // txtSearch
             // 
-            this.labelCurMarketFbInfo.AutoSize = true;
-            this.labelCurMarketFbInfo.Location = new System.Drawing.Point(454, 21);
-            this.labelCurMarketFbInfo.Name = "labelCurMarketFbInfo";
-            this.labelCurMarketFbInfo.Size = new System.Drawing.Size(97, 15);
-            this.labelCurMarketFbInfo.TabIndex = 4;
-            this.labelCurMarketFbInfo.Text = "当前营销号：";
+            this.txtSearch.Location = new System.Drawing.Point(15, 56);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(733, 25);
+            this.txtSearch.TabIndex = 2;
+            this.txtSearch.TextChanged += new System.EventHandler(this.btnSearch_Click);
             // 
-            // labelCurMarketAccount
+            // cbxSearchType
             // 
-            this.labelCurMarketAccount.AutoSize = true;
-            this.labelCurMarketAccount.ForeColor = System.Drawing.Color.Red;
-            this.labelCurMarketAccount.Location = new System.Drawing.Point(550, 19);
-            this.labelCurMarketAccount.Name = "labelCurMarketAccount";
-            this.labelCurMarketAccount.Size = new System.Drawing.Size(95, 15);
-            this.labelCurMarketAccount.TabIndex = 5;
-            this.labelCurMarketAccount.Text = "xuchenglong";
+            this.cbxSearchType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxSearchType.FormattingEnabled = true;
+            this.cbxSearchType.Location = new System.Drawing.Point(99, 16);
+            this.cbxSearchType.Name = "cbxSearchType";
+            this.cbxSearchType.Size = new System.Drawing.Size(177, 23);
+            this.cbxSearchType.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 15);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "搜索类型：";
             // 
             // listViewResult
             // 
@@ -117,7 +117,7 @@
             this.listViewResult.Location = new System.Drawing.Point(0, 94);
             this.listViewResult.Name = "listViewResult";
             this.listViewResult.Size = new System.Drawing.Size(760, 528);
-            this.listViewResult.TabIndex = 1;
+            this.listViewResult.TabIndex = 0;
             this.listViewResult.UseCompatibleStateImageBehavior = false;
             // 
             // statusStrip1

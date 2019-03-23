@@ -27,7 +27,11 @@ namespace FB_TRADE
         public FrmCustomers()
         {
             InitializeComponent();
+            MyComponentInit();
+        }
 
+        private void MyComponentInit()
+        {
             this.listViewCustomers.View = System.Windows.Forms.View.Details;
             this.listViewCustomers.FullRowSelect = true;
             listViewCustomers.CheckBoxes = true;
@@ -120,7 +124,7 @@ namespace FB_TRADE
             if (!bAdmin)
                 btnDelete.Visible = false;
 
-            labelCurMarketFbInfo.Text = "当前营销号：" + curMarketFbAccount;
+            labelCurMarketFbInfo.Text = curMarketFbAccount;
 
             LoadListViewDB();
         }
@@ -181,7 +185,6 @@ namespace FB_TRADE
 
                     listViewCustomers.Items.Add(it);
                 }
-                ListViewResize();
             }
             catch (SqlException ex)
             {
@@ -198,11 +201,13 @@ namespace FB_TRADE
         private void btnAdd_Click(object sender, EventArgs e)
         {
             FrmCustomerAdd frm = new FrmCustomerAdd();
-            this.pFrmMain.AddPage(frm, "新增/编辑客户");
+            this.pFrmMain.AddPage(frm, "新增客户");
 
             frm.bAdd = true;
             frm.curMarketFbId = this.curMarketFbId;
             frm.curMarketFbAccount = curMarketFbAccount;
+            frm.pFrmMain = this.pFrmMain;
+            frm.bAdmin = this.bAdmin;
 
             frm.MyFrmInit();
             frm.Show();
@@ -215,12 +220,14 @@ namespace FB_TRADE
             if (info.Item != null)
             {
                 FrmCustomerAdd frm = new FrmCustomerAdd();
-                this.pFrmMain.AddPage(frm, "新增/编辑客户");
+                this.pFrmMain.AddPage(frm, "编辑客户");
 
                 frm.bAdd = false;
                 frm.curCustomerFbId = info.Item.Text;
                 frm.curMarketFbId = this.curMarketFbId;
                 frm.curMarketFbAccount = curMarketFbAccount;
+                frm.pFrmMain = this.pFrmMain;
+                frm.bAdmin = this.bAdmin;
 
                 frm.MyFrmInit();
                 frm.Show();
@@ -303,6 +310,11 @@ namespace FB_TRADE
                 MessageBox.Show(ex.Message, "程序异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            LoadListViewDB();
         }
     }
 }

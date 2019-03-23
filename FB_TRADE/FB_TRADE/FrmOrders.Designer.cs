@@ -56,6 +56,7 @@
             this.txtCustomerFbId = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.listViewOrders = new System.Windows.Forms.ListView();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -69,6 +70,7 @@
             this.btnAbbandon,
             this.btnAdd,
             this.btnCopy,
+            this.toolStripLabel1,
             this.labelCurMarketFbInfo});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -127,6 +129,7 @@
             // 
             // labelCurMarketFbInfo
             // 
+            this.labelCurMarketFbInfo.ForeColor = System.Drawing.Color.Red;
             this.labelCurMarketFbInfo.Name = "labelCurMarketFbInfo";
             this.labelCurMarketFbInfo.Size = new System.Drawing.Size(99, 24);
             this.labelCurMarketFbInfo.Text = "当前营销号：";
@@ -156,7 +159,7 @@
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1318, 125);
-            this.panel1.TabIndex = 1;
+            this.panel1.TabIndex = 0;
             // 
             // label1
             // 
@@ -164,7 +167,7 @@
             this.label1.Location = new System.Drawing.Point(294, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 15);
-            this.label1.TabIndex = 20;
+            this.label1.TabIndex = 2;
             this.label1.Text = "客户昵称：";
             // 
             // txtCustomerName
@@ -172,7 +175,7 @@
             this.txtCustomerName.Location = new System.Drawing.Point(382, 14);
             this.txtCustomerName.Name = "txtCustomerName";
             this.txtCustomerName.Size = new System.Drawing.Size(169, 25);
-            this.txtCustomerName.TabIndex = 19;
+            this.txtCustomerName.TabIndex = 3;
             // 
             // ckbSelfDel
             // 
@@ -180,7 +183,7 @@
             this.ckbSelfDel.Location = new System.Drawing.Point(619, 53);
             this.ckbSelfDel.Name = "ckbSelfDel";
             this.ckbSelfDel.Size = new System.Drawing.Size(104, 19);
-            this.ckbSelfDel.TabIndex = 18;
+            this.ckbSelfDel.TabIndex = 12;
             this.ckbSelfDel.Text = "自己删除单";
             this.ckbSelfDel.UseVisualStyleBackColor = true;
             // 
@@ -200,7 +203,7 @@
             this.ckbAdminDel.Location = new System.Drawing.Point(485, 52);
             this.ckbAdminDel.Name = "ckbAdminDel";
             this.ckbAdminDel.Size = new System.Drawing.Size(119, 19);
-            this.ckbAdminDel.TabIndex = 15;
+            this.ckbAdminDel.TabIndex = 11;
             this.ckbAdminDel.Text = "管理员废弃单";
             this.ckbAdminDel.UseVisualStyleBackColor = true;
             // 
@@ -210,7 +213,7 @@
             this.ckbShiped.Location = new System.Drawing.Point(396, 52);
             this.ckbShiped.Name = "ckbShiped";
             this.ckbShiped.Size = new System.Drawing.Size(74, 19);
-            this.ckbShiped.TabIndex = 14;
+            this.ckbShiped.TabIndex = 10;
             this.ckbShiped.Text = "已发货";
             this.ckbShiped.UseVisualStyleBackColor = true;
             // 
@@ -220,7 +223,7 @@
             this.ckbNotShip.Location = new System.Drawing.Point(309, 52);
             this.ckbNotShip.Name = "ckbNotShip";
             this.ckbNotShip.Size = new System.Drawing.Size(74, 19);
-            this.ckbNotShip.TabIndex = 13;
+            this.ckbNotShip.TabIndex = 9;
             this.ckbNotShip.Text = "未发货";
             this.ckbNotShip.UseVisualStyleBackColor = true;
             // 
@@ -230,7 +233,7 @@
             this.ckbPriceNotConfirm.Location = new System.Drawing.Point(190, 52);
             this.ckbPriceNotConfirm.Name = "ckbPriceNotConfirm";
             this.ckbPriceNotConfirm.Size = new System.Drawing.Size(104, 19);
-            this.ckbPriceNotConfirm.TabIndex = 12;
+            this.ckbPriceNotConfirm.TabIndex = 8;
             this.ckbPriceNotConfirm.Text = "未确认金额";
             this.ckbPriceNotConfirm.UseVisualStyleBackColor = true;
             // 
@@ -240,7 +243,7 @@
             this.ckbSave.Location = new System.Drawing.Point(102, 52);
             this.ckbSave.Name = "ckbSave";
             this.ckbSave.Size = new System.Drawing.Size(74, 19);
-            this.ckbSave.TabIndex = 11;
+            this.ckbSave.TabIndex = 7;
             this.ckbSave.Text = "未提交";
             this.ckbSave.UseVisualStyleBackColor = true;
             // 
@@ -250,7 +253,7 @@
             this.label6.Location = new System.Drawing.Point(12, 53);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(82, 15);
-            this.label6.TabIndex = 10;
+            this.label6.TabIndex = 6;
             this.label6.Text = "订单状态：";
             // 
             // label5
@@ -259,7 +262,7 @@
             this.label5.Location = new System.Drawing.Point(580, 19);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(82, 15);
-            this.label5.TabIndex = 9;
+            this.label5.TabIndex = 4;
             this.label5.Text = "包含产品：";
             // 
             // txtGoods
@@ -267,7 +270,7 @@
             this.txtGoods.Location = new System.Drawing.Point(667, 16);
             this.txtGoods.Name = "txtGoods";
             this.txtGoods.Size = new System.Drawing.Size(406, 25);
-            this.txtGoods.TabIndex = 8;
+            this.txtGoods.TabIndex = 5;
             // 
             // label4
             // 
@@ -275,7 +278,7 @@
             this.label4.Location = new System.Drawing.Point(239, 89);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(22, 15);
-            this.label4.TabIndex = 7;
+            this.label4.TabIndex = 15;
             this.label4.Text = "至";
             // 
             // label3
@@ -284,7 +287,7 @@
             this.label3.Location = new System.Drawing.Point(12, 89);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(82, 15);
-            this.label3.TabIndex = 6;
+            this.label3.TabIndex = 13;
             this.label3.Text = "订单日期：";
             // 
             // dateTimePickerEnd
@@ -292,14 +295,14 @@
             this.dateTimePickerEnd.Location = new System.Drawing.Point(263, 85);
             this.dateTimePickerEnd.Name = "dateTimePickerEnd";
             this.dateTimePickerEnd.Size = new System.Drawing.Size(136, 25);
-            this.dateTimePickerEnd.TabIndex = 5;
+            this.dateTimePickerEnd.TabIndex = 16;
             // 
             // dateTimePickerBegin
             // 
             this.dateTimePickerBegin.Location = new System.Drawing.Point(100, 85);
             this.dateTimePickerBegin.Name = "dateTimePickerBegin";
             this.dateTimePickerBegin.Size = new System.Drawing.Size(136, 25);
-            this.dateTimePickerBegin.TabIndex = 4;
+            this.dateTimePickerBegin.TabIndex = 14;
             // 
             // label2
             // 
@@ -307,7 +310,7 @@
             this.label2.Location = new System.Drawing.Point(12, 19);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(82, 15);
-            this.label2.TabIndex = 3;
+            this.label2.TabIndex = 0;
             this.label2.Text = "客户编号：";
             // 
             // txtCustomerFbId
@@ -315,7 +318,7 @@
             this.txtCustomerFbId.Location = new System.Drawing.Point(100, 14);
             this.txtCustomerFbId.Name = "txtCustomerFbId";
             this.txtCustomerFbId.Size = new System.Drawing.Size(169, 25);
-            this.txtCustomerFbId.TabIndex = 2;
+            this.txtCustomerFbId.TabIndex = 1;
             // 
             // panel2
             // 
@@ -336,6 +339,12 @@
             this.listViewOrders.Size = new System.Drawing.Size(1318, 410);
             this.listViewOrders.TabIndex = 0;
             this.listViewOrders.UseCompatibleStateImageBehavior = false;
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(99, 24);
+            this.toolStripLabel1.Text = "当前营销号：";
             // 
             // FrmOrders
             // 
@@ -387,5 +396,6 @@
         private System.Windows.Forms.ToolStripButton btnAbbandon;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtCustomerName;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
     }
 }

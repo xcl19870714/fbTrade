@@ -18,6 +18,7 @@ namespace FB_TRADE
         public string curMarketFbId;
         public string curMarketFbAccount;
         public FrmMain pFrmMain;
+        public bool bAdmin = false;
 
         private DBCommon db = new DBCommon();
         private StringBuilder sb = new StringBuilder();
@@ -116,7 +117,7 @@ namespace FB_TRADE
             if (info.Item != null)
             {
                 FrmCustomerAdd frm = new FrmCustomerAdd();
-                this.pFrmMain.AddPage(frm, "新增/编辑客户");
+                this.pFrmMain.AddPage(frm, "编辑客户");
 
                 string customerFbId = info.Item.Text;
                 customerFbId = customerFbId.Remove(0, 1);
@@ -127,6 +128,8 @@ namespace FB_TRADE
                 frm.curCustomerFbId = customerFbId;
                 frm.curMarketFbId = this.curMarketFbId;
                 frm.curMarketFbAccount = curMarketFbAccount;
+                frm.pFrmMain = this.pFrmMain;
+                frm.bAdmin = this.bAdmin;
 
                 frm.MyFrmInit();
                 frm.Show();

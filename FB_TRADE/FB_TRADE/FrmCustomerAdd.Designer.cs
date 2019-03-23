@@ -74,6 +74,7 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.labelCurMarketFb = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -117,7 +118,7 @@
             this.txtFriendShips.Name = "txtFriendShips";
             this.txtFriendShips.ReadOnly = true;
             this.txtFriendShips.Size = new System.Drawing.Size(465, 25);
-            this.txtFriendShips.TabIndex = 29;
+            this.txtFriendShips.TabIndex = 5;
             // 
             // label3
             // 
@@ -126,7 +127,7 @@
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(82, 15);
-            this.label3.TabIndex = 28;
+            this.label3.TabIndex = 4;
             this.label3.Text = "好友关系：";
             // 
             // txtIntroduction
@@ -301,7 +302,7 @@
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(548, 535);
-            this.groupBox2.TabIndex = 18;
+            this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "备注信息";
             // 
@@ -312,7 +313,7 @@
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(112, 15);
-            this.label11.TabIndex = 28;
+            this.label11.TabIndex = 16;
             this.label11.Text = "新增聊天摘要：";
             // 
             // txtNewContact
@@ -322,7 +323,7 @@
             this.txtNewContact.Multiline = true;
             this.txtNewContact.Name = "txtNewContact";
             this.txtNewContact.Size = new System.Drawing.Size(500, 99);
-            this.txtNewContact.TabIndex = 19;
+            this.txtNewContact.TabIndex = 17;
             // 
             // btnGet
             // 
@@ -330,7 +331,7 @@
             this.btnGet.Margin = new System.Windows.Forms.Padding(4);
             this.btnGet.Name = "btnGet";
             this.btnGet.Size = new System.Drawing.Size(57, 29);
-            this.btnGet.TabIndex = 23;
+            this.btnGet.TabIndex = 2;
             this.btnGet.Text = "获取";
             this.btnGet.UseVisualStyleBackColor = true;
             this.btnGet.Click += new System.EventHandler(this.btnGet_Click);
@@ -341,7 +342,7 @@
             this.txtFbUrl.Margin = new System.Windows.Forms.Padding(4);
             this.txtFbUrl.Name = "txtFbUrl";
             this.txtFbUrl.Size = new System.Drawing.Size(369, 25);
-            this.txtFbUrl.TabIndex = 27;
+            this.txtFbUrl.TabIndex = 1;
             // 
             // label13
             // 
@@ -350,7 +351,7 @@
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(82, 15);
-            this.label13.TabIndex = 26;
+            this.label13.TabIndex = 0;
             this.label13.Text = "客户首页：";
             // 
             // ckbTraceDate
@@ -359,7 +360,7 @@
             this.ckbTraceDate.Location = new System.Drawing.Point(21, 311);
             this.ckbTraceDate.Name = "ckbTraceDate";
             this.ckbTraceDate.Size = new System.Drawing.Size(134, 19);
-            this.ckbTraceDate.TabIndex = 25;
+            this.ckbTraceDate.TabIndex = 14;
             this.ckbTraceDate.Text = "设置跟踪日期：";
             this.ckbTraceDate.UseVisualStyleBackColor = true;
             // 
@@ -369,7 +370,7 @@
             this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(136, 25);
-            this.dateTimePicker1.TabIndex = 23;
+            this.dateTimePicker1.TabIndex = 15;
             // 
             // cbxCustomerType
             // 
@@ -379,7 +380,7 @@
             this.cbxCustomerType.Margin = new System.Windows.Forms.Padding(4);
             this.cbxCustomerType.Name = "cbxCustomerType";
             this.cbxCustomerType.Size = new System.Drawing.Size(124, 23);
-            this.cbxCustomerType.TabIndex = 24;
+            this.cbxCustomerType.TabIndex = 6;
             // 
             // cbxShipType
             // 
@@ -389,7 +390,7 @@
             this.cbxShipType.Margin = new System.Windows.Forms.Padding(4);
             this.cbxShipType.Name = "cbxShipType";
             this.cbxShipType.Size = new System.Drawing.Size(130, 23);
-            this.cbxShipType.TabIndex = 23;
+            this.cbxShipType.TabIndex = 4;
             // 
             // label14
             // 
@@ -398,7 +399,7 @@
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(82, 15);
-            this.label14.TabIndex = 22;
+            this.label14.TabIndex = 3;
             this.label14.Text = "账号关系：";
             // 
             // btnNewOrder
@@ -410,9 +411,10 @@
             this.btnNewOrder.Margin = new System.Windows.Forms.Padding(4);
             this.btnNewOrder.Name = "btnNewOrder";
             this.btnNewOrder.Size = new System.Drawing.Size(112, 37);
-            this.btnNewOrder.TabIndex = 21;
+            this.btnNewOrder.TabIndex = 13;
             this.btnNewOrder.Text = "新建订单";
             this.btnNewOrder.UseVisualStyleBackColor = true;
+            this.btnNewOrder.Click += new System.EventHandler(this.btnNewOrder_Click);
             // 
             // labelOrders
             // 
@@ -421,7 +423,7 @@
             this.labelOrders.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelOrders.Name = "labelOrders";
             this.labelOrders.Size = new System.Drawing.Size(15, 15);
-            this.labelOrders.TabIndex = 20;
+            this.labelOrders.TabIndex = 12;
             this.labelOrders.Text = "0";
             // 
             // label16
@@ -431,7 +433,7 @@
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(82, 15);
-            this.label16.TabIndex = 19;
+            this.label16.TabIndex = 11;
             this.label16.Text = "总订单数：";
             // 
             // txtNote
@@ -441,7 +443,7 @@
             this.txtNote.Multiline = true;
             this.txtNote.Name = "txtNote";
             this.txtNote.Size = new System.Drawing.Size(417, 81);
-            this.txtNote.TabIndex = 17;
+            this.txtNote.TabIndex = 10;
             // 
             // label10
             // 
@@ -450,7 +452,7 @@
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(82, 15);
-            this.label10.TabIndex = 16;
+            this.label10.TabIndex = 9;
             this.label10.Text = "客户备注：";
             // 
             // txtInGoods
@@ -459,7 +461,7 @@
             this.txtInGoods.Margin = new System.Windows.Forms.Padding(4);
             this.txtInGoods.Name = "txtInGoods";
             this.txtInGoods.Size = new System.Drawing.Size(419, 25);
-            this.txtInGoods.TabIndex = 7;
+            this.txtInGoods.TabIndex = 8;
             // 
             // label15
             // 
@@ -468,7 +470,7 @@
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(82, 15);
-            this.label15.TabIndex = 6;
+            this.label15.TabIndex = 7;
             this.label15.Text = "意向产品：";
             // 
             // label18
@@ -478,7 +480,7 @@
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(82, 15);
-            this.label18.TabIndex = 0;
+            this.label18.TabIndex = 5;
             this.label18.Text = "客户类型：";
             // 
             // btnSave
@@ -487,7 +489,7 @@
             this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(100, 46);
-            this.btnSave.TabIndex = 22;
+            this.btnSave.TabIndex = 2;
             this.btnSave.Text = "保存";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -502,7 +504,7 @@
             this.listViewContacts.Margin = new System.Windows.Forms.Padding(4);
             this.listViewContacts.Name = "listViewContacts";
             this.listViewContacts.Size = new System.Drawing.Size(560, 269);
-            this.listViewContacts.TabIndex = 12;
+            this.listViewContacts.TabIndex = 0;
             this.listViewContacts.UseCompatibleStateImageBehavior = false;
             // 
             // groupBox4
@@ -513,7 +515,7 @@
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox4.Size = new System.Drawing.Size(607, 303);
-            this.groupBox4.TabIndex = 20;
+            this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "历史聊天摘要";
             // 
@@ -521,6 +523,7 @@
             // 
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel1,
             this.labelCurMarketFb});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -530,10 +533,18 @@
             // 
             // labelCurMarketFb
             // 
+            this.labelCurMarketFb.ForeColor = System.Drawing.Color.Red;
             this.labelCurMarketFb.Margin = new System.Windows.Forms.Padding(0, 1, 3, 2);
             this.labelCurMarketFb.Name = "labelCurMarketFb";
             this.labelCurMarketFb.Size = new System.Drawing.Size(99, 22);
             this.labelCurMarketFb.Text = "当前营销号：";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Margin = new System.Windows.Forms.Padding(0, 1, 3, 2);
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(99, 22);
+            this.toolStripLabel1.Text = "当前营销号：";
             // 
             // FrmCustomerAdd
             // 
@@ -605,5 +616,6 @@
         private System.Windows.Forms.ToolStripLabel labelCurMarketFb;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtNewContact;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
     }
 }

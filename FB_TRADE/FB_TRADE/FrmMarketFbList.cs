@@ -18,15 +18,21 @@ namespace FB_TRADE
         public bool bAdmin;
         public string curAdminId;
         public string curUserId;
+        public string curAdminName;
+        public string curUserName;
 
         private DBCommon db = new DBCommon();
-        private string sqlStr = string.Empty;
+        private StringBuilder sb = new StringBuilder();
 
-        //1. Show
+        //1. 界面构造
         public FrmMarketFbList()
         {
             InitializeComponent();
+            MyComponentInit();
+        }
 
+        private void MyComponentInit()
+        {
             this.listViewMarketFbs.View = System.Windows.Forms.View.Details;
             this.listViewMarketFbs.FullRowSelect = true;
             listViewMarketFbs.CheckBoxes = true;
@@ -35,7 +41,7 @@ namespace FB_TRADE
             this.listViewMarketFbs.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listViewMarketFbs_MouseDoubleClick);
             this.listViewMarketFbs.ListViewItemSorter = new ListViewColumnSorter();
             this.listViewMarketFbs.ColumnClick += new ColumnClickEventHandler(ListViewHelper.ListView_ColumnClick);
-            
+
             listViewMarketFbs.Clear();
             listViewMarketFbs.Columns.Add("facebook ID", 100, HorizontalAlignment.Left);
             listViewMarketFbs.Columns.Add("姓名", 100, HorizontalAlignment.Left);
@@ -85,30 +91,41 @@ namespace FB_TRADE
             }
         }
 
-        //2. MyShow
+        //2. 数据加载
         public void MyFrmInit()
         {
             if (!bAdmin)
                 btnDelete.Visible = false;
+
+            ShowCurrUserLabel();
             LoadListViewDB();
+        }
+
+        private void ShowCurrUserLabel()
+        {
+            if (curUserId == "0")
+                labelCurUser.Text =  curAdminName + "(管理员)";
+            else
+                labelCurUser.Text = curUserName;
         }
 
         public void LoadListViewDB()
         {
             try
             {
+                sb.Clear();
                 if (curUserId == "0")
-                    sqlStr = "select * from tb_fbMarketAccounts where userId in (select id from tb_users where adminId=" + curAdminId + ")";
+                    sb.AppendFormat("select * from tb_fbMarketAccounts where userId in (select id from tb_users where adminId={0})", curAdminId);
                 else
-                    sqlStr = "select * from tb_fbMarketAccounts where userId='" + curUserId + "'";
+                    sb.AppendFormat("select * from tb_fbMarketAccounts where userId={0}", curUserId);
 
-                List<FbMarketAccountInfo> fbList = (List<FbMarketAccountInfo>)db.GetList(sqlStr, "tb_fbMarketAccounts");
+                List<FbMarketAccountInfo> fbList = (List<FbMarketAccountInfo>)db.GetList(sb.ToString(), "tb_fbMarketAccounts");
 
                 listViewMarketFbs.Items.Clear();
                 foreach (var fb in fbList)
                 {
                     ListViewItem it = new ListViewItem();
-                    UserInfo tmp = (UserInfo)db.GetObject("select * from tb_users where id='" + fb.userId + "'", "tb_users");
+                    UserInfo user = (UserInfo)db.GetObject("select * from tb_users where id=" + fb.userId, "tb_users");
 
                     it.Text = Convert.ToString(fb.fbId);
                     it.SubItems.Add(fb.name);
@@ -116,11 +133,10 @@ namespace FB_TRADE
                     it.SubItems.Add(fb.fbPwd);
                     it.SubItems.Add(fb.fbUrl);
                     it.SubItems.Add(fb.note);
-                    it.SubItems.Add(tmp.Name);
+                    it.SubItems.Add(user.Name);
                     it.SubItems.Add(fb.createTime);
                     listViewMarketFbs.Items.Add(it);
                 }
-                ListViewResize();
             }
             catch (SqlException ex)
             {
@@ -132,7 +148,7 @@ namespace FB_TRADE
             }
         }
 
-        //3. operations
+        //3. 操作
         private void btnMarketFbAdd_Click(object sender, EventArgs e)
         {
             FrmMarketFbAdd frm = new FrmMarketFbAdd();
@@ -183,8 +199,9 @@ namespace FB_TRADE
             {
                 try
                 {
-                    sqlStr = "delete from tb_fbMarketAccounts where fbId='" + this.listViewMarketFbs.CheckedItems[i].SubItems[0].Text + "'";
-                    db.DeleteData(sqlStr);
+                    sb.Clear();
+                    sb.AppendFormat("delete from tb_fbMarketAccounts where fbId = '{0}'", this.listViewMarketFbs.CheckedItems[i].SubItems[0].Text);
+                    db.DeleteData(sb.ToString());
                 }
                 catch (SqlException ex)
                 {

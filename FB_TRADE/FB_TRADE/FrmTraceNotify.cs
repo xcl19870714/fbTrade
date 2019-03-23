@@ -103,7 +103,7 @@ namespace FB_TRADE
                 }
             }
 
-            this.labelNotifyInfo.Margin = new System.Windows.Forms.Padding(((toolStrip1.Width - labelNotifyInfo.Width) / 2 - btnUpdate.Width), 1, 1, 2);
+            //this.labelNotifyInfo.Margin = new System.Windows.Forms.Padding(((toolStrip1.Width - labelNotifyInfo.Width) / 2 - btnUpdate.Width), 1, 1, 2);
         }
 
         //2. 数据加载
@@ -182,7 +182,6 @@ namespace FB_TRADE
 
                     listViewTrace.Items.Add(it);
                 }
-                ListViewResize();
             }
             catch (SqlException ex)
             {

@@ -43,7 +43,7 @@
             this.btnCancel.Location = new System.Drawing.Point(427, 266);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 30);
-            this.btnCancel.TabIndex = 11;
+            this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "取消";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -53,7 +53,7 @@
             this.btnSubmit.Location = new System.Drawing.Point(326, 266);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(75, 30);
-            this.btnSubmit.TabIndex = 10;
+            this.btnSubmit.TabIndex = 6;
             this.btnSubmit.Text = "确定";
             this.btnSubmit.UseVisualStyleBackColor = true;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
@@ -63,14 +63,14 @@
             this.txtPwd.Location = new System.Drawing.Point(326, 127);
             this.txtPwd.Name = "txtPwd";
             this.txtPwd.Size = new System.Drawing.Size(116, 25);
-            this.txtPwd.TabIndex = 9;
+            this.txtPwd.TabIndex = 3;
             // 
             // txtName
             // 
             this.txtName.Location = new System.Drawing.Point(326, 87);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(116, 25);
-            this.txtName.TabIndex = 8;
+            this.txtName.TabIndex = 1;
             // 
             // label2
             // 
@@ -78,7 +78,7 @@
             this.label2.Location = new System.Drawing.Point(248, 133);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 15);
-            this.label2.TabIndex = 7;
+            this.label2.TabIndex = 2;
             this.label2.Text = "密码：";
             // 
             // label1
@@ -87,7 +87,7 @@
             this.label1.Location = new System.Drawing.Point(248, 92);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 15);
-            this.label1.TabIndex = 6;
+            this.label1.TabIndex = 0;
             this.label1.Text = "账号：";
             // 
             // label3
@@ -96,7 +96,7 @@
             this.label3.Location = new System.Drawing.Point(248, 170);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(52, 15);
-            this.label3.TabIndex = 12;
+            this.label3.TabIndex = 4;
             this.label3.Text = "备注：";
             // 
             // txtNote
@@ -105,7 +105,7 @@
             this.txtNote.Multiline = true;
             this.txtNote.Name = "txtNote";
             this.txtNote.Size = new System.Drawing.Size(247, 70);
-            this.txtNote.TabIndex = 13;
+            this.txtNote.TabIndex = 5;
             // 
             // FrmUserEdit
             // 
