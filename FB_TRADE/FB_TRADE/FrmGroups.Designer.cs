@@ -64,6 +64,8 @@
             this.dateTimePickerBegin = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.btnUpdate = new System.Windows.Forms.ToolStripButton();
+            this.cbxSearchRange = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -138,9 +140,9 @@
             // 
             this.panel2.Controls.Add(this.listViewGroups);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 177);
+            this.panel2.Location = new System.Drawing.Point(0, 204);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1071, 396);
+            this.panel2.Size = new System.Drawing.Size(1071, 369);
             this.panel2.TabIndex = 2;
             // 
             // listViewGroups
@@ -148,14 +150,14 @@
             this.listViewGroups.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewGroups.Location = new System.Drawing.Point(0, 0);
             this.listViewGroups.Name = "listViewGroups";
-            this.listViewGroups.Size = new System.Drawing.Size(1071, 396);
+            this.listViewGroups.Size = new System.Drawing.Size(1071, 369);
             this.listViewGroups.TabIndex = 0;
             this.listViewGroups.UseCompatibleStateImageBehavior = false;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 49);
+            this.label2.Location = new System.Drawing.Point(13, 73);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(82, 15);
             this.label2.TabIndex = 7;
@@ -164,7 +166,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 79);
+            this.label3.Location = new System.Drawing.Point(13, 103);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(82, 15);
             this.label3.TabIndex = 14;
@@ -173,7 +175,7 @@
             // ckbJoin
             // 
             this.ckbJoin.AutoSize = true;
-            this.ckbJoin.Location = new System.Drawing.Point(92, 49);
+            this.ckbJoin.Location = new System.Drawing.Point(92, 73);
             this.ckbJoin.Name = "ckbJoin";
             this.ckbJoin.Size = new System.Drawing.Size(89, 19);
             this.ckbJoin.TabIndex = 8;
@@ -183,7 +185,7 @@
             // ckbAccept
             // 
             this.ckbAccept.AutoSize = true;
-            this.ckbAccept.Location = new System.Drawing.Point(197, 49);
+            this.ckbAccept.Location = new System.Drawing.Point(197, 73);
             this.ckbAccept.Name = "ckbAccept";
             this.ckbAccept.Size = new System.Drawing.Size(89, 19);
             this.ckbAccept.TabIndex = 9;
@@ -193,7 +195,7 @@
             // ckbReject
             // 
             this.ckbReject.AutoSize = true;
-            this.ckbReject.Location = new System.Drawing.Point(307, 49);
+            this.ckbReject.Location = new System.Drawing.Point(307, 73);
             this.ckbReject.Name = "ckbReject";
             this.ckbReject.Size = new System.Drawing.Size(89, 19);
             this.ckbReject.TabIndex = 10;
@@ -203,7 +205,7 @@
             // cbxTweeting
             // 
             this.cbxTweeting.AutoSize = true;
-            this.cbxTweeting.Location = new System.Drawing.Point(422, 49);
+            this.cbxTweeting.Location = new System.Drawing.Point(422, 73);
             this.cbxTweeting.Name = "cbxTweeting";
             this.cbxTweeting.Size = new System.Drawing.Size(89, 19);
             this.cbxTweeting.TabIndex = 11;
@@ -213,7 +215,7 @@
             // cbxQuit
             // 
             this.cbxQuit.AutoSize = true;
-            this.cbxQuit.Location = new System.Drawing.Point(528, 49);
+            this.cbxQuit.Location = new System.Drawing.Point(528, 73);
             this.cbxQuit.Name = "cbxQuit";
             this.cbxQuit.Size = new System.Drawing.Size(89, 19);
             this.cbxQuit.TabIndex = 12;
@@ -223,7 +225,7 @@
             // ckbAbbandon
             // 
             this.ckbAbbandon.AutoSize = true;
-            this.ckbAbbandon.Location = new System.Drawing.Point(638, 49);
+            this.ckbAbbandon.Location = new System.Drawing.Point(638, 73);
             this.ckbAbbandon.Name = "ckbAbbandon";
             this.ckbAbbandon.Size = new System.Drawing.Size(59, 19);
             this.ckbAbbandon.TabIndex = 13;
@@ -233,7 +235,7 @@
             // cbxIm
             // 
             this.cbxIm.AutoSize = true;
-            this.cbxIm.Location = new System.Drawing.Point(92, 80);
+            this.cbxIm.Location = new System.Drawing.Point(92, 104);
             this.cbxIm.Name = "cbxIm";
             this.cbxIm.Size = new System.Drawing.Size(59, 19);
             this.cbxIm.TabIndex = 15;
@@ -243,7 +245,7 @@
             // cbxNormal
             // 
             this.cbxNormal.AutoSize = true;
-            this.cbxNormal.Location = new System.Drawing.Point(157, 79);
+            this.cbxNormal.Location = new System.Drawing.Point(157, 103);
             this.cbxNormal.Name = "cbxNormal";
             this.cbxNormal.Size = new System.Drawing.Size(59, 19);
             this.cbxNormal.TabIndex = 16;
@@ -253,7 +255,7 @@
             // cbxCheated
             // 
             this.cbxCheated.AutoSize = true;
-            this.cbxCheated.Location = new System.Drawing.Point(227, 80);
+            this.cbxCheated.Location = new System.Drawing.Point(227, 104);
             this.cbxCheated.Name = "cbxCheated";
             this.cbxCheated.Size = new System.Drawing.Size(104, 19);
             this.cbxCheated.TabIndex = 17;
@@ -263,7 +265,7 @@
             // ckbAttacked
             // 
             this.ckbAttacked.AutoSize = true;
-            this.ckbAttacked.Location = new System.Drawing.Point(337, 80);
+            this.ckbAttacked.Location = new System.Drawing.Point(337, 104);
             this.ckbAttacked.Name = "ckbAttacked";
             this.ckbAttacked.Size = new System.Drawing.Size(74, 19);
             this.ckbAttacked.TabIndex = 18;
@@ -273,7 +275,7 @@
             // cbxLocalTrade
             // 
             this.cbxLocalTrade.AutoSize = true;
-            this.cbxLocalTrade.Location = new System.Drawing.Point(423, 79);
+            this.cbxLocalTrade.Location = new System.Drawing.Point(423, 103);
             this.cbxLocalTrade.Name = "cbxLocalTrade";
             this.cbxLocalTrade.Size = new System.Drawing.Size(104, 19);
             this.cbxLocalTrade.TabIndex = 19;
@@ -283,7 +285,7 @@
             // cbxUnTrust
             // 
             this.cbxUnTrust.AutoSize = true;
-            this.cbxUnTrust.Location = new System.Drawing.Point(543, 79);
+            this.cbxUnTrust.Location = new System.Drawing.Point(543, 103);
             this.cbxUnTrust.Name = "cbxUnTrust";
             this.cbxUnTrust.Size = new System.Drawing.Size(74, 19);
             this.cbxUnTrust.TabIndex = 20;
@@ -293,7 +295,7 @@
             // cbxOnSale
             // 
             this.cbxOnSale.AutoSize = true;
-            this.cbxOnSale.Location = new System.Drawing.Point(623, 79);
+            this.cbxOnSale.Location = new System.Drawing.Point(623, 103);
             this.cbxOnSale.Name = "cbxOnSale";
             this.cbxOnSale.Size = new System.Drawing.Size(74, 19);
             this.cbxOnSale.TabIndex = 21;
@@ -302,7 +304,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(416, 109);
+            this.button1.Location = new System.Drawing.Point(416, 133);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 32);
             this.button1.TabIndex = 26;
@@ -313,6 +315,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panel1.Controls.Add(this.cbxSearchRange);
+            this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.cbxIm);
             this.panel1.Controls.Add(this.ckbJoin);
             this.panel1.Controls.Add(this.dateTimePickerBegin);
@@ -341,13 +345,13 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 27);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1071, 150);
+            this.panel1.Size = new System.Drawing.Size(1071, 177);
             this.panel1.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 18);
+            this.label1.Location = new System.Drawing.Point(19, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 15);
             this.label1.TabIndex = 0;
@@ -356,7 +360,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(321, 18);
+            this.label4.Location = new System.Drawing.Point(321, 13);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 15);
             this.label4.TabIndex = 2;
@@ -364,14 +368,14 @@
             // 
             // txtKeyWords
             // 
-            this.txtKeyWords.Location = new System.Drawing.Point(92, 14);
+            this.txtKeyWords.Location = new System.Drawing.Point(92, 9);
             this.txtKeyWords.Name = "txtKeyWords";
             this.txtKeyWords.Size = new System.Drawing.Size(216, 25);
             this.txtKeyWords.TabIndex = 1;
             // 
             // txtFilterWords
             // 
-            this.txtFilterWords.Location = new System.Drawing.Point(374, 14);
+            this.txtFilterWords.Location = new System.Drawing.Point(374, 9);
             this.txtFilterWords.Name = "txtFilterWords";
             this.txtFilterWords.Size = new System.Drawing.Size(216, 25);
             this.txtFilterWords.TabIndex = 3;
@@ -379,7 +383,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(227, 116);
+            this.label7.Location = new System.Drawing.Point(227, 140);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(22, 15);
             this.label7.TabIndex = 24;
@@ -388,7 +392,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(13, 116);
+            this.label8.Location = new System.Drawing.Point(13, 140);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(82, 15);
             this.label8.TabIndex = 22;
@@ -396,14 +400,14 @@
             // 
             // dateTimePickerEnd
             // 
-            this.dateTimePickerEnd.Location = new System.Drawing.Point(251, 112);
+            this.dateTimePickerEnd.Location = new System.Drawing.Point(251, 136);
             this.dateTimePickerEnd.Name = "dateTimePickerEnd";
             this.dateTimePickerEnd.Size = new System.Drawing.Size(136, 25);
             this.dateTimePickerEnd.TabIndex = 25;
             // 
             // dateTimePickerBegin
             // 
-            this.dateTimePickerBegin.Location = new System.Drawing.Point(90, 111);
+            this.dateTimePickerBegin.Location = new System.Drawing.Point(90, 135);
             this.dateTimePickerBegin.Name = "dateTimePickerBegin";
             this.dateTimePickerBegin.Size = new System.Drawing.Size(136, 25);
             this.dateTimePickerBegin.TabIndex = 23;
@@ -411,7 +415,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(593, 19);
+            this.label5.Location = new System.Drawing.Point(593, 14);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(415, 15);
             this.label5.TabIndex = 4;
@@ -427,6 +431,23 @@
             this.btnUpdate.Size = new System.Drawing.Size(103, 24);
             this.btnUpdate.Text = "手动刷新数据";
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click_1);
+            // 
+            // cbxSearchRange
+            // 
+            this.cbxSearchRange.FormattingEnabled = true;
+            this.cbxSearchRange.Location = new System.Drawing.Point(93, 41);
+            this.cbxSearchRange.Name = "cbxSearchRange";
+            this.cbxSearchRange.Size = new System.Drawing.Size(134, 23);
+            this.cbxSearchRange.TabIndex = 27;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(13, 44);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(82, 15);
+            this.label6.TabIndex = 28;
+            this.label6.Text = "查找范围：";
             // 
             // FrmGroups
             // 
@@ -485,5 +506,7 @@
         private System.Windows.Forms.DateTimePicker dateTimePickerBegin;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ToolStripButton btnUpdate;
+        private System.Windows.Forms.ComboBox cbxSearchRange;
+        private System.Windows.Forms.Label label6;
     }
 }

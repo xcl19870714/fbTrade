@@ -43,6 +43,12 @@ namespace FB_TRADE
         {
             dateTimePickerBegin.Value = Convert.ToDateTime("2017-01-01");
 
+            this.cbxSearchRange.Items.Clear();
+            this.cbxSearchRange.Items.Add("已加入群组");
+            this.cbxSearchRange.Items.Add("未加入群组");
+            this.cbxSearchRange.Items.Add("系统所有群组");
+            this.cbxSearchRange.SelectedIndex = 0;
+
             this.toolStrip1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.ShowItemToolTips = false;
