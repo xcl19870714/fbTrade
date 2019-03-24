@@ -133,16 +133,27 @@ namespace FB_TRADE
                 sb.Clear();
                 sb.AppendFormat("select * from tb_fbOrders where marketFbId='{0}'", curMarketFbId);
 
-                if (txtCustomerFbId.Text.Trim() != "")
-                    sb.AppendFormat(" and customerFbId='{0}'", txtCustomerFbId.Text.Trim());
-                if(txtCustomerName.Text.Trim() != "")
-                    sb.AppendFormat(" and customerFbId in (select fbId from tb_fbCustomers where name like '%{0}%')", txtCustomerName.Text.Trim());
-                if (txtGoods.Text.Trim() != "")
-                    sb.AppendFormat(" and orderId in (select orderId from tb_fbOrdergoods where name like '%{0}%')", txtGoods.Text.Trim());
+                string keyWords = txtKeyWords.Text.Trim();
+                if (keyWords != "")
+                {
+                    sb.AppendFormat(" and (orderId like '%{0}%' or oriOrderId like '%{1}%' or customerFbId like '%{2}%' or note like '%{3}%' or " +
+                        "customerFbId in (select fbId from tb_fbCustomers where name like '%{4}%' or fbUrl like '%{5}%') or " +
+                        "orderId in (select orderId from tb_fbOrdergoods where name like '%{6}%'))",
+                        keyWords, keyWords, keyWords, keyWords, keyWords, keyWords, keyWords);
+                }
+
+                string filterWords = txtFilterWords.Text.Trim();
+                if (filterWords != "")
+                {
+                    sb.AppendFormat(" and (orderId not like '%{0}%' and oriOrderId not like '%{1}%' and customerFbId not like '%{2}%' and note not like '%{3}%' and " +
+                        "customerFbId not in (select fbId from tb_fbCustomers where name like '%{4}%' or fbUrl like '%{5}%') and " +
+                        "orderId not in (select orderId from tb_fbOrdergoods where name like '%{6}%'))",
+                        filterWords, filterWords, filterWords, filterWords, filterWords, filterWords, filterWords);
+                }
 
                 DateTime begin = new DateTime(dateTimePickerBegin.Value.Year, dateTimePickerBegin.Value.Month, dateTimePickerBegin.Value.Day, 0, 0, 0);
                 DateTime end = new DateTime(dateTimePickerEnd.Value.Year, dateTimePickerEnd.Value.Month, dateTimePickerEnd.Value.Day, 23, 59, 59);
-                sb.AppendFormat(" and createTime between '{0}' and '{1}'", begin.ToString(), end.ToString());
+                sb.AppendFormat(" and lastEditTime between '{0}' and '{1}'", begin.ToString(), end.ToString());
 
                 if (ckbSave.Checked && ckbPriceNotConfirm.Checked && ckbNotShip.Checked && ckbShiped.Checked && ckbAdminDel.Checked && ckbSelfDel.Checked)
                 {
@@ -343,6 +354,90 @@ namespace FB_TRADE
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             LoadListViewDB();
+        }
+
+        private void btnOrderCopy_Click(object sender, EventArgs e)
+        {
+            if (listViewOrders.CheckedItems.Count < 1)
+            {
+                MessageBox.Show("请选择要复制的订单！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (listViewOrders.CheckedItems.Count > 1)
+            {
+                MessageBox.Show("只能选中一个订单！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            FrmOrderAdd frm = new FrmOrderAdd();
+            this.pFrmMain.AddPage(frm, "复制订单");
+
+            frm.bAdmin = this.bAdmin;
+            frm.bAdd = true;
+            frm.orderAddType = "复制";
+            frm.orderAddFrom = listViewOrders.CheckedItems[0].SubItems[0].Text;
+            frm.curMarketFbId = this.curMarketFbId;
+            frm.curMarketFbAccount = curMarketFbAccount;
+
+            frm.MyFrmInit();
+            frm.Show();
+        }
+
+        private void btnOrderAfterSale_Click(object sender, EventArgs e)
+        {
+            if (listViewOrders.CheckedItems.Count < 1)
+            {
+                MessageBox.Show("请选择要新建售后的订单！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (listViewOrders.CheckedItems.Count > 1)
+            {
+                MessageBox.Show("只能选中一个订单！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            FrmOrderAdd frm = new FrmOrderAdd();
+            this.pFrmMain.AddPage(frm, "新建售后单");
+
+            frm.bAdmin = this.bAdmin;
+            frm.bAdd = true;
+            frm.orderAddType = "新建售后";
+            frm.orderAddFrom = listViewOrders.CheckedItems[0].SubItems[0].Text;
+            frm.curMarketFbId = this.curMarketFbId;
+            frm.curMarketFbAccount = curMarketFbAccount;
+
+            frm.MyFrmInit();
+            frm.Show();
+        }
+
+        private void btnOrderDivide_Click(object sender, EventArgs e)
+        {
+            if (listViewOrders.CheckedItems.Count < 1)
+            {
+                MessageBox.Show("请选择要新建分期的订单！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (listViewOrders.CheckedItems.Count > 1)
+            {
+                MessageBox.Show("只能选中一个订单！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            FrmOrderAdd frm = new FrmOrderAdd();
+            this.pFrmMain.AddPage(frm, "新建分期单");
+
+            frm.bAdmin = this.bAdmin;
+            frm.bAdd = true;
+            frm.orderAddType = "新建分期";
+            frm.orderAddFrom = listViewOrders.CheckedItems[0].SubItems[0].Text;
+            frm.curMarketFbId = this.curMarketFbId;
+            frm.curMarketFbAccount = curMarketFbAccount;
+
+            frm.MyFrmInit();
+            frm.Show();
         }
     }
 }

@@ -25,6 +25,8 @@ namespace FB_TRADE
         //Add
         public bool bAdd = true;
         public string curCustomerFbId = string.Empty;
+        public string orderAddType = string.Empty;
+        public string orderAddFrom = string.Empty;
         //Edit
         public string curOrderId = string.Empty;
 
@@ -48,7 +50,8 @@ namespace FB_TRADE
             img.Save(mstream, System.Drawing.Imaging.ImageFormat.Bmp);
             byte[] byData = new Byte[mstream.Length];
             mstream.Position = 0;
-            mstream.Read(byData, 0, byData.Length); mstream.Close();
+            mstream.Read(byData, 0, byData.Length);
+            mstream.Close();
             return byData;
         }
   
@@ -175,7 +178,7 @@ namespace FB_TRADE
         {
             labelCurMarketFbInfo.Text = curMarketFbAccount;
 
-            if (!bAdd)
+            if (!bAdd)//Edit
             {
                 InitOrderInfo();
                 InitCustomerInfoById();
@@ -184,13 +187,56 @@ namespace FB_TRADE
             }
             else
             {
-                if (curCustomerFbId != "")
+                if (orderAddType != "" && orderAddFrom != "")//复制
                 {
-                    txtCustomerId.Text = curCustomerFbId;
+                    //先临时改成正常Edit
+                    bAdd = false; 
+                    curOrderId = orderAddFrom;
+
+                    InitOrderInfo();
                     InitCustomerInfoById();
-                    //txtCustomerId.ReadOnly = true;
+                    InitGridViewGoods();
+                    txtCustomerId.ReadOnly = true;
+
+                    //再改成Add状态
+                    bAdd = true;
+                    curOrderId = "";
+
+                    txtOrderId.Text = "";
+                    txtCreateTime.Text = "";
+                    txtLastEditTime.Text = "";
+
+                    if (orderAddType == "复制")
+                        cbxOrderType.SelectedIndex = cbxOrderType.Items.IndexOf("订单");
+                    else if (orderAddType == "新建售后")
+                        cbxOrderType.SelectedIndex = cbxOrderType.Items.IndexOf("售后单");
+                    else if (orderAddType == "新建分期")
+                        cbxOrderType.SelectedIndex = cbxOrderType.Items.IndexOf("分期付款单");
+                    else
+                        MessageBox.Show("未知订单新建类型！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtOriOrderId.Text = orderAddFrom;
+
+
+                    labelOrderStatus.Text = "未保存";
+
+                    //还原商品信息
+                    for (int i = 0; i < dataGridViewGoods.Rows.Count; i++)
+                    {
+                        DataGridViewRow row = dataGridViewGoods.Rows[i];
+                        row.Cells[1].Value = "0";
+                    }
+
                 }
-                btnCheckCustomerExist.Visible = true;
+                else //普通Add
+                {
+                    if (curCustomerFbId != "")
+                    {
+                        txtCustomerId.Text = curCustomerFbId;
+                        InitCustomerInfoById();
+                        //txtCustomerId.ReadOnly = true;
+                    }
+                    btnCheckCustomerExist.Visible = true;
+                }
             }
         }
 
@@ -580,12 +626,13 @@ namespace FB_TRADE
                         string sql = "insert into tb_fbOrderGoods(orderId, photo, name, color, size, price, amount) values(@orderId,@photo,@name,@color,@size,@price,@amount)";
                         SqlCommand com = new SqlCommand(sql, conn);
                         com.Parameters.Add("@orderId", SqlDbType.VarChar, 30).Value = curOrderId;
-                        com.Parameters.Add("@photo", SqlDbType.Image).Value = ImageToBytes((Image)(row.Cells["photo"].Value));
+                        
                         com.Parameters.Add("@name", SqlDbType.Text).Value = row.Cells["name"].Value.ToString();
                         com.Parameters.Add("@color", SqlDbType.VarChar, 30).Value = row.Cells["color"].Value.ToString();
                         com.Parameters.Add("@size", SqlDbType.VarChar, 30).Value = row.Cells["size"].Value.ToString();
                         com.Parameters.Add("@price", SqlDbType.VarChar, 30).Value = row.Cells["price"].Value.ToString();
                         com.Parameters.Add("@amount", SqlDbType.VarChar, 30).Value = row.Cells["amount"].Value.ToString();
+                        com.Parameters.Add("@photo", SqlDbType.Image).Value = ImageToBytes((Image)(row.Cells["photo"].Value));
 
                         try
                         {

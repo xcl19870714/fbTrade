@@ -257,7 +257,7 @@ namespace FB_TRADE
 
                 foreach (var fb in marketFbList)
                 {
-                    this.cbxFbAccount.Items.Add(new ListItem(fb.name, fb.fbId));
+                    this.cbxFbAccount.Items.Add(new ListItem(fb.fbAccount, fb.fbId));
                 }
             }
             catch (SqlException ex)

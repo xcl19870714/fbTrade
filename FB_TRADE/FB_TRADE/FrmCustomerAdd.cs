@@ -158,28 +158,17 @@ namespace FB_TRADE
 
         public void InitFriendShipsText(string customerFbId)
         {
-            string shipsStr = "";
-
             sb.Clear();
-            sb.AppendFormat("select * from tb_fbCustomerShips where customerFbId='{0}' and shipType='好友'", customerFbId);
-            List<FbCustomerShipInfo> shipList = (List<FbCustomerShipInfo>)db.GetList(sb.ToString(), "tb_fbCustomerShips");
-            foreach (var ship in shipList)
+            sb.AppendFormat("select fbAccount from tb_fbMarketAccounts where fbId in " +
+                "(select marketFbId from tb_fbCustomerShips where customerFbId='{0}' and shipType in ('好友','屏蔽'))", customerFbId);
+            List<string> strList = (List<string>)db.GetStringList(sb.ToString(), "fbAccount");
+            string friendShips = "";
+            foreach (var str in strList)
             {
-                sb.Clear();
-                sb.AppendFormat("select * from tb_fbMarketAccounts where fbId='{0}'", ship.marketFbId);
-                FbMarketAccountInfo marketFb = (FbMarketAccountInfo)db.GetObject(sb.ToString(), "tb_fbMarketAccounts");
-                if (marketFb != null)
-                {
-                    shipsStr += marketFb.name + ";";
-                }
+                friendShips += str + ";";
             }
 
-            txtFriendShips.Text = shipsStr;
-
-            //更新至数据库
-            sb.Clear();
-            sb.AppendFormat("update tb_fbCustomers set friendShips='{0}' where fbId='{1}'", shipsStr, customerFbId);
-            db.UpdateData(sb.ToString());
+            txtFriendShips.Text = friendShips;
         }
 
         public void InitCustomerShipFrm()
@@ -287,24 +276,6 @@ namespace FB_TRADE
 
             try
             {
-                //更新friendships string
-                string newFriendships = "";
-                string curFriendships = txtFriendShips.Text.Trim();
-                if (curFriendships.Contains(curMarketFbAccount))
-                {
-                    if (cbxShipType.SelectedItem.ToString() != "好友")
-                    {
-                        newFriendships = curFriendships.Replace(curMarketFbAccount + ";", "");
-                    }
-                }
-                else
-                {
-                    if (cbxShipType.SelectedItem.ToString() == "好友")
-                    {
-                        newFriendships = curFriendships + curMarketFbAccount + ";";
-                    }
-                }
-
                 //1. fb_tbCustomers
                 sb.Clear();
                 sb.AppendFormat("select count(*) from tb_fbCustomers where fbUrl='{0}'", txtFbUrl.Text.Trim());
@@ -312,18 +283,18 @@ namespace FB_TRADE
                 {
                     sb.Clear();
                     sb.AppendFormat("update tb_fbCustomers set name='{0}',fbUrl='{1}',friendsNum='{2}',country='{3}',state='{4}'," +
-                        "city='{5}',email='{6}',introduction='{7}',friendShips='{8}' where fbId='{9}'",
+                        "city='{5}',email='{6}',introduction='{7}' where fbId='{8}'",
                         txtName.Text.Trim(), txtFbUrl.Text.Trim(), txtFriendsNum.Text.Trim(), txtCountry.Text.Trim(), 
                         txtState.Text.Trim(), txtCity.Text.Trim(), txtEmail.Text.Trim(), txtIntroduction.Text.Trim(),
-                        newFriendships, txtFbId.Text.Trim());
+                        txtFbId.Text.Trim());
                     db.UpdateData(sb.ToString());
                 }
                 else //新增
                 {
                     sb.Clear();
-                    sb.AppendFormat("insert into tb_fbCustomers values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}')",
+                    sb.AppendFormat("insert into tb_fbCustomers values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}')",
                          txtFbId.Text.Trim(), txtName.Text.Trim(), txtFbUrl.Text.Trim(), txtFriendsNum.Text.Trim(), txtCountry.Text.Trim(),
-                         txtState.Text.Trim(), txtCity.Text.Trim(), txtEmail.Text.Trim(), txtIntroduction.Text.Trim(), newFriendships, 
+                         txtState.Text.Trim(), txtCity.Text.Trim(), txtEmail.Text.Trim(), txtIntroduction.Text.Trim(), 
                          "","","");
                     db.InsertData(sb.ToString());
                 }

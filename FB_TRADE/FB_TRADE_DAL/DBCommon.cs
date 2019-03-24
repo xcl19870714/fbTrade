@@ -242,6 +242,40 @@ namespace FB_Trade_DAL
             return obj;
         }
 
+        public Object GetStringList(string sqlSelStr, string name)
+        {
+            SqlConnection conn = new SqlConnection(connString);
+            SqlCommand cmd = new SqlCommand(sqlSelStr, conn);
+            List<string> strList = new List<string>();
+
+            try
+            {
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    string str;
+                    str = Convert.ToString(reader[name]);
+                    strList.Add(str);
+                }
+                reader.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return strList;
+        }
+
         public Object GetList(string sqlSelStr, string table)
         {
             //select * from tb_users where adminName='admin'

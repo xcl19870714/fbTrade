@@ -157,7 +157,18 @@ namespace FB_TRADE
                     it.SubItems.Add(customer.country);
                     it.SubItems.Add(customer.city);
                     it.SubItems.Add(customer.introduction);
-                    it.SubItems.Add(customer.friendShips);
+
+                    //friendShips
+                    sb.Clear();
+                    sb.AppendFormat("select fbAccount from tb_fbMarketAccounts where fbId in " +
+                        "(select marketFbId from tb_fbCustomerShips where customerFbId='{0}' and shipType in ('好友','屏蔽'))", ship.customerFbId);
+                    List<string> strList = (List<string>)db.GetStringList(sb.ToString(), "fbAccount");
+                    string friendShips = "";
+                    foreach (var str in strList)
+                    {
+                        friendShips += str + ";";
+                    }
+                    it.SubItems.Add(friendShips);
 
                     it.SubItems.Add(ship.shipType);
                     it.SubItems.Add(ship.customerType);
