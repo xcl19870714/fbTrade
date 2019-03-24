@@ -148,6 +148,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.Control;
             this.splitContainer1.Panel1.Controls.Add(this.btnFbAccountList);
             this.splitContainer1.Panel1.Controls.Add(this.labelHello);
             this.splitContainer1.Panel1.Controls.Add(this.btnOldCustomers);

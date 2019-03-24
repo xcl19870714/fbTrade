@@ -29,6 +29,10 @@ namespace FB_TRADE
 
         private void MyComponentInit()
         {
+            this.toolStrip1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip1.ShowItemToolTips = false;
+
             this.listViewUser.View = System.Windows.Forms.View.Details;
             this.listViewUser.FullRowSelect = true;
             listViewUser.CheckBoxes = true;

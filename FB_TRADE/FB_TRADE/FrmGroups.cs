@@ -32,6 +32,10 @@ namespace FB_TRADE
 
         private void MyComponentInit()
         {
+            this.toolStrip1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip1.ShowItemToolTips = false;
+
             this.listViewGroups.View = System.Windows.Forms.View.Details;
             this.listViewGroups.FullRowSelect = true;
             listViewGroups.CheckBoxes = true;
@@ -123,7 +127,7 @@ namespace FB_TRADE
             if (!bAdmin)
                 btnDelete.Visible = false;
 
-            labelCurMarketFbInfo.Text = "当前营销号：" + curMarketFbAccount;
+            labelCurMarketFbInfo.Text = curMarketFbAccount;
 
             LoadListViewDB();
         }

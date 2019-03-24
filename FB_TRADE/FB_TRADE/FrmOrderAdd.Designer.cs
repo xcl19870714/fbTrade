@@ -38,6 +38,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtCustomerId = new System.Windows.Forms.TextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.labelCurMarketFbInfo = new System.Windows.Forms.ToolStripLabel();
             this.label2 = new System.Windows.Forms.Label();
             this.txtOriOrderId = new System.Windows.Forms.TextBox();
@@ -49,6 +50,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.labelChangedNotify = new System.Windows.Forms.Label();
+            this.labelTotal = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.btnCalcTotal = new System.Windows.Forms.Button();
             this.dataGridViewGoods = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewImageColumn();
@@ -92,7 +97,9 @@
             this.label26 = new System.Windows.Forms.Label();
             this.txtNote = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -104,7 +111,6 @@
             // 
             // panel1
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.txtCity);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.txtCountry);
@@ -205,9 +211,15 @@
             this.labelCurMarketFbInfo});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1369, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1371, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(99, 22);
+            this.toolStripLabel1.Text = "当前营销号：";
             // 
             // labelCurMarketFbInfo
             // 
@@ -311,6 +323,12 @@
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.label12);
+            this.panel4.Controls.Add(this.label9);
+            this.panel4.Controls.Add(this.labelChangedNotify);
+            this.panel4.Controls.Add(this.labelTotal);
+            this.panel4.Controls.Add(this.label8);
+            this.panel4.Controls.Add(this.btnCalcTotal);
             this.panel4.Controls.Add(this.dataGridViewGoods);
             this.panel4.Controls.Add(this.txtPayType);
             this.panel4.Controls.Add(this.txtCurrency);
@@ -334,8 +352,50 @@
             this.panel4.Location = new System.Drawing.Point(0, 126);
             this.panel4.Margin = new System.Windows.Forms.Padding(4);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1371, 311);
+            this.panel4.Size = new System.Drawing.Size(1371, 343);
             this.panel4.TabIndex = 2;
+            // 
+            // labelChangedNotify
+            // 
+            this.labelChangedNotify.AutoSize = true;
+            this.labelChangedNotify.ForeColor = System.Drawing.Color.Red;
+            this.labelChangedNotify.Location = new System.Drawing.Point(771, 226);
+            this.labelChangedNotify.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelChangedNotify.Name = "labelChangedNotify";
+            this.labelChangedNotify.Size = new System.Drawing.Size(292, 15);
+            this.labelChangedNotify.TabIndex = 20;
+            this.labelChangedNotify.Text = "商品信息已修改，关闭页面前请“保存”。";
+            // 
+            // labelTotal
+            // 
+            this.labelTotal.AutoSize = true;
+            this.labelTotal.Location = new System.Drawing.Point(1230, 226);
+            this.labelTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelTotal.Name = "labelTotal";
+            this.labelTotal.Size = new System.Drawing.Size(15, 15);
+            this.labelTotal.TabIndex = 19;
+            this.labelTotal.Text = "0";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(1174, 226);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(62, 15);
+            this.label8.TabIndex = 18;
+            this.label8.Text = "Total：";
+            // 
+            // btnCalcTotal
+            // 
+            this.btnCalcTotal.Location = new System.Drawing.Point(1097, 219);
+            this.btnCalcTotal.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCalcTotal.Name = "btnCalcTotal";
+            this.btnCalcTotal.Size = new System.Drawing.Size(69, 29);
+            this.btnCalcTotal.TabIndex = 10;
+            this.btnCalcTotal.Text = "计算";
+            this.btnCalcTotal.UseVisualStyleBackColor = true;
+            this.btnCalcTotal.Click += new System.EventHandler(this.btnCalcTotal_Click);
             // 
             // dataGridViewGoods
             // 
@@ -351,6 +411,7 @@
             this.dataGridViewGoods.RowTemplate.Height = 27;
             this.dataGridViewGoods.Size = new System.Drawing.Size(1318, 181);
             this.dataGridViewGoods.TabIndex = 1;
+            this.dataGridViewGoods.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewGoods_CellValueChanged);
             // 
             // Column1
             // 
@@ -374,7 +435,7 @@
             // 
             // txtPayType
             // 
-            this.txtPayType.Location = new System.Drawing.Point(578, 269);
+            this.txtPayType.Location = new System.Drawing.Point(578, 299);
             this.txtPayType.Margin = new System.Windows.Forms.Padding(4);
             this.txtPayType.Name = "txtPayType";
             this.txtPayType.Size = new System.Drawing.Size(118, 25);
@@ -382,7 +443,7 @@
             // 
             // txtCurrency
             // 
-            this.txtCurrency.Location = new System.Drawing.Point(228, 266);
+            this.txtCurrency.Location = new System.Drawing.Point(228, 296);
             this.txtCurrency.Margin = new System.Windows.Forms.Padding(4);
             this.txtCurrency.Name = "txtCurrency";
             this.txtCurrency.Size = new System.Drawing.Size(82, 25);
@@ -390,7 +451,7 @@
             // 
             // txtShipType
             // 
-            this.txtShipType.Location = new System.Drawing.Point(228, 230);
+            this.txtShipType.Location = new System.Drawing.Point(228, 260);
             this.txtShipType.Margin = new System.Windows.Forms.Padding(4);
             this.txtShipType.Name = "txtShipType";
             this.txtShipType.Size = new System.Drawing.Size(84, 25);
@@ -399,7 +460,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(334, 234);
+            this.label5.Location = new System.Drawing.Point(334, 264);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(46, 15);
@@ -420,7 +481,7 @@
             // 
             this.cbxPayType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxPayType.FormattingEnabled = true;
-            this.cbxPayType.Location = new System.Drawing.Point(476, 270);
+            this.cbxPayType.Location = new System.Drawing.Point(476, 300);
             this.cbxPayType.Margin = new System.Windows.Forms.Padding(4);
             this.cbxPayType.Name = "cbxPayType";
             this.cbxPayType.Size = new System.Drawing.Size(94, 23);
@@ -429,7 +490,7 @@
             // 
             // txtPayNo
             // 
-            this.txtPayNo.Location = new System.Drawing.Point(858, 271);
+            this.txtPayNo.Location = new System.Drawing.Point(858, 301);
             this.txtPayNo.Margin = new System.Windows.Forms.Padding(4);
             this.txtPayNo.Name = "txtPayNo";
             this.txtPayNo.Size = new System.Drawing.Size(204, 25);
@@ -438,7 +499,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(752, 275);
+            this.label23.Location = new System.Drawing.Point(752, 305);
             this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(102, 15);
@@ -448,7 +509,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(333, 273);
+            this.label24.Location = new System.Drawing.Point(333, 303);
             this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(142, 15);
@@ -459,7 +520,7 @@
             // 
             this.cbxCurrency.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxCurrency.FormattingEnabled = true;
-            this.cbxCurrency.Location = new System.Drawing.Point(160, 267);
+            this.cbxCurrency.Location = new System.Drawing.Point(160, 297);
             this.cbxCurrency.Margin = new System.Windows.Forms.Padding(4);
             this.cbxCurrency.Name = "cbxCurrency";
             this.cbxCurrency.Size = new System.Drawing.Size(60, 23);
@@ -469,7 +530,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(34, 271);
+            this.label25.Location = new System.Drawing.Point(34, 301);
             this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(86, 15);
@@ -478,7 +539,7 @@
             // 
             // txtPayAmount
             // 
-            this.txtPayAmount.Location = new System.Drawing.Point(1082, 230);
+            this.txtPayAmount.Location = new System.Drawing.Point(1082, 260);
             this.txtPayAmount.Margin = new System.Windows.Forms.Padding(4);
             this.txtPayAmount.Name = "txtPayAmount";
             this.txtPayAmount.Size = new System.Drawing.Size(180, 25);
@@ -487,7 +548,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(949, 235);
+            this.label22.Location = new System.Drawing.Point(949, 265);
             this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(134, 15);
@@ -496,7 +557,7 @@
             // 
             // txtShipFee
             // 
-            this.txtShipFee.Location = new System.Drawing.Point(381, 230);
+            this.txtShipFee.Location = new System.Drawing.Point(381, 260);
             this.txtShipFee.Margin = new System.Windows.Forms.Padding(4);
             this.txtShipFee.Name = "txtShipFee";
             this.txtShipFee.Size = new System.Drawing.Size(136, 25);
@@ -504,7 +565,7 @@
             // 
             // txtTrackingNo
             // 
-            this.txtTrackingNo.Location = new System.Drawing.Point(660, 231);
+            this.txtTrackingNo.Location = new System.Drawing.Point(660, 261);
             this.txtTrackingNo.Margin = new System.Windows.Forms.Padding(4);
             this.txtTrackingNo.Name = "txtTrackingNo";
             this.txtTrackingNo.Size = new System.Drawing.Size(215, 25);
@@ -513,7 +574,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(558, 235);
+            this.label20.Location = new System.Drawing.Point(558, 265);
             this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(110, 15);
@@ -524,7 +585,7 @@
             // 
             this.cbxShipType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxShipType.FormattingEnabled = true;
-            this.cbxShipType.Location = new System.Drawing.Point(160, 230);
+            this.cbxShipType.Location = new System.Drawing.Point(160, 260);
             this.cbxShipType.Margin = new System.Windows.Forms.Padding(4);
             this.cbxShipType.Name = "cbxShipType";
             this.cbxShipType.Size = new System.Drawing.Size(60, 23);
@@ -534,7 +595,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(34, 233);
+            this.label21.Location = new System.Drawing.Point(34, 263);
             this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(126, 15);
@@ -552,7 +613,7 @@
             this.panel5.Controls.Add(this.txtShippingName);
             this.panel5.Controls.Add(this.label18);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(0, 437);
+            this.panel5.Location = new System.Drawing.Point(0, 469);
             this.panel5.Margin = new System.Windows.Forms.Padding(4);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1371, 188);
@@ -635,6 +696,7 @@
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.label10);
             this.panel6.Controls.Add(this.labelOrderStatus);
             this.panel6.Controls.Add(this.label28);
             this.panel6.Controls.Add(this.btnOrderDel);
@@ -646,10 +708,10 @@
             this.panel6.Controls.Add(this.txtNote);
             this.panel6.Controls.Add(this.label27);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(0, 625);
+            this.panel6.Location = new System.Drawing.Point(0, 657);
             this.panel6.Margin = new System.Windows.Forms.Padding(4);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1371, 135);
+            this.panel6.Size = new System.Drawing.Size(1371, 140);
             this.panel6.TabIndex = 4;
             // 
             // labelOrderStatus
@@ -757,17 +819,44 @@
             this.label27.TabIndex = 3;
             this.label27.Text = "备注：";
             // 
-            // toolStripLabel1
+            // label9
             // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(99, 22);
-            this.toolStripLabel1.Text = "当前营销号：";
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(16, 334);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(1319, 15);
+            this.label9.TabIndex = 21;
+            this.label9.Text = "---------------------------------------------------------------------------------" +
+    "--------------------------------------------------------------------------------" +
+    "---";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(22, -4);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(1319, 15);
+            this.label12.TabIndex = 22;
+            this.label12.Text = "---------------------------------------------------------------------------------" +
+    "--------------------------------------------------------------------------------" +
+    "---";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(19, -3);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(1319, 15);
+            this.label10.TabIndex = 23;
+            this.label10.Text = "---------------------------------------------------------------------------------" +
+    "--------------------------------------------------------------------------------" +
+    "---";
             // 
             // FrmOrderAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1371, 760);
+            this.ClientSize = new System.Drawing.Size(1371, 797);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
@@ -860,5 +949,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewButtonColumn Column4;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.Label labelTotal;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnCalcTotal;
+        private System.Windows.Forms.Label labelChangedNotify;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
     }
 }

@@ -34,6 +34,10 @@ namespace FB_TRADE
 
         private void MyComponentInit()
         {
+            this.toolStrip1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip1.ShowItemToolTips = false;
+
             this.cbxShipType.Items.Clear();
             this.cbxShipType.Items.Add("好友");
             this.cbxShipType.Items.Add("非好友");
@@ -364,6 +368,7 @@ namespace FB_TRADE
                 this.bAdd = false;
                 this.curCustomerFbId = this.txtFbId.Text.Trim();
                 this.txtNewContact.Text = "";
+                this.MyComponentInit();
                 this.MyFrmInit();
             }
             catch (SqlException ex)

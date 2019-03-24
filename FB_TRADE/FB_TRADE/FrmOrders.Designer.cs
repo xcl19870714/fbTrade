@@ -34,6 +34,7 @@
             this.btnAbbandon = new System.Windows.Forms.ToolStripButton();
             this.btnAdd = new System.Windows.Forms.ToolStripButton();
             this.btnCopy = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.labelCurMarketFbInfo = new System.Windows.Forms.ToolStripLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -56,7 +57,6 @@
             this.txtCustomerFbId = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.listViewOrders = new System.Windows.Forms.ListView();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -127,6 +127,12 @@
             this.btnCopy.Text = "复制订单编号";
             this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
             // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(99, 24);
+            this.toolStripLabel1.Text = "当前营销号：";
+            // 
             // labelCurMarketFbInfo
             // 
             this.labelCurMarketFbInfo.ForeColor = System.Drawing.Color.Red;
@@ -136,6 +142,7 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.txtCustomerName);
             this.panel1.Controls.Add(this.ckbSelfDel);
@@ -339,12 +346,6 @@
             this.listViewOrders.Size = new System.Drawing.Size(1318, 410);
             this.listViewOrders.TabIndex = 0;
             this.listViewOrders.UseCompatibleStateImageBehavior = false;
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(99, 24);
-            this.toolStripLabel1.Text = "当前营销号：";
             // 
             // FrmOrders
             // 

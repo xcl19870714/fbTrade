@@ -134,6 +134,20 @@ namespace FB_TRADE
                 if (isClose == true)
                 {
                     //比较关闭的页面索引与正在显示的页面的索引
+                    foreach (Control c in this.tabControlMain.SelectedTab.Controls)
+                    {
+                        if (c.GetType().ToString() == "FB_TRADE.FrmOrderAdd")
+                        {
+                            if (((FrmOrderAdd)c).CloseComfirm() == false)
+                                return;
+                        }
+
+                        if (c.GetType().ToString().Contains("FB_TRADE.Frm"))
+                        {
+                            ((Form)c).Close();
+                        }
+                    }
+
                     tabindex_close = this.tabControlMain.SelectedIndex >= tabindex_show ? this.tabControlMain.SelectedIndex : tabindex_close - 1;
                     this.tabControlMain.TabPages.Remove(this.tabControlMain.SelectedTab);
                 }

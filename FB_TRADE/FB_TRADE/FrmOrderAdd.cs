@@ -12,6 +12,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using FB_Trade_Models;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace FB_TRADE
 {
@@ -50,6 +51,14 @@ namespace FB_TRADE
             mstream.Read(byData, 0, byData.Length); mstream.Close();
             return byData;
         }
+  
+        private static bool IsDigital(string value)
+        {
+            if (value == "")
+                return false;
+            else
+                return Regex.IsMatch(value, @"^[+-]?\d*[.]?\d*$");
+        }
 
         //1. 构造界面
         public FrmOrderAdd()
@@ -60,6 +69,10 @@ namespace FB_TRADE
 
         private void MyComponentInit()
         {
+            this.toolStrip1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip1.ShowItemToolTips = false;
+
             this.cbxOrderType.Items.Clear();
             this.cbxOrderType.Items.Add("订单");
             this.cbxOrderType.Items.Add("分期付款单");
@@ -90,6 +103,8 @@ namespace FB_TRADE
             this.cbxPayType.Items.Add("货到付款");
             this.cbxPayType.Items.Add("Other");
             this.cbxPayType.SelectedIndex = 0;
+
+            this.labelChangedNotify.Visible = false;
 
             txtShipType.Visible = false;
             txtCurrency.Visible = false;
@@ -322,9 +337,10 @@ namespace FB_TRADE
                     dataGridViewGoods.Rows[index].Cells["size"].Value = goods.size;
                     dataGridViewGoods.Rows[index].Cells["price"].Value = goods.price;
                     dataGridViewGoods.Rows[index].Cells["amount"].Value = goods.amount;
-                    dataGridViewGoods.Rows[index].Cells["totalPrice"].Value = Convert.ToString(Convert.ToDouble(goods.price) * Convert.ToInt32(goods.amount));
                 }
 
+                CalcTotalPrice();
+                this.labelChangedNotify.Visible = false;
             }
             catch (SqlException ex)
             {
@@ -420,6 +436,31 @@ namespace FB_TRADE
                     //dataGridViewGoods.Rows.Remove(row);
                 }
             }
+        }
+
+        private void CalcTotalPrice()
+        {
+            double total = 0.0, all = 0.0;
+            for (int i = 0; i < dataGridViewGoods.Rows.Count; i++)
+            {
+                DataGridViewRow row = dataGridViewGoods.Rows[i];
+
+                if (IsDigital(row.Cells["price"].Value.ToString().Trim()) && IsDigital(row.Cells["amount"].Value.ToString().Trim()))
+                {
+                    total = (Convert.ToDouble(row.Cells["price"].Value.ToString().Trim()) * Convert.ToDouble(row.Cells["amount"].Value.ToString().Trim()));
+                    row.Cells["totalPrice"].Value = total.ToString("0.000");
+                    all += total;
+                }
+                else
+                    row.Cells["totalPrice"].Value = "0";
+            }
+
+            labelTotal.Text = all.ToString("0.000");
+        }
+
+        private void btnCalcTotal_Click(object sender, EventArgs e)
+        {
+            CalcTotalPrice();
         }
 
         //订单状态改变规则：
@@ -626,6 +667,24 @@ namespace FB_TRADE
             {
                 MessageBox.Show(ex.Message, "程序异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void dataGridViewGoods_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (!bAdd)
+                this.labelChangedNotify.Visible = true;
+        }
+
+        public bool CloseComfirm()
+        {
+            if (labelChangedNotify.Visible == true)
+            {
+                DialogResult choice = MessageBox.Show("商品信息修改未保存，确定要关闭吗？", "系统提示", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (choice == DialogResult.No)
+                    return false;
+            }
+
+            return true;
         }
     }
 }

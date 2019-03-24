@@ -33,6 +33,10 @@ namespace FB_TRADE
 
         private void MyComponentInit()
         {
+            this.toolStrip1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip1.ShowItemToolTips = false;
+
             dateTimePickerBegin.Value = Convert.ToDateTime("2017-01-01");
 
             this.listViewOrders.View = System.Windows.Forms.View.Details;
