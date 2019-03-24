@@ -35,9 +35,10 @@
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.btnDelete = new System.Windows.Forms.ToolStripButton();
             this.btnMarketFbAdd = new System.Windows.Forms.ToolStripButton();
+            this.labelCurUser = new System.Windows.Forms.ToolStripLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.listViewMarketFbs = new System.Windows.Forms.ListView();
-            this.labelCurUser = new System.Windows.Forms.ToolStripLabel();
+            this.btnUpdate = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -49,7 +50,8 @@
             this.toolStripLabel1,
             this.btnDelete,
             this.btnMarketFbAdd,
-            this.labelCurUser});
+            this.labelCurUser,
+            this.btnUpdate});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(906, 27);
@@ -85,6 +87,13 @@
             this.btnMarketFbAdd.Text = "新增营销号";
             this.btnMarketFbAdd.Click += new System.EventHandler(this.btnMarketFbAdd_Click);
             // 
+            // labelCurUser
+            // 
+            this.labelCurUser.ForeColor = System.Drawing.Color.Red;
+            this.labelCurUser.Name = "labelCurUser";
+            this.labelCurUser.Size = new System.Drawing.Size(122, 24);
+            this.labelCurUser.Text = "toolStripLabel2";
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.listViewMarketFbs);
@@ -107,12 +116,16 @@
             this.listViewMarketFbs.TabIndex = 0;
             this.listViewMarketFbs.UseCompatibleStateImageBehavior = false;
             // 
-            // labelCurUser
+            // btnUpdate
             // 
-            this.labelCurUser.ForeColor = System.Drawing.Color.Red;
-            this.labelCurUser.Name = "labelCurUser";
-            this.labelCurUser.Size = new System.Drawing.Size(122, 24);
-            this.labelCurUser.Text = "toolStripLabel2";
+            this.btnUpdate.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnUpdate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnUpdate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Image")));
+            this.btnUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(103, 24);
+            this.btnUpdate.Text = "手动刷新数据";
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // FrmMarketFbList
             // 
@@ -140,5 +153,6 @@
         private System.Windows.Forms.ListView listViewMarketFbs;
         private System.Windows.Forms.ToolStripButton btnDelete;
         private System.Windows.Forms.ToolStripLabel labelCurUser;
+        private System.Windows.Forms.ToolStripButton btnUpdate;
     }
 }

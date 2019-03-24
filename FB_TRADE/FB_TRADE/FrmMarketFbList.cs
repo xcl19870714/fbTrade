@@ -218,5 +218,10 @@ namespace FB_TRADE
             }
             this.LoadListViewDB();
         }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            LoadListViewDB();
+        }
     }
 }

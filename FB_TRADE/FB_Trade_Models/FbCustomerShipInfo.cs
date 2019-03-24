@@ -16,6 +16,7 @@ namespace FB_Trade_Models
         public string customerType;
         public string interestedGoods;
         public string note;
+        public int trace;
         public string traceDate;
         public string lastEditTime;
     }

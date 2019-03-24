@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUserList));
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "",
             ""}, -1);
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUserList));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnDelete = new System.Windows.Forms.ToolStripButton();
             this.btnAddUser = new System.Windows.Forms.ToolStripButton();
             this.panelUserList = new System.Windows.Forms.Panel();
             this.listViewUser = new System.Windows.Forms.ListView();
@@ -42,7 +43,7 @@
             this.colAdmin = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.btnDelete = new System.Windows.Forms.ToolStripButton();
+            this.btnUpdate = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.panelUserList.SuspendLayout();
             this.SuspendLayout();
@@ -52,12 +53,23 @@
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnDelete,
-            this.btnAddUser});
+            this.btnAddUser,
+            this.btnUpdate});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(800, 27);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
+            this.btnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(43, 24);
+            this.btnDelete.Text = "删除";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnAddUser
             // 
@@ -128,15 +140,15 @@
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // btnDelete
+            // btnUpdate
             // 
-            this.btnDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-            this.btnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(43, 24);
-            this.btnDelete.Text = "删除";
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            this.btnUpdate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnUpdate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Image")));
+            this.btnUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(103, 24);
+            this.btnUpdate.Text = "手动刷新数据";
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // FrmUserList
             // 
@@ -169,5 +181,6 @@
         private System.Windows.Forms.ColumnHeader colAdmin;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ToolStripButton btnDelete;
+        private System.Windows.Forms.ToolStripButton btnUpdate;
     }
 }

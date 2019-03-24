@@ -77,11 +77,11 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.listViewLogs = new System.Windows.Forms.ListView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.LabelCurMarketFbInfo = new System.Windows.Forms.ToolStripLabel();
             this.label4 = new System.Windows.Forms.Label();
             this.txtNote = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -317,7 +317,7 @@
             this.groupBox3.Size = new System.Drawing.Size(403, 105);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "备注";
+            this.groupBox3.Text = "标记";
             // 
             // ckbOnSale
             // 
@@ -570,6 +570,12 @@
             this.toolStrip1.TabIndex = 16;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(99, 22);
+            this.toolStripLabel1.Text = "当前营销号：";
+            // 
             // LabelCurMarketFbInfo
             // 
             this.LabelCurMarketFbInfo.ForeColor = System.Drawing.Color.Red;
@@ -602,12 +608,6 @@
             this.label5.Size = new System.Drawing.Size(52, 15);
             this.label5.TabIndex = 10;
             this.label5.Text = "备注：";
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(99, 22);
-            this.toolStripLabel1.Text = "当前营销号：";
             // 
             // FrmGroupAdd
             // 

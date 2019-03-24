@@ -41,15 +41,9 @@
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.labelCurMarketFbInfo = new System.Windows.Forms.ToolStripLabel();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtOriOrderId = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.cbxOrderType = new System.Windows.Forms.ComboBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtOrderId = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.labelChangedNotify = new System.Windows.Forms.Label();
             this.labelTotal = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -87,6 +81,7 @@
             this.txtShippingName = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
             this.labelOrderStatus = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.btnOrderDel = new System.Windows.Forms.Button();
@@ -97,12 +92,18 @@
             this.label26 = new System.Windows.Forms.Label();
             this.txtNote = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.txtLastEditTime = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtCreateTime = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.txtOriOrderId = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbxOrderType = new System.Windows.Forms.ComboBox();
+            this.txtOrderId = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGoods)).BeginInit();
             this.panel5.SuspendLayout();
@@ -111,6 +112,16 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.txtLastEditTime);
+            this.panel1.Controls.Add(this.label13);
+            this.panel1.Controls.Add(this.txtCreateTime);
+            this.panel1.Controls.Add(this.label29);
+            this.panel1.Controls.Add(this.txtOriOrderId);
+            this.panel1.Controls.Add(this.label15);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.cbxOrderType);
+            this.panel1.Controls.Add(this.txtOrderId);
+            this.panel1.Controls.Add(this.label14);
             this.panel1.Controls.Add(this.txtCity);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.txtCountry);
@@ -125,83 +136,83 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1371, 73);
+            this.panel1.Size = new System.Drawing.Size(1371, 153);
             this.panel1.TabIndex = 0;
             // 
             // txtCity
             // 
-            this.txtCity.Location = new System.Drawing.Point(1008, 34);
+            this.txtCity.Location = new System.Drawing.Point(1036, 116);
             this.txtCity.Margin = new System.Windows.Forms.Padding(4);
             this.txtCity.Name = "txtCity";
             this.txtCity.ReadOnly = true;
             this.txtCity.Size = new System.Drawing.Size(149, 25);
-            this.txtCity.TabIndex = 9;
+            this.txtCity.TabIndex = 18;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(949, 38);
+            this.label7.Location = new System.Drawing.Point(977, 120);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(52, 15);
-            this.label7.TabIndex = 8;
+            this.label7.TabIndex = 17;
             this.label7.Text = "城市：";
             // 
             // txtCountry
             // 
-            this.txtCountry.Location = new System.Drawing.Point(774, 35);
+            this.txtCountry.Location = new System.Drawing.Point(753, 117);
             this.txtCountry.Margin = new System.Windows.Forms.Padding(4);
             this.txtCountry.Name = "txtCountry";
             this.txtCountry.ReadOnly = true;
             this.txtCountry.Size = new System.Drawing.Size(149, 25);
-            this.txtCountry.TabIndex = 7;
+            this.txtCountry.TabIndex = 16;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(715, 39);
+            this.label6.Location = new System.Drawing.Point(694, 120);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(52, 15);
-            this.label6.TabIndex = 6;
+            this.label6.TabIndex = 15;
             this.label6.Text = "国家：";
             // 
             // btnCheckCustomerExist
             // 
-            this.btnCheckCustomerExist.Location = new System.Drawing.Point(341, 32);
+            this.btnCheckCustomerExist.Location = new System.Drawing.Point(274, 115);
             this.btnCheckCustomerExist.Name = "btnCheckCustomerExist";
-            this.btnCheckCustomerExist.Size = new System.Drawing.Size(75, 30);
-            this.btnCheckCustomerExist.TabIndex = 3;
+            this.btnCheckCustomerExist.Size = new System.Drawing.Size(56, 30);
+            this.btnCheckCustomerExist.TabIndex = 12;
             this.btnCheckCustomerExist.Text = "检测";
             this.btnCheckCustomerExist.UseVisualStyleBackColor = true;
             this.btnCheckCustomerExist.Click += new System.EventHandler(this.btnCheckCustomerExist_Click);
             // 
             // txtCustomerName
             // 
-            this.txtCustomerName.Location = new System.Drawing.Point(518, 34);
+            this.txtCustomerName.Location = new System.Drawing.Point(425, 116);
             this.txtCustomerName.Margin = new System.Windows.Forms.Padding(4);
             this.txtCustomerName.Name = "txtCustomerName";
             this.txtCustomerName.ReadOnly = true;
-            this.txtCustomerName.Size = new System.Drawing.Size(149, 25);
-            this.txtCustomerName.TabIndex = 5;
+            this.txtCustomerName.Size = new System.Drawing.Size(192, 25);
+            this.txtCustomerName.TabIndex = 14;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(459, 38);
+            this.label4.Location = new System.Drawing.Point(369, 120);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 15);
-            this.label4.TabIndex = 4;
+            this.label4.TabIndex = 13;
             this.label4.Text = "昵称：";
             // 
             // txtCustomerId
             // 
-            this.txtCustomerId.Location = new System.Drawing.Point(109, 35);
+            this.txtCustomerId.Location = new System.Drawing.Point(109, 116);
             this.txtCustomerId.Margin = new System.Windows.Forms.Padding(4);
             this.txtCustomerId.Name = "txtCustomerId";
-            this.txtCustomerId.Size = new System.Drawing.Size(214, 25);
-            this.txtCustomerId.TabIndex = 2;
+            this.txtCustomerId.Size = new System.Drawing.Size(154, 25);
+            this.txtCustomerId.TabIndex = 11;
             // 
             // toolStrip1
             // 
@@ -231,95 +242,12 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 39);
+            this.label2.Location = new System.Drawing.Point(20, 120);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(82, 15);
-            this.label2.TabIndex = 1;
+            this.label2.TabIndex = 10;
             this.label2.Text = "客户编号：";
-            // 
-            // txtOriOrderId
-            // 
-            this.txtOriOrderId.Location = new System.Drawing.Point(798, 14);
-            this.txtOriOrderId.Margin = new System.Windows.Forms.Padding(4);
-            this.txtOriOrderId.Name = "txtOriOrderId";
-            this.txtOriOrderId.Size = new System.Drawing.Size(228, 25);
-            this.txtOriOrderId.TabIndex = 6;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(707, 22);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(82, 15);
-            this.label15.TabIndex = 5;
-            this.label15.Text = "原始单号：";
-            // 
-            // cbxOrderType
-            // 
-            this.cbxOrderType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxOrderType.FormattingEnabled = true;
-            this.cbxOrderType.Location = new System.Drawing.Point(536, 16);
-            this.cbxOrderType.Margin = new System.Windows.Forms.Padding(4);
-            this.cbxOrderType.Name = "cbxOrderType";
-            this.cbxOrderType.Size = new System.Drawing.Size(132, 23);
-            this.cbxOrderType.TabIndex = 4;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(458, 21);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(82, 15);
-            this.label14.TabIndex = 3;
-            this.label14.Text = "订单类型：";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(320, 22);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(97, 15);
-            this.label11.TabIndex = 2;
-            this.label11.Text = "（系统生成）";
-            // 
-            // txtOrderId
-            // 
-            this.txtOrderId.Location = new System.Drawing.Point(110, 17);
-            this.txtOrderId.Margin = new System.Windows.Forms.Padding(4);
-            this.txtOrderId.Name = "txtOrderId";
-            this.txtOrderId.ReadOnly = true;
-            this.txtOrderId.Size = new System.Drawing.Size(214, 25);
-            this.txtOrderId.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 22);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "订单编号：";
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.txtOriOrderId);
-            this.panel2.Controls.Add(this.label15);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.cbxOrderType);
-            this.panel2.Controls.Add(this.txtOrderId);
-            this.panel2.Controls.Add(this.label14);
-            this.panel2.Controls.Add(this.label11);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 73);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1371, 53);
-            this.panel2.TabIndex = 0;
             // 
             // panel4
             // 
@@ -349,17 +277,39 @@
             this.panel4.Controls.Add(this.cbxShipType);
             this.panel4.Controls.Add(this.label21);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 126);
+            this.panel4.Location = new System.Drawing.Point(0, 153);
             this.panel4.Margin = new System.Windows.Forms.Padding(4);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1371, 343);
             this.panel4.TabIndex = 2;
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(22, -4);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(1319, 15);
+            this.label12.TabIndex = 22;
+            this.label12.Text = "---------------------------------------------------------------------------------" +
+    "--------------------------------------------------------------------------------" +
+    "---";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(16, 334);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(1319, 15);
+            this.label9.TabIndex = 21;
+            this.label9.Text = "---------------------------------------------------------------------------------" +
+    "--------------------------------------------------------------------------------" +
+    "---";
+            // 
             // labelChangedNotify
             // 
             this.labelChangedNotify.AutoSize = true;
             this.labelChangedNotify.ForeColor = System.Drawing.Color.Red;
-            this.labelChangedNotify.Location = new System.Drawing.Point(771, 226);
+            this.labelChangedNotify.Location = new System.Drawing.Point(805, 226);
             this.labelChangedNotify.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelChangedNotify.Name = "labelChangedNotify";
             this.labelChangedNotify.Size = new System.Drawing.Size(292, 15);
@@ -369,17 +319,17 @@
             // labelTotal
             // 
             this.labelTotal.AutoSize = true;
-            this.labelTotal.Location = new System.Drawing.Point(1230, 226);
+            this.labelTotal.Location = new System.Drawing.Point(1266, 226);
             this.labelTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTotal.Name = "labelTotal";
-            this.labelTotal.Size = new System.Drawing.Size(15, 15);
+            this.labelTotal.Size = new System.Drawing.Size(71, 15);
             this.labelTotal.TabIndex = 19;
-            this.labelTotal.Text = "0";
+            this.labelTotal.Text = "1000.000";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(1174, 226);
+            this.label8.Location = new System.Drawing.Point(1208, 226);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(62, 15);
@@ -388,7 +338,7 @@
             // 
             // btnCalcTotal
             // 
-            this.btnCalcTotal.Location = new System.Drawing.Point(1097, 219);
+            this.btnCalcTotal.Location = new System.Drawing.Point(1131, 219);
             this.btnCalcTotal.Margin = new System.Windows.Forms.Padding(4);
             this.btnCalcTotal.Name = "btnCalcTotal";
             this.btnCalcTotal.Size = new System.Drawing.Size(69, 29);
@@ -410,7 +360,7 @@
             this.dataGridViewGoods.Name = "dataGridViewGoods";
             this.dataGridViewGoods.RowTemplate.Height = 27;
             this.dataGridViewGoods.Size = new System.Drawing.Size(1318, 181);
-            this.dataGridViewGoods.TabIndex = 1;
+            this.dataGridViewGoods.TabIndex = 0;
             this.dataGridViewGoods.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewGoods_CellValueChanged);
             // 
             // Column1
@@ -613,7 +563,7 @@
             this.panel5.Controls.Add(this.txtShippingName);
             this.panel5.Controls.Add(this.label18);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(0, 469);
+            this.panel5.Location = new System.Drawing.Point(0, 496);
             this.panel5.Margin = new System.Windows.Forms.Padding(4);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1371, 188);
@@ -708,11 +658,22 @@
             this.panel6.Controls.Add(this.txtNote);
             this.panel6.Controls.Add(this.label27);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(0, 657);
+            this.panel6.Location = new System.Drawing.Point(0, 684);
             this.panel6.Margin = new System.Windows.Forms.Padding(4);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1371, 140);
+            this.panel6.Size = new System.Drawing.Size(1371, 113);
             this.panel6.TabIndex = 4;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(19, -3);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(1319, 15);
+            this.label10.TabIndex = 23;
+            this.label10.Text = "---------------------------------------------------------------------------------" +
+    "--------------------------------------------------------------------------------" +
+    "---";
             // 
             // labelOrderStatus
             // 
@@ -819,38 +780,100 @@
             this.label27.TabIndex = 3;
             this.label27.Text = "备注：";
             // 
-            // label9
+            // txtLastEditTime
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(16, 334);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(1319, 15);
-            this.label9.TabIndex = 21;
-            this.label9.Text = "---------------------------------------------------------------------------------" +
-    "--------------------------------------------------------------------------------" +
-    "---";
+            this.txtLastEditTime.Location = new System.Drawing.Point(808, 36);
+            this.txtLastEditTime.Margin = new System.Windows.Forms.Padding(4);
+            this.txtLastEditTime.Name = "txtLastEditTime";
+            this.txtLastEditTime.ReadOnly = true;
+            this.txtLastEditTime.Size = new System.Drawing.Size(187, 25);
+            this.txtLastEditTime.TabIndex = 5;
             // 
-            // label12
+            // label13
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(22, -4);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(1319, 15);
-            this.label12.TabIndex = 22;
-            this.label12.Text = "---------------------------------------------------------------------------------" +
-    "--------------------------------------------------------------------------------" +
-    "---";
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(696, 41);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(112, 15);
+            this.label13.TabIndex = 4;
+            this.label13.Text = "最后编辑时间：";
             // 
-            // label10
+            // txtCreateTime
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(19, -3);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(1319, 15);
-            this.label10.TabIndex = 23;
-            this.label10.Text = "---------------------------------------------------------------------------------" +
-    "--------------------------------------------------------------------------------" +
-    "---";
+            this.txtCreateTime.Location = new System.Drawing.Point(426, 37);
+            this.txtCreateTime.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCreateTime.Name = "txtCreateTime";
+            this.txtCreateTime.ReadOnly = true;
+            this.txtCreateTime.Size = new System.Drawing.Size(191, 25);
+            this.txtCreateTime.TabIndex = 3;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(343, 41);
+            this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(82, 15);
+            this.label29.TabIndex = 2;
+            this.label29.Text = "创建时间：";
+            // 
+            // txtOriOrderId
+            // 
+            this.txtOriOrderId.Location = new System.Drawing.Point(425, 76);
+            this.txtOriOrderId.Margin = new System.Windows.Forms.Padding(4);
+            this.txtOriOrderId.Name = "txtOriOrderId";
+            this.txtOriOrderId.Size = new System.Drawing.Size(192, 25);
+            this.txtOriOrderId.TabIndex = 9;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(342, 81);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(82, 15);
+            this.label15.TabIndex = 8;
+            this.label15.Text = "原始单号：";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(20, 41);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 15);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "订单编号：";
+            // 
+            // cbxOrderType
+            // 
+            this.cbxOrderType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxOrderType.FormattingEnabled = true;
+            this.cbxOrderType.Location = new System.Drawing.Point(108, 78);
+            this.cbxOrderType.Margin = new System.Windows.Forms.Padding(4);
+            this.cbxOrderType.Name = "cbxOrderType";
+            this.cbxOrderType.Size = new System.Drawing.Size(155, 23);
+            this.cbxOrderType.TabIndex = 7;
+            // 
+            // txtOrderId
+            // 
+            this.txtOrderId.Location = new System.Drawing.Point(108, 38);
+            this.txtOrderId.Margin = new System.Windows.Forms.Padding(4);
+            this.txtOrderId.Name = "txtOrderId";
+            this.txtOrderId.ReadOnly = true;
+            this.txtOrderId.Size = new System.Drawing.Size(155, 25);
+            this.txtOrderId.TabIndex = 1;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(19, 81);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(82, 15);
+            this.label14.TabIndex = 6;
+            this.label14.Text = "订单类型：";
             // 
             // FrmOrderAdd
             // 
@@ -860,7 +883,6 @@
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmOrderAdd";
@@ -869,8 +891,6 @@
             this.panel1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGoods)).EndInit();
@@ -885,16 +905,8 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox txtOrderId;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtCustomerId;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtOriOrderId;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.ComboBox cbxOrderType;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.ComboBox cbxPayType;
         private System.Windows.Forms.TextBox txtPayNo;
@@ -956,5 +968,15 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtLastEditTime;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox txtCreateTime;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.TextBox txtOriOrderId;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cbxOrderType;
+        private System.Windows.Forms.TextBox txtOrderId;
+        private System.Windows.Forms.Label label14;
     }
 }

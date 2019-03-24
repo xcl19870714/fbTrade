@@ -91,6 +91,7 @@
             this.cbxFbAccount.MaxDropDownItems = 100;
             this.cbxFbAccount.Name = "cbxFbAccount";
             this.cbxFbAccount.Size = new System.Drawing.Size(100, 28);
+            this.cbxFbAccount.SelectedIndexChanged += new System.EventHandler(this.cbxFbAccount__SelectedIndexChanged);
             // 
             // lblTools
             // 

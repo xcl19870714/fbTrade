@@ -54,6 +54,16 @@
             this.cbxOnSale = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtKeyWords = new System.Windows.Forms.TextBox();
+            this.txtFilterWords = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.dateTimePickerEnd = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerBegin = new System.Windows.Forms.DateTimePicker();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btnUpdate = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -67,7 +77,8 @@
             this.btnAdd,
             this.btnCopy,
             this.toolStripLabel1,
-            this.labelCurMarketFbInfo});
+            this.labelCurMarketFbInfo,
+            this.btnUpdate});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1071, 27);
@@ -127,9 +138,9 @@
             // 
             this.panel2.Controls.Add(this.listViewGroups);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 116);
+            this.panel2.Location = new System.Drawing.Point(0, 177);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1071, 457);
+            this.panel2.Size = new System.Drawing.Size(1071, 396);
             this.panel2.TabIndex = 2;
             // 
             // listViewGroups
@@ -137,164 +148,164 @@
             this.listViewGroups.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewGroups.Location = new System.Drawing.Point(0, 0);
             this.listViewGroups.Name = "listViewGroups";
-            this.listViewGroups.Size = new System.Drawing.Size(1071, 457);
+            this.listViewGroups.Size = new System.Drawing.Size(1071, 396);
             this.listViewGroups.TabIndex = 0;
             this.listViewGroups.UseCompatibleStateImageBehavior = false;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(25, 19);
+            this.label2.Location = new System.Drawing.Point(13, 49);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 15);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "状态：";
+            this.label2.Size = new System.Drawing.Size(82, 15);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "状态包含：";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(25, 49);
+            this.label3.Location = new System.Drawing.Point(13, 79);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 15);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "备注：";
+            this.label3.Size = new System.Drawing.Size(82, 15);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "标记包含：";
             // 
             // ckbJoin
             // 
             this.ckbJoin.AutoSize = true;
-            this.ckbJoin.Location = new System.Drawing.Point(92, 19);
+            this.ckbJoin.Location = new System.Drawing.Point(92, 49);
             this.ckbJoin.Name = "ckbJoin";
             this.ckbJoin.Size = new System.Drawing.Size(89, 19);
-            this.ckbJoin.TabIndex = 1;
+            this.ckbJoin.TabIndex = 8;
             this.ckbJoin.Text = "申请加入";
             this.ckbJoin.UseVisualStyleBackColor = true;
             // 
             // ckbAccept
             // 
             this.ckbAccept.AutoSize = true;
-            this.ckbAccept.Location = new System.Drawing.Point(197, 19);
+            this.ckbAccept.Location = new System.Drawing.Point(197, 49);
             this.ckbAccept.Name = "ckbAccept";
             this.ckbAccept.Size = new System.Drawing.Size(89, 19);
-            this.ckbAccept.TabIndex = 2;
+            this.ckbAccept.TabIndex = 9;
             this.ckbAccept.Text = "申请通过";
             this.ckbAccept.UseVisualStyleBackColor = true;
             // 
             // ckbReject
             // 
             this.ckbReject.AutoSize = true;
-            this.ckbReject.Location = new System.Drawing.Point(307, 19);
+            this.ckbReject.Location = new System.Drawing.Point(307, 49);
             this.ckbReject.Name = "ckbReject";
             this.ckbReject.Size = new System.Drawing.Size(89, 19);
-            this.ckbReject.TabIndex = 3;
+            this.ckbReject.TabIndex = 10;
             this.ckbReject.Text = "申请被拒";
             this.ckbReject.UseVisualStyleBackColor = true;
             // 
             // cbxTweeting
             // 
             this.cbxTweeting.AutoSize = true;
-            this.cbxTweeting.Location = new System.Drawing.Point(422, 19);
+            this.cbxTweeting.Location = new System.Drawing.Point(422, 49);
             this.cbxTweeting.Name = "cbxTweeting";
             this.cbxTweeting.Size = new System.Drawing.Size(89, 19);
-            this.cbxTweeting.TabIndex = 4;
+            this.cbxTweeting.TabIndex = 11;
             this.cbxTweeting.Text = "发贴状态";
             this.cbxTweeting.UseVisualStyleBackColor = true;
             // 
             // cbxQuit
             // 
             this.cbxQuit.AutoSize = true;
-            this.cbxQuit.Location = new System.Drawing.Point(528, 19);
+            this.cbxQuit.Location = new System.Drawing.Point(528, 49);
             this.cbxQuit.Name = "cbxQuit";
             this.cbxQuit.Size = new System.Drawing.Size(89, 19);
-            this.cbxQuit.TabIndex = 5;
+            this.cbxQuit.TabIndex = 12;
             this.cbxQuit.Text = "退出群组";
             this.cbxQuit.UseVisualStyleBackColor = true;
             // 
             // ckbAbbandon
             // 
             this.ckbAbbandon.AutoSize = true;
-            this.ckbAbbandon.Location = new System.Drawing.Point(638, 19);
+            this.ckbAbbandon.Location = new System.Drawing.Point(638, 49);
             this.ckbAbbandon.Name = "ckbAbbandon";
             this.ckbAbbandon.Size = new System.Drawing.Size(59, 19);
-            this.ckbAbbandon.TabIndex = 6;
+            this.ckbAbbandon.TabIndex = 13;
             this.ckbAbbandon.Text = "不要";
             this.ckbAbbandon.UseVisualStyleBackColor = true;
             // 
             // cbxIm
             // 
             this.cbxIm.AutoSize = true;
-            this.cbxIm.Location = new System.Drawing.Point(92, 50);
+            this.cbxIm.Location = new System.Drawing.Point(92, 80);
             this.cbxIm.Name = "cbxIm";
             this.cbxIm.Size = new System.Drawing.Size(59, 19);
-            this.cbxIm.TabIndex = 8;
+            this.cbxIm.TabIndex = 15;
             this.cbxIm.Text = "重要";
             this.cbxIm.UseVisualStyleBackColor = true;
             // 
             // cbxNormal
             // 
             this.cbxNormal.AutoSize = true;
-            this.cbxNormal.Location = new System.Drawing.Point(157, 49);
+            this.cbxNormal.Location = new System.Drawing.Point(157, 79);
             this.cbxNormal.Name = "cbxNormal";
             this.cbxNormal.Size = new System.Drawing.Size(59, 19);
-            this.cbxNormal.TabIndex = 9;
+            this.cbxNormal.TabIndex = 16;
             this.cbxNormal.Text = "一般";
             this.cbxNormal.UseVisualStyleBackColor = true;
             // 
             // cbxCheated
             // 
             this.cbxCheated.AutoSize = true;
-            this.cbxCheated.Location = new System.Drawing.Point(227, 50);
+            this.cbxCheated.Location = new System.Drawing.Point(227, 80);
             this.cbxCheated.Name = "cbxCheated";
             this.cbxCheated.Size = new System.Drawing.Size(104, 19);
-            this.cbxCheated.TabIndex = 10;
+            this.cbxCheated.TabIndex = 17;
             this.cbxCheated.Text = "认为是骗子";
             this.cbxCheated.UseVisualStyleBackColor = true;
             // 
             // ckbAttacked
             // 
             this.ckbAttacked.AutoSize = true;
-            this.ckbAttacked.Location = new System.Drawing.Point(337, 50);
+            this.ckbAttacked.Location = new System.Drawing.Point(337, 80);
             this.ckbAttacked.Name = "ckbAttacked";
             this.ckbAttacked.Size = new System.Drawing.Size(74, 19);
-            this.ckbAttacked.TabIndex = 11;
+            this.ckbAttacked.TabIndex = 18;
             this.ckbAttacked.Text = "被攻击";
             this.ckbAttacked.UseVisualStyleBackColor = true;
             // 
             // cbxLocalTrade
             // 
             this.cbxLocalTrade.AutoSize = true;
-            this.cbxLocalTrade.Location = new System.Drawing.Point(423, 49);
+            this.cbxLocalTrade.Location = new System.Drawing.Point(423, 79);
             this.cbxLocalTrade.Name = "cbxLocalTrade";
             this.cbxLocalTrade.Size = new System.Drawing.Size(104, 19);
-            this.cbxLocalTrade.TabIndex = 12;
+            this.cbxLocalTrade.TabIndex = 19;
             this.cbxLocalTrade.Text = "想当地交易";
             this.cbxLocalTrade.UseVisualStyleBackColor = true;
             // 
             // cbxUnTrust
             // 
             this.cbxUnTrust.AutoSize = true;
-            this.cbxUnTrust.Location = new System.Drawing.Point(543, 49);
+            this.cbxUnTrust.Location = new System.Drawing.Point(543, 79);
             this.cbxUnTrust.Name = "cbxUnTrust";
             this.cbxUnTrust.Size = new System.Drawing.Size(74, 19);
-            this.cbxUnTrust.TabIndex = 13;
+            this.cbxUnTrust.TabIndex = 20;
             this.cbxUnTrust.Text = "不信任";
             this.cbxUnTrust.UseVisualStyleBackColor = true;
             // 
             // cbxOnSale
             // 
             this.cbxOnSale.AutoSize = true;
-            this.cbxOnSale.Location = new System.Drawing.Point(623, 49);
+            this.cbxOnSale.Location = new System.Drawing.Point(623, 79);
             this.cbxOnSale.Name = "cbxOnSale";
             this.cbxOnSale.Size = new System.Drawing.Size(74, 19);
-            this.cbxOnSale.TabIndex = 14;
+            this.cbxOnSale.TabIndex = 21;
             this.cbxOnSale.Text = "做活动";
             this.cbxOnSale.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(725, 32);
+            this.button1.Location = new System.Drawing.Point(416, 109);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 32);
-            this.button1.TabIndex = 15;
+            this.button1.TabIndex = 26;
             this.button1.Text = "搜索";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -302,6 +313,17 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panel1.Controls.Add(this.cbxIm);
+            this.panel1.Controls.Add(this.ckbJoin);
+            this.panel1.Controls.Add(this.dateTimePickerBegin);
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.label8);
+            this.panel1.Controls.Add(this.dateTimePickerEnd);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.txtFilterWords);
+            this.panel1.Controls.Add(this.txtKeyWords);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.cbxOnSale);
             this.panel1.Controls.Add(this.cbxUnTrust);
@@ -309,20 +331,102 @@
             this.panel1.Controls.Add(this.ckbAttacked);
             this.panel1.Controls.Add(this.cbxCheated);
             this.panel1.Controls.Add(this.cbxNormal);
-            this.panel1.Controls.Add(this.cbxIm);
             this.panel1.Controls.Add(this.ckbAbbandon);
             this.panel1.Controls.Add(this.cbxQuit);
             this.panel1.Controls.Add(this.cbxTweeting);
             this.panel1.Controls.Add(this.ckbReject);
             this.panel1.Controls.Add(this.ckbAccept);
-            this.panel1.Controls.Add(this.ckbJoin);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 27);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1071, 89);
+            this.panel1.Size = new System.Drawing.Size(1071, 150);
             this.panel1.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(19, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(67, 15);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "关键词：";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(321, 18);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(52, 15);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "不含：";
+            // 
+            // txtKeyWords
+            // 
+            this.txtKeyWords.Location = new System.Drawing.Point(92, 14);
+            this.txtKeyWords.Name = "txtKeyWords";
+            this.txtKeyWords.Size = new System.Drawing.Size(216, 25);
+            this.txtKeyWords.TabIndex = 1;
+            // 
+            // txtFilterWords
+            // 
+            this.txtFilterWords.Location = new System.Drawing.Point(374, 14);
+            this.txtFilterWords.Name = "txtFilterWords";
+            this.txtFilterWords.Size = new System.Drawing.Size(216, 25);
+            this.txtFilterWords.TabIndex = 3;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(227, 116);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(22, 15);
+            this.label7.TabIndex = 24;
+            this.label7.Text = "至";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(13, 116);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(82, 15);
+            this.label8.TabIndex = 22;
+            this.label8.Text = "更新日期：";
+            // 
+            // dateTimePickerEnd
+            // 
+            this.dateTimePickerEnd.Location = new System.Drawing.Point(251, 112);
+            this.dateTimePickerEnd.Name = "dateTimePickerEnd";
+            this.dateTimePickerEnd.Size = new System.Drawing.Size(136, 25);
+            this.dateTimePickerEnd.TabIndex = 25;
+            // 
+            // dateTimePickerBegin
+            // 
+            this.dateTimePickerBegin.Location = new System.Drawing.Point(90, 111);
+            this.dateTimePickerBegin.Name = "dateTimePickerBegin";
+            this.dateTimePickerBegin.Size = new System.Drawing.Size(136, 25);
+            this.dateTimePickerBegin.TabIndex = 23;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(593, 19);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(415, 15);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "（关键词或过滤词支持：群组ID/名称/首页链接/简介/备注）";
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnUpdate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnUpdate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Image")));
+            this.btnUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(103, 24);
+            this.btnUpdate.Text = "手动刷新数据";
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click_1);
             // 
             // FrmGroups
             // 
@@ -371,5 +475,15 @@
         private System.Windows.Forms.ToolStripButton btnDelete;
         private System.Windows.Forms.ToolStripButton btnAdd;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.TextBox txtFilterWords;
+        private System.Windows.Forms.TextBox txtKeyWords;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DateTimePicker dateTimePickerEnd;
+        private System.Windows.Forms.DateTimePicker dateTimePickerBegin;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ToolStripButton btnUpdate;
     }
 }

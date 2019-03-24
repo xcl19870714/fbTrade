@@ -137,6 +137,10 @@ namespace FB_Trade_DAL
                             cuShip.customerType = Convert.ToString(reader["customerType"]);
                             cuShip.interestedGoods = Convert.ToString(reader["interestedGoods"]);
                             cuShip.note = Convert.ToString(reader["note"]);
+                            if (Convert.ToString(reader["trace"]) == "")
+                                cuShip.trace = 0;
+                            else
+                                cuShip.trace = Convert.ToInt32(reader["trace"]);
                             cuShip.traceDate = Convert.ToString(reader["traceDate"]);
                             cuShip.lastEditTime = Convert.ToString(reader["lastEditTime"]);
                             obj = cuShip;
@@ -296,6 +300,10 @@ namespace FB_Trade_DAL
                             cuShip.customerType = Convert.ToString(reader["customerType"]);
                             cuShip.interestedGoods = Convert.ToString(reader["interestedGoods"]);
                             cuShip.note = Convert.ToString(reader["note"]);
+                            if (Convert.ToString(reader["trace"]) == "")
+                                cuShip.trace = 0;
+                            else
+                                cuShip.trace = Convert.ToInt32(reader["trace"]);
                             cuShip.traceDate = Convert.ToString(reader["traceDate"]);
                             cuShip.lastEditTime = Convert.ToString(reader["lastEditTime"]);
                             customerShipList.Add(cuShip);

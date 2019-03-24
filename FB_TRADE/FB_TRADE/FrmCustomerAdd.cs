@@ -99,6 +99,7 @@ namespace FB_TRADE
                 InitContactsListView();
 
                 this.btnGet.Visible = false;
+                this.txtFbUrl.ReadOnly = true;
             }
         }
         public bool InitCustomerFrm(string fbId, string fbUrl)
@@ -174,6 +175,11 @@ namespace FB_TRADE
             }
 
             txtFriendShips.Text = shipsStr;
+
+            //更新至数据库
+            sb.Clear();
+            sb.AppendFormat("update tb_fbCustomers set friendShips='{0}' where fbId='{1}'", shipsStr, customerFbId);
+            db.UpdateData(sb.ToString());
         }
 
         public void InitCustomerShipFrm()
@@ -190,16 +196,8 @@ namespace FB_TRADE
                     this.cbxCustomerType.SelectedItem = cbxCustomerType.Items.IndexOf(ship.customerType);
                     this.txtInGoods.Text = ship.interestedGoods;
                     this.txtNote.Text = ship.note;
-                    if (ship.traceDate.Contains("1900"))
-                    {
-                        ckbTraceDate.Checked = false;
-                        dateTimePicker1.Value = DateTime.Today;
-                    }
-                    else
-                    {
-                        ckbTraceDate.Checked = true;
-                        dateTimePicker1.Value = Convert.ToDateTime(ship.traceDate);
-                    }
+                    ckbTraceDate.Checked = (ship.trace == 1);
+                    dateTimePicker1.Value = Convert.ToDateTime(ship.traceDate);
                 }
             }
             catch (SqlException ex)
@@ -338,19 +336,19 @@ namespace FB_TRADE
                 {
                     sb.Clear();
                     sb.AppendFormat("update tb_fbCustomerShips set shipType='{0}',customerType='{1}',interestedGoods='{2}',note='{3}'," +
-                        "traceDate='{4}',lastEditTime='{5}' where customerFbId='{6}' and marketFbId='{7}'",
+                        "trace={4}, traceDate='{5}',lastEditTime='{6}' where customerFbId='{7}' and marketFbId='{8}'",
                         cbxShipType.SelectedItem.ToString(), cbxCustomerType.SelectedItem.ToString(), txtInGoods.Text.Trim(),
-                        txtNote.Text.Trim(), (ckbTraceDate.Checked? dateTimePicker1.Value.ToString("yyyy-MM-dd") :"1900-01-01"), DateTime.Now.ToString(), 
+                        txtNote.Text.Trim(), ckbTraceDate.Checked ? 1 : 0, dateTimePicker1.Value.ToString("yyyy-MM-dd"), DateTime.Now.ToString(), 
                         txtFbId.Text.Trim(), this.curMarketFbId);
                     db.UpdateData(sb.ToString());
                 }
                 else //新增
                 {
                     sb.Clear();
-                    sb.AppendFormat("insert into tb_fbCustomerShips values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')",
+                    sb.AppendFormat("insert into tb_fbCustomerShips values('{0}','{1}','{2}','{3}','{4}','{5}',{6},'{7}','{8}')",
                         txtFbId.Text.Trim(), curMarketFbId, cbxShipType.SelectedItem.ToString(), cbxCustomerType.SelectedItem.ToString(), 
-                        txtInGoods.Text.Trim(), txtNote.Text.Trim(), 
-                        (ckbTraceDate.Checked ? dateTimePicker1.Value.ToString("yyyy-MM-dd") : "1900-01-01"), DateTime.Now.ToString());
+                        txtInGoods.Text.Trim(), txtNote.Text.Trim(), ckbTraceDate.Checked ? 1 : 0, 
+                        dateTimePicker1.Value.ToString("yyyy-MM-dd"), DateTime.Now.ToString());
                     db.InsertData(sb.ToString());
                 }
 
@@ -425,6 +423,51 @@ namespace FB_TRADE
             frm.curMarketFbAccount = curMarketFbAccount;
             frm.curCustomerFbId = txtFbId.Text.Trim();
             frm.pFrmMain = this.pFrmMain;
+
+            frm.MyFrmInit();
+            frm.Show();
+        }
+
+        private void btnLastOrder_Click(object sender, EventArgs e)
+        {
+            if (txtFbId.Text.Trim() == "" || this.bAdd)
+            {
+                MessageBox.Show("客户不存在，请先添加客户！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string lastOrderId = "";
+            try
+            {
+                sb.Clear();
+                sb.AppendFormat("select * from tb_fbOrders where marketFbId='{0}' and customerFbId='{1}' and " +
+                    "lastEditTime in (select max(lastEditTime) from tb_fbOrders where marketFbId='{2}' and customerFbId='{3}')",
+                    curMarketFbId, txtFbId.Text.Trim(), curMarketFbId, txtFbId.Text.Trim());
+                FbOrderInfo lastEditOrder = (FbOrderInfo)db.GetObject(sb.ToString(), "tb_fbOrders");
+                if (lastEditOrder == null)
+                {
+                    MessageBox.Show("此客户没有订单！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                lastOrderId = lastEditOrder.orderId;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message, "数据库异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "程序异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            FrmOrderAdd frm = new FrmOrderAdd();
+            this.pFrmMain.AddPage(frm, "编辑订单");
+
+            frm.bAdmin = this.bAdmin;
+            frm.bAdd = false;
+            frm.curOrderId = lastOrderId;
+            frm.curMarketFbId = this.curMarketFbId;
+            frm.curMarketFbAccount = curMarketFbAccount;
 
             frm.MyFrmInit();
             frm.Show();

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using FB_Trade_DAL;
 using FB_Trade_Models;
+using System.Text.RegularExpressions;
 
 namespace FB_TRADE
 {
@@ -22,7 +23,15 @@ namespace FB_TRADE
 
         private DBCommon db = new DBCommon();
         private StringBuilder sb = new StringBuilder();
-        
+    
+        private static bool IsDigital(string value)
+        {
+            if (value == "")
+                return false;
+            else
+                return Regex.IsMatch(value, @"^[+-]?\d*[.]?\d*$");
+        }
+
         //1. 构造界面
         public FrmGroups()
         {
@@ -32,6 +41,8 @@ namespace FB_TRADE
 
         private void MyComponentInit()
         {
+            dateTimePickerBegin.Value = Convert.ToDateTime("2017-01-01");
+
             this.toolStrip1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.ShowItemToolTips = false;
@@ -58,9 +69,10 @@ namespace FB_TRADE
             listViewGroups.Columns.Add("互动人数", 100, HorizontalAlignment.Left);
             listViewGroups.Columns.Add("发推总数", 100, HorizontalAlignment.Left);
             listViewGroups.Columns.Add("帖子反馈", 100, HorizontalAlignment.Left);
-            listViewGroups.Columns.Add("备注", 100, HorizontalAlignment.Left);
-            listViewGroups.Columns.Add("最后发推", 100, HorizontalAlignment.Left);
+            listViewGroups.Columns.Add("标记", 100, HorizontalAlignment.Left);
+            listViewGroups.Columns.Add("最后摘要", 100, HorizontalAlignment.Left);
             listViewGroups.Columns.Add("更新时间", 100, HorizontalAlignment.Left);
+            listViewGroups.Columns.Add("备注", 100, HorizontalAlignment.Left);
         }
         public void ListViewResize()
         {
@@ -105,14 +117,17 @@ namespace FB_TRADE
                     case "帖子反馈":
                         item.Width = (this.listViewGroups.Width / 100) * 7;
                         break;
-                    case "备注":
+                    case "标记":
                         item.Width = (this.listViewGroups.Width / 100) * 11;
                         break;
-                    case "最后发推":
+                    case "最后摘要":
                         item.Width = (this.listViewGroups.Width / 100) * 7;
                         break;
                     case "更新时间":
                         item.Width = (this.listViewGroups.Width / 100) * 7;
+                        break;
+                    case "备注":
+                        item.Width = (this.listViewGroups.Width / 100) * 11;
                         break;
                     default:
                         item.Width = -2;
@@ -138,6 +153,26 @@ namespace FB_TRADE
             {
                 sb.Clear();
                 sb.AppendFormat("select * from tb_fbGroupShips where marketFbId='{0}'", curMarketFbId);
+
+                string keyWords = txtKeyWords.Text.Trim();
+                if (keyWords != "")
+                {
+                    sb.AppendFormat(" and (groupFbId like '%{0}%' or note like '%{1}%' or " +
+                        "groupFbId in (select fbId from tb_fbGroups where name like '%{2}%' or fbUrl like '%{3}%' or introduction like '%{4}%'))", 
+                        keyWords, keyWords, keyWords, keyWords, keyWords);
+                }
+
+                string filterWords = txtFilterWords.Text.Trim();
+                if (filterWords != "")
+                {
+                    sb.AppendFormat(" and (groupFbId not like '%{0}%' and note not like '%{1}%' and " +
+                        "groupFbId not in (select fbId from tb_fbGroups where name like '%{2}%' or fbUrl like '%{3}%' or introduction like '%{4}%'))",
+                        filterWords, filterWords, filterWords, filterWords, filterWords);
+                }
+
+                DateTime begin = new DateTime(dateTimePickerBegin.Value.Year, dateTimePickerBegin.Value.Month, dateTimePickerBegin.Value.Day, 0, 0, 0);
+                DateTime end = new DateTime(dateTimePickerEnd.Value.Year, dateTimePickerEnd.Value.Month, dateTimePickerEnd.Value.Day, 23, 59, 59);
+                sb.AppendFormat(" and lastEditTime between '{0}' and '{1}'", begin.ToString(), end.ToString());
 
                 if (ckbJoin.Checked)
                     sb.AppendFormat(" and status like '%申请加入;%'");
@@ -189,10 +224,11 @@ namespace FB_TRADE
                     it.SubItems.Add(ship.status);
                     it.SubItems.Add(ship.customersNum);
                     it.SubItems.Add(ship.ordersNum);
+                    it.SubItems.Add(ship.tradeCustomersNum);
                     it.SubItems.Add(ship.contactCustomersNum);
                     it.SubItems.Add(ship.tweetsNum);
                     it.SubItems.Add(ship.tweetFeedback);
-                    it.SubItems.Add(ship.note);
+                    it.SubItems.Add(ship.mark);
 
                     //Get last log
                     sb.Clear();
@@ -203,6 +239,7 @@ namespace FB_TRADE
                         it.SubItems.Add(log.logs);
 
                     it.SubItems.Add(ship.lastEditTime);
+                    it.SubItems.Add(ship.note);
 
                     listViewGroups.Items.Add(it);
                 }
@@ -331,6 +368,11 @@ namespace FB_TRADE
         }
 
         private void button1_Click(object sender, EventArgs e)
+        {
+            LoadListViewDB();
+        }
+
+        private void btnUpdate_Click_1(object sender, EventArgs e)
         {
             LoadListViewDB();
         }

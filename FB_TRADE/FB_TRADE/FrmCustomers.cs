@@ -170,7 +170,7 @@ namespace FB_TRADE
 
                     it.SubItems.Add(ship.interestedGoods);
                     it.SubItems.Add(ship.note);
-                    it.SubItems.Add(ship.traceDate.Contains("1900") ? "" : ship.traceDate.Split(' ')[0]);
+                    it.SubItems.Add(ship.trace == 1 ? ship.traceDate.Split(' ')[0] : "");
                     it.SubItems.Add(ship.lastEditTime);
 
                     //互动次数

@@ -37,7 +37,9 @@ namespace FB_TRADE
             this.cbxSearchType.Items.Add("昵称");
             this.cbxSearchType.Items.Add("Facebook ID");
             this.cbxSearchType.Items.Add("Facebook首页链接");
+            this.cbxSearchType.Items.Add("简介");
             this.cbxSearchType.Items.Add("意向产品");
+            this.cbxSearchType.Items.Add("备注");
             this.cbxSearchType.SelectedIndex = 0;
 
             this.listViewResult.View = System.Windows.Forms.View.Details;
@@ -75,6 +77,10 @@ namespace FB_TRADE
                     sb.AppendFormat(" and customerFbId in (select fbId from tb_fbCustomers where fbUrl like '%{0}%')", txtSearch.Text.Trim());
                 else if (cbxSearchType.Text == "意向产品")
                     sb.AppendFormat(" and interestedGoods like '%{0}%'", txtSearch.Text.Trim());
+                else if (cbxSearchType.Text == "简介")
+                    sb.AppendFormat(" and customerFbId in (select fbId from tb_fbCustomers where introduction like '%{0}%')", txtSearch.Text.Trim());
+                else if (cbxSearchType.Text == "备注")
+                    sb.AppendFormat(" and note like '%{0}%'", txtSearch.Text.Trim());
 
                 List<FbCustomerShipInfo> shipList = (List<FbCustomerShipInfo>)db.GetList(sb.ToString(), "tb_fbCustomerShips");
 
@@ -94,8 +100,12 @@ namespace FB_TRADE
                         result += customer.fbId;
                     else if (cbxSearchType.Text == "Facebook首页链接")
                         result += customer.fbUrl;
+                    else if (cbxSearchType.Text == "简介")
+                        result += customer.introduction;
                     else if (cbxSearchType.Text == "意向产品")
                         result += ship.interestedGoods;
+                    else if (cbxSearchType.Text == "备注")
+                        result += ship.note;
 
                     it.Text = result;
                     listViewResult.Items.Add(it);

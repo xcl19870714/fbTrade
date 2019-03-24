@@ -86,7 +86,10 @@ namespace FB_TRADE
                 InitGroupInfoFrm(curGroupFbId, "");
                 InitCroupShipFrm();
                 InitLogsListView();
-                this.btnGroupGet.Visible = false;
+
+                txtGroupUrl.ReadOnly = true;
+                btnGroupGet.Visible = false;
+                
             }
         }
 

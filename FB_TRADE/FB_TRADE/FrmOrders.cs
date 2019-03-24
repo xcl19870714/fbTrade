@@ -154,7 +154,7 @@ namespace FB_TRADE
                     if (ckbSave.Checked)
                         sb.Append(",'未提交'");
                     if (ckbPriceNotConfirm.Checked)
-                        sb.Append(",'未确定金额'");
+                        sb.Append(",'未确认金额'");
                     if (ckbNotShip.Checked)
                         sb.Append(",'未发货'");
                     if (ckbShiped.Checked)
@@ -336,6 +336,11 @@ namespace FB_TRADE
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
+        {
+            LoadListViewDB();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
         {
             LoadListViewDB();
         }

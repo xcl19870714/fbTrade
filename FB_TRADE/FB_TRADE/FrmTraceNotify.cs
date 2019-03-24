@@ -52,7 +52,7 @@ namespace FB_TRADE
             listViewTrace.Columns.Add("意向产品", 100, HorizontalAlignment.Left);
             listViewTrace.Columns.Add("好友关系", 100, HorizontalAlignment.Left);
             listViewTrace.Columns.Add("客户备注", 100, HorizontalAlignment.Left);
-            listViewTrace.Columns.Add("追踪日期", 100, HorizontalAlignment.Left);
+            listViewTrace.Columns.Add("跟踪日期", 100, HorizontalAlignment.Left);
             listViewTrace.Columns.Add("更新时间", 100, HorizontalAlignment.Left);
             listViewTrace.Columns.Add("互动次数", 100, HorizontalAlignment.Left);
             listViewTrace.Columns.Add("聊天摘要", 100, HorizontalAlignment.Left);
@@ -123,7 +123,7 @@ namespace FB_TRADE
             {
                 sb.Clear();
                 sb.AppendFormat("select count(*) from tb_fbCustomerShips where marketFbId in (select fbId from tb_fbMarketAccounts where userId={0}) and " +
-                    "traceDate='{1}'", curUserId, DateTime.Today.ToString());
+                    "trace=1 and traceDate='{1}'", curUserId, DateTime.Today.ToString());
                 labelTraceCount.Text = Convert.ToString(db.GetCount(sb.ToString()));
             }
             catch (SqlException ex)
@@ -142,7 +142,7 @@ namespace FB_TRADE
             {
                 sb.Clear();
                 sb.AppendFormat("select * from tb_fbCustomerShips where marketFbId in (select fbId from tb_fbMarketAccounts where userId={0}) and " +
-                    "traceDate='{1}'", curUserId, DateTime.Today.ToString());
+                    "trace=1 and traceDate='{1}'", curUserId, DateTime.Today.ToString());
                 List<FbCustomerShipInfo> shipList = (List<FbCustomerShipInfo>)db.GetList(sb.ToString(), "tb_fbCustomerShips");
 
                 listViewTrace.Items.Clear();
@@ -167,7 +167,7 @@ namespace FB_TRADE
                     it.SubItems.Add(ship.interestedGoods);
                     it.SubItems.Add(customer.friendShips);
                     it.SubItems.Add(ship.note);
-                    it.SubItems.Add(ship.traceDate.Contains("1900") ? "" : ship.traceDate.Split(' ')[0]);
+                    it.SubItems.Add(ship.traceDate.Split(' ')[0]);
                     it.SubItems.Add(ship.lastEditTime);
 
                     //互动次数

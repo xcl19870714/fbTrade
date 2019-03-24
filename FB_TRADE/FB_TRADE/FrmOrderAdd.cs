@@ -180,6 +180,7 @@ namespace FB_TRADE
                 InitOrderInfo();
                 InitCustomerInfoById();
                 InitGridViewGoods();
+                txtCustomerId.ReadOnly = true;
             }
             else
             {
@@ -211,6 +212,8 @@ namespace FB_TRADE
                 txtCustomerId.Text = curCustomerFbId;
 
                 txtOrderId.Text = order.orderId;
+                txtCreateTime.Text = order.createTime;
+                txtLastEditTime.Text = order.lastEditTime;
                 cbxOrderType.SelectedIndex = cbxOrderType.Items.IndexOf(order.orderType);
                 txtOriOrderId.Text = order.oriOrderId;
 
@@ -513,7 +516,7 @@ namespace FB_TRADE
                 //1. tb_fbOrders
                 if (bAdd)
                 {
-                    StringBuilder sb = new StringBuilder();
+                    sb.Clear();
                     sb.AppendFormat("insert into tb_fbOrders(customerFbId, marketFbid, orderType, oriOrderId, " +
                         "createTime, lastEditTime, status, shippingAddress, shippingName, shippingPhone, shippingType, shippingFee, shippingNo, " +
                         "currency, totalPrice, paymentType, paymentNo, note) " +
@@ -527,7 +530,7 @@ namespace FB_TRADE
                 }
                 else // Edit
                 {
-                    StringBuilder sb = new StringBuilder();
+                    sb.Clear();
                     sb.AppendFormat("Update tb_fbOrders set orderType='{0}', oriOrderId='{1}', lastEditTime='{2}', status='{3}', shippingAddress='{4}'," +
                         "shippingName='{5}',shippingType='{6}',shippingFee='{7}',shippingNo='{8}',currency='{9}',totalPrice='{10}',paymentType='{11}',paymentNo='{12}'," +
                         "note='{13}' where orderId='{14}'",
@@ -544,7 +547,7 @@ namespace FB_TRADE
                 if (bAdd)
                 {
                     //获取此marketFbId，customerFbId最新创建的orderId
-                    StringBuilder sb = new StringBuilder();
+                    sb.Clear();
                     sb.AppendFormat("select * from tb_fbOrders where marketFbId='{0}' and customerFbId='{1}' and " +
                         "createTime in (select max(createTime) from tb_fbOrders where marketFbId='{2}' and customerFbId='{3}')",
                         curMarketFbId, txtCustomerId.Text.Trim(), curMarketFbId, txtCustomerId.Text.Trim());
@@ -650,7 +653,7 @@ namespace FB_TRADE
                 }
                 else // Edit
                 {
-                    StringBuilder sb = new StringBuilder();
+                    sb.Clear();
                     sb.AppendFormat("Update tb_fbOrders set status='{0}' where orderId='{1}'", bAdmin ? "管理员废弃单" : "自己删除单", curOrderId);
                     db.UpdateData(sb.ToString());
                 }

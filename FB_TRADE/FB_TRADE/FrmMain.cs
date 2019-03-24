@@ -275,6 +275,25 @@ namespace FB_TRADE
             InitMarketFbCbx();
         }
 
+        private void cbxFbAccount__SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.cbxUser.SelectedItem.ToString() == "子账号" || cbxFbAccount.SelectedItem.ToString() == "营销号")
+                return;
+
+            FrmCustomers frm = new FrmCustomers();
+            this.AddPage(frm, "客户列表");
+
+            ListItem item = (ListItem)this.cbxFbAccount.SelectedItem;
+            frm.pFrmMain = this;
+            frm.bAdmin = this.bAdmin;
+            frm.curMarketFbId = item.Value;
+            frm.curMarketFbAccount = item.Text;
+
+            frm.Show();
+            frm.ListViewResize();
+            frm.MyFrmInit();
+        }
+
         //2. 操作
         //=================================================================================================//
         private void btnSelfInfoChg_Click(object sender, EventArgs e)
@@ -345,7 +364,6 @@ namespace FB_TRADE
             frm.Show();
             frm.ListViewResize();
             frm.MyFrmInit();
-
         }
 
         private void btnCustomerNotify_Click(object sender, EventArgs e)

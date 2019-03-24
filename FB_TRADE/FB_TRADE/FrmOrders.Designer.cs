@@ -57,6 +57,10 @@
             this.txtCustomerFbId = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.listViewOrders = new System.Windows.Forms.ListView();
+            this.btnUpdate = new System.Windows.Forms.ToolStripButton();
+            this.btnOrderCopy = new System.Windows.Forms.ToolStripButton();
+            this.btnOrderAfterSale = new System.Windows.Forms.ToolStripButton();
+            this.btnOrderDivide = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -68,10 +72,14 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnDelete,
             this.btnAbbandon,
+            this.btnOrderDivide,
+            this.btnOrderAfterSale,
+            this.btnOrderCopy,
             this.btnAdd,
             this.btnCopy,
             this.toolStripLabel1,
-            this.labelCurMarketFbInfo});
+            this.labelCurMarketFbInfo,
+            this.btnUpdate});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1318, 27);
@@ -112,7 +120,7 @@
             this.btnAdd.Margin = new System.Windows.Forms.Padding(0, 1, 3, 2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(73, 24);
-            this.btnAdd.Text = "新增订单";
+            this.btnAdd.Text = "新建订单";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnCopy
@@ -347,6 +355,50 @@
             this.listViewOrders.TabIndex = 0;
             this.listViewOrders.UseCompatibleStateImageBehavior = false;
             // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnUpdate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnUpdate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Image")));
+            this.btnUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(103, 24);
+            this.btnUpdate.Text = "手动刷新数据";
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnOrderCopy
+            // 
+            this.btnOrderCopy.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnOrderCopy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnOrderCopy.Image = ((System.Drawing.Image)(resources.GetObject("btnOrderCopy.Image")));
+            this.btnOrderCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnOrderCopy.Margin = new System.Windows.Forms.Padding(0, 1, 3, 2);
+            this.btnOrderCopy.Name = "btnOrderCopy";
+            this.btnOrderCopy.Size = new System.Drawing.Size(73, 24);
+            this.btnOrderCopy.Text = "复制订单";
+            // 
+            // btnOrderAfterSale
+            // 
+            this.btnOrderAfterSale.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnOrderAfterSale.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnOrderAfterSale.Image = ((System.Drawing.Image)(resources.GetObject("btnOrderAfterSale.Image")));
+            this.btnOrderAfterSale.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnOrderAfterSale.Margin = new System.Windows.Forms.Padding(0, 1, 3, 2);
+            this.btnOrderAfterSale.Name = "btnOrderAfterSale";
+            this.btnOrderAfterSale.Size = new System.Drawing.Size(73, 24);
+            this.btnOrderAfterSale.Text = "新建售后";
+            // 
+            // btnOrderDivide
+            // 
+            this.btnOrderDivide.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnOrderDivide.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnOrderDivide.Image = ((System.Drawing.Image)(resources.GetObject("btnOrderDivide.Image")));
+            this.btnOrderDivide.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnOrderDivide.Margin = new System.Windows.Forms.Padding(0, 1, 3, 2);
+            this.btnOrderDivide.Name = "btnOrderDivide";
+            this.btnOrderDivide.Size = new System.Drawing.Size(73, 24);
+            this.btnOrderDivide.Text = "新建分期";
+            // 
             // FrmOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -398,5 +450,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtCustomerName;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripButton btnUpdate;
+        private System.Windows.Forms.ToolStripButton btnOrderDivide;
+        private System.Windows.Forms.ToolStripButton btnOrderAfterSale;
+        private System.Windows.Forms.ToolStripButton btnOrderCopy;
     }
 }
