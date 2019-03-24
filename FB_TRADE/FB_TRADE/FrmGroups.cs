@@ -157,99 +157,168 @@ namespace FB_TRADE
         {
             try
             {
-                sb.Clear();
-                sb.AppendFormat("select * from tb_fbGroupShips where marketFbId='{0}'", curMarketFbId);
-
-                string keyWords = txtKeyWords.Text.Trim();
-                if (keyWords != "")
+                if (cbxSearchRange.SelectedItem.ToString() == "已加入群组")
                 {
-                    sb.AppendFormat(" and (groupFbId like '%{0}%' or note like '%{1}%' or " +
-                        "groupFbId in (select fbId from tb_fbGroups where name like '%{2}%' or fbUrl like '%{3}%' or introduction like '%{4}%'))", 
-                        keyWords, keyWords, keyWords, keyWords, keyWords);
-                }
-
-                string filterWords = txtFilterWords.Text.Trim();
-                if (filterWords != "")
-                {
-                    sb.AppendFormat(" and (groupFbId not like '%{0}%' and note not like '%{1}%' and " +
-                        "groupFbId not in (select fbId from tb_fbGroups where name like '%{2}%' or fbUrl like '%{3}%' or introduction like '%{4}%'))",
-                        filterWords, filterWords, filterWords, filterWords, filterWords);
-                }
-
-                DateTime begin = new DateTime(dateTimePickerBegin.Value.Year, dateTimePickerBegin.Value.Month, dateTimePickerBegin.Value.Day, 0, 0, 0);
-                DateTime end = new DateTime(dateTimePickerEnd.Value.Year, dateTimePickerEnd.Value.Month, dateTimePickerEnd.Value.Day, 23, 59, 59);
-                sb.AppendFormat(" and lastEditTime between '{0}' and '{1}'", begin.ToString(), end.ToString());
-
-                if (ckbJoin.Checked)
-                    sb.AppendFormat(" and status like '%申请加入;%'");
-                if (ckbAccept.Checked)
-                    sb.AppendFormat(" and status like '%申请通过;%'");
-                if (ckbReject.Checked)
-                    sb.AppendFormat(" and status like '%申请被拒;%'");
-                if (cbxTweeting.Checked)
-                    sb.AppendFormat(" and status like '%发贴状态;%'");
-                if (cbxQuit.Checked)
-                    sb.AppendFormat(" and status like '%退出群组;%'");
-                if (ckbAbbandon.Checked)
-                    sb.AppendFormat(" and status like '%不要;%'");
-
-                if (cbxIm.Checked)
-                    sb.AppendFormat(" and mark like '%重要;%'");
-                if (cbxNormal.Checked)
-                    sb.AppendFormat(" and mark like '%一般;%'");
-                if (cbxCheated.Checked)
-                    sb.AppendFormat(" and mark like '%认为是骗子;%'");
-                if (cbxUnTrust.Checked)
-                    sb.AppendFormat(" and mark like '%不信任;%'");
-                if (cbxLocalTrade.Checked)
-                    sb.AppendFormat(" and mark like '%想当地交易;%'");
-                if (ckbAttacked.Checked)
-                    sb.AppendFormat(" and mark like '%被攻击;%'");
-                if (cbxOnSale.Checked)
-                    sb.AppendFormat(" and mark like '%做活动;%'");
-
-                List<FbGroupShipInfo> shipList = (List<FbGroupShipInfo>)db.GetList(sb.ToString(), "tb_fbGroupShips");
-
-                listViewGroups.Items.Clear();
-                foreach (var ship in shipList)
-                {
-                    ListViewItem it = new ListViewItem();
-
-                    //shipInfo
-                    it.Text = ship.groupFbId;
-
-                    //Get GroupInfo
                     sb.Clear();
-                    sb.AppendFormat("select * from tb_fbGroups where fbId='{0}'", ship.groupFbId);
-                    FbGroupInfo group = (FbGroupInfo)db.GetObject(sb.ToString(), "tb_fbGroups");
-                    it.SubItems.Add(group.name);
-                    it.SubItems.Add(group.gpSource);
-                    it.SubItems.Add(group.membersNum);
-                    it.SubItems.Add(group.introduction);
+                    sb.AppendFormat("select * from tb_fbGroupShips where marketFbId='{0}'", curMarketFbId);
 
-                    it.SubItems.Add(ship.status);
-                    it.SubItems.Add(ship.customersNum);
-                    it.SubItems.Add(ship.ordersNum);
-                    it.SubItems.Add(ship.tradeCustomersNum);
-                    it.SubItems.Add(ship.contactCustomersNum);
-                    it.SubItems.Add(ship.tweetsNum);
-                    it.SubItems.Add(ship.tweetFeedback);
-                    it.SubItems.Add(ship.mark);
+                    string keyWords = txtKeyWords.Text.Trim();
+                    if (keyWords != "")
+                    {
+                        sb.AppendFormat(" and (groupFbId like '%{0}%' or note like '%{1}%' or " +
+                            "groupFbId in (select fbId from tb_fbGroups where name like '%{2}%' or fbUrl like '%{3}%' or introduction like '%{4}%'))",
+                            keyWords, keyWords, keyWords, keyWords, keyWords);
+                    }
 
-                    //Get last log
-                    sb.Clear();
-                    sb.AppendFormat("select top 1 * from tb_fbGroupLogs where groupFbId='{0}' and marketFbId='{1}' order by id DESC",
-                        ship.groupFbId, curMarketFbId);
-                    FbGroupLogInfo log = (FbGroupLogInfo)db.GetObject(sb.ToString(), "tb_fbGroupLogs");
-                    if (log != null)
-                        it.SubItems.Add(log.logs);
+                    string filterWords = txtFilterWords.Text.Trim();
+                    if (filterWords != "")
+                    {
+                        sb.AppendFormat(" and (groupFbId not like '%{0}%' and note not like '%{1}%' and " +
+                            "groupFbId not in (select fbId from tb_fbGroups where name like '%{2}%' or fbUrl like '%{3}%' or introduction like '%{4}%'))",
+                            filterWords, filterWords, filterWords, filterWords, filterWords);
+                    }
 
-                    it.SubItems.Add(ship.lastEditTime);
-                    it.SubItems.Add(ship.note);
+                    DateTime begin = new DateTime(dateTimePickerBegin.Value.Year, dateTimePickerBegin.Value.Month, dateTimePickerBegin.Value.Day, 0, 0, 0);
+                    DateTime end = new DateTime(dateTimePickerEnd.Value.Year, dateTimePickerEnd.Value.Month, dateTimePickerEnd.Value.Day, 23, 59, 59);
+                    sb.AppendFormat(" and lastEditTime between '{0}' and '{1}'", begin.ToString(), end.ToString());
 
-                    listViewGroups.Items.Add(it);
+                    if (ckbJoin.Checked)
+                        sb.AppendFormat(" and status like '%申请加入;%'");
+                    if (ckbAccept.Checked)
+                        sb.AppendFormat(" and status like '%申请通过;%'");
+                    if (ckbReject.Checked)
+                        sb.AppendFormat(" and status like '%申请被拒;%'");
+                    if (cbxTweeting.Checked)
+                        sb.AppendFormat(" and status like '%发贴状态;%'");
+                    if (cbxQuit.Checked)
+                        sb.AppendFormat(" and status like '%退出群组;%'");
+                    if (ckbAbbandon.Checked)
+                        sb.AppendFormat(" and status like '%不要;%'");
+
+                    if (cbxIm.Checked)
+                        sb.AppendFormat(" and mark like '%重要;%'");
+                    if (cbxNormal.Checked)
+                        sb.AppendFormat(" and mark like '%一般;%'");
+                    if (cbxCheated.Checked)
+                        sb.AppendFormat(" and mark like '%认为是骗子;%'");
+                    if (cbxUnTrust.Checked)
+                        sb.AppendFormat(" and mark like '%不信任;%'");
+                    if (cbxLocalTrade.Checked)
+                        sb.AppendFormat(" and mark like '%想当地交易;%'");
+                    if (ckbAttacked.Checked)
+                        sb.AppendFormat(" and mark like '%被攻击;%'");
+                    if (cbxOnSale.Checked)
+                        sb.AppendFormat(" and mark like '%做活动;%'");
+
+                    List<FbGroupShipInfo> shipList = (List<FbGroupShipInfo>)db.GetList(sb.ToString(), "tb_fbGroupShips");
+
+                    listViewGroups.Items.Clear();
+                    foreach (var ship in shipList)
+                    {
+                        ListViewItem it = new ListViewItem();
+
+                        //shipInfo
+                        it.Text = ship.groupFbId;
+
+                        //Get GroupInfo
+                        sb.Clear();
+                        sb.AppendFormat("select * from tb_fbGroups where fbId='{0}'", ship.groupFbId);
+                        FbGroupInfo group = (FbGroupInfo)db.GetObject(sb.ToString(), "tb_fbGroups");
+                        it.SubItems.Add(group.name);
+                        it.SubItems.Add(group.gpSource);
+                        it.SubItems.Add(group.membersNum);
+                        it.SubItems.Add(group.introduction);
+
+                        it.SubItems.Add(ship.status);
+                        it.SubItems.Add(ship.customersNum);
+                        it.SubItems.Add(ship.ordersNum);
+                        it.SubItems.Add(ship.tradeCustomersNum);
+                        it.SubItems.Add(ship.contactCustomersNum);
+                        it.SubItems.Add(ship.tweetsNum);
+                        it.SubItems.Add(ship.tweetFeedback);
+                        it.SubItems.Add(ship.mark);
+
+                        //Get last log
+                        sb.Clear();
+                        sb.AppendFormat("select top 1 * from tb_fbGroupLogs where groupFbId='{0}' and marketFbId='{1}' order by id DESC",
+                            ship.groupFbId, curMarketFbId);
+                        FbGroupLogInfo log = (FbGroupLogInfo)db.GetObject(sb.ToString(), "tb_fbGroupLogs");
+                        if (log != null)
+                            it.SubItems.Add(log.logs);
+                        else
+                            it.SubItems.Add("");
+
+                        it.SubItems.Add(ship.lastEditTime);
+                        it.SubItems.Add(ship.note);
+
+                        listViewGroups.Items.Add(it);
+                    }
+                    ListViewResize();
                 }
-                ListViewResize();
+                else
+                {
+                    sb.Clear();
+                    if (cbxSearchRange.SelectedItem.ToString() == "未加入群组")
+                        sb.AppendFormat("select * from tb_fbGroups where fbId not in " +
+                            "(select groupFbId from tb_fbGroupShips where marketFbId='{0}')", curMarketFbId);
+                    else
+                        sb.AppendFormat("select * from tb_fbGroups where 1=1", curMarketFbId);
+
+                    string keyWords = txtKeyWords.Text.Trim();
+                    if (keyWords != "")
+                    {
+                        sb.AppendFormat(" and (fbId like '%{0}%' or name like '%{1}%' or fbUrl like '%{2}%' or introduction like '%{3}%')", 
+                            keyWords, keyWords, keyWords, keyWords);
+                    }
+
+                    string filterWords = txtFilterWords.Text.Trim();
+                    if (filterWords != "")
+                    {
+                        sb.AppendFormat(" and (fbId not like '%{0}%' and name not like '%{1}%' and fbUrl not like '%{2}%' and introduction not like '%{3}%')",
+                            filterWords, filterWords, filterWords, filterWords);
+                    }
+
+                    List<FbGroupInfo> groupList = (List<FbGroupInfo>)db.GetList(sb.ToString(), "tb_fbGroups");
+
+                    listViewGroups.Items.Clear();
+                    foreach (var group in groupList)
+                    {
+                        ListViewItem it = new ListViewItem();
+
+                        //shipInfo
+                        it.Text = group.fbId ;
+                        it.SubItems.Add(group.name);
+                        it.SubItems.Add(group.gpSource);
+                        it.SubItems.Add(group.membersNum);
+                        it.SubItems.Add(group.introduction);
+
+                        sb.Clear();
+                        sb.AppendFormat("select fbAccount from tb_fbMarketAccounts where fbId in " +
+                            "(select marketFbId from tb_fbGroupShips where groupFbId='{0}')", group.fbId);
+                        List<string> strList = (List<string>)db.GetStringList(sb.ToString(), "fbAccount");
+                        string friendShips = "";
+                        foreach (var str in strList)
+                        {
+                            friendShips += str + ";";
+                        }
+                        it.SubItems.Add(friendShips);
+
+                        it.SubItems.Add("");
+                        it.SubItems.Add("");
+                        it.SubItems.Add("");
+                        it.SubItems.Add("");
+                        it.SubItems.Add("");
+                        it.SubItems.Add("");
+                        it.SubItems.Add("");
+                        it.SubItems.Add("");
+                        it.SubItems.Add("");
+                        it.SubItems.Add("");
+
+                        listViewGroups.Items.Add(it);
+                    }
+                    ListViewResize();
+                }
+                
             }
             catch (SqlException ex)
             {

@@ -359,6 +359,23 @@ namespace FB_Trade_DAL
                         }
                         obj = contactsList;
                         break;
+                    case "tb_fbGroups":
+                        List<FbGroupInfo> groupList = new List<FbGroupInfo>();
+                        while (reader.Read())
+                        {
+                            FbGroupInfo group = new FbGroupInfo();
+                            group.fbId = Convert.ToString(reader["fbId"]);
+                            group.name = Convert.ToString(reader["name"]);
+                            group.fbUrl = Convert.ToString(reader["fbUrl"]);
+                            group.membersNum = Convert.ToString(reader["membersNum"]);
+                            group.introduction = Convert.ToString(reader["introduction"]);
+                            group.gpSource = Convert.ToString(reader["gpSource"]);
+                            group.gpType = Convert.ToString(reader["gpType"]);
+                            group.needVerify = Convert.ToString(reader["needVerify"]);
+                            groupList.Add(group);
+                        }
+                        obj = groupList;
+                        break;
                     case "tb_fbGroupShips":
                         List<FbGroupShipInfo> groupShipList = new List<FbGroupShipInfo>();
                         while (reader.Read())
