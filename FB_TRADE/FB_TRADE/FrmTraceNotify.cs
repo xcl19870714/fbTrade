@@ -47,7 +47,7 @@ namespace FB_TRADE
             listViewTrace.Columns.Add("营销号编号", 100, HorizontalAlignment.Left);
             listViewTrace.Columns.Add("营销号", 100, HorizontalAlignment.Left);
             listViewTrace.Columns.Add("客户编号", 100, HorizontalAlignment.Left);
-            listViewTrace.Columns.Add("客户昵称", 100, HorizontalAlignment.Left);
+            listViewTrace.Columns.Add("客户姓名", 100, HorizontalAlignment.Left);
             listViewTrace.Columns.Add("简介", 100, HorizontalAlignment.Left);
             listViewTrace.Columns.Add("意向产品", 100, HorizontalAlignment.Left);
             listViewTrace.Columns.Add("好友关系", 100, HorizontalAlignment.Left);
@@ -74,7 +74,7 @@ namespace FB_TRADE
                     case "客户编号":
                         item.Width = (this.listViewTrace.Width / 100) * 6;
                         break;
-                    case "客户昵称":
+                    case "客户姓名":
                         item.Width = (this.listViewTrace.Width / 100) * 8;
                         break;
                     case "简介":
@@ -165,7 +165,19 @@ namespace FB_TRADE
                     it.SubItems.Add(customer.name);
                     it.SubItems.Add(customer.introduction);
                     it.SubItems.Add(ship.interestedGoods);
-                    it.SubItems.Add(customer.friendShips);
+
+                    //friendShips
+                    sb.Clear();
+                    sb.AppendFormat("select fbAccount from tb_fbMarketAccounts where fbId in " +
+                        "(select marketFbId from tb_fbCustomerShips where customerFbId='{0}' and shipType in ('好友','屏蔽'))", ship.customerFbId);
+                    List<string> strList = (List<string>)db.GetStringList(sb.ToString(), "fbAccount");
+                    string friendShips = "";
+                    foreach (var str in strList)
+                    {
+                        friendShips += str + ";";
+                    }
+                    it.SubItems.Add(friendShips);
+
                     it.SubItems.Add(ship.note);
                     it.SubItems.Add(ship.traceDate.Split(' ')[0]);
                     it.SubItems.Add(ship.lastEditTime);

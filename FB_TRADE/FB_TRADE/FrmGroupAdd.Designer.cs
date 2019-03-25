@@ -82,6 +82,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtNote = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -92,19 +94,21 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.cbxVerifyType);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.txtIntroduction);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.txtMems);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.btnGroupGet);
-            this.groupBox1.Controls.Add(this.txtGroupUrl);
-            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.txtGroupName);
             this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.btnGroupGet);
             this.groupBox1.Controls.Add(this.txtGroupFbId);
             this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.txtGroupUrl);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Location = new System.Drawing.Point(12, 38);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(591, 296);
@@ -165,44 +169,44 @@
             // 
             // btnGroupGet
             // 
-            this.btnGroupGet.Location = new System.Drawing.Point(517, 107);
+            this.btnGroupGet.Location = new System.Drawing.Point(529, 69);
             this.btnGroupGet.Name = "btnGroupGet";
             this.btnGroupGet.Size = new System.Drawing.Size(56, 30);
-            this.btnGroupGet.TabIndex = 8;
+            this.btnGroupGet.TabIndex = 7;
             this.btnGroupGet.Text = "获取";
             this.btnGroupGet.UseVisualStyleBackColor = true;
             this.btnGroupGet.Click += new System.EventHandler(this.btnGroupGet_Click);
             // 
             // txtGroupUrl
             // 
-            this.txtGroupUrl.Location = new System.Drawing.Point(105, 110);
+            this.txtGroupUrl.Location = new System.Drawing.Point(105, 71);
             this.txtGroupUrl.Name = "txtGroupUrl";
             this.txtGroupUrl.Size = new System.Drawing.Size(400, 25);
-            this.txtGroupUrl.TabIndex = 7;
+            this.txtGroupUrl.TabIndex = 5;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 113);
+            this.label3.Location = new System.Drawing.Point(16, 74);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(82, 15);
-            this.label3.TabIndex = 6;
+            this.label3.TabIndex = 4;
             this.label3.Text = "群组首页：";
             // 
             // txtGroupName
             // 
-            this.txtGroupName.Location = new System.Drawing.Point(105, 69);
+            this.txtGroupName.Location = new System.Drawing.Point(106, 112);
             this.txtGroupName.Name = "txtGroupName";
             this.txtGroupName.Size = new System.Drawing.Size(468, 25);
-            this.txtGroupName.TabIndex = 5;
+            this.txtGroupName.TabIndex = 9;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 72);
+            this.label2.Location = new System.Drawing.Point(17, 115);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(82, 15);
-            this.label2.TabIndex = 4;
+            this.label2.TabIndex = 8;
             this.label2.Text = "群组名称：";
             // 
             // txtGroupFbId
@@ -609,6 +613,26 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "备注：";
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.ForeColor = System.Drawing.Color.Red;
+            this.label14.Location = new System.Drawing.Point(508, 74);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(15, 15);
+            this.label14.TabIndex = 17;
+            this.label14.Text = "*";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.ForeColor = System.Drawing.Color.Red;
+            this.label17.Location = new System.Drawing.Point(575, 115);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(15, 15);
+            this.label17.TabIndex = 19;
+            this.label17.Text = "*";
+            // 
             // FrmGroupAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -705,5 +729,7 @@
         private System.Windows.Forms.TextBox txtNote;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label17;
     }
 }

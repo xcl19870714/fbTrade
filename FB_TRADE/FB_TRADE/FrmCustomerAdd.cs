@@ -181,8 +181,8 @@ namespace FB_TRADE
                 FbCustomerShipInfo ship = (FbCustomerShipInfo)db.GetObject(sb.ToString(), "tb_fbCustomerShips");
                 if (ship != null)
                 {
-                    this.cbxShipType.SelectedItem = cbxShipType.Items.IndexOf(ship.shipType);
-                    this.cbxCustomerType.SelectedItem = cbxCustomerType.Items.IndexOf(ship.customerType);
+                    this.cbxShipType.SelectedIndex = cbxShipType.Items.IndexOf(ship.shipType);
+                    this.cbxCustomerType.SelectedIndex = cbxCustomerType.Items.IndexOf(ship.customerType);
                     this.txtInGoods.Text = ship.interestedGoods;
                     this.txtNote.Text = ship.note;
                     ckbTraceDate.Checked = (ship.trace == 1);
@@ -237,7 +237,7 @@ namespace FB_TRADE
                     it.SubItems.Add(contact.content);
                     listViewContacts.Items.Add(it);
                 }
-                ListViewResize();
+                //ListViewResize();
             }
             catch (SqlException ex)
             {
@@ -369,7 +369,7 @@ namespace FB_TRADE
 
             if (txtName.Text.Trim().Equals(string.Empty))
             {
-                MessageBox.Show("请输入客户昵称！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("请输入客户姓名！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.txtName.Focus();
                 return false;
             }

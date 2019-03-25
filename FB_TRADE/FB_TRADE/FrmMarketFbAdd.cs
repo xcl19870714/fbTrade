@@ -113,7 +113,7 @@ namespace FB_TRADE
                     sqlStr = "select count(*) from tb_fbMarketAccounts where name='" + txtName.Text.Trim() + "'";
                     if (db.CheckExist(sqlStr))
                     {
-                        MessageBox.Show("昵称已经存在，请重新输入！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("姓名已经存在，请重新输入！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         this.txtName.Focus();
                         return;
                     }
@@ -184,7 +184,7 @@ namespace FB_TRADE
             }
             if (txtName.Text.Trim().Equals(string.Empty))
             {
-                MessageBox.Show("请输入昵称！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("请输入姓名！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.txtName.Focus();
                 return false;
             }

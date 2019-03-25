@@ -216,7 +216,7 @@ namespace FB_TRADE
                     it.SubItems.Add(log.logs);
                     listViewLogs.Items.Add(it);
                 }
-                ListViewResize();
+                //ListViewResize();
             }
             catch (SqlException ex)
             {

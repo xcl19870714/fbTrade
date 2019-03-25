@@ -51,7 +51,7 @@ namespace FB_TRADE
             listViewOrders.Clear();
             listViewOrders.Columns.Add("订单号", 100, HorizontalAlignment.Left);
             listViewOrders.Columns.Add("客户编号", 100, HorizontalAlignment.Left);
-            listViewOrders.Columns.Add("昵称", 100, HorizontalAlignment.Left);
+            listViewOrders.Columns.Add("姓名", 100, HorizontalAlignment.Left);
             listViewOrders.Columns.Add("订单类型", 100, HorizontalAlignment.Left);
             listViewOrders.Columns.Add("原订单号", 100, HorizontalAlignment.Left);
             listViewOrders.Columns.Add("订单状态", 100, HorizontalAlignment.Left);
@@ -74,7 +74,7 @@ namespace FB_TRADE
                     case "客户编号":
                         item.Width = (this.listViewOrders.Width / 100) * 10;
                         break;
-                    case "昵称":
+                    case "姓名":
                         item.Width = (this.listViewOrders.Width / 100) * 10;
                         break;
                     case "订单类型":
@@ -204,7 +204,7 @@ namespace FB_TRADE
 
                     listViewOrders.Items.Add(it);
                 }
-                ListViewResize();
+                //ListViewResize();
             }
             catch (SqlException ex)
             {

@@ -34,7 +34,7 @@ namespace FB_TRADE
             this.btnSearch.Visible = false;
 
             this.cbxSearchType.Items.Clear();
-            this.cbxSearchType.Items.Add("昵称");
+            this.cbxSearchType.Items.Add("姓名");
             this.cbxSearchType.Items.Add("Facebook ID");
             this.cbxSearchType.Items.Add("Facebook首页链接");
             this.cbxSearchType.Items.Add("简介");
@@ -69,7 +69,7 @@ namespace FB_TRADE
             {
                 sb.Clear();
                 sb.AppendFormat("select top 30 * from tb_fbCustomerShips where marketFbId='{0}'", curMarketFbId);
-                if (cbxSearchType.Text == "昵称")
+                if (cbxSearchType.Text == "姓名")
                     sb.AppendFormat(" and customerFbId in (select fbId from tb_fbCustomers where name like '%{0}%')", txtSearch.Text.Trim());
                 else if (cbxSearchType.Text == "Facebook ID")
                     sb.AppendFormat(" and customerFbId like '%{0}%'", txtSearch.Text.Trim());
@@ -94,7 +94,7 @@ namespace FB_TRADE
                     FbCustomerInfo customer = (FbCustomerInfo)db.GetObject(sb.ToString(), "tb_fbCustomers");
 
                     string result = "[" + customer.fbId + "]" + customer.name + ": ";
-                    if (cbxSearchType.Text == "昵称")
+                    if (cbxSearchType.Text == "姓名")
                         result += customer.name;
                     else if (cbxSearchType.Text == "Facebook ID")
                         result += customer.fbId;

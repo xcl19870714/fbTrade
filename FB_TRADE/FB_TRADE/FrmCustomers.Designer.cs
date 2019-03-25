@@ -33,11 +33,11 @@
             this.btnDelete = new System.Windows.Forms.ToolStripButton();
             this.btnAdd = new System.Windows.Forms.ToolStripButton();
             this.btnCopyUrl = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.labelCurMarketFbInfo = new System.Windows.Forms.ToolStripLabel();
+            this.btnUpdate = new System.Windows.Forms.ToolStripButton();
             this.panelList = new System.Windows.Forms.Panel();
             this.listViewCustomers = new System.Windows.Forms.ListView();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.btnUpdate = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.panelList.SuspendLayout();
             this.SuspendLayout();
@@ -93,12 +93,29 @@
             this.btnCopyUrl.Text = "复制首页链接";
             this.btnCopyUrl.Click += new System.EventHandler(this.btnCopyUrl_Click);
             // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(99, 24);
+            this.toolStripLabel1.Text = "当前营销号：";
+            // 
             // labelCurMarketFbInfo
             // 
             this.labelCurMarketFbInfo.ForeColor = System.Drawing.Color.Red;
             this.labelCurMarketFbInfo.Name = "labelCurMarketFbInfo";
             this.labelCurMarketFbInfo.Size = new System.Drawing.Size(99, 24);
             this.labelCurMarketFbInfo.Text = "当前营销号：";
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnUpdate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnUpdate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Image")));
+            this.btnUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(103, 24);
+            this.btnUpdate.Text = "手动刷新数据";
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // panelList
             // 
@@ -120,23 +137,6 @@
             this.listViewCustomers.Size = new System.Drawing.Size(1236, 501);
             this.listViewCustomers.TabIndex = 0;
             this.listViewCustomers.UseCompatibleStateImageBehavior = false;
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(92, 24);
-            this.toolStripLabel1.Text = "当前营销号: ";
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.btnUpdate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnUpdate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Image")));
-            this.btnUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(103, 24);
-            this.btnUpdate.Text = "手动刷新数据";
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // FrmCustomers
             // 

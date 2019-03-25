@@ -61,85 +61,132 @@ namespace FB_TRADE
             this.listViewGroups.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listViewGroups_MouseDoubleClick);
             this.listViewGroups.ListViewItemSorter = new ListViewColumnSorter();
             this.listViewGroups.ColumnClick += new ColumnClickEventHandler(ListViewHelper.ListView_ColumnClick);
-
-            listViewGroups.Clear();
-            listViewGroups.Columns.Add("群组ID", 100, HorizontalAlignment.Left);
-            listViewGroups.Columns.Add("名称", 100, HorizontalAlignment.Left);
-            listViewGroups.Columns.Add("来源", 100, HorizontalAlignment.Left);
-            listViewGroups.Columns.Add("成员数", 100, HorizontalAlignment.Left);
-            listViewGroups.Columns.Add("简介", 100, HorizontalAlignment.Left);
-            listViewGroups.Columns.Add("关系和状态", 100, HorizontalAlignment.Left);
-            listViewGroups.Columns.Add("客户数", 100, HorizontalAlignment.Left);
-            listViewGroups.Columns.Add("订单数", 100, HorizontalAlignment.Left);
-            listViewGroups.Columns.Add("出单人数", 100, HorizontalAlignment.Left);
-            listViewGroups.Columns.Add("互动人数", 100, HorizontalAlignment.Left);
-            listViewGroups.Columns.Add("发推总数", 100, HorizontalAlignment.Left);
-            listViewGroups.Columns.Add("帖子反馈", 100, HorizontalAlignment.Left);
-            listViewGroups.Columns.Add("标记", 100, HorizontalAlignment.Left);
-            listViewGroups.Columns.Add("最后摘要", 100, HorizontalAlignment.Left);
-            listViewGroups.Columns.Add("更新时间", 100, HorizontalAlignment.Left);
-            listViewGroups.Columns.Add("备注", 100, HorizontalAlignment.Left);
         }
         public void ListViewResize()
         {
-            foreach (ColumnHeader item in listViewGroups.Columns)
+            if (cbxSearchRange.SelectedItem.ToString() == "已加入群组")
             {
-                item.TextAlign = HorizontalAlignment.Left;
-                switch (item.Text)
+                listViewGroups.Clear();
+                listViewGroups.Columns.Add("群组ID", 100, HorizontalAlignment.Left);
+                listViewGroups.Columns.Add("名称", 100, HorizontalAlignment.Left);
+                listViewGroups.Columns.Add("来源", 100, HorizontalAlignment.Left);
+                listViewGroups.Columns.Add("成员数", 100, HorizontalAlignment.Left);
+                listViewGroups.Columns.Add("简介", 100, HorizontalAlignment.Left);
+                listViewGroups.Columns.Add("关系和状态", 100, HorizontalAlignment.Left);
+                listViewGroups.Columns.Add("客户数", 100, HorizontalAlignment.Left);
+                listViewGroups.Columns.Add("订单数", 100, HorizontalAlignment.Left);
+                listViewGroups.Columns.Add("出单人数", 100, HorizontalAlignment.Left);
+                listViewGroups.Columns.Add("互动人数", 100, HorizontalAlignment.Left);
+                listViewGroups.Columns.Add("发推总数", 100, HorizontalAlignment.Left);
+                listViewGroups.Columns.Add("帖子反馈", 100, HorizontalAlignment.Left);
+                listViewGroups.Columns.Add("标记", 100, HorizontalAlignment.Left);
+                listViewGroups.Columns.Add("最后摘要", 100, HorizontalAlignment.Left);
+                listViewGroups.Columns.Add("更新时间", 100, HorizontalAlignment.Left);
+                listViewGroups.Columns.Add("备注", 100, HorizontalAlignment.Left);
+
+                foreach (ColumnHeader item in listViewGroups.Columns)
                 {
-                    case "群组ID":
-                        item.Width = (this.listViewGroups.Width / 100) * 7;
-                        break;
-                    case "名称":
-                        item.Width = (this.listViewGroups.Width / 100) * 7;
-                        break;
-                    case "来源":
-                        item.Width = (this.listViewGroups.Width / 100) * 7;
-                        break;
-                    case "成员数":
-                        item.Width = (this.listViewGroups.Width / 100) * 5;
-                        break;
-                    case "简介":
-                        item.Width = (this.listViewGroups.Width / 100) * 10;
-                        break;
-                    case "关系和状态":
-                        item.Width = (this.listViewGroups.Width / 100) * 7;
-                        break;
-                    case "客户数":
-                        item.Width = (this.listViewGroups.Width / 100) * 5;
-                        break;
-                    case "订单数":
-                        item.Width = (this.listViewGroups.Width / 100) * 5;
-                        break;
-                    case "出单人数":
-                        item.Width = (this.listViewGroups.Width / 100) * 5;
-                        break;
-                    case "互动人数":
-                        item.Width = (this.listViewGroups.Width / 100) * 5;
-                        break;
-                    case "发推总数":
-                        item.Width = (this.listViewGroups.Width / 100) * 5;
-                        break;
-                    case "帖子反馈":
-                        item.Width = (this.listViewGroups.Width / 100) * 7;
-                        break;
-                    case "标记":
-                        item.Width = (this.listViewGroups.Width / 100) * 11;
-                        break;
-                    case "最后摘要":
-                        item.Width = (this.listViewGroups.Width / 100) * 7;
-                        break;
-                    case "更新时间":
-                        item.Width = (this.listViewGroups.Width / 100) * 7;
-                        break;
-                    case "备注":
-                        item.Width = (this.listViewGroups.Width / 100) * 11;
-                        break;
-                    default:
-                        item.Width = -2;
-                        break;
+                    item.TextAlign = HorizontalAlignment.Left;
+                    switch (item.Text)
+                    {
+                        case "群组ID":
+                            item.Width = (this.listViewGroups.Width / 100) * 7;
+                            break;
+                        case "名称":
+                            item.Width = (this.listViewGroups.Width / 100) * 7;
+                            break;
+                        case "来源":
+                            item.Width = (this.listViewGroups.Width / 100) * 7;
+                            break;
+                        case "成员数":
+                            item.Width = (this.listViewGroups.Width / 100) * 5;
+                            break;
+                        case "简介":
+                            item.Width = (this.listViewGroups.Width / 100) * 10;
+                            break;
+                        case "关系和状态":
+                            item.Width = (this.listViewGroups.Width / 100) * 7;
+                            break;
+                        case "客户数":
+                            item.Width = (this.listViewGroups.Width / 100) * 5;
+                            break;
+                        case "订单数":
+                            item.Width = (this.listViewGroups.Width / 100) * 5;
+                            break;
+                        case "出单人数":
+                            item.Width = (this.listViewGroups.Width / 100) * 5;
+                            break;
+                        case "互动人数":
+                            item.Width = (this.listViewGroups.Width / 100) * 5;
+                            break;
+                        case "发推总数":
+                            item.Width = (this.listViewGroups.Width / 100) * 5;
+                            break;
+                        case "帖子反馈":
+                            item.Width = (this.listViewGroups.Width / 100) * 7;
+                            break;
+                        case "标记":
+                            item.Width = (this.listViewGroups.Width / 100) * 11;
+                            break;
+                        case "最后摘要":
+                            item.Width = (this.listViewGroups.Width / 100) * 7;
+                            break;
+                        case "更新时间":
+                            item.Width = (this.listViewGroups.Width / 100) * 7;
+                            break;
+                        case "备注":
+                            item.Width = (this.listViewGroups.Width / 100) * 11;
+                            break;
+                        default:
+                            item.Width = -2;
+                            break;
+                    }
                 }
             }
+            else
+            {
+                listViewGroups.Clear();
+                listViewGroups.Columns.Add("群组ID", 100, HorizontalAlignment.Left);
+                listViewGroups.Columns.Add("名称", 100, HorizontalAlignment.Left);
+                listViewGroups.Columns.Add("来源", 100, HorizontalAlignment.Left);
+                listViewGroups.Columns.Add("成员数", 100, HorizontalAlignment.Left);
+                listViewGroups.Columns.Add("简介", 100, HorizontalAlignment.Left);
+                listViewGroups.Columns.Add("验证", 100, HorizontalAlignment.Left);
+                listViewGroups.Columns.Add("营销号关系", 100, HorizontalAlignment.Left);
+
+                foreach (ColumnHeader item in listViewGroups.Columns)
+                {
+                    item.TextAlign = HorizontalAlignment.Left;
+                    switch (item.Text)
+                    {
+                        case "群组ID":
+                            item.Width = (this.listViewGroups.Width / 100) * 10;
+                            break;
+                        case "名称":
+                            item.Width = (this.listViewGroups.Width / 100) * 10;
+                            break;
+                        case "来源":
+                            item.Width = (this.listViewGroups.Width / 100) * 10;
+                            break;
+                        case "成员数":
+                            item.Width = (this.listViewGroups.Width / 100) * 10;
+                            break;
+                        case "简介":
+                            item.Width = (this.listViewGroups.Width / 100) * 10;
+                            break;
+                        case "验证":
+                            item.Width = (this.listViewGroups.Width / 100) * 10;
+                            break;
+                        case "营销号关系":
+                            item.Width = (this.listViewGroups.Width / 100) * 40;
+                            break;
+                        default:
+                            item.Width = -2;
+                            break;
+                    }
+                }
+            }
+            
         }
 
         //2. 数据加载
@@ -155,6 +202,8 @@ namespace FB_TRADE
 
         public void LoadListViewDB()
         {
+            ListViewResize();
+
             try
             {
                 if (cbxSearchRange.SelectedItem.ToString() == "已加入群组")
@@ -253,7 +302,6 @@ namespace FB_TRADE
 
                         listViewGroups.Items.Add(it);
                     }
-                    ListViewResize();
                 }
                 else
                 {
@@ -291,6 +339,7 @@ namespace FB_TRADE
                         it.SubItems.Add(group.gpSource);
                         it.SubItems.Add(group.membersNum);
                         it.SubItems.Add(group.introduction);
+                        it.SubItems.Add(group.needVerify);
 
                         sb.Clear();
                         sb.AppendFormat("select fbAccount from tb_fbMarketAccounts where fbId in " +
@@ -303,22 +352,9 @@ namespace FB_TRADE
                         }
                         it.SubItems.Add(friendShips);
 
-                        it.SubItems.Add("");
-                        it.SubItems.Add("");
-                        it.SubItems.Add("");
-                        it.SubItems.Add("");
-                        it.SubItems.Add("");
-                        it.SubItems.Add("");
-                        it.SubItems.Add("");
-                        it.SubItems.Add("");
-                        it.SubItems.Add("");
-                        it.SubItems.Add("");
-
                         listViewGroups.Items.Add(it);
                     }
-                    ListViewResize();
                 }
-                
             }
             catch (SqlException ex)
             {

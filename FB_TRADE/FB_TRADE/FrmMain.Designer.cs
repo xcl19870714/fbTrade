@@ -81,7 +81,7 @@
             this.cbxUser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxUser.MaxDropDownItems = 100;
             this.cbxUser.Name = "cbxUser";
-            this.cbxUser.Size = new System.Drawing.Size(100, 28);
+            this.cbxUser.Size = new System.Drawing.Size(120, 28);
             this.cbxUser.SelectedIndexChanged += new System.EventHandler(this.cbxUser_SelectedIndexChanged);
             // 
             // cbxFbAccount
@@ -90,14 +90,14 @@
             this.cbxFbAccount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxFbAccount.MaxDropDownItems = 100;
             this.cbxFbAccount.Name = "cbxFbAccount";
-            this.cbxFbAccount.Size = new System.Drawing.Size(100, 28);
+            this.cbxFbAccount.Size = new System.Drawing.Size(220, 28);
             this.cbxFbAccount.SelectedIndexChanged += new System.EventHandler(this.cbxFbAccount__SelectedIndexChanged);
             // 
             // lblTools
             // 
             this.lblTools.Name = "lblTools";
-            this.lblTools.Size = new System.Drawing.Size(43, 25);
-            this.lblTools.Text = "工具:";
+            this.lblTools.Size = new System.Drawing.Size(54, 25);
+            this.lblTools.Text = "工具：";
             // 
             // btnSelfInfoChg
             // 
@@ -157,7 +157,6 @@
             this.splitContainer1.Panel1.Controls.Add(this.btnGroupControl);
             this.splitContainer1.Panel1.Controls.Add(this.btnCustomerControl);
             this.splitContainer1.Panel1.Controls.Add(this.btnCustomerNotify);
-            this.splitContainer1.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             // 
             // splitContainer1.Panel2
             // 

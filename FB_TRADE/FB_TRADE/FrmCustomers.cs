@@ -47,7 +47,7 @@ namespace FB_TRADE
 
             listViewCustomers.Clear();
             listViewCustomers.Columns.Add("facebook ID", 100, HorizontalAlignment.Left);
-            listViewCustomers.Columns.Add("昵称", 100, HorizontalAlignment.Left);
+            listViewCustomers.Columns.Add("姓名", 100, HorizontalAlignment.Left);
             listViewCustomers.Columns.Add("国家", 100, HorizontalAlignment.Left);
             listViewCustomers.Columns.Add("城市", 100, HorizontalAlignment.Left);
             listViewCustomers.Columns.Add("简介", 100, HorizontalAlignment.Left);
@@ -73,7 +73,7 @@ namespace FB_TRADE
                     case "facebook ID":
                         item.Width = (this.listViewCustomers.Width / 100) * 5;
                         break;
-                    case "昵称":
+                    case "姓名":
                         item.Width = (this.listViewCustomers.Width / 100) * 5;
                         break;
                     case "国家":

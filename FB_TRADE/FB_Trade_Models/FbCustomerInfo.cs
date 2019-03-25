@@ -18,7 +18,6 @@ namespace FB_Trade_Models
         public string city;
         public string email;
         public string introduction;
-		public string friendShips;
         public string shipName;
         public string shipPhone;
         public string shipAddress;

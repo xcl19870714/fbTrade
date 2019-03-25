@@ -40,26 +40,26 @@
             // 
             // txtLoginName
             // 
-            this.txtLoginName.Location = new System.Drawing.Point(249, 89);
+            this.txtLoginName.Location = new System.Drawing.Point(218, 71);
             this.txtLoginName.MaxLength = 29;
             this.txtLoginName.Name = "txtLoginName";
-            this.txtLoginName.Size = new System.Drawing.Size(121, 25);
+            this.txtLoginName.Size = new System.Drawing.Size(147, 25);
             this.txtLoginName.TabIndex = 1;
             this.txtLoginName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPwd_KeyDown);
             // 
             // lbl_name
             // 
             this.lbl_name.AutoSize = true;
-            this.lbl_name.Location = new System.Drawing.Point(160, 94);
+            this.lbl_name.Location = new System.Drawing.Point(160, 76);
             this.lbl_name.Name = "lbl_name";
-            this.lbl_name.Size = new System.Drawing.Size(67, 15);
+            this.lbl_name.Size = new System.Drawing.Size(52, 15);
             this.lbl_name.TabIndex = 0;
-            this.lbl_name.Text = "用户名：";
+            this.lbl_name.Text = "账号：";
             // 
             // lbl_pwd
             // 
             this.lbl_pwd.AutoSize = true;
-            this.lbl_pwd.Location = new System.Drawing.Point(133, 137);
+            this.lbl_pwd.Location = new System.Drawing.Point(128, 118);
             this.lbl_pwd.Name = "lbl_pwd";
             this.lbl_pwd.Size = new System.Drawing.Size(84, 15);
             this.lbl_pwd.TabIndex = 2;
@@ -67,9 +67,9 @@
             // 
             // txtLoginPwd
             // 
-            this.txtLoginPwd.Location = new System.Drawing.Point(248, 131);
+            this.txtLoginPwd.Location = new System.Drawing.Point(218, 113);
             this.txtLoginPwd.Name = "txtLoginPwd";
-            this.txtLoginPwd.Size = new System.Drawing.Size(121, 25);
+            this.txtLoginPwd.Size = new System.Drawing.Size(146, 25);
             this.txtLoginPwd.TabIndex = 3;
             this.txtLoginPwd.UseSystemPasswordChar = true;
             this.txtLoginPwd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPwd_KeyDown);
@@ -77,7 +77,7 @@
             // lbl_role
             // 
             this.lbl_role.AutoSize = true;
-            this.lbl_role.Location = new System.Drawing.Point(164, 175);
+            this.lbl_role.Location = new System.Drawing.Point(159, 157);
             this.lbl_role.Name = "lbl_role";
             this.lbl_role.Size = new System.Drawing.Size(52, 15);
             this.lbl_role.TabIndex = 4;
@@ -90,15 +90,15 @@
             this.cbxRole.Items.AddRange(new object[] {
             "普通用户",
             "管理员"});
-            this.cbxRole.Location = new System.Drawing.Point(248, 171);
+            this.cbxRole.Location = new System.Drawing.Point(218, 153);
             this.cbxRole.Name = "cbxRole";
-            this.cbxRole.Size = new System.Drawing.Size(121, 23);
+            this.cbxRole.Size = new System.Drawing.Size(146, 23);
             this.cbxRole.TabIndex = 5;
             this.cbxRole.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPwd_KeyDown);
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(176, 227);
+            this.btnLogin.Location = new System.Drawing.Point(181, 209);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(75, 32);
             this.btnLogin.TabIndex = 6;
@@ -108,7 +108,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(281, 227);
+            this.btnCancel.Location = new System.Drawing.Point(275, 209);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 32);
             this.btnCancel.TabIndex = 7;

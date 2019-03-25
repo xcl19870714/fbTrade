@@ -13,6 +13,7 @@ using System.Data.SqlClient;
 using FB_Trade_Models;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Drawing.Imaging;
 
 namespace FB_TRADE
 {
@@ -38,23 +39,105 @@ namespace FB_TRADE
         //辅助函数
         private Image BytesToImage(byte[] streamByte)
         {
-            MemoryStream ms = new MemoryStream(streamByte, 0, streamByte.Length); //new MemoryStream(goods.photo, 0, goods.photo.Length);
-            Image img = Image.FromStream(ms);
+            MemoryStream ms = new MemoryStream(streamByte);
+            Image image = System.Drawing.Image.FromStream(ms);
             ms.Close();
-            return img;
+            return image;
         }
 
-        private byte[] ImageToBytes(Image img)
+        private byte[] ImageToBytes(Image image)
         {
-            MemoryStream mstream = new MemoryStream();
-            img.Save(mstream, System.Drawing.Imaging.ImageFormat.Bmp);
-            byte[] byData = new Byte[mstream.Length];
-            mstream.Position = 0;
-            mstream.Read(byData, 0, byData.Length);
-            mstream.Close();
-            return byData;
+            try
+            {
+                if (image == null) return null;
+                using (Bitmap bitmap = new Bitmap(image))
+                {
+                    using (MemoryStream stream = new MemoryStream())
+                    {
+                        bitmap.Save(stream, ImageFormat.Jpeg);
+                        return stream.GetBuffer();
+                    }
+                }
+            }
+            finally
+            {
+                if (image != null)
+                {
+                    image.Dispose();
+                    image = null;
+                }
+            }
+
+            //ImageFormat format = image.RawFormat;
+            //using (MemoryStream ms = new MemoryStream())
+            //{
+            //    if (format.Equals(ImageFormat.Jpeg))
+            //    {
+            //        image.Save(ms, ImageFormat.Jpeg);
+            //    }
+            //    else if (format.Equals(ImageFormat.Png))
+            //    {
+            //        image.Save(ms, ImageFormat.Png);
+            //    }
+            //    else if (format.Equals(ImageFormat.Bmp))
+            //    {
+            //        image.Save(ms, ImageFormat.Bmp);
+            //    }
+            //    else if (format.Equals(ImageFormat.Gif))
+            //    {
+            //        image.Save(ms, ImageFormat.Gif);
+            //    }
+            //    else if (format.Equals(ImageFormat.Icon))
+            //    {
+            //        image.Save(ms, ImageFormat.Icon);
+            //    }
+            //    byte[] buffer = new byte[ms.Length];
+            //    //Image.Save()会改变MemoryStream的Position，需要重新Seek到Begin
+            //    ms.Seek(0, SeekOrigin.Begin);
+            //    ms.Read(buffer, 0, buffer.Length);
+            //    return buffer;
+            //}
+
+            //    MemoryStream mstream = new MemoryStream();
+            //    img.Save(mstream, System.Drawing.Imaging.ImageFormat.Bmp);
+            //    byte[] byData = new Byte[mstream.Length];
+            //    mstream.Position = 0;
+            //    mstream.Read(byData, 0, byData.Length);
+            //    mstream.Close();
+            //    return byData;
         }
-  
+
+        private string CreateImageFromBytes(string fileName, byte[] buffer)
+        {
+            string file = fileName;
+            Image image = BytesToImage(buffer);
+            ImageFormat format = image.RawFormat;
+            if (format.Equals(ImageFormat.Jpeg))
+            {
+                file += ".jpeg";
+            }
+            else if (format.Equals(ImageFormat.Png))
+            {
+                file += ".png";
+            }
+            else if (format.Equals(ImageFormat.Bmp))
+            {
+                file += ".bmp";
+            }
+            else if (format.Equals(ImageFormat.Gif))
+            {
+                file += ".gif";
+            }
+            else if (format.Equals(ImageFormat.Icon))
+            {
+                file += ".icon";
+            }
+            System.IO.FileInfo info = new System.IO.FileInfo(file);
+            System.IO.Directory.CreateDirectory(info.Directory.FullName);
+            File.WriteAllBytes(file, buffer);
+            return file;
+        }
+
         private static bool IsDigital(string value)
         {
             if (value == "")
@@ -578,10 +661,10 @@ namespace FB_TRADE
                 {
                     sb.Clear();
                     sb.AppendFormat("Update tb_fbOrders set orderType='{0}', oriOrderId='{1}', lastEditTime='{2}', status='{3}', shippingAddress='{4}'," +
-                        "shippingName='{5}',shippingType='{6}',shippingFee='{7}',shippingNo='{8}',currency='{9}',totalPrice='{10}',paymentType='{11}',paymentNo='{12}'," +
-                        "note='{13}' where orderId='{14}'",
+                        "shippingName='{5}',shippingPhone='{6}',shippingType='{7}',shippingFee='{8}',shippingNo='{9}',currency='{10}',totalPrice='{11}',paymentType='{12}',paymentNo='{13}'," +
+                        "note='{14}' where orderId='{15}'",
                         cbxOrderType.SelectedItem.ToString(), txtOriOrderId.Text.Trim(), DateTime.Now.ToString(), getNewOrderStatus(operation),
-                        txtShippingAddress.Text.Trim(), txtShippingName.Text.Trim(),
+                        txtShippingAddress.Text.Trim(), txtShippingName.Text.Trim(), txtShippingPhone.Text.Trim(),
                         (cbxShipType.SelectedItem.ToString() == "Other" ? txtShipType.Text.Trim() : cbxShipType.SelectedItem.ToString()), txtShipFee.Text.Trim(), txtTrackingNo.Text.Trim(),
                         (cbxCurrency.SelectedItem.ToString() == "Other" ? txtCurrency.Text.Trim() : cbxCurrency.SelectedItem.ToString()), txtPayAmount.Text.Trim(),
                         (cbxPayType.SelectedItem.ToString() == "Other" ? txtPayType.Text.Trim() : cbxPayType.SelectedItem.ToString()), txtPayNo.Text.Trim(),
@@ -609,7 +692,7 @@ namespace FB_TRADE
                         sb.Clear();
                         sb.AppendFormat("update tb_fbOrderGoods set name='{0}',color='{1}',size='{2}',price='{3}',amount='{4}' where id={5}",
                             row.Cells["name"].Value.ToString(), row.Cells["color"].Value.ToString(), row.Cells["size"].Value.ToString(), row.Cells["price"].Value.ToString(),
-                            row.Cells["name"].Value.ToString(), row.Cells["id"].Value.ToString());
+                            row.Cells["amount"].Value.ToString(), row.Cells["id"].Value.ToString());
                         db.UpdateData(sb.ToString());
                     }
                     else

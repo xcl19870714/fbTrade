@@ -36,6 +36,7 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnDelete = new System.Windows.Forms.ToolStripButton();
             this.btnAddUser = new System.Windows.Forms.ToolStripButton();
+            this.btnUpdate = new System.Windows.Forms.ToolStripButton();
             this.panelUserList = new System.Windows.Forms.Panel();
             this.listViewUser = new System.Windows.Forms.ListView();
             this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -43,7 +44,6 @@
             this.colAdmin = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.btnUpdate = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.panelUserList.SuspendLayout();
             this.SuspendLayout();
@@ -63,6 +63,7 @@
             // 
             // btnDelete
             // 
+            this.btnDelete.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.btnDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
             this.btnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -73,14 +74,26 @@
             // 
             // btnAddUser
             // 
+            this.btnAddUser.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.btnAddUser.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.btnAddUser.Image = ((System.Drawing.Image)(resources.GetObject("btnAddUser.Image")));
             this.btnAddUser.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnAddUser.Name = "btnAddUser";
-            this.btnAddUser.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btnAddUser.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnAddUser.Size = new System.Drawing.Size(92, 24);
             this.btnAddUser.Text = " 新增子账号";
             this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnUpdate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnUpdate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Image")));
+            this.btnUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(103, 24);
+            this.btnUpdate.Text = "手动刷新数据";
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // panelUserList
             // 
@@ -106,6 +119,7 @@
             listViewItem1});
             this.listViewUser.Location = new System.Drawing.Point(0, 0);
             this.listViewUser.Name = "listViewUser";
+            this.listViewUser.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.listViewUser.Size = new System.Drawing.Size(800, 401);
             this.listViewUser.TabIndex = 1;
             this.listViewUser.UseCompatibleStateImageBehavior = false;
@@ -140,16 +154,6 @@
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // btnUpdate
-            // 
-            this.btnUpdate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnUpdate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Image")));
-            this.btnUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(103, 24);
-            this.btnUpdate.Text = "手动刷新数据";
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
             // FrmUserList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -158,7 +162,7 @@
             this.Controls.Add(this.panelUserList);
             this.Controls.Add(this.toolStrip1);
             this.Name = "FrmUserList";
-            this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "子账号列表";
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();

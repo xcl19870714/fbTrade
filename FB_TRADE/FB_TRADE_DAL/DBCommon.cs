@@ -122,7 +122,6 @@ namespace FB_Trade_DAL
                             cu.city = Convert.ToString(reader["city"]);
                             cu.email = Convert.ToString(reader["email"]);
                             cu.introduction = Convert.ToString(reader["introduction"]);
-                            cu.friendShips = Convert.ToString(reader["friendShips"]);
                             cu.shipName = Convert.ToString(reader["shipName"]);
                             cu.shipPhone = Convert.ToString(reader["shipPhone"]);
                             cu.shipAddress = Convert.ToString(reader["shipAddress"]);
