@@ -145,5 +145,20 @@ namespace FB_TRADE
                 frm.Show();
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FrmCustomerAdd frm = new FrmCustomerAdd();
+            this.pFrmMain.AddPage(frm, "新增客户");
+
+            frm.bAdd = true;
+            frm.curMarketFbId = this.curMarketFbId;
+            frm.curMarketFbAccount = curMarketFbAccount;
+            frm.pFrmMain = this.pFrmMain;
+            frm.bAdmin = this.bAdmin;
+
+            frm.MyFrmInit();
+            frm.Show();
+        }
     }
 }

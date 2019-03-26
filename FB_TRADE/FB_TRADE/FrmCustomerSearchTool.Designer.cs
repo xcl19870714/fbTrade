@@ -38,12 +38,14 @@
             this.listViewResult = new System.Windows.Forms.ListView();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.labelCurMarketAccount);
             this.panel1.Controls.Add(this.labelCurMarketFbInfo);
             this.panel1.Controls.Add(this.btnSearch);
@@ -60,7 +62,7 @@
             // 
             this.labelCurMarketAccount.AutoSize = true;
             this.labelCurMarketAccount.ForeColor = System.Drawing.Color.Red;
-            this.labelCurMarketAccount.Location = new System.Drawing.Point(550, 19);
+            this.labelCurMarketAccount.Location = new System.Drawing.Point(550, 3);
             this.labelCurMarketAccount.Name = "labelCurMarketAccount";
             this.labelCurMarketAccount.Size = new System.Drawing.Size(95, 15);
             this.labelCurMarketAccount.TabIndex = 5;
@@ -69,7 +71,7 @@
             // labelCurMarketFbInfo
             // 
             this.labelCurMarketFbInfo.AutoSize = true;
-            this.labelCurMarketFbInfo.Location = new System.Drawing.Point(454, 21);
+            this.labelCurMarketFbInfo.Location = new System.Drawing.Point(454, 5);
             this.labelCurMarketFbInfo.Name = "labelCurMarketFbInfo";
             this.labelCurMarketFbInfo.Size = new System.Drawing.Size(97, 15);
             this.labelCurMarketFbInfo.TabIndex = 4;
@@ -77,7 +79,7 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(673, 19);
+            this.btnSearch.Location = new System.Drawing.Point(304, 9);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 26);
             this.btnSearch.TabIndex = 3;
@@ -137,6 +139,16 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(507, 20);
             this.toolStripStatusLabel1.Text = "在搜索结果中双击条目可直接定位到该客户。（只显示搜索结果的前30位）";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(652, 21);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(96, 29);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "新增客户";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FrmCustomerSearchTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -168,5 +180,6 @@
         private System.Windows.Forms.ListView listViewResult;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.Button button1;
     }
 }
