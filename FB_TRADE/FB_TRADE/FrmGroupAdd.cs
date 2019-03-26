@@ -20,6 +20,10 @@ namespace FB_TRADE
         public string curMarketFbId = string.Empty;
         public string curMarketFbAccount = string.Empty;
 
+        private string oriMark = "";
+        private string oriStatus = "";
+        private string oriTweetFeedback = "未发贴";
+
         private DBCommon db = new DBCommon();
         private StringBuilder sb = new StringBuilder();
 
@@ -40,6 +44,8 @@ namespace FB_TRADE
             this.cbxVerifyType.Items.Add("需要");
             this.cbxVerifyType.Items.Add("不需要");
             this.cbxVerifyType.SelectedIndex = 0;
+
+            this.radioNo.Checked = true;
 
             this.listViewLogs.View = System.Windows.Forms.View.Details;
             this.listViewLogs.FullRowSelect = true;
@@ -79,6 +85,9 @@ namespace FB_TRADE
         //2. 数据加载
         public void MyFrmInit()
         {
+            oriMark = oriStatus = "";
+            oriTweetFeedback = "未发贴";
+
             LabelCurMarketFbInfo.Text = curMarketFbAccount;
 
             if (!bAdd)
@@ -151,6 +160,10 @@ namespace FB_TRADE
                 FbGroupShipInfo ship = (FbGroupShipInfo)db.GetObject(sb.ToString(), "tb_fbGroupShips");
                 if (ship != null)
                 {
+                    oriMark = ship.mark;
+                    oriStatus = ship.status;
+                    oriTweetFeedback = ship.tweetFeedback;
+
                     ckbImportant.Checked = (ship.mark.Contains("重要;"));
                     ckbNormal.Checked = ship.mark.Contains("一般;");
                     ckbCheated.Checked = ship.mark.Contains("认为是骗子;");
@@ -173,17 +186,13 @@ namespace FB_TRADE
 
                     txtTweetsNum.Text = ship.tweetsNum;
                     if (ship.tweetFeedback == "活跃")
-                    {
                         radioActive.Checked = true;
-                    }
                     else if (ship.tweetFeedback == "一般")
-                    {
                         radioNormal.Checked = true;
-                    }
-                    else
-                    {
+                    else if (ship.tweetFeedback == "不活跃")
                         radioNotActive.Checked = true;
-                    }
+                    else
+                        radioNo.Checked = true;
                     txtNote.Text = ship.note;
                 }
             }
@@ -294,8 +303,10 @@ namespace FB_TRADE
                 return "活跃";
             else if (radioNormal.Checked)
                 return "一般";
-            else
+            else if (radioNotActive.Checked)
                 return "不活跃";
+            else
+                return "未发贴";
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -326,6 +337,10 @@ namespace FB_TRADE
                 }
 
                 //2. fb_tbGroupShips
+                string newMark = getNewMark();
+                string newStatus = getNewStatus();
+                string newTweekFeedback = getTweekFeedback();
+
                 sb.Clear();
                 sb.AppendFormat("select count(*) from tb_fbGroupShips where groupFbId='{0}' and marketFbId='{1}'",
                     txtGroupFbId.Text.Trim(), this.curMarketFbId);
@@ -334,9 +349,9 @@ namespace FB_TRADE
                     sb.Clear();
                     sb.AppendFormat("update tb_fbGroupShips set status='{0}', customersNum='{1}', contactCustomersNum='{2}', tradeCustomersNum='{3}', " +
                         "ordersNum='{4}', tweetsNum='{5}', tweetFeedback='{6}',mark='{7}',note='{8}',lastEditTime='{9}' where groupFbId='{10}' and marketFbId='{11}'",
-                        getNewStatus(), txtCustomerNum.Text.Trim(), txtContactCustomers.Text.Trim(),
+                        newStatus, txtCustomerNum.Text.Trim(), txtContactCustomers.Text.Trim(),
                         txtTradeCustomers.Text.Trim(), txtOrdersNum.Text.Trim(),
-                        txtTweetsNum.Text.Trim(), getTweekFeedback(), getNewMark(), txtNote.Text.Trim(), DateTime.Now.ToString(), 
+                        txtTweetsNum.Text.Trim(), newTweekFeedback, newMark, txtNote.Text.Trim(), DateTime.Now.ToString(), 
                         txtGroupFbId.Text.Trim(), curMarketFbId);
                     db.UpdateData(sb.ToString());
                 }
@@ -346,15 +361,22 @@ namespace FB_TRADE
                     sb.AppendFormat("insert into tb_fbGroupShips(groupFbId, marketFbId, status, customersNum, contactCustomersNum, tradeCustomersNum, " +
                         "ordersNum, tweetsNum, tweetFeedback, mark, note, lastEditTime) " +
                         "values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}') ",
-                        txtGroupFbId.Text.Trim(), curMarketFbId, getNewStatus(), txtCustomerNum.Text.Trim(), txtContactCustomers.Text.Trim(),
-                        txtTradeCustomers.Text.Trim(), txtOrdersNum.Text.Trim(), txtTweetsNum.Text.Trim(), getTweekFeedback(), getNewMark(), 
+                        txtGroupFbId.Text.Trim(), curMarketFbId, newStatus, txtCustomerNum.Text.Trim(), txtContactCustomers.Text.Trim(),
+                        txtTradeCustomers.Text.Trim(), txtOrdersNum.Text.Trim(), txtTweetsNum.Text.Trim(), newTweekFeedback, newMark, 
                         txtNote.Text.Trim(), DateTime.Now.ToString());
                     db.InsertData(sb.ToString());
                 }
 
                 //3. 聊天摘要
-                if (txtContact.Text.Trim() != "")
+                if (txtContact.Text.Trim() != "" || newMark != oriMark || newStatus != oriStatus || (newTweekFeedback != oriTweetFeedback))
                 {
+                    if (newStatus != oriStatus)
+                        txtContact.Text += "[状态：" + newStatus + "]";
+                    if (newMark != oriMark)
+                        txtContact.Text += "[标记：" + newMark + "]";
+                    if (newTweekFeedback != oriTweetFeedback)
+                        txtContact.Text += "[帖子反馈：" + newTweekFeedback + "]";
+
                     sb.Clear();
                     sb.AppendFormat("insert into tb_fbGroupLogs(groupFbId, marketFbId, marketFbAccount, time, logs) " +
                         "values('{0}','{1}','{2}','{3}','{4}')",

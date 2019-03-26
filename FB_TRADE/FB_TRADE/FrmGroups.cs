@@ -90,28 +90,28 @@ namespace FB_TRADE
                     switch (item.Text)
                     {
                         case "群组ID":
-                            item.Width = (this.listViewGroups.Width / 100) * 7;
+                            item.Width = (this.listViewGroups.Width / 100) * 10;
                             break;
                         case "名称":
-                            item.Width = (this.listViewGroups.Width / 100) * 7;
+                            item.Width = (this.listViewGroups.Width / 100) * 10;
                             break;
                         case "来源":
-                            item.Width = (this.listViewGroups.Width / 100) * 7;
+                            item.Width = (this.listViewGroups.Width / 100) * 3;
                             break;
                         case "成员数":
-                            item.Width = (this.listViewGroups.Width / 100) * 5;
+                            item.Width = (this.listViewGroups.Width / 100) * 4;
                             break;
                         case "简介":
                             item.Width = (this.listViewGroups.Width / 100) * 10;
                             break;
                         case "关系和状态":
-                            item.Width = (this.listViewGroups.Width / 100) * 7;
+                            item.Width = (this.listViewGroups.Width / 100) * 10;
                             break;
                         case "客户数":
-                            item.Width = (this.listViewGroups.Width / 100) * 5;
+                            item.Width = (this.listViewGroups.Width / 100) * 4;
                             break;
                         case "订单数":
-                            item.Width = (this.listViewGroups.Width / 100) * 5;
+                            item.Width = (this.listViewGroups.Width / 100) * 4;
                             break;
                         case "出单人数":
                             item.Width = (this.listViewGroups.Width / 100) * 5;
@@ -123,7 +123,7 @@ namespace FB_TRADE
                             item.Width = (this.listViewGroups.Width / 100) * 5;
                             break;
                         case "帖子反馈":
-                            item.Width = (this.listViewGroups.Width / 100) * 7;
+                            item.Width = (this.listViewGroups.Width / 100) * 5;
                             break;
                         case "标记":
                             item.Width = (this.listViewGroups.Width / 100) * 11;

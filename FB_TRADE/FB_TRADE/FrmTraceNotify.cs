@@ -66,7 +66,7 @@ namespace FB_TRADE
                 switch (item.Text)
                 {
                     case "营销号编号":
-                        item.Width = (this.listViewTrace.Width / 100) * 6;
+                        item.Width = (this.listViewTrace.Width / 100) * 10;
                         break;
                     case "营销号":
                         item.Width = (this.listViewTrace.Width / 100) * 10;
@@ -81,10 +81,10 @@ namespace FB_TRADE
                         item.Width = (this.listViewTrace.Width / 100) * 8;
                         break;
                     case "意向产品":
-                        item.Width = (this.listViewTrace.Width / 100) * 8;
+                        item.Width = (this.listViewTrace.Width / 100) * 12;
                         break;
                     case "好友关系":
-                        item.Width = (this.listViewTrace.Width / 100) * 8;
+                        item.Width = (this.listViewTrace.Width / 100) * 4;
                         break;
                     case "客户备注":
                         item.Width = (this.listViewTrace.Width / 100) * 10;
@@ -96,7 +96,7 @@ namespace FB_TRADE
                         item.Width = (this.listViewTrace.Width / 100) * 10;
                         break;
                     case "互动次数":
-                        item.Width = (this.listViewTrace.Width / 100) * 8;
+                        item.Width = (this.listViewTrace.Width / 100) * 4;
                         break;
                     case "聊天摘要":
                         item.Width = (this.listViewTrace.Width / 100) * 12;

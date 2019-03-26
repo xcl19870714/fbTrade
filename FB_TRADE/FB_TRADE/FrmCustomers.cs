@@ -71,7 +71,7 @@ namespace FB_TRADE
                 switch (item.Text)
                 {
                     case "facebook ID":
-                        item.Width = (this.listViewCustomers.Width / 100) * 5;
+                        item.Width = (this.listViewCustomers.Width / 100) * 8;
                         break;
                     case "姓名":
                         item.Width = (this.listViewCustomers.Width / 100) * 5;
@@ -89,13 +89,13 @@ namespace FB_TRADE
                         item.Width = (this.listViewCustomers.Width / 100) * 10;
                         break;
                     case "账号关系":
-                        item.Width = (this.listViewCustomers.Width / 100) * 5;
+                        item.Width = (this.listViewCustomers.Width / 100) * 4;
                         break;
                     case "客户类型":
                         item.Width = (this.listViewCustomers.Width / 100) * 5;
                         break;
                     case "订单数":
-                        item.Width = (this.listViewCustomers.Width / 100) * 5;
+                        item.Width = (this.listViewCustomers.Width / 100) * 3;
                         break;
                     case "意向产品":
                         item.Width = (this.listViewCustomers.Width / 100) * 10;

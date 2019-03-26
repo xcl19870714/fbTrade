@@ -29,19 +29,21 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.cbxVerifyType = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txtIntroduction = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtMems = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.btnGroupGet = new System.Windows.Forms.Button();
-            this.txtGroupUrl = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.txtGroupName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnGroupGet = new System.Windows.Forms.Button();
             this.txtGroupFbId = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtGroupUrl = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtContactCustomers = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -82,8 +84,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtNote = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
+            this.radioNo = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -115,6 +116,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "基本信息";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.ForeColor = System.Drawing.Color.Red;
+            this.label14.Location = new System.Drawing.Point(508, 74);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(15, 15);
+            this.label14.TabIndex = 17;
+            this.label14.Text = "*";
             // 
             // cbxVerifyType
             // 
@@ -167,32 +178,6 @@
             this.label6.TabIndex = 9;
             this.label6.Text = "好友数：";
             // 
-            // btnGroupGet
-            // 
-            this.btnGroupGet.Location = new System.Drawing.Point(529, 69);
-            this.btnGroupGet.Name = "btnGroupGet";
-            this.btnGroupGet.Size = new System.Drawing.Size(56, 30);
-            this.btnGroupGet.TabIndex = 7;
-            this.btnGroupGet.Text = "获取";
-            this.btnGroupGet.UseVisualStyleBackColor = true;
-            this.btnGroupGet.Click += new System.EventHandler(this.btnGroupGet_Click);
-            // 
-            // txtGroupUrl
-            // 
-            this.txtGroupUrl.Location = new System.Drawing.Point(105, 71);
-            this.txtGroupUrl.Name = "txtGroupUrl";
-            this.txtGroupUrl.Size = new System.Drawing.Size(400, 25);
-            this.txtGroupUrl.TabIndex = 5;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 74);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(82, 15);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "群组首页：";
-            // 
             // txtGroupName
             // 
             this.txtGroupName.Location = new System.Drawing.Point(106, 112);
@@ -208,6 +193,16 @@
             this.label2.Size = new System.Drawing.Size(82, 15);
             this.label2.TabIndex = 8;
             this.label2.Text = "群组名称：";
+            // 
+            // btnGroupGet
+            // 
+            this.btnGroupGet.Location = new System.Drawing.Point(529, 69);
+            this.btnGroupGet.Name = "btnGroupGet";
+            this.btnGroupGet.Size = new System.Drawing.Size(56, 30);
+            this.btnGroupGet.TabIndex = 7;
+            this.btnGroupGet.Text = "获取";
+            this.btnGroupGet.UseVisualStyleBackColor = true;
+            this.btnGroupGet.Click += new System.EventHandler(this.btnGroupGet_Click);
             // 
             // txtGroupFbId
             // 
@@ -225,6 +220,32 @@
             this.label1.Size = new System.Drawing.Size(82, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "群组编号：";
+            // 
+            // txtGroupUrl
+            // 
+            this.txtGroupUrl.Location = new System.Drawing.Point(105, 71);
+            this.txtGroupUrl.Name = "txtGroupUrl";
+            this.txtGroupUrl.Size = new System.Drawing.Size(400, 25);
+            this.txtGroupUrl.TabIndex = 5;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(16, 74);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(82, 15);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "群组首页：";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.ForeColor = System.Drawing.Color.Red;
+            this.label17.Location = new System.Drawing.Point(575, 115);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(15, 15);
+            this.label17.TabIndex = 19;
+            this.label17.Text = "*";
             // 
             // groupBox2
             // 
@@ -471,10 +492,10 @@
             // radioNotActive
             // 
             this.radioNotActive.AutoSize = true;
-            this.radioNotActive.Location = new System.Drawing.Point(876, 351);
+            this.radioNotActive.Location = new System.Drawing.Point(960, 350);
             this.radioNotActive.Name = "radioNotActive";
             this.radioNotActive.Size = new System.Drawing.Size(73, 19);
-            this.radioNotActive.TabIndex = 9;
+            this.radioNotActive.TabIndex = 10;
             this.radioNotActive.TabStop = true;
             this.radioNotActive.Text = "不活跃";
             this.radioNotActive.UseVisualStyleBackColor = true;
@@ -482,10 +503,10 @@
             // radioNormal
             // 
             this.radioNormal.AutoSize = true;
-            this.radioNormal.Location = new System.Drawing.Point(812, 350);
+            this.radioNormal.Location = new System.Drawing.Point(886, 349);
             this.radioNormal.Name = "radioNormal";
             this.radioNormal.Size = new System.Drawing.Size(58, 19);
-            this.radioNormal.TabIndex = 8;
+            this.radioNormal.TabIndex = 9;
             this.radioNormal.TabStop = true;
             this.radioNormal.Text = "一般";
             this.radioNormal.UseVisualStyleBackColor = true;
@@ -493,10 +514,10 @@
             // radioActive
             // 
             this.radioActive.AutoSize = true;
-            this.radioActive.Location = new System.Drawing.Point(739, 350);
+            this.radioActive.Location = new System.Drawing.Point(813, 349);
             this.radioActive.Name = "radioActive";
             this.radioActive.Size = new System.Drawing.Size(58, 19);
-            this.radioActive.TabIndex = 7;
+            this.radioActive.TabIndex = 8;
             this.radioActive.TabStop = true;
             this.radioActive.Text = "活跃";
             this.radioActive.UseVisualStyleBackColor = true;
@@ -523,7 +544,7 @@
             this.txtContact.Multiline = true;
             this.txtContact.Name = "txtContact";
             this.txtContact.Size = new System.Drawing.Size(541, 82);
-            this.txtContact.TabIndex = 13;
+            this.txtContact.TabIndex = 14;
             // 
             // label15
             // 
@@ -531,7 +552,7 @@
             this.label15.Location = new System.Drawing.Point(641, 486);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(82, 15);
-            this.label15.TabIndex = 12;
+            this.label15.TabIndex = 13;
             this.label15.Text = "新建摘要：";
             // 
             // btnSave
@@ -539,7 +560,7 @@
             this.btnSave.Location = new System.Drawing.Point(876, 615);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(110, 50);
-            this.btnSave.TabIndex = 14;
+            this.btnSave.TabIndex = 15;
             this.btnSave.Text = "保存";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -550,7 +571,7 @@
             this.groupBox6.Location = new System.Drawing.Point(12, 346);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(591, 335);
-            this.groupBox6.TabIndex = 15;
+            this.groupBox6.TabIndex = 16;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "历史推文摘要";
             // 
@@ -602,7 +623,7 @@
             this.txtNote.Multiline = true;
             this.txtNote.Name = "txtNote";
             this.txtNote.Size = new System.Drawing.Size(317, 75);
-            this.txtNote.TabIndex = 11;
+            this.txtNote.TabIndex = 12;
             // 
             // label5
             // 
@@ -610,34 +631,26 @@
             this.label5.Location = new System.Drawing.Point(652, 388);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(52, 15);
-            this.label5.TabIndex = 10;
+            this.label5.TabIndex = 11;
             this.label5.Text = "备注：";
             // 
-            // label14
+            // radioNo
             // 
-            this.label14.AutoSize = true;
-            this.label14.ForeColor = System.Drawing.Color.Red;
-            this.label14.Location = new System.Drawing.Point(508, 74);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(15, 15);
-            this.label14.TabIndex = 17;
-            this.label14.Text = "*";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.ForeColor = System.Drawing.Color.Red;
-            this.label17.Location = new System.Drawing.Point(575, 115);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(15, 15);
-            this.label17.TabIndex = 19;
-            this.label17.Text = "*";
+            this.radioNo.AutoSize = true;
+            this.radioNo.Location = new System.Drawing.Point(728, 349);
+            this.radioNo.Name = "radioNo";
+            this.radioNo.Size = new System.Drawing.Size(73, 19);
+            this.radioNo.TabIndex = 7;
+            this.radioNo.TabStop = true;
+            this.radioNo.Text = "未发贴";
+            this.radioNo.UseVisualStyleBackColor = true;
             // 
             // FrmGroupAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1235, 723);
+            this.Controls.Add(this.radioNo);
             this.Controls.Add(this.txtNote);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label12);
@@ -731,5 +744,6 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.RadioButton radioNo;
     }
 }

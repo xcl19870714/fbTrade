@@ -247,6 +247,7 @@ namespace FB_TRADE
                 frm.curOrderId = info.Item.Text;
                 frm.curMarketFbId = this.curMarketFbId;
                 frm.curMarketFbAccount = curMarketFbAccount;
+                frm.pFrmMain = this.pFrmMain;
 
                 frm.MyFrmInit();
                 frm.Show();
@@ -379,6 +380,7 @@ namespace FB_TRADE
             frm.orderAddFrom = listViewOrders.CheckedItems[0].SubItems[0].Text;
             frm.curMarketFbId = this.curMarketFbId;
             frm.curMarketFbAccount = curMarketFbAccount;
+            frm.pFrmMain = this.pFrmMain;
 
             frm.MyFrmInit();
             frm.Show();
@@ -407,6 +409,7 @@ namespace FB_TRADE
             frm.orderAddFrom = listViewOrders.CheckedItems[0].SubItems[0].Text;
             frm.curMarketFbId = this.curMarketFbId;
             frm.curMarketFbAccount = curMarketFbAccount;
+            frm.pFrmMain = this.pFrmMain;
 
             frm.MyFrmInit();
             frm.Show();
@@ -435,6 +438,7 @@ namespace FB_TRADE
             frm.orderAddFrom = listViewOrders.CheckedItems[0].SubItems[0].Text;
             frm.curMarketFbId = this.curMarketFbId;
             frm.curMarketFbAccount = curMarketFbAccount;
+            frm.pFrmMain = this.pFrmMain;
 
             frm.MyFrmInit();
             frm.Show();

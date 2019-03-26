@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmOrderAdd));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
             this.txtLastEditTime = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.txtCreateTime = new System.Windows.Forms.TextBox();
@@ -102,7 +104,8 @@
             this.label26 = new System.Windows.Forms.Label();
             this.txtNote = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            this.btnOrderCopy = new System.Windows.Forms.ToolStripButton();
+            this.btnCustomerEdit = new System.Windows.Forms.ToolStripButton();
             this.panel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -140,6 +143,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1371, 153);
             this.panel1.TabIndex = 0;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.ForeColor = System.Drawing.Color.Red;
+            this.label11.Location = new System.Drawing.Point(270, 120);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(15, 15);
+            this.label11.TabIndex = 19;
+            this.label11.Text = "*";
             // 
             // txtLastEditTime
             // 
@@ -316,24 +329,26 @@
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel1,
-            this.labelCurMarketFbInfo});
+            this.labelCurMarketFbInfo,
+            this.btnCustomerEdit,
+            this.btnOrderCopy});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1371, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1371, 27);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(99, 22);
+            this.toolStripLabel1.Size = new System.Drawing.Size(99, 24);
             this.toolStripLabel1.Text = "当前营销号：";
             // 
             // labelCurMarketFbInfo
             // 
             this.labelCurMarketFbInfo.ForeColor = System.Drawing.Color.Red;
             this.labelCurMarketFbInfo.Name = "labelCurMarketFbInfo";
-            this.labelCurMarketFbInfo.Size = new System.Drawing.Size(99, 22);
+            this.labelCurMarketFbInfo.Size = new System.Drawing.Size(99, 24);
             this.labelCurMarketFbInfo.Text = "当前营销号：";
             // 
             // label2
@@ -877,15 +892,29 @@
             this.label27.TabIndex = 3;
             this.label27.Text = "备注：";
             // 
-            // label11
+            // btnOrderCopy
             // 
-            this.label11.AutoSize = true;
-            this.label11.ForeColor = System.Drawing.Color.Red;
-            this.label11.Location = new System.Drawing.Point(270, 120);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(15, 15);
-            this.label11.TabIndex = 19;
-            this.label11.Text = "*";
+            this.btnOrderCopy.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnOrderCopy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnOrderCopy.Image = ((System.Drawing.Image)(resources.GetObject("btnOrderCopy.Image")));
+            this.btnOrderCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnOrderCopy.Margin = new System.Windows.Forms.Padding(0, 1, 3, 2);
+            this.btnOrderCopy.Name = "btnOrderCopy";
+            this.btnOrderCopy.Size = new System.Drawing.Size(73, 24);
+            this.btnOrderCopy.Text = "复制订单";
+            this.btnOrderCopy.Click += new System.EventHandler(this.btnOrderCopy_Click);
+            // 
+            // btnCustomerEdit
+            // 
+            this.btnCustomerEdit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnCustomerEdit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnCustomerEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnCustomerEdit.Image")));
+            this.btnCustomerEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCustomerEdit.Margin = new System.Windows.Forms.Padding(0, 1, 3, 2);
+            this.btnCustomerEdit.Name = "btnCustomerEdit";
+            this.btnCustomerEdit.Size = new System.Drawing.Size(103, 24);
+            this.btnCustomerEdit.Text = "编辑当前客户";
+            this.btnCustomerEdit.Click += new System.EventHandler(this.btnCustomerEdit_Click);
             // 
             // FrmOrderAdd
             // 
@@ -991,5 +1020,7 @@
         private System.Windows.Forms.TextBox txtOrderId;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ToolStripButton btnCustomerEdit;
+        private System.Windows.Forms.ToolStripButton btnOrderCopy;
     }
 }

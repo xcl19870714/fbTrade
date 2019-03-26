@@ -819,5 +819,103 @@ namespace FB_TRADE
 
             return true;
         }
+
+        private void btnOrderCopy_Click(object sender, EventArgs e)
+        {
+            if (this.txtOrderId.Text.Trim() == "")
+            {
+                MessageBox.Show("此订单编号为空！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.txtOrderId.Focus();
+                return;
+            }
+
+            try
+            {
+                sb.Clear();
+                sb.AppendFormat("select count(*) from tb_fbOrders where orderId='{0}'", txtOrderId.Text.Trim());
+                if (db.CheckExist(sb.ToString()) == false)
+                {
+                    MessageBox.Show("订单在系统中不存在，请先创建！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                FrmOrderAdd frm = new FrmOrderAdd();
+                this.pFrmMain.AddPage(frm, "复制订单");
+
+                frm.bAdmin = this.bAdmin;
+                frm.bAdd = true;
+                frm.orderAddType = "复制";
+                frm.orderAddFrom = txtOrderId.Text.Trim();
+                frm.curMarketFbId = this.curMarketFbId;
+                frm.curMarketFbAccount = curMarketFbAccount;
+                frm.pFrmMain = this.pFrmMain;
+
+                frm.MyFrmInit();
+                frm.Show();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message, "数据库异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "程序异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnCustomerEdit_Click(object sender, EventArgs e)
+        {
+            if (this.txtCustomerId.Text.Trim() == "")
+            {
+                MessageBox.Show("客户编号为空！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.txtCustomerId.Focus();
+                return;
+            }
+
+            try
+            {
+                sb.Clear();
+                sb.AppendFormat("select count(*) from tb_fbCustomerShips where customerFbId='{0}' and marketFbId='{1}'", 
+                    txtCustomerId.Text.Trim(), curMarketFbId);
+                if (db.CheckExist(sb.ToString()) == false)
+                {
+                    MessageBox.Show("客户不存在，将跳转至创建客户界面！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    FrmCustomerAdd frm = new FrmCustomerAdd();
+                    this.pFrmMain.AddPage(frm, "新增客户");
+
+                    frm.bAdd = true;
+                    frm.curMarketFbId = this.curMarketFbId;
+                    frm.curMarketFbAccount = curMarketFbAccount;
+                    frm.pFrmMain = this.pFrmMain;
+                    frm.bAdmin = this.bAdmin;
+
+                    frm.MyFrmInit();
+                    frm.Show();
+                }
+                else
+                {
+                    FrmCustomerAdd frm = new FrmCustomerAdd();
+                    this.pFrmMain.AddPage(frm, "编辑客户");
+
+                    frm.bAdd = false;
+                    frm.curCustomerFbId = txtCustomerId.Text.Trim();
+                    frm.curMarketFbId = this.curMarketFbId;
+                    frm.curMarketFbAccount = curMarketFbAccount;
+                    frm.pFrmMain = this.pFrmMain;
+                    frm.bAdmin = this.bAdmin;
+
+                    frm.MyFrmInit();
+                    frm.Show();
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message, "数据库异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "程序异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
