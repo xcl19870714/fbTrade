@@ -317,6 +317,7 @@ namespace FB_TRADE
             this.AddPage(frm, "子账号列表");
 
             frm.curAdminId = Convert.ToString(this.adminInfo.Id);
+            frm.pFrmMain = this;
 
             frm.Show();
             frm.ListViewResize();

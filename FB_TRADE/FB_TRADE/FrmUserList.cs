@@ -16,6 +16,7 @@ namespace FB_TRADE
     public partial class FrmUserList : Form
     {
         public string curAdminId;
+        public FrmMain pFrmMain;
 		
         private DBCommon db = new DBCommon();
         private string sqlStr = string.Empty;
@@ -102,6 +103,8 @@ namespace FB_TRADE
                     it.SubItems.Add(user.CreateTime);
                     listViewUser.Items.Add(it);
                 }
+
+
             }
             catch (SqlException ex)
             {
@@ -169,6 +172,7 @@ namespace FB_TRADE
             }
 
             this.LoadListViewDB();
+            this.pFrmMain.InitUserCbx();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)

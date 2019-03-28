@@ -49,6 +49,7 @@ namespace FB_TRADE
                 {
                     MessageBox.Show("子账号创建成功！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     this.pFrm.LoadListViewDB();
+                    this.pFrm.pFrmMain.InitUserCbx();
                     this.Close();
                 }
                 else
