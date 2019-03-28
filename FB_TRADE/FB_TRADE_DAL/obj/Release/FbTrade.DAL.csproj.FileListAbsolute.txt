@@ -1,0 +1,9 @@
+E:\fbTrade\FB_TRADE\FB_TRADE_DAL\bin\Release\FB_TRADE_DAL.dll
+E:\fbTrade\FB_TRADE\FB_TRADE_DAL\bin\Release\FB_TRADE_DAL.pdb
+E:\fbTrade\FB_TRADE\FB_TRADE_DAL\bin\Release\FB_Trade_Models.dll
+E:\fbTrade\FB_TRADE\FB_TRADE_DAL\bin\Release\FB_Trade_Models.pdb
+E:\fbTrade\FB_TRADE\FB_TRADE_DAL\obj\Release\FbTrade.DAL.csprojAssemblyReference.cache
+E:\fbTrade\FB_TRADE\FB_TRADE_DAL\obj\Release\FbTrade.DAL.csproj.CoreCompileInputs.cache
+E:\fbTrade\FB_TRADE\FB_TRADE_DAL\obj\Release\FbTrade.DAL.csproj.CopyComplete
+E:\fbTrade\FB_TRADE\FB_TRADE_DAL\obj\Release\FB_TRADE_DAL.dll
+E:\fbTrade\FB_TRADE\FB_TRADE_DAL\obj\Release\FB_TRADE_DAL.pdb

@@ -1,0 +1,5 @@
+E:\fbTrade\FB_TRADE\FB_Trade_Models\bin\Release\FB_Trade_Models.dll
+E:\fbTrade\FB_TRADE\FB_Trade_Models\bin\Release\FB_Trade_Models.pdb
+E:\fbTrade\FB_TRADE\FB_Trade_Models\obj\Release\FbTrade.Models.csproj.CoreCompileInputs.cache
+E:\fbTrade\FB_TRADE\FB_Trade_Models\obj\Release\FB_Trade_Models.dll
+E:\fbTrade\FB_TRADE\FB_Trade_Models\obj\Release\FB_Trade_Models.pdb
